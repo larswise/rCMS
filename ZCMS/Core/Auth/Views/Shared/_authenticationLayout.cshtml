@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @System.Web.Optimization.Styles.Render("~/Content/css/auth/styles")
+</head>
+<body>
+    <div id="AuthWrapper">
+        <div class="logo">
+            <img src="@Url.Content("~/Content/Backend/Images/cmslogo.png")" alt="" border="0"/>
+        </div>
+        @RenderBody()
+    </div>
+</body>
+</html>

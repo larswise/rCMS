@@ -1,0 +1,58 @@
+﻿body {
+    margin: 0 auto;
+    background: #000;
+    font-family: "Gentium Basic", "Segoe UI";
+    font-size: 1.15em;
+}
+
+
+#AuthWrapper {
+width:400px;height:150px;position:absolute;left:50%;top:35%;
+margin-left:-100px;margin-top:-50px; color: #fff;
+}
+
+.logo {
+    padding: 20px 0 0 0;
+}
+
+#LogonWrapper {
+    margin: 10px 0 0 25px;
+    width: 325px;
+    font-weight: bold;
+}
+
+.logintop {
+    padding: 10px 10px 10px 0;
+    font-style: italic;
+}
+
+.logon-control {
+    width: 175px;
+    float: left;
+    padding: 5px;
+}
+
+.logon-label {
+    width: 125px;
+    text-align: right;
+    float: left;
+    padding: 5px;
+}
+
+#LogonWrapper input {
+    width: 150px;
+    background: #fff;
+    padding: 5px;
+    border: 0;
+}
+
+#LogonWrapper input[type="submit"] {
+    width: 158px;
+    background: #ffd800;
+}
+
+.logon-failed {
+    color: #ffabab;
+    font-size: small;
+    padding: 5px 0 5px 0;
+}

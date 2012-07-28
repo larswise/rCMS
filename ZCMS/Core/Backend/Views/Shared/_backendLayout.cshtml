@@ -1,0 +1,52 @@
+﻿
+@{
+    var menuItems = (List<ZCMS.Core.Business.ZCMSMenuItem>)ViewData["MenuData"] as List<ZCMS.Core.Business.ZCMSMenuItem>;
+ }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Scripts.Render("~/bundles/tinymce")
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryui")
+    @System.Web.Optimization.Scripts.Render("~/bundles/AdminInitlalizer")
+    @System.Web.Optimization.Styles.Render("~/Content/themes/base/css")    
+    @System.Web.Optimization.Styles.Render("~/Content/css/backend/main")
+    
+</head>
+<body>
+
+    <div id="PageWrap">
+        <div id="Header">
+            <div id="LogoContainer">
+                <img src="~/Content/backend/images/cmslogo.png" alt="" />
+            </div>
+            <div id="TopMenuContainer">
+                <div class="MenuItem"><a href="javascript:void(0);" data-val="DashBoard" class="dashboard mainmenuitem">@CMS_i18n.BackendResources.MenuDashBoard</a></div>
+
+                <div class="MenuItem"><a href="javascript:void(0);" data-val="PublishMenu" class="publishnew mainmenuitem">@CMS_i18n.BackendResources.MenuPublishNew</a></div>
+
+                <div class="MenuItem"><a href="javascript:void(0);" data-val="FilesMenu" class="filessite mainmenuitem">@CMS_i18n.BackendResources.MenuFiles</a></div>
+
+                <div class="MenuItem"><a href="javascript:void(0);" data-val="ConfigureMenu" class="configuresite mainmenuitem">@CMS_i18n.BackendResources.MenuConfigure</a></div>
+
+                <div class="MenuItem"><a href="javascript:void(0);" data-val="SecurityMenu" class="securesite mainmenuitem">@CMS_i18n.BackendResources.MenuSecurity</a></div>
+
+            </div>
+        </div>
+        <div id="MainContainer">
+            <div id="LeftContainer">
+                @Html.Partial("LeftMenu", null)</div>
+
+
+            <div id="RightContainer">@RenderBody()</div>
+
+        </div>
+        <div class="clearfooter"></div>
+    </div>
+    <div id="PageFooter">
+    </div>
+</body>
+</html>

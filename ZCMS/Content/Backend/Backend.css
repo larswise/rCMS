@@ -1,0 +1,424 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Gentium Basic", "Segoe UI";
+    color: #232323;
+    background-color: #fff;
+    margin: 0 auto;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+header, footer, nav, section {
+    display: block;    
+}
+
+#PageWrap {
+
+    
+    min-height: 100%;
+margin-bottom: -150px;
+position: relative;
+}
+
+.clearfooter {
+height: 150px;
+clear: both;
+}
+
+#PageFooter {
+    height: 150px;
+    position: relative;
+    background: #000;
+}
+
+#Header {
+    background: #000;
+    height: 110px;
+    border-bottom: 2px solid #ffd800;
+}
+
+#LogoContainer {
+    padding: 8px;
+}
+
+#MainContainer {
+    float: left;
+    width: 100%;
+}
+
+#LeftContainer {
+    float: left;
+    width: 20%;
+    background-image: url('images/cool-bg-border.png');
+    background-position: right;
+    background-repeat: repeat-y;    
+}
+
+#RightContainer {
+    float: left;
+    width: 80%;
+    background-color: #d9d9d9;
+    color: #000;
+}
+
+/* Main menu top ... */
+#TopMenuContainer {
+    float: left;
+}
+
+.MenuItem {
+    float: left;
+    padding: 5px 20px;
+    line-height: 28px;
+}
+
+.MenuItem a:link, .MenuItem a:visited {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.MenuItem a:hover {
+    color: #ffd800;
+}
+
+a.publishnew {
+    
+}
+
+a.configuresite {
+    background-image: url('images/gear.png');
+    background-repeat: no-repeat;
+    background-position: 0px 3px;
+    text-indent: 28px;
+    display: inline-block;
+}
+
+a.filessite {
+    background-image: url('images/attachment.png');
+    background-repeat: no-repeat;
+    background-position: 0px 3px;
+    text-indent: 28px;
+    display: inline-block;
+}
+
+a.securesite {
+    background-image: url('images/lock.png');
+    background-repeat: no-repeat;
+    background-position: 0px 3px;    
+    text-indent: 28px;
+    display: inline-block;    
+}
+
+a.dashboard {
+    background-image: url('images/poll.png');
+    background-repeat: no-repeat;
+    background-position: 0px 3px;    
+    text-indent: 28px;
+    display: inline-block;    
+}
+
+a.publishnew {
+    background-image: url('images/globe.png');
+    background-repeat: no-repeat;
+    background-position: 0px 3px;    
+    text-indent: 28px;
+    display: inline-block;    
+}
+
+/* Editor */
+.page-base-wrap {
+    border-bottom: 1px solid #fff;
+}
+.page-edit-top {
+    height: 35px;    
+    overflow: hidden;
+    background-color: #d9d9d9;
+    color: #000;
+}
+
+.edit-top-label, .edit-top-unit {
+    float: left;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.edit-top-label {
+    width: 110px;
+    min-width: 75px;
+    max-width: 110px;
+    padding-left: 10px;
+}
+
+.page-edit-top-small {
+    height: 65px;    
+    overflow: hidden;
+    background-color: #555;
+    color: #fff;  
+    clear: both; 
+}
+.edit-top-label-small, .edit-top-unit-small {
+    float: left;
+    padding: 5px;
+    width: 123px;
+    min-width: 75px;
+    max-width: 123px;
+    font-weight: bold;
+}
+
+.custom-properties-edit-wrap {
+    float: left;
+    clear: left;
+}
+
+.edit-unit {
+    width: 0 auto;
+    overflow: hidden;
+}
+.unit-label, .unit-unit {
+    float: left;
+    padding: 5px;
+}
+
+.unit-label {
+    min-width:75px;
+    max-width: 110px;
+    width: 110px;
+    padding-left: 10px;
+}
+
+.unit-imagelist {
+    float: left;
+    width: 180px;
+    height: 140px;
+}
+
+.edit-top-save {
+    
+    padding-top: 10px; 
+}
+
+
+.page-editor-tools-save, .page-editor-tools-versions, .page-editor-tools-view {
+
+    float: left;
+    padding: 5px 25px 5px 25px;
+    border-right: 1px solid #000;
+}
+
+.page-editor-tools-save:hover, .page-editor-tools-versions:hover, .page-editor-tools-view:hover {
+    background: #ffd800;
+}
+
+.page-editor-tools-save img , .page-editor-tools-versions img, .page-editor-tools-view img {
+    max-width: 20px;
+    max-height: 20px;
+    vertical-align: middle;
+}
+
+.page-editor-tools-save {
+    background: #666;
+}
+
+.page-editor-tools-view {
+    background: #888;
+    overflow: hidden !important;
+    float: none !important;
+}
+
+
+
+.page-actions {
+    line-height: 30px;
+}
+
+.page-editor-tools-versions {
+    background: #777;
+}
+
+.editor-controls-wrap a {
+    color: #000;
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.editor-controls-wrap {
+
+}
+.unit-imagelist img {
+    max-width: 150px;    
+}
+
+.save-success {
+    float: right;
+    padding: 5px;
+    color: #090;
+}
+.editor-image-container {
+    width: 540px;
+}
+
+.tags-wrapper {
+    width: 520px;
+    float: left;
+}
+
+.tag-item {
+    border-radius: 10px;
+    background: #FFD800;
+    height: 30px;
+    margin: 5px 5px 0 5px;
+    width: auto;
+    display: inline-block;
+}
+
+.tag, .tag-del {
+    float: left;
+}
+
+.tag {
+    padding: 5px;
+    font-size: small;
+}
+
+.tag-del img {
+    padding-top: 6px;
+}
+
+.tags-editor {
+    padding-top: 40px;
+}
+
+input.single-line {
+    width: 500px;
+}
+
+input.datefield {
+    width: 100px;
+}
+
+#LeftAdminMenuWrapper {
+    padding: 5px;
+    background-image: url('images/cool-bg-border-top.png');
+    background-position: top right;
+    background-repeat: no-repeat;      
+}
+
+#LeftAdminMenu {
+    margin: 5px 0px 0px 10px;    
+}
+
+.LeftAdminWelcome {
+    padding-top: 25px;
+    color: #c0c0c0;
+    text-align: center;
+}
+.LeftAdminWelcomeHeader {
+    font-size: 75px;
+    line-height: 75px;
+}
+
+.LeftAdminWelcomeText {
+    font-size: 16px;
+    color: #000;
+    margin: 40px;
+}
+
+.publish-menu-wrapper {
+    text-align: left;
+    padding: 10px;
+}
+
+.publish-menu-pagetype a, .publish-menu-pagetype {
+    color: #232323;
+    font-size: medium;
+    font-weight: bold;  
+    text-decoration: none;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+/*revisions*/
+#RevisionsContainer {
+    margin:25px;
+    padding: 25px;
+    border: 1px dashed black;
+    display: none;
+    background: #ccc;
+}
+
+.revision-header-row, .revision-row {
+    clear: both;
+}
+
+.revision-header-row div {
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.revision-header-row div, .revision-row div {
+    float: left;
+    width: 135px;
+    font-size: smaller;
+}
+.rev-col-view {
+    text-align: right;
+    padding-right: 10px;
+}
+.rev-col-view img, .rev-col-use img {
+    max-width: 16px;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}

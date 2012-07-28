@@ -1,0 +1,33 @@
+﻿@model List<string>
+@{
+    
+    var items = Model;
+    
+}
+<script src="@Url.Content("~/Scripts/fileuploader.js")"></script>
+<script>
+    $(document).ready(function () {
+        var uploader = new qq.FileUploader({
+            element: document.getElementById('file-uploader'),
+            action: '/Admin/UploadAttachment/' + '@ViewData["CurrentPageId"].ToString()',
+            debug: true
+        });
+    });
+</script>
+@System.Web.Optimization.Styles.Render("~/Content/css/backend/fileupload")
+<div id="file-uploader">
+    <noscript>
+        <p>Please enable JavaScript to use file uploader.</p>
+        <!-- or put a simple form for upload here -->
+        
+    </noscript>
+</div>
+<div class="editor-image-container">
+@if(items != null) {
+    foreach (string o in items)
+    {
+        
+        <div class="unit-imagelist"><img src="@Url.Action("GetCurrentImage", "Backend", new { key = o.ToString() })" alt="" /></div>        
+    }
+}
+</div>

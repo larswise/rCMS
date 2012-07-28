@@ -1,0 +1,6 @@
+c:\Projects\21CMS\21CMS_i18n\bin\Debug\21CMS_i18n.dll
+c:\Projects\21CMS\21CMS_i18n\bin\Debug\21CMS_i18n.pdb
+c:\Projects\21CMS\21CMS_i18n\obj\Debug\21CMS_i18n.csproj.GenerateResource.Cache
+c:\Projects\21CMS\21CMS_i18n\obj\Debug\21CMS_i18n.dll
+c:\Projects\21CMS\21CMS_i18n\obj\Debug\21CMS_i18n.pdb
+c:\Projects\21CMS\21CMS_i18n\obj\Debug\_21CMS_i18n.BackendResources.resources

@@ -1,0 +1,57 @@
+﻿@model ZCMS.Core.Business.ZCMSPage
+<div class="custom-properties-edit-wrap">
+<div class="edit-unit">
+<div class="edit-top-label">
+    @Html.Label(CMS_i18n.BackendResources.PageID):
+-
+    @Html.Label(Model.PageID.ToString())
+</div>
+</div>
+<div class="edit-unit">
+<div class="unit-label">
+    @Html.LabelFor(model => model.StartPublish):
+</div>
+<div class="unit-unit">
+    @Html.EditorFor(model => model.StartPublish)
+    @Html.ValidationMessageFor(model => model.StartPublish)
+</div>
+</div>
+<div class="edit-unit">
+<div class="unit-label">
+    @Html.LabelFor(model => model.EndPublish):
+</div>
+<div class="unit-unit">
+    @Html.EditorFor(model => model.EndPublish)
+    @Html.ValidationMessageFor(model => model.EndPublish)
+</div>
+</div>
+<div class="edit-unit">
+<div class="unit-label">
+    @Html.LabelFor(model => model.ShowInMenus):
+</div>
+<div class="unit-unit">
+    @Html.EditorFor(model => model.ShowInMenus)
+</div>
+
+
+</div>
+<div class="edit-unit">
+<div class="unit-label">
+    @Html.LabelFor(model => model.AllowComments):
+</div>
+<div class="unit-unit">
+    @Html.EditorFor(model => model.AllowComments)
+</div>
+
+
+</div>
+<div class="page-edit-top">
+<div class="edit-top-label">
+    @Html.LabelFor(model => model.PageName):
+</div>
+<div class="edit-top-unit">
+    @Html.EditorFor(model => model.PageName)
+    @Html.ValidationMessageFor(model => model.PageName)
+</div>
+</div>
+</div>
