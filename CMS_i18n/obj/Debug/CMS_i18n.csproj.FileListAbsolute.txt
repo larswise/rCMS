@@ -11,4 +11,3 @@ c:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.BackendResources.resources
 c:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.dll
 c:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.pdb
 c:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.Auth.resources
-c:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.csprojResolveAssemblyReference.cache

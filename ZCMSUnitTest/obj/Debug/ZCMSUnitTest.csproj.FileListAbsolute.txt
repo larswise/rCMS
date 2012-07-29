@@ -28,7 +28,6 @@ c:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.pdb
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\ZCMSUnitTest.dll.config
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Versioning.dll
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Versioning.pdb
-c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Newtonsoft.Json.dll
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Database.dll
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Bundles.Authorization.dll
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\NLog.dll
@@ -56,3 +55,5 @@ c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Bundles.Authentication.dll
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Bundles.Authentication.pdb
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Abstractions.xml
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Lightweight.xml
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Newtonsoft.Json.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Newtonsoft.Json.xml
