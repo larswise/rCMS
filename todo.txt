@@ -1,20 +1,24 @@
 Todos!
 
-gjør slik at siste venstremeny huskes
-status på documents
-mulighet til å save drafts -> avpubliserer hvis publisert
-vis status på dokument
-mulighet til å slette et dokument
+Remember Left-menu
+Document statuses
+Possible to save drafts, unpublish if published
+Not possible to upload images before initial save and / or publish
+Show document status
+Possible to delete a document
+
 
 files meny;
-sette opp sqlexpress (compact?)
-med filestream
-filer blir tagga med extension i en egen tabell
-vise filer (viser 20 siste)
-ajax søk filtrerer listen
-kan tagge/av-tagge på extensions
-søke filer
-laste opp filer
 
-knapp for sett inn dokument link i tinymce?
-sett inn lokalt bilde?
+Configure sqlexpress (compact?)
+With filestream
+Tag files with extensions/date etc, separate table
+Show files (last 20)
+Ajax search for files, filter list
+Tag, untag by extensions
+Upload files
+
+
+Button for insert document in tinymce?
+Insert local image
+
