@@ -1,4 +1,4 @@
-﻿body {
+body {
     font-size: .85em;
     font-family: "Gentium Basic", "Segoe UI";
     color: #232323;
@@ -37,7 +37,6 @@ clear: both;
 #Header {
     background: #000;
     height: 110px;
-    border-bottom: 2px solid #ffd800;
 }
 
 #LogoContainer {
@@ -52,7 +51,6 @@ clear: both;
 #LeftContainer {
     float: left;
     width: 20%;
-    background-image: url('images/cool-bg-border.png');
     background-position: right;
     background-repeat: repeat-y;    
 }
@@ -75,22 +73,28 @@ clear: both;
     line-height: 28px;
 }
 
+.MenuItem a {
+    opacity:0.7;
+    filter:alpha(opacity=70);
+}
+
 .MenuItem a:link, .MenuItem a:visited {
     color: #fff;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .MenuItem a:hover {
     color: #ffd800;
+    opacity:1.0;
+    filter:alpha(opacity=100);    
 }
 
-a.publishnew {
-    
-}
+
 
 a.configuresite {
     background-image: url('images/gear.png');
+    background-size: 24px 24px;
     background-repeat: no-repeat;
     background-position: 0px 3px;
     text-indent: 28px;
@@ -98,7 +102,8 @@ a.configuresite {
 }
 
 a.filessite {
-    background-image: url('images/attachment.png');
+    background-image: url('images/files.png');
+    background-size: 24px 24px;    
     background-repeat: no-repeat;
     background-position: 0px 3px;
     text-indent: 28px;
@@ -107,6 +112,7 @@ a.filessite {
 
 a.securesite {
     background-image: url('images/lock.png');
+    background-size: 24px 24px;    
     background-repeat: no-repeat;
     background-position: 0px 3px;    
     text-indent: 28px;
@@ -114,7 +120,8 @@ a.securesite {
 }
 
 a.dashboard {
-    background-image: url('images/poll.png');
+    background-image: url('images/home.png');
+    background-size: 24px 24px;    
     background-repeat: no-repeat;
     background-position: 0px 3px;    
     text-indent: 28px;
@@ -122,7 +129,8 @@ a.dashboard {
 }
 
 a.publishnew {
-    background-image: url('images/globe.png');
+    background-image: url('images/arrow_up.png');
+    background-size: 24px 24px;    
     background-repeat: no-repeat;
     background-position: 0px 3px;    
     text-indent: 28px;
@@ -202,32 +210,27 @@ a.publishnew {
 }
 
 
-.page-editor-tools-save, .page-editor-tools-versions, .page-editor-tools-view {
+.page-editor-tools-save, .page-editor-tools-delete, .page-editor-tools-save-draft, .page-editor-tools-versions, .page-editor-tools-view {
 
     float: left;
-    padding: 5px 25px 5px 25px;
+    padding: 0 15px 0 15px;
+    text-align: center;
     border-right: 1px solid #000;
+    background: #555;
+    color: #fff;
+    height: 35px;
 }
 
-.page-editor-tools-save:hover, .page-editor-tools-versions:hover, .page-editor-tools-view:hover {
-    background: #ffd800;
+.page-editor-tools-save:hover, .page-editor-tools-delete:hover, .page-editor-tools-save-draft:hover, .page-editor-tools-versions:hover, .page-editor-tools-view:hover {
+    background: #808080;
 }
 
-.page-editor-tools-save img , .page-editor-tools-versions img, .page-editor-tools-view img {
-    max-width: 20px;
-    max-height: 20px;
+.page-editor-tools-save img, .page-editor-tools-delete img, .page-editor-tools-save-draft img, .page-editor-tools-versions img, .page-editor-tools-view img {
+    max-width: 24px;
+    max-height: 24px;
     vertical-align: middle;
 }
 
-.page-editor-tools-save {
-    background: #666;
-}
-
-.page-editor-tools-view {
-    background: #888;
-    overflow: hidden !important;
-    float: none !important;
-}
 
 
 
@@ -235,19 +238,17 @@ a.publishnew {
     line-height: 30px;
 }
 
-.page-editor-tools-versions {
-    background: #777;
-}
+
 
 .editor-controls-wrap a {
-    color: #000;
+    color: #fff;
     font-size: medium;
     font-weight: bold;
     text-decoration: none;
 }
 
 .editor-controls-wrap {
-
+    height: 35px;
 }
 .unit-imagelist img {
     max-width: 150px;    
@@ -287,6 +288,7 @@ a.publishnew {
 
 .tag-del img {
     padding-top: 6px;
+    width: 16px;
 }
 
 .tags-editor {
@@ -303,7 +305,6 @@ input.datefield {
 
 #LeftAdminMenuWrapper {
     padding: 5px;
-    background-image: url('images/cool-bg-border-top.png');
     background-position: top right;
     background-repeat: no-repeat;      
 }
@@ -349,6 +350,8 @@ input.datefield {
     border: 1px dashed black;
     display: none;
     background: #ccc;
+    float: left;
+    clear: left;
 }
 
 .revision-header-row, .revision-row {

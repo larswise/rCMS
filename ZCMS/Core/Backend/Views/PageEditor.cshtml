@@ -1,4 +1,4 @@
-﻿@model ZCMS.Core.Business.ZCMSPage
+@model ZCMS.Core.Business.ZCMSPage
 
 @{
     ViewBag.Title = "EditPage";
@@ -9,25 +9,38 @@
 
 <div class="page-editor-tools-save">
     <a href="javascript:void(0);" id="save-publish-page">
-        <img border="0" src="@Url.Content("~/Content/Backend/images/savepublish.png")" alt="-" title="@CMS_i18n.BackendResources.SavePublishPage" />
+        <img border="0" src="@Url.Content("~/Content/Backend/images/arrow_up.png")" alt="-" title="@CMS_i18n.BackendResources.SavePublishPage" />
         <span class="page-actions">@CMS_i18n.BackendResources.SavePublishPage</span>
     </a>
     </div>
+<div class="page-editor-tools-save-draft">
+    <a href="javascript:void(0);" id="save-draft-page">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/diskette.png")" alt="-" title="@CMS_i18n.BackendResources.SaveDraftPage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.SaveDraftPage</span>
+    </a>
+</div>
 <div class="page-editor-tools-versions">
     <a href="javascript:void(0);" id="view-document-versions" data-val="@Model.PageID">
-        <img border="0" src="@Url.Content("~/Content/Backend/images/revisions.png")" alt="-" title="@CMS_i18n.BackendResources.ViewDifferentVersions" />
+        <img border="0" src="@Url.Content("~/Content/Backend/images/history2.png")" alt="-" title="@CMS_i18n.BackendResources.ViewDifferentVersions" />
         <span class="page-actions">@CMS_i18n.BackendResources.ViewDifferentVersions</span></a>
     
 </div>
 <div class="page-editor-tools-view">
     <a href="@Url.Action("ViewPage", "Frontend", new { pageId = Model.PageID })" id="view-document">
-        <img border="0" src="@Url.Content("~/Content/Backend/images/view.png")" alt="-" title="@CMS_i18n.BackendResources.ViewPage" />
+        <img border="0" src="@Url.Content("~/Content/Backend/images/eye_open.png")" alt="-" title="@CMS_i18n.BackendResources.ViewPage" />
         <span class="page-actions">@CMS_i18n.BackendResources.ViewPage</span>
     </a>
     
 </div>
+<div class="page-editor-tools-delete">
+    <a href="@Url.Action("ViewPage", "Frontend", new { pageId = Model.PageID })" id="delete-document">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/trash_can.png")" alt="-" title="@CMS_i18n.BackendResources.DeletePage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.DeletePage</span>
+    </a>
+    
+</div>
 
-
+<div class=".norevs" style="display:none;">@CMS_i18n.BackendResources.NoRevisions</div>
 <div id="RevisionsContainer"></div>
 <div class="edit-top-save">
     

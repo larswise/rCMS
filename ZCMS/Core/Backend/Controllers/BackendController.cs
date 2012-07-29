@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -112,7 +112,11 @@ namespace ZCMS.Core.Backend.Controllers
         {
             try
             {
-                return PartialView("RenderAllRevisions", _worker.CmsContentRepository.GetPastRevisions(id));
+                var items = _worker.CmsContentRepository.GetPastRevisions(id);
+                if (items.Count > 0)
+                    return PartialView("RenderAllRevisions", _worker.CmsContentRepository.GetPastRevisions(id));
+                else
+                    return null;
             }
             catch
             {

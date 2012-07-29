@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -126,6 +126,9 @@
   <data name="ContainerHeading" xml:space="preserve">
     <value>Listing Header</value>
   </data>
+  <data name="DeletePage" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="DocumentSaved" xml:space="preserve">
     <value>Your document was successfully saved!</value>
   </data>
@@ -174,6 +177,9 @@
   <data name="MenuUploadFiles" xml:space="preserve">
     <value>Upload</value>
   </data>
+  <data name="NoRevisions" xml:space="preserve">
+    <value>There are no revisions saved for this document yet!</value>
+  </data>
   <data name="Order" xml:space="preserve">
     <value>Sort Order</value>
   </data>
@@ -209,6 +215,9 @@
   </data>
   <data name="RevisionViewThis" xml:space="preserve">
     <value>View Revision</value>
+  </data>
+  <data name="SaveDraftPage" xml:space="preserve">
+    <value>Save Draft</value>
   </data>
   <data name="SavePage" xml:space="preserve">
     <value>Save</value>

@@ -51,6 +51,7 @@ c:\Projects\ZCMS\ZCMS\bin\WebMatrix.Data.xml
 c:\Projects\ZCMS\ZCMS\bin\WebMatrix.WebData.xml
 c:\Projects\ZCMS\ZCMS\bin\Raven.Client.Versioning.dll
 c:\Projects\ZCMS\ZCMS\bin\Raven.Client.Versioning.pdb
+c:\Projects\ZCMS\ZCMS\bin\Newtonsoft.Json.dll
 c:\Projects\ZCMS\ZCMS\bin\BouncyCastle.Crypto.dll
 c:\Projects\ZCMS\ZCMS\bin\Esent.Interop.dll
 c:\Projects\ZCMS\ZCMS\bin\ICSharpCode.NRefactory.dll
@@ -80,7 +81,7 @@ c:\Projects\ZCMS\ZCMS\bin\Raven.Smuggler.pdb
 c:\Projects\ZCMS\ZCMS\bin\Spatial4n.Core.pdb
 c:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authentication.dll
 c:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authentication.pdb
+c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.dll
+c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.pdb
 c:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.xml
 c:\Projects\ZCMS\ZCMS\bin\Raven.Client.Lightweight.xml
-C:\Projects\ZCMS\ZCMS\bin\Newtonsoft.Json.dll
-C:\Projects\ZCMS\ZCMS\bin\Newtonsoft.Json.xml
