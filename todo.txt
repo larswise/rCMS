@@ -1,0 +1,20 @@
+Todos!
+
+gjør slik at siste venstremeny huskes
+status på documents
+mulighet til å save drafts -> avpubliserer hvis publisert
+vis status på dokument
+mulighet til å slette et dokument
+
+files meny;
+sette opp sqlexpress (compact?)
+med filestream
+filer blir tagga med extension i en egen tabell
+vise filer (viser 20 siste)
+ajax søk filtrerer listen
+kan tagge/av-tagge på extensions
+søke filer
+laste opp filer
+
+knapp for sett inn dokument link i tinymce?
+sett inn lokalt bilde?

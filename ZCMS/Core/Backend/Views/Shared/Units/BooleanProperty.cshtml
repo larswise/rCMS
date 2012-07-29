@@ -1,0 +1,9 @@
+﻿@model ZCMS.Core.Business.BooleanProperty
+<div class="unit-label">
+@Html.CheckBoxFor(model => Convert.ToBoolean(model.PropertyValue))
+</div>
+<div class="unit-unit">
+@Html.HiddenFor(model => model.PropertyName)
+@Html.HiddenFor(model => model.Order)
+@Html.Label(Model.PropertyName)
+</div>

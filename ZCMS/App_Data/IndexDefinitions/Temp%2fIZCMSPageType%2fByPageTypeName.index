@@ -1,0 +1,18 @@
+{
+  "Name": "Temp/IZCMSPageType/ByPageTypeName",
+  "Map": "from doc in docs.IZCMSPageType\r\nselect new { PageTypeName = doc.PageTypeName }",
+  "Maps": [
+    "from doc in docs.IZCMSPageType\r\nselect new { PageTypeName = doc.PageTypeName }"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": true,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [],
+  "Type": "Temp"
+}

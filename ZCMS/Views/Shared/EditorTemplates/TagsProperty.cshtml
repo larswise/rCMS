@@ -1,0 +1,47 @@
+﻿@model List<string>
+<script>
+
+    $(document).ready(function () {
+        $("#PropertyValue_PageTags").keyup(function (e) {
+            if (e.keyCode == "188" && $("#PropertyValue_PageTags").val().length > 1) {
+                if ($("#PropertyValue_PageTags").val() == ",,") {
+                    $("#PropertyValue_PageTags").val('');
+                } else {
+                    var value = $("#PropertyValue_PageTags").val().split(',')[0];
+                    $(".tags-wrapper").append("<div class='tag-item'><div class='tag'>" + value + "</div>" +
+                                                "<div class='tag-del'><img src='/Content/Backend/images/delete.png' alt='' /></div></div>");
+                    $("#PropertyValue_PageTags").val('');
+                    $("#PropertyValue_PageTagValues").val($("#PropertyValue_PageTagValues").val() + "," + value);
+
+                    WireupDeleteButtons();
+                }
+            }
+        });
+
+        WireupDeleteButtons();
+        
+    });
+
+    function WireupDeleteButtons() {
+        $(".tag-del").click(function () {
+            var value = $(this).parent().children(".tag").text();
+            $(this).parent().remove();
+            $("#PropertyValue_PageTagValues").val($("#PropertyValue_PageTagValues").val().replace(value, ""));
+
+        });
+    }
+</script>
+<div class="tags-wrapper">
+    @foreach (var item in Model)
+    {
+        <div class="tag-item">
+            <div class="tag">@item</div>
+            <div class="tag-del"><img src="@Url.Content("~/Content/Backend/images/delete.png")" alt="@CMS_i18n.BackendResources.TagsDelete" /></div>
+        </div>
+    }
+
+</div>
+<div class="tags-editor">
+@Html.TextBox("PageTags", "", new { @class = "tags-textfield" })
+@Html.Hidden("PageTagValues", string.Join(",", ((List<string>)Model).ToArray()))
+</div>

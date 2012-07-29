@@ -1,0 +1,126 @@
+﻿@model ZCMS.Core.Business.ZCMSPage
+
+@{
+    ViewBag.Title = "EditPage";
+    Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
+}
+@{ Html.BeginForm("PageEditor", "Backend", null, FormMethod.Post, new { @enctype = "multipart/form-data", @id="page-editor-form" }); }
+<div class="editor-controls-wrap">
+
+<div class="page-editor-tools-save">
+    <a href="javascript:void(0);" id="save-publish-page">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/arrow_up.png")" alt="-" title="@CMS_i18n.BackendResources.SavePublishPage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.SavePublishPage</span>
+    </a>
+    </div>
+<div class="page-editor-tools-save-draft">
+    <a href="javascript:void(0);" id="save-draft-page">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/diskette.png")" alt="-" title="@CMS_i18n.BackendResources.SaveDraftPage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.SaveDraftPage</span>
+    </a>
+</div>
+<div class="page-editor-tools-versions">
+    <a href="javascript:void(0);" id="view-document-versions" data-val="@Model.PageID">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/history2.png")" alt="-" title="@CMS_i18n.BackendResources.ViewDifferentVersions" />
+        <span class="page-actions">@CMS_i18n.BackendResources.ViewDifferentVersions</span></a>
+    
+</div>
+<div class="page-editor-tools-view">
+    <a href="@Url.Action("ViewPage", "Frontend", new { pageId = Model.PageID })" id="view-document">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/eye_open.png")" alt="-" title="@CMS_i18n.BackendResources.ViewPage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.ViewPage</span>
+    </a>
+    
+</div>
+<div class="page-editor-tools-delete">
+    <a href="@Url.Action("ViewPage", "Frontend", new { pageId = Model.PageID })" id="delete-document">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/trash_can.png")" alt="-" title="@CMS_i18n.BackendResources.DeletePage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.DeletePage</span>
+    </a>
+    
+</div>
+
+<div class=".norevs" style="display:none;">@CMS_i18n.BackendResources.NoRevisions</div>
+<div id="RevisionsContainer"></div>
+<div class="edit-top-save">
+    
+    @if (TempData["DocumentSaved"] != null)
+    {
+        <div class="save-success">@TempData["DocumentSaved"].ToString()</div>
+    }
+</div>
+
+@Html.Partial("PageBase", Model)
+
+<div class="custom-properties-edit-wrap">
+@for (int i = 0; i<Model.Properties.Count; i++)
+{
+    <div class="edit-unit">
+        @if(Model.Properties[i] is ZCMS.Core.Business.RichTextProperty) {            
+            <div class="unit-label">
+            @Html.Label(Model.Properties[i].PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m.Properties[i].PropertyType)
+            @Html.HiddenFor(m => m.Properties[i].PropertyName)
+            @Html.HiddenFor(m => m.Properties[i].Order)
+                            
+                        
+            @Html.EditorFor(m => ((ZCMS.Core.Business.RichTextProperty)m.Properties[i]).PropertyValue)
+            </div>
+        }
+        else if (Model.Properties[i] is ZCMS.Core.Business.TextProperty) {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.TextProperty)Model.Properties[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m.Properties[i].PropertyType)
+            @Html.HiddenFor(m => m.Properties[i].PropertyName)
+            @Html.HiddenFor(m => m.Properties[i].Order)
+            
+            @Html.EditorFor(m => m.Properties[i].PropertyValue)
+            </div>
+        } else if (Model.Properties[i] is ZCMS.Core.Business.BooleanProperty) {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.BooleanProperty)Model.Properties[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m.Properties[i].PropertyType)
+            @Html.HiddenFor(m => m.Properties[i].PropertyName)
+            @Html.HiddenFor(m => m.Properties[i].Order)
+            
+            @Html.EditorFor(m => m.Properties[i].PropertyValue)
+            </div>
+        } else if(Model.Properties[i] is ZCMS.Core.Business.ImageListProperty) {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.ImageListProperty)Model.Properties[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m.Properties[i].PropertyType)
+            @Html.HiddenFor(m => m.Properties[i].PropertyName)
+            @Html.HiddenFor(m => m.Properties[i].Order)
+            
+            @Html.EditorFor(m => ((ZCMS.Core.Business.ImageListProperty)m.Properties[i]).PropertyValue)
+            </div>
+        } else if(Model.Properties[i] is ZCMS.Core.Business.TagsProperty) {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.TagsProperty)Model.Properties[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m.Properties[i].PropertyType)
+            @Html.HiddenFor(m => m.Properties[i].PropertyName)
+            @Html.HiddenFor(m => m.Properties[i].Order)
+            
+            @Html.EditorFor(m => ((ZCMS.Core.Business.TagsProperty)m.Properties[i]).PropertyValue)
+            </div>            
+        }
+        else {
+            @Html.EditorFor(m => m.Properties[i].PropertyValue)
+        }
+    
+    </div>
+}
+</div>
+</div>
+
+@{ Html.EndForm(); }

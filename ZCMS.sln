@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZCMS", "ZCMS\ZCMS.csproj", "{63BC190D-61C9-4CA2-A924-7FEF222BD604}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS_i18n", "CMS_i18n\CMS_i18n.csproj", "{FCC520D1-CFF6-48BF-9BDA-BA301CA47AEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZCMSUnitTest", "ZCMSUnitTest\ZCMSUnitTest.csproj", "{A8268044-CEEC-41BF-AC9D-CB5D15D8E40E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63BC190D-61C9-4CA2-A924-7FEF222BD604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63BC190D-61C9-4CA2-A924-7FEF222BD604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63BC190D-61C9-4CA2-A924-7FEF222BD604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63BC190D-61C9-4CA2-A924-7FEF222BD604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8268044-CEEC-41BF-AC9D-CB5D15D8E40E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8268044-CEEC-41BF-AC9D-CB5D15D8E40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8268044-CEEC-41BF-AC9D-CB5D15D8E40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8268044-CEEC-41BF-AC9D-CB5D15D8E40E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC520D1-CFF6-48BF-9BDA-BA301CA47AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC520D1-CFF6-48BF-9BDA-BA301CA47AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC520D1-CFF6-48BF-9BDA-BA301CA47AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC520D1-CFF6-48BF-9BDA-BA301CA47AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

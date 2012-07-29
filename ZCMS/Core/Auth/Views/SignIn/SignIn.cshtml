@@ -1,0 +1,47 @@
+﻿@model string
+@{
+    ViewBag.Title = "Logon...";
+    Layout = "~/Core/Auth/Views/Shared/_authenticationLayout.cshtml";
+}
+
+@if (ViewData["LogonFail"] != null)
+{
+    <div class="logon-failed">@ViewData["LogonFail"].ToString()</div>
+}
+<div class="logintop">
+    @CMS_i18n.Auth.LoginTopMessage
+</div>
+@{ Html.BeginForm("SignIn", "Authentication", null, FormMethod.Post);}
+<div id="LogonWrapper">
+
+    <div class="logon-label">
+        @CMS_i18n.Auth.UsernameLabel:
+    </div>
+
+    <div class="logon-control">
+        @Html.TextBox("username")
+    </div>
+
+    <div class="logon-label">
+        @CMS_i18n.Auth.PasswordLabel:
+    </div>
+
+    <div class="logon-control">
+        @Html.Password("pass")
+    </div>
+
+    <div class="logon-label">
+        &nbsp;
+    </div>
+
+    <div class="logon-control">
+        <input type="submit" name="go" value="@CMS_i18n.Auth.LogonButtonLabel" />
+    </div>
+</div>
+
+
+
+
+
+
+@{ Html.EndForm(); }

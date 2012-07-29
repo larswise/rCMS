@@ -1,0 +1,9 @@
+﻿@model ZCMS.Core.Business.RichTextProperty
+<div class="unit-label">
+@Html.Label(Model.PropertyName):
+</div>
+<div class="unit-unit">
+@Html.HiddenFor(model => model.Order)
+@Html.HiddenFor(model => model.PropertyName)
+@Html.TextBoxFor(model => model.PropertyValue)
+</div>

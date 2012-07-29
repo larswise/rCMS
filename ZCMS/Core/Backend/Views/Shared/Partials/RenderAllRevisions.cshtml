@@ -1,0 +1,34 @@
+﻿@model List<ZCMS.Core.Business.ZCMSMetaData>
+<div class="revisions">
+    <div class="revision-header-row">
+        <div class="rev-head-col-status">@CMS_i18n.BackendResources.RevisionStatus</div>
+        <div class="rev-head-col-lastmod">@CMS_i18n.BackendResources.RevisionLastMod</div>
+        <div class="rev-head-col-view">&nbsp;</div>
+        <div class="rev-head-col-use">&nbsp;</div>
+    </div>
+    @foreach(var item in Model) {
+    <div class="revision-row">
+        <div class="rev-col-status">@item.MetaDatas.Where(m => m.MetaKey == "Status").FirstOrDefault().MetaValue</div>
+        <div class="rev-col-lastmod">@item.MetaDatas.Where(m => m.MetaKey == "Last-Modified").FirstOrDefault().MetaValue</div>
+        <div class="rev-col-view">
+
+            <a href="@Url.Action("ViewPage", "Frontend", new { @item.MetaDatas.Where(m => m.MetaKey == "Id").FirstOrDefault().MetaValue })">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/view.png")" alt="-" title="@CMS_i18n.BackendResources.RevisionViewThis" />
+        </a>
+
+        </div>        
+        <div class="rev-col-use">
+          <a href="@Url.Action("Revise", "Backend", new { id = @item.MetaDatas.Where(m => m.MetaKey == "Id").FirstOrDefault().MetaValue })">
+          
+        <img border="0" src="@Url.Content("~/Content/Backend/images/savepublish.png")" alt="-" title="@CMS_i18n.BackendResources.RevisionUseThis" />
+        
+        </a>
+
+        </div>
+    </div>
+
+    }
+    <div class="close-rev">
+        <a id="close-revisions" href="javascript:void(0);">@CMS_i18n.BackendResources.RevisionHide</a>
+    </div>
+</div>
