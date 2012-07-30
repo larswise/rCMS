@@ -14,6 +14,9 @@ namespace ZCMS.Core.Business
         public ZCMSBaseController(UnitOfWork work)
         {
             _worker = work;
+
+            //if (ViewData["MenuData"] != null)
+            //    ViewData["MenuData"] = ViewData["MenuData"];
         } 
 
     }

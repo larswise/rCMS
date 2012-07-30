@@ -56,3 +56,4 @@ c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Bundles.Authentication.dll
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Bundles.Authentication.pdb
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Abstractions.xml
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Lightweight.xml
+c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Newtonsoft.Json.xml

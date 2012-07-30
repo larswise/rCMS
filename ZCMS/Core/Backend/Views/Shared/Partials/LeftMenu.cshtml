@@ -3,14 +3,19 @@
 
     <div id="LeftAdminMenu">
         <div class="LeftAdminWelcome">
-
+            @if(TempData["MenuData"]!=null)
+            {
+                { Html.RenderPartial("SubMenu", TempData["MenuData"]); }
+            }
+            else 
+            {
             <div class="LeftAdminWelcomeHeader">
             @CMS_i18n.BackendResources.LeftMenuWelcome
             </div>
             <div class="LeftAdminWelcomeText">
                 @CMS_i18n.BackendResources.LeftMenuWelcomeText
             </div>
-            
+            }
         </div>
     </div>
 

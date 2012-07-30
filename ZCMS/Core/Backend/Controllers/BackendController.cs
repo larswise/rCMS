@@ -79,9 +79,9 @@ namespace ZCMS.Core.Backend.Controllers
         public ActionResult RenderLeftMenu(string id)
         {
             try
-            {
-                ViewData["MenuData"] = _worker.CmsContentRepository.GetMenu(id);
-                return PartialView("SubMenu", ViewData["MenuData"]);
+            {                
+                var currentMenu = _worker.CmsContentRepository.GetMenu(id);
+                return PartialView("SubMenu", TempData["MenuData"]);
             }
             catch(Exception e)
             {
