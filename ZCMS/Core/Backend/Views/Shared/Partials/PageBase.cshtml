@@ -3,8 +3,13 @@
 <div class="edit-unit">
 <div class="edit-top-label">
     @Html.Label(CMS_i18n.BackendResources.PageID):
--
+
     @Html.Label(Model.PageID.ToString())
+</div>
+<div class="edit-top-label">
+    @Html.Label(CMS_i18n.BackendResources.PageStatus):
+
+    @Html.Label(Model.Status.ToString())
 </div>
 </div>
 <div class="edit-unit">

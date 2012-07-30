@@ -37,6 +37,12 @@ namespace ZCMS.Core.Business
             {
                 model.PageID = new Random().Next(100, 100000);
             }
+
+            if (bindingContext.ValueProvider.GetValue("save-draft") != null)
+                model.Status = PageStatus.Draft;
+            else
+                model.Status = PageStatus.Published;
+
             DateTime spd, epd;
             bool sp = DateTime.TryParse(bindingContext.ValueProvider.GetValue("StartPublish").AttemptedValue, out spd);
             if (sp)

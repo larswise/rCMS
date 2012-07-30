@@ -6,7 +6,7 @@
 }
 @{ Html.BeginForm("PageEditor", "Backend", null, FormMethod.Post, new { @enctype = "multipart/form-data", @id="page-editor-form" }); }
 <div class="editor-controls-wrap">
-
+    @Model.Status
 <div class="page-editor-tools-save">
     <a href="javascript:void(0);" id="save-publish-page">
         <img border="0" src="@Url.Content("~/Content/Backend/images/arrow_up.png")" alt="-" title="@CMS_i18n.BackendResources.SavePublishPage" />

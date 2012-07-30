@@ -14,6 +14,9 @@ namespace ZCMS.Core.Business
         public ZCMSBaseController(UnitOfWork work)
         {
             _worker = work;
+
+            if (System.Web.HttpContext.Current.Request.Cookies["active-menu"]!=null)
+                ViewData["MenuData"] = _worker.CmsContentRepository.GetMenu(System.Web.HttpContext.Current.Request.Cookies["active-menu"].Value.ToString());
         } 
 
     }

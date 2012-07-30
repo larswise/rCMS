@@ -54,7 +54,7 @@ namespace ZCMS.Core.Backend.Controllers
                 else
                 {
                     ZCMSPage newPage = new ZCMSPage(pagePublishType);
-
+                    newPage.Status = PageStatus.New;
                     newPage.PageID = Int32.Parse(ViewData["CurrentPageId"].ToString());
                     return View(newPage);
                 }
@@ -62,6 +62,7 @@ namespace ZCMS.Core.Backend.Controllers
             else
             {
                 ZCMSPage newPage = new ZCMSPage(pagePublishType);
+                newPage.Status = PageStatus.New;
                 ViewData["CurrentPageId"] = new Random().Next();
                 newPage.PageID = Int32.Parse(ViewData["CurrentPageId"].ToString());
                 return View(newPage);
@@ -80,8 +81,10 @@ namespace ZCMS.Core.Backend.Controllers
         {
             try
             {
-                ViewData["MenuData"] = _worker.CmsContentRepository.GetMenu(id);
-                return PartialView("SubMenu", ViewData["MenuData"]);
+                HttpCookie cookie = new HttpCookie("active-menu");
+                cookie.Value = id;
+                Response.Cookies.Add(cookie);
+                return PartialView("SubMenu", _worker.CmsContentRepository.GetMenu(id));
             }
             catch(Exception e)
             {

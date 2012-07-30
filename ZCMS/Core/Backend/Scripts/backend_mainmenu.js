@@ -1,8 +1,10 @@
 $(document).ready(function () {
     $(".mainmenuitem").click(function (e) {
-        $.get("/Backend/RenderLeftMenu/" + $(this).attr('data-val'), function (data) {
+        var clicked = $(this).attr('data-val');
+        $.get("/Backend/RenderLeftMenu/" + clicked, function (data) {
 
-            $(".LeftAdminWelcome").hide().html(data).fadeIn('slow', 'easeInSine', function () { });
+            $(".LeftAdminWelcome").hide().html(data).fadeIn('slow', 'easeInSine', function () {
+            });
         });
     });
 
@@ -21,7 +23,18 @@ $(document).ready(function () {
         });
     });
 
-    $("#save-publish-page").click(function (e) {        
+    $("#save-publish-page").click(function (e) {
+        $("#page-editor-form").submit();
+    });
+
+    $("#save-draft-page").click(function (e) {
+        $('<input>').attr({
+            type: 'hidden',
+            id: 'save-draft',
+            name: 'save-draft',
+            value: '1'
+        }).appendTo('#page-editor-form');
+
         $("#page-editor-form").submit();
     });
 
