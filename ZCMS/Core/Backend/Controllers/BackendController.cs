@@ -119,7 +119,7 @@ namespace ZCMS.Core.Backend.Controllers
                 if (items.Count > 0)
                     return PartialView("RenderAllRevisions", _worker.CmsContentRepository.GetPastRevisions(id));
                 else
-                    return null;
+                    return PartialView("RenderAllRevisions", new List<ZCMSMetaData>());
             }
             catch
             {

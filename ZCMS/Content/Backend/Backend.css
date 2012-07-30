@@ -154,6 +154,14 @@ a.publishnew {
     font-weight: bold;
 }
 
+.edit-top-nw {
+    float: left;
+    padding: 10px 10px 0 10px;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+
 .edit-top-label {
     width: 110px;
     min-width: 75px;
@@ -256,7 +264,7 @@ a.publishnew {
 
 .save-success {
     float: right;
-    padding: 5px;
+    padding: 0 5px 0 5px;
     color: #090;
 }
 .editor-image-container {

@@ -180,6 +180,9 @@
   <data name="NoRevisions" xml:space="preserve">
     <value>There are no revisions saved for this document yet!</value>
   </data>
+  <data name="NoUpload" xml:space="preserve">
+    <value>You need to save this document before you can add files / images.</value>
+  </data>
   <data name="Order" xml:space="preserve">
     <value>Sort Order</value>
   </data>

@@ -55,7 +55,6 @@ C:\Projects\ZCMS\ZCMS\bin\Lucene.Net.Contrib.Spatial.pdb
 C:\Projects\ZCMS\ZCMS\bin\Lucene.Net.Contrib.Spatial.xml
 C:\Projects\ZCMS\ZCMS\bin\Lucene.Net.Contrib.SpellChecker.pdb
 C:\Projects\ZCMS\ZCMS\bin\Lucene.Net.Contrib.SpellChecker.xml
-C:\Projects\ZCMS\ZCMS\bin\Newtonsoft.Json.xml
 C:\Projects\ZCMS\ZCMS\bin\NLog.xml
 C:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.xml
@@ -84,3 +83,5 @@ C:\Projects\ZCMS\ZCMS\bin\WebMatrix.WebData.xml
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.csprojResolveAssemblyReference.cache
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.dll
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.pdb
+c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.dll
+c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.pdb

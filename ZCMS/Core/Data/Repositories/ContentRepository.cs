@@ -99,17 +99,20 @@ namespace ZCMS.Core.Data.Repositories
         public void StoreAttachment(string pageID, string fileName, Stream dataStream)
         {
             string key;
+            string ext = string.Empty;
             try
             {
                 string[] filenamearr = fileName.Split('.');
-                key = Guid.NewGuid().ToString() + "." + filenamearr[filenamearr.Length - 1];
+                ext = filenamearr[filenamearr.Length - 1];
+                
+                key = Guid.NewGuid().ToString() + "." + ext;
             }
             catch
             {
                 key = Guid.NewGuid().ToString();
             }
 
-            _documentStore.DatabaseCommands.PutAttachment(key, null, dataStream, new RavenJObject { { "PageId", pageID } });
+            _documentStore.DatabaseCommands.PutAttachment(key, null, dataStream, new RavenJObject { { "PageId", pageID }, { "Extension", ext }, { "FileName", fileName } });
             ZCMSPage cmspage = GetCmsPage(pageID);
             var property = cmspage.Properties.Where(p => p is ImageListProperty).FirstOrDefault();
             if (property != null)

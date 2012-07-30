@@ -53,7 +53,6 @@ C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Lucene.Net.Contrib.Spatial.xml
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Esent.Interop.pdb
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Esent.Interop.xml
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\BouncyCastle.Crypto.pdb
-C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Newtonsoft.Json.xml
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.csprojResolveAssemblyReference.cache
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.dll
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.pdb

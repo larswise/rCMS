@@ -7,11 +7,7 @@
 <script src="@Url.Content("~/Scripts/fileuploader.js")"></script>
 <script>
     $(document).ready(function () {
-        var uploader = new qq.FileUploader({
-            element: document.getElementById('file-uploader'),
-            action: '/Admin/UploadAttachment/' + '@ViewData["CurrentPageId"].ToString()',
-            debug: true
-        });
+        FileUploader();
     });
 </script>
 @System.Web.Optimization.Styles.Render("~/Content/css/backend/fileupload")

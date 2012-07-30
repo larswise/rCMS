@@ -6,7 +6,7 @@
 }
 @{ Html.BeginForm("PageEditor", "Backend", null, FormMethod.Post, new { @enctype = "multipart/form-data", @id="page-editor-form" }); }
 <div class="editor-controls-wrap">
-    @Model.Status
+
 <div class="page-editor-tools-save">
     <a href="javascript:void(0);" id="save-publish-page">
         <img border="0" src="@Url.Content("~/Content/Backend/images/arrow_up.png")" alt="-" title="@CMS_i18n.BackendResources.SavePublishPage" />
@@ -40,15 +40,10 @@
     
 </div>
 
-<div class=".norevs" style="display:none;">@CMS_i18n.BackendResources.NoRevisions</div>
+<div class="norevs" style="display:none;">@CMS_i18n.BackendResources.NoRevisions</div>
+<div class="noupload" style="display:none;">@CMS_i18n.BackendResources.NoUpload</div>
 <div id="RevisionsContainer"></div>
-<div class="edit-top-save">
-    
-    @if (TempData["DocumentSaved"] != null)
-    {
-        <div class="save-success">@TempData["DocumentSaved"].ToString()</div>
-    }
-</div>
+
 
 @Html.Partial("PageBase", Model)
 

@@ -1,15 +1,22 @@
 ﻿@model ZCMS.Core.Business.ZCMSPage
 <div class="custom-properties-edit-wrap">
 <div class="edit-unit">
-<div class="edit-top-label">
+<div class="edit-top-nw">
     @Html.Label(CMS_i18n.BackendResources.PageID):
 
-    @Html.Label(Model.PageID.ToString())
+    <span id="CurrentPage">@Html.DisplayFor(m => m.PageID)</span>
 </div>
-<div class="edit-top-label">
+<div class="edit-top-nw">
     @Html.Label(CMS_i18n.BackendResources.PageStatus):
 
     @Html.Label(Model.Status.ToString())
+</div>
+<div class="edit-top-save">
+    
+    @if (TempData["DocumentSaved"] != null)
+    {
+        <div class="save-success">@TempData["DocumentSaved"].ToString()</div>
+    }
 </div>
 </div>
 <div class="edit-unit">
