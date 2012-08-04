@@ -17,7 +17,20 @@ namespace ZCMS.Core.Business
 
             if (System.Web.HttpContext.Current.Request.Cookies["active-menu"]!=null)
                 ViewData["MenuData"] = _worker.CmsContentRepository.GetMenu(System.Web.HttpContext.Current.Request.Cookies["active-menu"].Value.ToString());
-        } 
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+            _worker.OpenSession();
+        }
+
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            base.OnActionExecuted(filterContext);
+            _worker.SaveAllChanges();
+            _worker.CloseSession();
+        }
 
     }
 }

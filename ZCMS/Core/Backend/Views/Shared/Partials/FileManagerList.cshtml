@@ -1,0 +1,22 @@
+﻿@model List<ZCMS.Core.Business.ZCMSFileDocument>
+<div id="FileManagerListing">
+<div class="file-md-hr">
+    <div class="file-md-hc">&nbsp;</div>
+    <div class="file-md-hc">Name</div>
+    <div class="file-md-hc">Created</div>
+    <div class="file-md-hc">Description</div>
+    
+</div>
+
+@foreach(var item in Model) 
+{
+    var fileIcon = "/Content/Backend/Images/Formats/" + @item.Extension + ".png";
+    <div class="file-md-ir">
+    <div class="file-md-ic"><img src="@fileIcon" alt="" /></div>
+    <div class="file-md-ic" title="@item.FileName">@item.FileName</div>
+    <div class="file-md-ic">@item.Created.ToString()</div>
+    <div class="file-md-ic">@item.Description</div>
+    
+    </div>
+}
+</div>

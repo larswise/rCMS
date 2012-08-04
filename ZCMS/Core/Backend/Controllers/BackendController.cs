@@ -26,8 +26,12 @@ namespace ZCMS.Core.Backend.Controllers
 
         public ActionResult PageEditor(int ?pageId, string mParameter)
         {
-            dynamic pagePublishType = ZCMSPageFactory.GetPagePublishType(mParameter);            
-            
+            dynamic pagePublishType = ZCMSPageFactory.GetPagePublishType(mParameter);        
+    
+            // just testing...
+            var items = _worker.CmsContentRepository.GetAllFileTypes();
+            var recent = _worker.CmsContentRepository.GetN_MostRecentAttachments(5);
+
             if (pageId.HasValue)
             {
 
@@ -43,7 +47,7 @@ namespace ZCMS.Core.Backend.Controllers
                         List<string> images = (List<string>)prop.PropertyValue;
                         foreach (var item in images)
                         {
-                            mses.Add(new WebImage(_worker.CmsContentRepository.TransStorageBt(item)));
+                            mses.Add(new WebImage(_worker.CmsContentRepository.RetrieveAttachment(item)));
                         }
                         TempData["ImageCollection"] = mses;
                     }
@@ -70,9 +74,17 @@ namespace ZCMS.Core.Backend.Controllers
 
         }
 
+        public ActionResult FileManager()
+        {
+            return View(new ZCMSFileManager(_worker.CmsContentRepository.GetAllFileTypes(), null, DateTime.Now.AddDays(-10)) 
+                            { 
+                                FileDocuments = _worker.CmsContentRepository.QueryAttachment(new List<string>() { "*" }, string.Empty)
+                            });
+        }
+
         public void GetCurrentImage(string key)
         {
-            WebImage wi = new WebImage(_worker.CmsContentRepository.TransStorageBt(key));
+            WebImage wi = new WebImage(_worker.CmsContentRepository.RetrieveAttachment(key));
             wi.FileName = "kluss.png";
             wi.Write();
         }
@@ -81,15 +93,31 @@ namespace ZCMS.Core.Backend.Controllers
         {
             try
             {
+                
+
                 HttpCookie cookie = new HttpCookie("active-menu");
-                cookie.Value = id;
+
+                cookie.Value = id;// CMS_i18n.ZCMSResourceManager.GetByKey(id, "BackendResources");
                 Response.Cookies.Add(cookie);
+
                 return PartialView("SubMenu", _worker.CmsContentRepository.GetMenu(id));
             }
             catch(Exception e)
             {
                 return View(e);
             }
+        }
+
+
+        public ActionResult FileManagerList(List<string> extensionFilter, string filterFreeText)
+        {
+            List<ZCMSFileDocument> docs;
+
+            if (extensionFilter == null || extensionFilter.Count == 0)
+                docs = _worker.CmsContentRepository.QueryAttachment(new List<string>() { "*" }, string.Empty);
+            else
+                docs = _worker.CmsContentRepository.QueryAttachment(extensionFilter, filterFreeText);
+            return PartialView("FileManagerList", docs);
         }
 
         public ActionResult Revise(string id)
@@ -136,7 +164,10 @@ namespace ZCMS.Core.Backend.Controllers
                 MemoryStream mstream = new MemoryStream();
                 stream.CopyTo(mstream);
                 mstream.Position = 0;
-                _worker.CmsContentRepository.StoreAttachment(pageId, Request.QueryString["qqfile"], mstream);
+
+                ZCMSFileDocument fDocument = new ZCMSFileDocument(pageId, Request.QueryString["qqfile"].ToString(), string.Empty);
+
+                _worker.CmsContentRepository.StoreAttachment(fDocument, mstream);
                 
             }
             catch (Exception ex)

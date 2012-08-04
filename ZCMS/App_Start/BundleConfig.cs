@@ -27,7 +27,7 @@ namespace ZCMS
             bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(
             "~/Scripts/tinymce/jquery.tinymce.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css/backend/main").Include("~/Content/Backend/backend.css"));
+            bundles.Add(new StyleBundle("~/Content/css/backend/main").Include("~/Content/Backend/backend.css", "~/Content/Backend/FileManager.css"));
             bundles.Add(new StyleBundle("~/Content/css/backend/fileupload").Include("~/Content/Backend/fileuploader.css"));
             bundles.Add(new StyleBundle("~/Content/css/auth/styles").Include("~/Content/Auth/Auth.css"));
 

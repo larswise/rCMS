@@ -39,6 +39,9 @@ $(document).ready(function () {
         $("#page-editor-form").submit();
     });
 
+    $(".file-extension").click(FilterFileList);
+    $("#filemanager-filter-input").keyup(FilterFileList);
+
 
 });
 
@@ -54,4 +57,34 @@ function FileUploader() {
         $("input[name='file']").attr('disabled', 'disabled');
         $("div .qq-upload-list").text($(".noupload").text());
     }
+}
+
+function FilterFileList() {
+    $("#FileManagerFileList").html('');
+    var value = $(this).attr('data-val');
+    if ($(this).children("img").hasClass("deselected")) {
+        $(this).children("img").removeClass("deselected")
+    } else {
+        $(this).children("img").addClass("deselected")
+    }
+
+    var arr = $.map($(".file-extension img:not('[class=deselected]')"), function (item, index) {
+        return $(item).attr('data-val');
+    });
+    var freeText = $(".file-manager-filter-input").val();
+    var postData = { extensionFilter: arr, filterFreeText: freeText };
+
+    $.ajax({
+        dataType: 'html',
+        type: 'POST',
+        data: postData,
+        url: '/Backend/FileManagerList',
+        success: function (data) {
+            $("#FileManagerFileList").hide().html(data).fadeIn('slow', 'easeInSine');
+        },
+        error: function () {
+            console.log("something went wrong with ajax!");
+        },
+        traditional: true
+    });
 }

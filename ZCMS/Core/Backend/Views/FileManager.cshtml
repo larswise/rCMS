@@ -1,0 +1,34 @@
+﻿@model ZCMS.Core.Business.ZCMSFileManager
+@{
+    ViewBag.Title = "FileManager";
+    Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
+}
+<div id="FileManagerWrap">
+    
+<h2>File Manager</h2>
+    <div id="FileManagerExtensionList">
+        <div class="file-filter-label">
+            @CMS_i18n.BackendResources.FileManagerFilterByExtension
+        </div>
+        <div class="file-grad-bg"></div>
+        @foreach (var item in Model.AllExtensions)
+        {
+            var imgPath = "/Content/Backend/Images/Formats/" + @item + ".png";
+            <div class="file-extension">
+                <img src="@imgPath" data-val="@item" alt="" />
+            </div>
+        }
+        <div class="file-grad-bg"></div>
+        <div class="file-filter-label">
+            @CMS_i18n.BackendResources.FileManagerFilterByFreeText
+        </div>
+        <div class="filter-input-text">
+            @Html.TextBox("filemanager-filter-input", null, new { @class = "file-manager-filter-input" })
+        </div>
+    </div>
+    <div id="FileManagerFileListWrap">
+    <div id="FileManagerFileList">
+        @Html.Action("FileManagerList", Model.ShowExtensions)
+    </div>
+    </div>
+</div>

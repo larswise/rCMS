@@ -20,10 +20,11 @@ namespace ZCMS.Core.Business
             _properties = new List<ZCMSProperty>();
 
             _properties.Add(new TextProperty() { Order = 1, PropertyName = CMS_i18n.BackendResources.ArticleHeading, PropertyValue = " " });
-            _properties.Add(new RichTextProperty() { Order = 2, PropertyName = CMS_i18n.BackendResources.PageDefaultEditor, PropertyValue = "" });
-            _properties.Add(new BooleanProperty() { Order = 5, PropertyName = CMS_i18n.BackendResources.SelectedOrNot, PropertyValue = false });
-            _properties.Add(new TagsProperty() { Order = 3, PropertyName = CMS_i18n.BackendResources.Tags, PropertyValue = new List<string>() });
-            _properties.Add(new ImageListProperty() { Order = 4, PropertyName = CMS_i18n.BackendResources.ImageCarousel, PropertyValue = new List<string>() });
+            _properties.Add(new MultiLineTextProperty() { Order = 2, PropertyName = CMS_i18n.BackendResources.ArticleIntro, PropertyValue = " " });
+            _properties.Add(new RichTextProperty() { Order = 3, PropertyName = CMS_i18n.BackendResources.PageDefaultEditor, PropertyValue = "" });
+            _properties.Add(new BooleanProperty() { Order = 6, PropertyName = CMS_i18n.BackendResources.SelectedOrNot, PropertyValue = false });
+            _properties.Add(new TagsProperty() { Order = 4, PropertyName = CMS_i18n.BackendResources.Tags, PropertyValue = new List<string>() });
+            _properties.Add(new ImageListProperty() { Order = 5, PropertyName = CMS_i18n.BackendResources.ImageCarousel, PropertyValue = new List<string>() });
         }
 
         public string PageTypeName

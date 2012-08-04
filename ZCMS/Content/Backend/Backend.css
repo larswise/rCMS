@@ -7,6 +7,24 @@ body {
     height: 100%;
 }
 
+input {
+    border-radius: .25em;
+    border: 1px solid #454545;
+    padding: .25em;
+}
+
+textarea {
+    border-radius: .25em;
+    border: 1px solid #454545;
+    padding: .25em;
+    resize: none;
+}
+
+textarea.multilinetextproperty {
+    width: 500px;
+    height: 75px;
+}
+
 html {
     height: 100%;
 }
@@ -24,14 +42,16 @@ position: relative;
 }
 
 .clearfooter {
-height: 150px;
 clear: both;
 }
 
 #PageFooter {
     height: 150px;
-    position: relative;
+    position: absolute;
     background: #000;
+    bottom:0;
+    left: 0;
+    right: 0;
 }
 
 #Header {
@@ -46,13 +66,16 @@ clear: both;
 #MainContainer {
     float: left;
     width: 100%;
+    overflow: hidden;
 }
 
 #LeftContainer {
     float: left;
     width: 20%;
-    background-position: right;
-    background-repeat: repeat-y;    
+    background: #888;
+    margin-bottom: -1200px;
+    padding-bottom: 1200px;   
+    min-height: 500px;
 }
 
 #RightContainer {
@@ -60,6 +83,8 @@ clear: both;
     width: 80%;
     background-color: #d9d9d9;
     color: #000;
+    margin-bottom: -1000px;
+    padding-bottom: 1200px; 
 }
 
 /* Main menu top ... */
@@ -314,7 +339,9 @@ input.datefield {
 #LeftAdminMenuWrapper {
     padding: 5px;
     background-position: top right;
-    background-repeat: no-repeat;      
+    background-repeat: no-repeat; 
+    border-right: 1px solid #000;
+    overflow: hidden;     
 }
 
 #LeftAdminMenu {

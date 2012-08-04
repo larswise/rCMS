@@ -21,19 +21,20 @@ namespace ZCMS.Core.Bootstrapper
 
             try
             {
+                worker.OpenSession();
                 var builder = new ContainerBuilder();
-                builder.RegisterModelBinderProvider();                
+                builder.RegisterModelBinderProvider();
 
                 builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
                 builder.RegisterControllers(Assembly.GetExecutingAssembly());
-                
+
                 builder.RegisterInstance(worker).SingleInstance();
                 builder.RegisterFilterProvider();
 
                 builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
                 var container = builder.Build();
-           
+
                 DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
                 GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
@@ -46,13 +47,17 @@ namespace ZCMS.Core.Bootstrapper
                     worker.CmsContentRepository.RegisterPageType(pt1);
                     worker.CmsContentRepository.RegisterPageType(pt2);
                     worker.AuthenticationRepository.CreateDefaultUserAndRoles();
-                    
+
                     worker.ConfigRepository.SetUpMenus();
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message + "  -  " + ex.StackTrace);
+            }
+            finally
+            {
+                worker.CloseSession();
             }
         }
 
@@ -72,7 +77,7 @@ namespace ZCMS.Core.Bootstrapper
             };
 
             documentStore.Initialize();
-            UnitOfWork worker = new UnitOfWork(documentStore, documentStore.OpenSession());
+            UnitOfWork worker = new UnitOfWork(documentStore);
             return worker;
         }
 

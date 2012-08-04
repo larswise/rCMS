@@ -123,6 +123,12 @@
   <data name="ArticleHeading" xml:space="preserve">
     <value>Article Heading</value>
   </data>
+  <data name="ArticleIntro" xml:space="preserve">
+    <value>Introduction</value>
+  </data>
+  <data name="ConfigureMenu" xml:space="preserve">
+    <value>Configure Site!</value>
+  </data>
   <data name="ContainerHeading" xml:space="preserve">
     <value>Listing Header</value>
   </data>
@@ -135,7 +141,13 @@
   <data name="EndPublish" xml:space="preserve">
     <value>End Publish</value>
   </data>
-  <data name="FilesMenuHeading" xml:space="preserve">
+  <data name="FileManagerFilterByExtension" xml:space="preserve">
+    <value>Filter by type</value>
+  </data>
+  <data name="FileManagerFilterByFreeText" xml:space="preserve">
+    <value>Filter by file name</value>
+  </data>
+  <data name="FilesMenu" xml:space="preserve">
     <value>Manage Files</value>
   </data>
   <data name="ImageCarousel" xml:space="preserve">
@@ -198,7 +210,7 @@
   <data name="PageStatus" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="PublishNewHeading" xml:space="preserve">
+  <data name="PublishNew" xml:space="preserve">
     <value>Publish New!</value>
   </data>
   <data name="RevisionHide" xml:space="preserve">

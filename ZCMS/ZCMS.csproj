@@ -236,6 +236,8 @@
     <Compile Include="Core\Business\ZCMSBaseController.cs" />
     <Compile Include="Core\Business\ZCMSBasicProperties.cs" />
     <Compile Include="Core\Business\ZCMSEnums.cs" />
+    <Compile Include="Core\Business\ZCMSFileDocument.cs" />
+    <Compile Include="Core\Business\ZCMSFileManager.cs" />
     <Compile Include="Core\Business\ZCMSLeftViewModel.cs" />
     <Compile Include="Core\Business\ZCMSMenu.cs" />
     <Compile Include="Core\Business\ZCMSPage.cs" />
@@ -260,6 +262,7 @@
   <ItemGroup>
     <Content Include="App_Data\ZCMS.sdf" />
     <Content Include="Content\Auth\Auth.css" />
+    <Content Include="Content\Backend\FileManager.css" />
     <Content Include="Content\Backend\fileuploader.css" />
     <Content Include="Content\Backend\Images\bgleftmenu.png" />
     <Content Include="Content\Backend\Images\cmslogo.png" />
@@ -322,6 +325,7 @@
     <Content Include="Core\Backend\Views\Shared\Partials\FilesMenu.cshtml" />
     <Content Include="Core\Backend\Views\Shared\Web.config" />
     <Content Include="Core\Backend\Views\Web.config" />
+    <Content Include="Core\Backend\Views\Shared\Partials\FileManagerList.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -620,12 +624,14 @@
     <Content Include="Views\Shared\EditorTemplates\Web.config" />
     <Content Include="Views\Shared\EditorTemplates\ImageListProperty.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TagsProperty.cshtml" />
+    <Content Include="Core\Backend\Views\FileManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Core\Auth\Scripts\" />
     <Folder Include="Core\Frontend\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Backend\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

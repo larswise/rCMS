@@ -1,0 +1,84 @@
+﻿
+#FileManagerWrap {
+    height: 100%;
+    overflow: hidden;
+    padding: 10px;
+    min-height: 400px;
+}
+
+#FileManagerListing {
+    display: table;
+}
+
+.file-md-hr, .file-md-ir {
+
+    display: table-row;
+}
+
+.file-md-hr div {
+    padding-right:15px;
+    font-size: medium;
+    font-weight: bold;
+    display: table-cell;
+    
+}
+
+.file-md-ir div {
+    padding-right:5px;
+    font-size: small;
+    display: table-cell;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px;
+    overflow: hidden;
+}
+
+.file-md-ir div img {
+    max-width: 20px;
+    padding-top: 4px;
+}
+
+#FileManagerFileList {
+    clear: both;
+    margin-top: 20px;
+}
+
+#FileManagerFileListWrap {
+    min-height: 400px;
+}
+
+#FileManagerExtensionList {
+    
+}
+
+.file-extension {
+    float: left;
+    padding: 12px 10px 5px 0;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 40px;
+}
+
+.file-filter-label {
+    padding: 5px 5px 5px 0;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.file-manager-filter-input {
+    width: 250px;
+}
+
+
+.file-grad-bg {
+    background-image: url(/Content/Backend/Images/gradient_line_blacktowhite.png);
+    background-repeat: no-repeat;
+    height: 1px;
+    display: block;
+    clear: both;
+}
+
+.file-extension img.deselected {
+    opacity: 0.15;
+}

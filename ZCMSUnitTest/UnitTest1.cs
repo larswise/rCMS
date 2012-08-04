@@ -23,9 +23,8 @@ namespace ZCMSUnitTest
                 }
             };
             documentStore.Initialize();
-            var session = documentStore.OpenSession();
-
-            worker = new UnitOfWork(documentStore, session);
+            
+            worker = new UnitOfWork(documentStore);
 
         }
 

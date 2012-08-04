@@ -24,21 +24,19 @@ namespace ZCMS.Core.Data
         private AuthRepository _authRepository;
         private ContentRepository _contentRepository;
 
-        public UnitOfWork(DocumentStore documentStore, IDocumentSession session)
+        public UnitOfWork(DocumentStore documentStore)
         {
             _documentStore = documentStore;
-            _session = session;
-
-            _configRepository = new ConfigurationRepository(_documentStore, _session);
-            _authRepository = new AuthRepository(_documentStore, _session);
-            _contentRepository = new ContentRepository(_documentStore, _session);
         }
 
         public ConfigurationRepository ConfigRepository
         {
             get
             {
-                return _configRepository;
+                if (_configRepository != null)
+                    return _configRepository;
+                else
+                    return _configRepository = new ConfigurationRepository(_documentStore, _session);
             }
         }
 
@@ -46,7 +44,10 @@ namespace ZCMS.Core.Data
         {
             get
             {
-                return _authRepository;
+                if (_authRepository != null)
+                    return _authRepository;
+                else
+                    return _authRepository = new AuthRepository(_documentStore, _session);
             }
         }
 
@@ -54,8 +55,30 @@ namespace ZCMS.Core.Data
         {
             get
             {
-                return _contentRepository;
+                if (_contentRepository != null)
+                    return _contentRepository;
+                else 
+                    return _contentRepository = new ContentRepository(_documentStore, _session);
             }
+        }
+
+        public void OpenSession()
+        {
+            _session = _documentStore.OpenSession();
+        }
+
+        public void SaveAllChanges()
+        {
+            if (_session != null)
+                _session.SaveChanges();
+        }
+
+        public void CloseSession()
+        {
+            _session.Dispose();
+            _authRepository = null;
+            _configRepository = null;
+            _contentRepository = null;
         }
 
         public void Dispose()

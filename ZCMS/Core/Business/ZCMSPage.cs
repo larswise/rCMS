@@ -15,11 +15,13 @@ namespace ZCMS.Core.Business
         private string _pageName;
         private bool _showInMenu;
         private bool _allowComments;
+        private DateTime _created;
 
         private List<ZCMSProperty> _properties = new List<ZCMSProperty>();
 
         public ZCMSPage(params ZCMSProperty[] properties)
         {
+            _created = DateTime.Now;
             foreach (ZCMSProperty item in properties)
                 _properties.Add(item);
 
@@ -28,12 +30,14 @@ namespace ZCMS.Core.Business
 
         public ZCMSPage()
         {
+            _created = DateTime.Now;
             if (_properties == null)
                 _properties = new List<ZCMSProperty>();
         }
 
         public ZCMSPage(dynamic bpt)
         {
+            _created = DateTime.Now;
             this._properties = bpt.Properties;
             Sort();
         }

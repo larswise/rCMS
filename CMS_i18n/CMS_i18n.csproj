@@ -55,6 +55,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ZCMSResourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Units.resx">

@@ -79,6 +79,24 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Introduction.
+        /// </summary>
+        public static string ArticleIntro {
+            get {
+                return ResourceManager.GetString("ArticleIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure Site!.
+        /// </summary>
+        public static string ConfigureMenu {
+            get {
+                return ResourceManager.GetString("ConfigureMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Listing Header.
         /// </summary>
         public static string ContainerHeading {
@@ -115,11 +133,29 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter by type.
+        /// </summary>
+        public static string FileManagerFilterByExtension {
+            get {
+                return ResourceManager.GetString("FileManagerFilterByExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter by file name.
+        /// </summary>
+        public static string FileManagerFilterByFreeText {
+            get {
+                return ResourceManager.GetString("FileManagerFilterByFreeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Files.
         /// </summary>
-        public static string FilesMenuHeading {
+        public static string FilesMenu {
             get {
-                return ResourceManager.GetString("FilesMenuHeading", resourceCulture);
+                return ResourceManager.GetString("FilesMenu", resourceCulture);
             }
         }
         
@@ -306,9 +342,9 @@ namespace CMS_i18n {
         /// <summary>
         ///   Looks up a localized string similar to Publish New!.
         /// </summary>
-        public static string PublishNewHeading {
+        public static string PublishNew {
             get {
-                return ResourceManager.GetString("PublishNewHeading", resourceCulture);
+                return ResourceManager.GetString("PublishNew", resourceCulture);
             }
         }
         

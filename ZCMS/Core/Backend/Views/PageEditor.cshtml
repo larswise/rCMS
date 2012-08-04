@@ -64,7 +64,8 @@
             @Html.EditorFor(m => ((ZCMS.Core.Business.RichTextProperty)m.Properties[i]).PropertyValue)
             </div>
         }
-        else if (Model.Properties[i] is ZCMS.Core.Business.TextProperty) {
+        else if (Model.Properties[i] is ZCMS.Core.Business.TextProperty)
+        {
             <div class="unit-label">
             @Html.Label(((ZCMS.Core.Business.TextProperty)Model.Properties[i]).PropertyName):
             </div>
@@ -75,7 +76,21 @@
             
             @Html.EditorFor(m => m.Properties[i].PropertyValue)
             </div>
-        } else if (Model.Properties[i] is ZCMS.Core.Business.BooleanProperty) {
+        }
+        else if (Model.Properties[i] is ZCMS.Core.Business.MultiLineTextProperty)
+        {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.MultiLineTextProperty)Model.Properties[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m.Properties[i].PropertyType)
+            @Html.HiddenFor(m => m.Properties[i].PropertyName)
+            @Html.HiddenFor(m => m.Properties[i].Order)
+            
+            @Html.TextAreaFor(m => m.Properties[i].PropertyValue, new { @class="multilinetextproperty" })
+            </div>
+        }
+        else if (Model.Properties[i] is ZCMS.Core.Business.BooleanProperty) {
             <div class="unit-label">
             @Html.Label(((ZCMS.Core.Business.BooleanProperty)Model.Properties[i]).PropertyName):
             </div>

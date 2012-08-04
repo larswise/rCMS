@@ -1,24 +1,30 @@
 Todos!
 
-Remember Left-menu
-Document statuses
-Possible to save drafts, unpublish if published
-Not possible to upload images before initial save and / or publish
-Show document status
-Possible to delete a document
+[x] Remember Left-menu
+[x] Document statuses
+[x] Possible to save drafts, unpublish if published
+[x] Not possible to upload images before initial save and / or publish
+[x] Show document status
 
 
-files meny;
+files and file manager
 
-Configure sqlexpress (compact?)
-With filestream
-Tag files with extensions/date etc, separate table
-Show files (last 20)
-Ajax search for files, filter list
-Tag, untag by extensions
-Upload files
+[x] Tag files with extensions/date etc, separate table
 
+[x] Ajax search for files, filter list
+[x] Tag, untag by extensions
 
-Button for insert document in tinymce?
-Insert local image
-
+[] Possible to delete a document
+[] Generic modal with common viewmodel (can render a named partial view) and close callback
+[] Upload files from the modal...
+[] Button for insert document in tinymce?
+[] Insert local image
+[] Insert local images from pages, opens filebrowser in modal, can upload
+[] Show files (last 20)
+[] Comments! (cascade delete on page delete)
+[] Comment admin (dashboard?)
+[] Finish up container page
+[] start thinking about dashboard
+[] start thinking about defining custom page types
+[] code cleanup
+[] plugins architecture

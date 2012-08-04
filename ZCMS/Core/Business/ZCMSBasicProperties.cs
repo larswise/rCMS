@@ -242,6 +242,60 @@ namespace ZCMS.Core.Business
         }
     }
 
+    public class MultiLineTextProperty : ZCMSProperty
+    {
+        private object _textValue;
+        private string _propertyName;
+        private int? _order;
+
+        public MultiLineTextProperty() { }
+
+
+        [DataType(DataType.MultilineText)]
+        public override object PropertyValue
+        {
+            get
+            {
+                return _textValue;
+            }
+            set
+            {
+                _textValue = value;
+            }
+        }
+
+        public override string PropertyName
+        {
+            get
+            {
+                return _propertyName;
+            }
+            set
+            {
+                _propertyName = value;
+            }
+        }
+
+        public override int Order
+        {
+            get
+            {
+                return _order.HasValue ? _order.Value : 0;
+            }
+            set
+            {
+                _order = value;
+            }
+        }
+
+        public override string PropertyType
+        {
+            get
+            {
+                return this.GetType().FullName;
+            }
+        }
+    }
     
     public class ImageListProperty : ZCMSProperty
     {        

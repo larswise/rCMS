@@ -4,7 +4,6 @@ C:\Projects\ZCMS\ZCMS\bin\Antlr3.Runtime.dll
 C:\Projects\ZCMS\ZCMS\bin\Autofac.Configuration.dll
 C:\Projects\ZCMS\ZCMS\bin\Autofac.dll
 C:\Projects\ZCMS\ZCMS\bin\Autofac.Integration.Mvc.dll
-C:\Projects\ZCMS\ZCMS\bin\Autofac.Integration.Web.dll
 C:\Projects\ZCMS\ZCMS\bin\Autofac.Integration.WebApi.dll
 C:\Projects\ZCMS\ZCMS\bin\BouncyCastle.Crypto.dll
 C:\Projects\ZCMS\ZCMS\bin\CMS_i18n.dll
@@ -16,7 +15,6 @@ C:\Projects\ZCMS\ZCMS\bin\Lucene.Net.Contrib.SpellChecker.dll
 C:\Projects\ZCMS\ZCMS\bin\Lucene.Net.dll
 C:\Projects\ZCMS\ZCMS\bin\Microsoft.Web.Helpers.dll
 C:\Projects\ZCMS\ZCMS\bin\Microsoft.Web.Infrastructure.dll
-C:\Projects\ZCMS\ZCMS\bin\Newtonsoft.Json.dll
 C:\Projects\ZCMS\ZCMS\bin\NLog.dll
 C:\Projects\ZCMS\ZCMS\bin\NuGet.Core.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.dll
@@ -83,5 +81,3 @@ C:\Projects\ZCMS\ZCMS\bin\WebMatrix.WebData.xml
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.csprojResolveAssemblyReference.cache
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.dll
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.pdb
-c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.dll
-c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.pdb

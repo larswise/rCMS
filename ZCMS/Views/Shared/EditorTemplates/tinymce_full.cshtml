@@ -8,7 +8,8 @@
         tinyMCE.init({
 
             // General options
-            mode: "exact",
+            editor_selector: "tinyricheditor",
+            mode: "textareas",
             elements: "@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)",
             theme: "advanced",
             height: "400",
@@ -42,4 +43,4 @@
 
 </script>
 
-@Html.TextAreaFor(m => m)
+@Html.TextAreaFor(m => m, new { @class = "tinyricheditor", @id="richtexteditor" })
