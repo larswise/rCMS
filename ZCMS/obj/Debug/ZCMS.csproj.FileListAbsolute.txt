@@ -79,3 +79,8 @@ C:\Projects\ZCMS\ZCMS\bin\WebMatrix.WebData.xml
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.csprojResolveAssemblyReference.cache
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.dll
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.pdb
+c:\Projects\ZCMS\ZCMS\bin\Autofac.Integration.Web.dll
+c:\Projects\ZCMS\ZCMS\bin\Newtonsoft.Json.dll
+c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.dll
+c:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.pdb
+c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.pdb

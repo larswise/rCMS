@@ -21,7 +21,7 @@ namespace ZCMS.Core.Bootstrapper
 
             try
             {
-                System.Diagnostics.Debugger.Break();
+                
                 worker.OpenSession();
                 var builder = new ContainerBuilder();
                 builder.RegisterModelBinderProvider();

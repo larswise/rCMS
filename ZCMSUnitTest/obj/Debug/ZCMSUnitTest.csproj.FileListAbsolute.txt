@@ -55,3 +55,4 @@ C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\BouncyCastle.Crypto.pdb
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.csprojResolveAssemblyReference.cache
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.dll
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.pdb
+c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Abstractions.pdb

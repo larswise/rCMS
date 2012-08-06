@@ -18,14 +18,14 @@ namespace ZCMS.Core.Backend.Controllers
 
         public AjaxBackendController(UnitOfWork worker)
         {
-            System.Diagnostics.Debugger.Break();
+            
             _worker = worker;
             _worker.OpenSession();
         }
 
         public AjaxBackendController()
         {
-            System.Diagnostics.Debugger.Break();
+            
         }
 
         public List<ZCMSFileDocument> FileManagerList(List<string> extensionFilter, string filterFreeText)

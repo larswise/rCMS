@@ -23,7 +23,7 @@ namespace ZCMS.Core.Data.Repositories
 
         public bool InitialSetup()
         {
-            var item = _session.Load<RavenJObject>("Raven/Versioning/DefaultConfiguration");
+            var item = _session.Load<dynamic>("Raven/Versioning/DefaultConfiguration");
             if (item == null)
             {
                 return true;
