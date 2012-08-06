@@ -20,12 +20,15 @@ namespace ZCMS.Core.Business
     {
         protected virtual void Application_Start()
         {
-            UnitOfWork worker = ZCMSBootstrapper.GetUnitOfWork();
-            ZCMSBootstrapper.SetIOCAppContainer(worker);
+            ZCMSBootstrapper bs = new ZCMSBootstrapper();
+
+            UnitOfWork worker = bs.GetUnitOfWork();
+            bs.SetIOCAppContainer(worker);
             
                          
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new ZCMSViewEngine());
+            GlobalConfiguration.Configuration.Formatters.Add(new ZCMSRazorFormatter());
 
             AreaRegistration.RegisterAllAreas();
 

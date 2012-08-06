@@ -24,8 +24,9 @@ C:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authorization.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Lightweight.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Versioning.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Database.dll
-C:\Projects\ZCMS\ZCMS\bin\Raven.Smuggler.exe
+C:\Projects\ZCMS\ZCMS\bin\RazorEngine.dll
 C:\Projects\ZCMS\ZCMS\bin\Spatial4n.Core.dll
+C:\Projects\ZCMS\ZCMS\bin\System.Json.dll
 C:\Projects\ZCMS\ZCMS\bin\System.Net.Http.dll
 C:\Projects\ZCMS\ZCMS\bin\System.Net.Http.Formatting.dll
 C:\Projects\ZCMS\ZCMS\bin\System.Net.Http.WebRequest.dll
@@ -54,8 +55,6 @@ C:\Projects\ZCMS\ZCMS\bin\Lucene.Net.Contrib.Spatial.xml
 C:\Projects\ZCMS\ZCMS\bin\Lucene.Net.Contrib.SpellChecker.pdb
 C:\Projects\ZCMS\ZCMS\bin\Lucene.Net.Contrib.SpellChecker.xml
 C:\Projects\ZCMS\ZCMS\bin\NLog.xml
-C:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.pdb
-C:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.xml
 C:\Projects\ZCMS\ZCMS\bin\Raven.Backup.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authentication.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authorization.pdb
@@ -63,8 +62,8 @@ C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Lightweight.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Lightweight.xml
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Versioning.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Database.pdb
-C:\Projects\ZCMS\ZCMS\bin\Raven.Smuggler.pdb
 C:\Projects\ZCMS\ZCMS\bin\Spatial4n.Core.pdb
+C:\Projects\ZCMS\ZCMS\bin\System.Json.xml
 C:\Projects\ZCMS\ZCMS\bin\EntityFramework.xml
 C:\Projects\ZCMS\ZCMS\bin\System.Net.Http.xml
 C:\Projects\ZCMS\ZCMS\bin\System.Net.Http.Formatting.xml
@@ -72,7 +71,6 @@ C:\Projects\ZCMS\ZCMS\bin\System.Net.Http.WebRequest.xml
 C:\Projects\ZCMS\ZCMS\bin\System.Web.Http.xml
 C:\Projects\ZCMS\ZCMS\bin\System.Web.Http.WebHost.xml
 C:\Projects\ZCMS\ZCMS\bin\System.Web.Mvc.xml
-C:\Projects\ZCMS\ZCMS\bin\System.Web.Razor.xml
 C:\Projects\ZCMS\ZCMS\bin\System.Web.WebPages.xml
 C:\Projects\ZCMS\ZCMS\bin\System.Web.WebPages.Deployment.xml
 C:\Projects\ZCMS\ZCMS\bin\System.Web.WebPages.Razor.xml

@@ -14,13 +14,14 @@ using ZCMS.Core.Data;
 
 namespace ZCMS.Core.Bootstrapper
 {
-    public static class ZCMSBootstrapper
+    public class ZCMSBootstrapper
     {
-        public static void SetIOCAppContainer(UnitOfWork worker)
+        public void SetIOCAppContainer(UnitOfWork worker)
         {
 
             try
             {
+                System.Diagnostics.Debugger.Break();
                 worker.OpenSession();
                 var builder = new ContainerBuilder();
                 builder.RegisterModelBinderProvider();
@@ -28,10 +29,10 @@ namespace ZCMS.Core.Bootstrapper
                 builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
                 builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
+                builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
                 builder.RegisterInstance(worker).SingleInstance();
                 builder.RegisterFilterProvider();
 
-                builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
                 var container = builder.Build();
 
@@ -64,7 +65,7 @@ namespace ZCMS.Core.Bootstrapper
 
 
 
-        public static UnitOfWork GetUnitOfWork()
+        public UnitOfWork GetUnitOfWork()
         {
             var documentStore = new DocumentStore
             {

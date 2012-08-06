@@ -8,6 +8,7 @@ namespace ZCMS.Core.Business
 {
     public class ZCMSViewEngine : RazorViewEngine
     {
+
         private static string[] NewViewFormats = new[] { 
                 "~/Core/Backend/Views/{0}.cshtml",
                 "~/Core/Auth/Views/{0}.cshtml",
@@ -29,6 +30,7 @@ namespace ZCMS.Core.Business
         {
             base.PartialViewLocationFormats = base.PartialViewLocationFormats.Union(NewPartialViewFormats).ToArray();
             base.ViewLocationFormats = base.ViewLocationFormats.Union(NewViewFormats).ToArray();
+            
         }   
     }
 }

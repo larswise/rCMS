@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Json.Linq;
 using ZCMS.Core.Business;
 
 namespace ZCMS.Core.Data.Repositories
@@ -22,12 +23,11 @@ namespace ZCMS.Core.Data.Repositories
 
         public bool InitialSetup()
         {
-            if (_session.Load<dynamic>("Raven/Versioning/DefaultConfiguration") == null)
+            var item = _session.Load<RavenJObject>("Raven/Versioning/DefaultConfiguration");
+            if (item == null)
             {
-                _session.SaveChanges();
                 return true;
             }
-            _session.SaveChanges();
             return false;
         }
 

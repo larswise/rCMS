@@ -15,8 +15,8 @@ namespace ZCMS
         {
             routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "backend/ajax/UploadAttachment/{pageId}",
-                defaults: new { controller = "AjaxBackend", action = "UploadAttachment", pageId = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
             );
             // backend...
 

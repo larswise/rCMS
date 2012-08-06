@@ -7,56 +7,49 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using ZCMS.Core.Business;
 using ZCMS.Core.Data;
 
 namespace ZCMS.Core.Backend.Controllers
 {
     public class AjaxBackendController : ApiController
     {
-        private UnitOfWork _worker;
+        protected UnitOfWork _worker;
 
-        public AjaxBackendController(UnitOfWork work)
+        public AjaxBackendController(UnitOfWork worker)
         {
-            _worker = work;
+            System.Diagnostics.Debugger.Break();
+            _worker = worker;
+            _worker.OpenSession();
         }
 
-
-
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.HttpPost]
-        public string UploadAttachment()
+        public AjaxBackendController()
         {
-            // Check if the request contains multipart/form-data.
-            if (!Request.Content.IsMimeMultipartContent())
-            {
-                throw new HttpResponseException(
-                    Request.CreateResponse(HttpStatusCode.UnsupportedMediaType));
-            }
+            System.Diagnostics.Debugger.Break();
+        }
 
-            string root = HttpContext.Current.Server.MapPath("~/App_Data/Uploads");
-            var provider = new MultipartFormDataStreamProvider(root);
+        public List<ZCMSFileDocument> FileManagerList(List<string> extensionFilter, string filterFreeText)
+        {
+            if (extensionFilter == null || extensionFilter.Count == 0)
+                return _worker.CmsContentRepository.QueryAttachment(new List<string>() { "*" }, string.Empty);
+            else
+                return _worker.CmsContentRepository.QueryAttachment(extensionFilter, filterFreeText);
+        }
 
-            // Read the form data and return an async task.
-            var task = Request.Content.ReadAsMultipartAsync(provider).
-                ContinueWith<HttpResponseMessage>(readTask =>
-                {
-                    if (readTask.IsFaulted || readTask.IsCanceled)
-                    {
-                        return new HttpResponseMessage(HttpStatusCode.InternalServerError);
-                    }
+        public ZCMSPage Get()
+        {
+            return _worker.CmsContentRepository.GetCmsPage("43064");
+        }
 
-                    // This illustrates how to get the file names.
-                    foreach (var file in provider.BodyPartFileNames)
-                    {
-                        Trace.WriteLine("Client file name: " + file.Key);
-                        Trace.WriteLine("Server file path: " + file.Value);
-                    }
-                    return new HttpResponseMessage(HttpStatusCode.Created);
-                });
+        public JsonResult GetString(string id)
+        {
+            return new JsonResult() { Data = "hello", ContentType = "application/json" };
+        }
 
-            return "ljklkj";
-
-             
+        // GET api/default1
+        public IEnumerable<string> StringGet()
+        {
+            return new string[] { "value1", "value2" };
         }
     }
 }
