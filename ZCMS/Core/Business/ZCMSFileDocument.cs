@@ -12,11 +12,10 @@ namespace ZCMS.Core.Business
         private string _fileKey;
         private DateTime _created;
         private string _fileName;
-        private string _pageId;
         private string _extension;
         private string _description;
 
-        public ZCMSFileDocument(string pageId, string fileName, string description)
+        public ZCMSFileDocument(string fileName, string description)
         {
             _fileName = fileName;
             _created = DateTime.Now;
@@ -35,7 +34,6 @@ namespace ZCMS.Core.Business
             }
             _fileKey = key;
             _description = description;
-            _pageId = pageId;
             _extension = ext;
 
         }
@@ -52,17 +50,7 @@ namespace ZCMS.Core.Business
             }
         }
 
-        public string PageId
-        {
-            get
-            {
-                return _pageId;
-            }
-            set
-            {
-                _pageId = value;
-            }
-        }
+
         public string Extension
         {
             get

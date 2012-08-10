@@ -18,7 +18,15 @@ namespace ZCMS
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
             // backend...
+
+            routes.MapRoute(
+                "FilterFileManager",
+                "Backend/FileSelector/{filterFreeText}",
+                new { Controller = "Backend", Action = "FileSelector", filterFreeText = UrlParameter.Optional }
+            );
+
 
             string mainAdminPath =
             string.IsNullOrEmpty(((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainAdminUrl)
@@ -40,14 +48,14 @@ namespace ZCMS
                 mainAdminPath + "PageEditor/{pageId}/{pageType}",
                 new { Controller = "Backend", action = "PageEditor", pageId = UrlParameter.Optional, pageType = UrlParameter.Optional }
             );
-
-
-
+            
             routes.MapRoute(
                 "Backend_upload",
                 mainAdminPath + "UploadAttachment/{pageId}",
                 new { Controller = "Backend", action = "UploadAttachment", pageId = UrlParameter.Optional }
             );
+
+
 
             routes.MapRoute(
                 "Auth_logon",

@@ -119,8 +119,9 @@ namespace ZCMS.Core.Data.Repositories
             try
             {
                 var user = _session.Load<dynamic>(String.Format("Raven/Users/{0}", HttpContext.Current.User.Identity.Name));
-                return _session.Load<dynamic>(user.Id.Replace("Raven", "Authorization"))
-                    .Roles.Contains("Authorization/Roles/Administrators");
+
+                return _session.Load<AuthorizationUser>(user.Id.Replace("Raven", "Authorization")).Roles.Contains("Authorization/Roles/Administrators");
+
             }
             catch (NullReferenceException)
             {
@@ -130,13 +131,17 @@ namespace ZCMS.Core.Data.Repositories
             {
                 return false;
             }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool AuthenticateUser(string username, string password)
         {
             try
             {
-                AuthenticationUser user = _session.Load<AuthenticationUser>(String.Format("Raven/Users/{0}", username));
+                var user = _session.Load<AuthenticationUser>(String.Format("Raven/Users/{0}", username));
                 if(user!=null)
                 {
                     return user.ValidatePassword(password);
@@ -146,8 +151,9 @@ namespace ZCMS.Core.Data.Repositories
                     return false;
                 }
             }
-            catch
+            catch(Exception e)
             {
+                throw new Exception(e.Message + "                ---                  " + e.Message + "                                       ---                         " + e.StackTrace);
                 return false;
             }
         }

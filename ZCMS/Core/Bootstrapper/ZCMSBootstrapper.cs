@@ -54,7 +54,8 @@ namespace ZCMS.Core.Bootstrapper
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message + "  -  " + ex.StackTrace);
+                // this crashes if config doc exists...
+                System.Diagnostics.Debug.Write(ex.Message + "  -  " + ex.StackTrace);
             }
             finally
             {

@@ -151,11 +151,38 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drag files to the panel or click the upload button.
+        /// </summary>
+        public static string FileManagerTopTips {
+            get {
+                return ResourceManager.GetString("FileManagerTopTips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload a new file.
+        /// </summary>
+        public static string FileManagerUploadNew {
+            get {
+                return ResourceManager.GetString("FileManagerUploadNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Files.
         /// </summary>
         public static string FilesMenu {
             get {
                 return ResourceManager.GetString("FilesMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click or drag and drop files to this pane..
+        /// </summary>
+        public static string FileUploadButtonText {
+            get {
+                return ResourceManager.GetString("FileUploadButtonText", resourceCulture);
             }
         }
         

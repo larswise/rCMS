@@ -147,8 +147,17 @@
   <data name="FileManagerFilterByFreeText" xml:space="preserve">
     <value>Filter by file name</value>
   </data>
+  <data name="FileManagerTopTips" xml:space="preserve">
+    <value>Drag files to the panel or click the upload button</value>
+  </data>
+  <data name="FileManagerUploadNew" xml:space="preserve">
+    <value>Upload a new file</value>
+  </data>
   <data name="FilesMenu" xml:space="preserve">
     <value>Manage Files</value>
+  </data>
+  <data name="FileUploadButtonText" xml:space="preserve">
+    <value>Click or drag and drop files to this pane.</value>
   </data>
   <data name="ImageCarousel" xml:space="preserve">
     <value>Image Serie</value>

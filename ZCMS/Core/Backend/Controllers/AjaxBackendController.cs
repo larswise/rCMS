@@ -12,44 +12,23 @@ using ZCMS.Core.Data;
 
 namespace ZCMS.Core.Backend.Controllers
 {
-    public class AjaxBackendController : ApiController
+    public class AjaxBackendController : ZCMSBaseAjaxController
     {
-        protected UnitOfWork _worker;
 
-        public AjaxBackendController(UnitOfWork worker)
+        public AjaxBackendController(UnitOfWork worker):base(worker)
         {
-            
-            _worker = worker;
-            _worker.OpenSession();
+
         }
 
-        public AjaxBackendController()
+
+        public ZCMSPage Get(string id)
         {
-            
+            return _worker.CmsContentRepository.GetCmsPage(id);
         }
 
-        public List<ZCMSFileDocument> FileManagerList(List<string> extensionFilter, string filterFreeText)
+        public List<ZCMSFileDocument> FileSelector(string filterFreeText)
         {
-            if (extensionFilter == null || extensionFilter.Count == 0)
-                return _worker.CmsContentRepository.QueryAttachment(new List<string>() { "*" }, string.Empty);
-            else
-                return _worker.CmsContentRepository.QueryAttachment(extensionFilter, filterFreeText);
-        }
-
-        public ZCMSPage Get()
-        {
-            return _worker.CmsContentRepository.GetCmsPage("43064");
-        }
-
-        public JsonResult GetString(string id)
-        {
-            return new JsonResult() { Data = "hello", ContentType = "application/json" };
-        }
-
-        // GET api/default1
-        public IEnumerable<string> StringGet()
-        {
-            return new string[] { "value1", "value2" };
+            return _worker.CmsContentRepository.QueryAttachment(new List<string>(), filterFreeText).Take(25).OrderBy(o => o.Created).Reverse().ToList();
         }
     }
 }

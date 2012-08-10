@@ -26,12 +26,10 @@ C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Spatial4n.Core.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Lucene.Net.Contrib.Spatial.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Esent.Interop.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\BouncyCastle.Crypto.dll
-C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Newtonsoft.Json.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\WebGrease.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Antlr3.Runtime.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\ZCMS.pdb
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Lightweight.pdb
-C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Lightweight.xml
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Database.pdb
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\System.Web.Http.xml
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\System.Net.Http.Formatting.xml
@@ -56,3 +54,8 @@ C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.csprojResolveAssemblyRefere
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.dll
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.pdb
 c:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Abstractions.pdb
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Newtonsoft.Json.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Newtonsoft.Json.xml
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Imports.SignalR.Client.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Imports.SignalR.Client.pdb
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Imports.SignalR.Client.xml

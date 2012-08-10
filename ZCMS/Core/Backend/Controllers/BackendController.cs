@@ -117,7 +117,7 @@ namespace ZCMS.Core.Backend.Controllers
                 docs = _worker.CmsContentRepository.QueryAttachment(new List<string>() { "*" }, string.Empty);
             else
                 docs = _worker.CmsContentRepository.QueryAttachment(extensionFilter, filterFreeText);
-            return PartialView("FileManagerList", docs);
+            return PartialView("FileManagerList", docs.Take(25).OrderBy(o => o.Created).Reverse().ToList());
         }
 
         public ActionResult Revise(string id)
@@ -155,6 +155,16 @@ namespace ZCMS.Core.Backend.Controllers
             }
         }
 
+        public ActionResult FileSelector(string filterFreeText)
+        {
+            return PartialView("FileSelector", _worker.CmsContentRepository.QueryAttachment(new List<string>() { "*" }, filterFreeText).Take(25).OrderBy(o => o.Created).Reverse().ToList());
+        }
+
+        public ActionResult RenderUnit(string id)
+        {
+            return PartialView(id);
+        }
+
         public ActionResult UploadAttachment(string pageId)
         {
             try
@@ -165,7 +175,7 @@ namespace ZCMS.Core.Backend.Controllers
                 stream.CopyTo(mstream);
                 mstream.Position = 0;
 
-                ZCMSFileDocument fDocument = new ZCMSFileDocument(pageId, Request.QueryString["qqfile"].ToString(), string.Empty);
+                ZCMSFileDocument fDocument = new ZCMSFileDocument(Request.QueryString["qqfile"].ToString(), string.Empty);
 
                 _worker.CmsContentRepository.StoreAttachment(fDocument, mstream);
                 

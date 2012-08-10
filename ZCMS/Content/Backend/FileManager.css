@@ -10,6 +10,13 @@
     display: table;
 }
 
+#FileManagerSelectorListing {
+    float: left;
+    max-height: 180px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
 .file-md-hr, .file-md-ir {
 
     display: table-row;
@@ -37,6 +44,7 @@
 .file-md-ir div img {
     max-width: 20px;
     padding-top: 4px;
+    padding-right: 5px;
 }
 
 #FileManagerFileList {
@@ -81,4 +89,35 @@
 
 .file-extension img.deselected {
     opacity: 0.15;
+}
+
+.file-manager-upload {
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    background-position: 0px -5px;
+    height: 40px;
+    text-indent: 32px;
+    display: inline-block;
+    background-image: url('images/upload_arrow_up.png');
+}
+
+a.file-manager-upload {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: medium;
+}
+
+.filter-input-text {
+    float: left;
+    vertical-align: middle;
+    margin-bottom: 10px;
+    
+}
+
+.filter-input-refresh {
+    padding-left: 15px;
+    float: left;
+    vertical-align: middle;
+    margin-bottom: 10px;    
 }

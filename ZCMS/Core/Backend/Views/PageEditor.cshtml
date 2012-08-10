@@ -103,6 +103,7 @@
             </div>
         } else if(Model.Properties[i] is ZCMS.Core.Business.ImageListProperty) {
             <div class="unit-label">
+                <a href="javascript:void(0);" class="file-selector">select file.!.</a>
             @Html.Label(((ZCMS.Core.Business.ImageListProperty)Model.Properties[i]).PropertyName):
             </div>
             <div class="unit-unit">
@@ -134,3 +135,10 @@
 </div>
 
 @{ Html.EndForm(); }
+
+<!-- modal -->
+<div id="modal" style="display:none">
+<div class="cmsModalInner">
+</div>
+</div>
+<img src="@Url.Content("~/Content/Backend/Images/small_delete.png")" id="modal-close" alt="" style="display:none;" />

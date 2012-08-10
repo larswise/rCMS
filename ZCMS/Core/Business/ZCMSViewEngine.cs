@@ -22,8 +22,9 @@ namespace ZCMS.Core.Business
                 "~/Core/Backend/Views/Shared/Partials/{0}.cshtml",
                 "~/Core/Backend/Views/Shared/Partials/{1}.cshtml",
                 "~/Core/Backend/Views/Shared/EditorTemplates/{0}.cshtml",
+                "~/Views/Shared/EditorTemplates/{0}.cshtml",
 
-                "~/Core/Auth/Views/Partials/{0}.cshtml"
+                "~/Core/Auth/Views/Partials/EditorTemplates/{0}.cshtml"
         };
 
         public ZCMSViewEngine()

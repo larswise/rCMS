@@ -118,19 +118,21 @@ namespace ZCMS.Core.Data.Repositories
             _session.Store(fileDocument);
             _session.Advanced.GetMetadataFor(fileDocument)["Raven-Cascade-Delete-Documents"] = RavenJArray.FromObject(new[] { fileDocument.FileKey });
             _documentStore.DatabaseCommands.PutAttachment(fileDocument.FileKey, null, dataStream, null);
-            ZCMSPage cmspage = GetCmsPage(fileDocument.PageId);
-            var property = cmspage.Properties.Where(p => p is ImageListProperty).FirstOrDefault();
-            if (property != null)
-            {
-                try
-                {
-                    ((List<string>)cmspage.Properties.Where(p => p is ImageListProperty).First().PropertyValue).Add(fileDocument.FileKey);
-                }
-                catch
-                {
-                }
+
+            // rework this, no direct relation from page to file.
+            //ZCMSPage cmspage = GetCmsPage(fileDocument.PageId);
+            //var property = cmspage.Properties.Where(p => p is ImageListProperty).FirstOrDefault();
+            //if (property != null)
+            //{
+            //    try
+            //    {
+            //        ((List<string>)cmspage.Properties.Where(p => p is ImageListProperty).First().PropertyValue).Add(fileDocument.FileKey);
+            //    }
+            //    catch
+            //    {
+            //    }
                 
-            }
+            //}
             _session.SaveChanges();
         }
 

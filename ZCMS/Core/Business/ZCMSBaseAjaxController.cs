@@ -12,14 +12,21 @@ namespace ZCMS.Core.Business
     {
         protected UnitOfWork _worker;
 
-        public ZCMSBaseAjaxController()
-        {
-        }
-
         public ZCMSBaseAjaxController(UnitOfWork work)
         {
             _worker = work;            
         }
 
+        protected override void Initialize(System.Web.Http.Controllers.HttpControllerContext controllerContext)
+        {
+            base.Initialize(controllerContext);
+            _worker.OpenSession();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _worker.CloseSession();
+            base.Dispose(disposing);
+        }
     }
 }

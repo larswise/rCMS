@@ -59,7 +59,6 @@ C:\Projects\ZCMS\ZCMS\bin\Raven.Backup.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authentication.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authorization.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Lightweight.pdb
-C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Lightweight.xml
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Versioning.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Database.pdb
 C:\Projects\ZCMS\ZCMS\bin\Spatial4n.Core.pdb
@@ -80,7 +79,11 @@ C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.csprojResolveAssemblyReference.cache
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.dll
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.pdb
 c:\Projects\ZCMS\ZCMS\bin\Autofac.Integration.Web.dll
-c:\Projects\ZCMS\ZCMS\bin\Newtonsoft.Json.dll
-c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.dll
 c:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.pdb
-c:\Projects\ZCMS\ZCMS\bin\Raven.Client.MvcIntegration.pdb
+C:\Projects\ZCMS\ZCMS\bin\Newtonsoft.Json.dll
+C:\Projects\ZCMS\ZCMS\bin\Newtonsoft.Json.xml
+C:\Projects\ZCMS\ZCMS\bin\Raven.Imports.SignalR.Client.dll
+C:\Projects\ZCMS\ZCMS\bin\Raven.Smuggler.exe
+C:\Projects\ZCMS\ZCMS\bin\Raven.Imports.SignalR.Client.pdb
+C:\Projects\ZCMS\ZCMS\bin\Raven.Imports.SignalR.Client.xml
+C:\Projects\ZCMS\ZCMS\bin\Raven.Smuggler.pdb

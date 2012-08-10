@@ -40,7 +40,14 @@ $(document).ready(function () {
     });
 
     $(".file-extension").click(FilterFileList);
-    $("#filemanager-filter-input").keyup(FilterFileList);
+    $("#filemanager-filter-input").keyup(function () {
+        if($(this).val().length>1)
+            FilterFileList();
+    });
+    $("#file-manager-refresh").click(function () {
+        $("#filemanager-filter-input").val('');
+        FilterFileList();
+    });
 
 
 });
@@ -88,3 +95,5 @@ function FilterFileList() {
         traditional: true
     });
 }
+
+

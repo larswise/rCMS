@@ -130,9 +130,14 @@ qq.hasClass = function(element, name){
     var re = new RegExp('(^| )' + name + '( |$)');
     return re.test(element.className);
 };
-qq.addClass = function(element, name){
-    if (!qq.hasClass(element, name)){
-        element.className += ' ' + name;
+qq.addClass = function (element, name) {
+    console.log(element.className);
+    if (element.className.length<1) {
+        element.className = name;
+    } else {
+        if (!qq.hasClass(element, name)) {
+            element.className += ' ' + name;
+        }
     }
 };
 qq.removeClass = function(element, name){
@@ -443,7 +448,7 @@ qq.FileUploaderBasic.prototype = {
     _formatFileName: function(name){
         if (name.length > 33){
             name = name.slice(0, 19) + '...' + name.slice(-13);    
-        }
+        }        
         return name;
     },
     _isAllowedExtension: function(fileName){
@@ -497,7 +502,8 @@ qq.FileUploader = function(o){
                 '<span class="qq-upload-size"></span>' +
                 '<a class="qq-upload-cancel" href="#">Cancel</a>' +
                 '<span class="qq-upload-failed-text">Failed</span>' +
-            '</li>',        
+            '</li>',
+        fileFormatTemplate: '<img src="[FORMAT]" border="0" alt="..." />',
         
         classes: {
             // used to get elements from templates
@@ -625,11 +631,15 @@ qq.extend(qq.FileUploader.prototype, {
         var item = qq.toElement(this._options.fileTemplate);                
         item.qqFileId = id;
 
-        var fileElement = this._find(item, 'file');        
-        qq.setText(fileElement, this._formatFileName(fileName));
+        var fileFormatItem = qq.toElement(this._options.fileFormatTemplate);
+        fileFormatItem.setAttribute('src', '/Content/Backend/Images/Formats/'+fileName.split('.').pop() + '.png');
+        var fileElement = this._find(item, 'file');      
+        qq.setText(fileElement,  this._formatFileName(fileName));
         this._find(item, 'size').style.display = 'none';        
-
+        
+        item.insertBefore(fileFormatItem, item.firstChild);
         this._listElement.appendChild(item);
+        
     },
     _getItemByFileId: function(id){
         var item = this._listElement.firstChild;        

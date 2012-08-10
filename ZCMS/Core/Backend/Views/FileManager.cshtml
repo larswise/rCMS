@@ -6,6 +6,9 @@
 <div id="FileManagerWrap">
     
 <h2>File Manager</h2>
+
+    <a href="javascript:void(0);" class="file-manager-upload">@CMS_i18n.BackendResources.FileManagerUploadNew</a>
+
     <div id="FileManagerExtensionList">
         <div class="file-filter-label">
             @CMS_i18n.BackendResources.FileManagerFilterByExtension
@@ -25,6 +28,9 @@
         <div class="filter-input-text">
             @Html.TextBox("filemanager-filter-input", null, new { @class = "file-manager-filter-input" })
         </div>
+        <div class="filter-input-refresh">
+            <a href="javascript:void(0);" id="file-manager-refresh"><img src="@Url.Content("~/Content/Backend/Images/little_refresh.png")" alt="" /></a>
+        </div>
     </div>
     <div id="FileManagerFileListWrap">
     <div id="FileManagerFileList">
@@ -32,3 +38,10 @@
     </div>
     </div>
 </div>
+
+<!-- modal -->
+<div id="modal" style="display:none">
+<div class="cmsModalInner">
+</div>
+</div>
+<img src="@Url.Content("~/Content/Backend/Images/small_delete.png")" id="modal-close" alt="" style="display:none;" />

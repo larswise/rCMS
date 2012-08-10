@@ -15,7 +15,7 @@
     <AssemblyName>ZCMS</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -50,41 +50,35 @@
       <HintPath>..\packages\Autofac.Mvc4.2.6.2.859\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.Web">
-      <HintPath>..\..\MvcApplication1\MvcApplication1\bin\Autofac.Integration.Web.dll</HintPath>
+      <HintPath>..\packages\Autofac.Web.2.6.3.862\lib\NET40\Autofac.Integration.Web.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.WebApi">
       <HintPath>..\packages\Autofac.WebApi.2.6.2.859\lib\NET40\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.7.4137.9688, Culture=neutral, PublicKeyToken=a4292a325f69b123, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="Esent.Interop, Version=1.7.0.0, Culture=neutral, PublicKeyToken=8dd49bbdae3f61af, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\Esent.Interop.dll</HintPath>
+    <Reference Include="Esent.Interop">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Esent.Interop.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.NRefactory, Version=3.0.0.3800, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\ICSharpCode.NRefactory.dll</HintPath>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
-    <Reference Include="Lucene.Net, Version=2.9.4.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\Lucene.Net.dll</HintPath>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Lucene.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Lucene.Net.Contrib.Spatial, Version=2.9.1.2, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\Lucene.Net.Contrib.Spatial.dll</HintPath>
+    <Reference Include="Lucene.Net.Contrib.Spatial">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Lucene.Net.Contrib.Spatial.dll</HintPath>
     </Reference>
-    <Reference Include="Lucene.Net.Contrib.SpellChecker, Version=2.9.2.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
+    <Reference Include="Lucene.Net.Contrib.SpellChecker">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Helpers">
       <HintPath>..\packages\microsoft-web-helpers.2.0.20505.2\lib\net40\Microsoft.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
@@ -94,39 +88,39 @@
       <HintPath>..\packages\NuGet.Core.1.6.2\lib\net40\NuGet.Core.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Backup, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\Raven.Backup.exe</HintPath>
+    <Reference Include="Raven.Backup">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Raven.Backup.exe</HintPath>
     </Reference>
     <Reference Include="Raven.Bundles.Authentication">
-      <HintPath>..\packages\RavenDB.Bundles.Authentication.1.2.2044-Unstable\lib\net40\Raven.Bundles.Authentication.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Bundles.Authentication.1.2.2059-Unstable\lib\net40\Raven.Bundles.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Bundles.Authorization">
-      <HintPath>..\packages\RavenDB.Bundles.Authorization.1.2.2044-Unstable\lib\net40\Raven.Bundles.Authorization.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Bundles.Authorization.1.2.2059-Unstable\lib\net40\Raven.Bundles.Authorization.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.1.2.2001-Unstable\lib\net40\Raven.Client.Lightweight.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.MvcIntegration">
-      <HintPath>..\..\..\RavenDB-964\Client\Raven.Client.MvcIntegration.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Client.1.2.2032-Unstable\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Versioning, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.Versioning.1.2.2001-Unstable\lib\net40\Raven.Client.Versioning.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Client.Versioning.1.2.2032-Unstable\lib\net40\Raven.Client.Versioning.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Database, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\Raven.Database.dll</HintPath>
+    <Reference Include="Raven.Database">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Raven.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Imports.SignalR.Client">
+      <HintPath>..\packages\RavenDB.Client.1.2.2032-Unstable\lib\net40\Raven.Imports.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Smuggler">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Raven.Smuggler.exe</HintPath>
     </Reference>
     <Reference Include="RazorEngine">
       <HintPath>..\packages\RazorEngine.3.0.8\lib\net40\RazorEngine.dll</HintPath>
     </Reference>
-    <Reference Include="Spatial4n.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f9456e1ca16d45e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.1.2.2044-Unstable\lib\net40\Spatial4n.Core.dll</HintPath>
+    <Reference Include="Spatial4n.Core">
+      <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Spatial4n.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -231,7 +225,6 @@
     <Compile Include="Core\Auth\Controllers\AuthenticationController.cs" />
     <Compile Include="Core\Backend\Controllers\AjaxBackendController.cs" />
     <Compile Include="Core\Backend\Controllers\BackendController.cs" />
-    <Compile Include="Core\Backend\Controllers\SmugglerApiBase.cs" />
     <Compile Include="Core\Bootstrapper\ZCMSBootstrapper.cs" />
     <Compile Include="Core\Business\AutofacControllerFactory.cs" />
     <Compile Include="Core\Business\ZCMSBaseAjaxController.cs" />
@@ -276,6 +269,7 @@
     <Content Include="Content\Backend\Images\lock.png" />
     <Content Include="Content\Backend\Images\plus.png" />
     <Content Include="Content\Backend\Images\publish.png" />
+    <Content Include="Content\Backend\Modal.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -304,6 +298,7 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Core\Backend\Scripts\AdminInit.js" />
+    <Content Include="Core\Backend\Scripts\Modal.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Backend\Backend.css" />
     <Content Include="Core\Backend\Views\Shared\Partials\Web.config" />
@@ -329,6 +324,7 @@
     <Content Include="Core\Backend\Views\Shared\Web.config" />
     <Content Include="Core\Backend\Views\Web.config" />
     <Content Include="Core\Backend\Views\Shared\Partials\FileManagerList.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\FileSelector.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -668,7 +664,7 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>56962</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://dev.zcms.com</IISUrl>
+          <IISUrl>http://localhost:56962/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://dev.zcms.com/Admin/PageEditor</CustomServerUrl>

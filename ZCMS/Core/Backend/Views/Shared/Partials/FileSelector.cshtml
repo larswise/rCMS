@@ -1,0 +1,41 @@
+﻿@model List<ZCMS.Core.Business.ZCMSFileDocument>
+<div id="FileManagerFileList">
+<script type="text/javascript">
+    $(function () {
+        $("#filemanager-filter-input-selector").keyup(function () {
+            if ($(this).val().length > 1)
+                FilterFileSelectorList($(this).val());
+        });
+    });
+</script>
+    <div id="FileManagerExtensionList">
+        <div class="file-grad-bg"></div>
+        <div class="file-filter-label">
+            @CMS_i18n.BackendResources.FileManagerFilterByFreeText
+        </div>
+        <div class="filter-input-text">
+            @Html.TextBox("filemanager-filter-input-selector", null, new { @class = "file-manager-filter-input" })
+        </div>
+        <div class="filter-input-refresh">
+            <a href="javascript:void(0);" id="file-manager-refresh"><img src="@Url.Content("~/Content/Backend/Images/little_refresh.png")" alt="" /></a>
+        </div>
+    </div>
+
+<div id="FileManagerSelectorListing">
+<div class="file-md-hr">
+    <div class="file-md-hc">@Html.CheckBox("select-all-files")</div>
+    <div class="file-md-hc">&nbsp</div>
+    <div class="file-md-hc">Name</div> 
+</div>
+
+@foreach(var item in Model) 
+{
+    var fileIcon = "/Content/Backend/Images/Formats/" + @item.Extension + ".png";
+    <div class="file-md-ir">
+        <div class="file-md-ic">@Html.CheckBox(item.FileKey)</div>
+    <div class="file-md-ic"><img src="@fileIcon" alt="" /></div>
+    <div class="file-md-ic" title="@item.FileName">@item.FileName</div>
+    </div>
+}
+</div>
+</div>
