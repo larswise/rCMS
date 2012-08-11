@@ -31,7 +31,7 @@ namespace ZCMSUnitTest
         [TestMethod]
         public void TestMethod1()
         {
-            worker.ConfigRepository.WrapUpVersioning();
+            worker.ConfigRepository.WireUpVersioning();
 
             ZCMSPage page = new ZCMSPage(new ArticlePage());
             worker.CmsContentRepository.SaveCmsPage(page);

@@ -322,7 +322,6 @@
     <Content Include="Core\Backend\Views\Web.config" />
     <Content Include="Core\Backend\Views\Shared\Partials\FileManagerList.cshtml" />
     <Content Include="Core\Backend\Views\Shared\Partials\FileSelector.cshtml" />
-    <Content Include="Core\Backend\Views\List_ZCMSFileDocument_.cshtml" />
     <Content Include="Core\Backend\Views\Shared\Partials\UploadUnit.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />

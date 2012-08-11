@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Json.Linq;
+using Raven.Client.Extensions;
 using ZCMS.Core.Business;
 
 namespace ZCMS.Core.Data.Repositories
@@ -23,32 +25,40 @@ namespace ZCMS.Core.Data.Repositories
 
         public bool InitialSetup()
         {
-            var item = _session.Load<dynamic>("Raven/Versioning/DefaultConfiguration");
-            if (item == null)
+            try
             {
-                return true;
+                var item = _session.Load<dynamic>("Raven/Versioning/DefaultConfiguration");
+                if (item == null)
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch { return true;  }
+        }
+
+        public void EnsureDbExists(bool ignorefail)
+        {
+            _documentStore.DatabaseCommands.EnsureDatabaseExists(ConfigurationManager.AppSettings["RavenDBDefaultDb"].ToString(),ignorefail);
         }
 
 
 
-        public void WrapUpVersioning()
+        public void WireUpVersioning()
         {
             _session.Store(new
             {
                 Exclude = false,
                 Id = "Raven/Versioning/DefaultConfiguration",
                 MaxRevisions = 5
-            });
-            _session.SaveChanges();
+            });            
+
             _session.Store(new
             {
                 Exclude = true,
                 Id = "Raven/Versioning/IZCMSPageType",
                 MaxRevisions = 1
             });
-            _session.SaveChanges();
 
             _session.Store(new
             {
@@ -57,6 +67,12 @@ namespace ZCMS.Core.Data.Repositories
                 MaxRevisions = 1
             });
 
+            _session.Store(new
+            {
+                Exclude = true,
+                Id = "Raven/Versioning/ZCMSFileDocument",
+                MaxRevisions = 1
+            });
             _session.SaveChanges();
         }
 

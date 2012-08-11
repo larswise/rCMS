@@ -10,6 +10,7 @@ using Raven.Client;
 using Raven.Client.Document;
 using Raven.Json.Linq;
 using Microsoft.CSharp.RuntimeBinder;
+using System.Configuration;
 
 
 namespace ZCMS.Core.Data.Repositories
@@ -63,9 +64,7 @@ namespace ZCMS.Core.Data.Repositories
                                 }
                             }
                 });
-                s += "1";
-                _session.SaveChanges();
-                s += "a";
+
                 _session.Store(new AuthorizationRole
                 {
                     Id = String.Format("Authorization/Roles/{0}", "Users"),
@@ -76,9 +75,8 @@ namespace ZCMS.Core.Data.Repositories
                                     Operation = "*"
                                 }
                             }
-                }); s += "2";
-                _session.SaveChanges();
-                s += "3";
+                });
+
                 _session.Store(new AuthorizationUser
                 {
                     Id = String.Format("Authorization/Users/{0}", "larswise"),
@@ -93,23 +91,44 @@ namespace ZCMS.Core.Data.Repositories
                             }
                         }
                 });
-                _session.SaveChanges();
+
+                _session.Store(new AuthorizationUser
+                {
+                    Id = String.Format("Authorization/Users/{0}", ConfigurationManager.AppSettings["RavenDBDefaultAdminUser"].ToString()),
+                    Name = "Admin",
+                    Roles = new List<string>() { String.Format("Authorization/Roles/{0}", "Administrators") },
+                    Permissions = 
+                        {
+                            new OperationPermission
+                            {
+                                Allow = true,
+                                Operation = "*"
+                            }
+                        }
+                });
 
                 _session.Store(new AuthenticationUser
                 {
-                    Name = "lars@sunsteam.com",
+                    Name = "ZCMS Service Account",
+                    Id = String.Format(String.Format("Raven/Users/{0}", ConfigurationManager.AppSettings["RavenDBDefaultAdminUser"].ToString())),
+                    AllowedDatabases = new[] { "*" }
+                }.SetPassword(ConfigurationManager.AppSettings["RavenDBDefaultPassword"].ToString()));
+
+                _session.Store(new AuthenticationUser
+                {
+                    Name = "Chief Editor",
                     Id = String.Format("Raven/Users/larswise"),
                     AllowedDatabases = new[] { "*" }
                 }.SetPassword("sunwolf43"));
 
-                _session.SaveChanges();
-
-                s += "4";
-                _session.SaveChanges();
             }
             catch (Exception e)
             {
                 throw new Exception(s + "  --- " + e.Message + e.StackTrace);
+            }
+            finally
+            {
+                _session.SaveChanges();
             }
         }
 
