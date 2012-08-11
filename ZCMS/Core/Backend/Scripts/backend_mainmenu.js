@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     $(".file-extension").click(FilterFileList);
     $("#filemanager-filter-input").keyup(function () {
-        if($(this).val().length>1)
+        if($(this).val().length>1 || $(this).val().length==0)
             FilterFileList();
     });
     $("#file-manager-refresh").click(function () {

@@ -21,17 +21,16 @@ namespace ZCMS.Core.Business
         protected virtual void Application_Start()
         {
             ZCMSBootstrapper bs = new ZCMSBootstrapper();
-
-            UnitOfWork worker = bs.GetUnitOfWork();
-            bs.SetIOCAppContainer(worker);
+                        
+            bs.SetIOCAppContainer();
             
                          
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new ZCMSViewEngine());
-            GlobalConfiguration.Configuration.Formatters.Add(new ZCMSRazorFormatter());
 
+            
             AreaRegistration.RegisterAllAreas();
-
+            //GlobalConfiguration.Configuration.Formatters.Add(new ZCMSRazorFormatter());
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

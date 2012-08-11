@@ -103,14 +103,18 @@
             </div>
         } else if(Model.Properties[i] is ZCMS.Core.Business.ImageListProperty) {
             <div class="unit-label">
-                <a href="javascript:void(0);" class="file-selector">select file.!.</a>
+                
             @Html.Label(((ZCMS.Core.Business.ImageListProperty)Model.Properties[i]).PropertyName):
             </div>
             <div class="unit-unit">
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
             @Html.HiddenFor(m => m.Properties[i].PropertyName)
             @Html.HiddenFor(m => m.Properties[i].Order)
-            
+            <a href="javascript:void(0);" class="file-selector">@CMS_i18n.BackendResources.FileManagerLaunch</a>
+            @if (((List<string>)Model.Properties[i].PropertyValue).Count >= 6)
+            {
+                <span class="too-many-images">@CMS_i18n.BackendResources.FileManagerNoMoreFilesAllowed</span>
+            }
             @Html.EditorFor(m => ((ZCMS.Core.Business.ImageListProperty)m.Properties[i]).PropertyValue)
             </div>
         } else if(Model.Properties[i] is ZCMS.Core.Business.TagsProperty) {

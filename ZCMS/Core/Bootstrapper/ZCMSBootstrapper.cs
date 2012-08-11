@@ -16,12 +16,13 @@ namespace ZCMS.Core.Bootstrapper
 {
     public class ZCMSBootstrapper
     {
-        public void SetIOCAppContainer(UnitOfWork worker)
+        public void SetIOCAppContainer()
         {
-
+            UnitOfWork worker = GetUnitOfWork();
             try
             {
                 
+
                 worker.OpenSession();
                 var builder = new ContainerBuilder();
                 builder.RegisterModelBinderProvider();
@@ -66,7 +67,7 @@ namespace ZCMS.Core.Bootstrapper
 
 
 
-        public UnitOfWork GetUnitOfWork()
+        private UnitOfWork GetUnitOfWork()
         {
             var documentStore = new DocumentStore
             {

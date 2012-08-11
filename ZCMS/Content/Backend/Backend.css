@@ -233,8 +233,8 @@ a.publishnew {
 
 .unit-imagelist {
     float: left;
-    width: 180px;
-    height: 140px;
+    width: 90px;
+    height: 100px;
 }
 
 .edit-top-save {
@@ -284,7 +284,7 @@ a.publishnew {
     height: 35px;
 }
 .unit-imagelist img {
-    max-width: 150px;    
+    max-width: 80px;    
 }
 
 .save-success {
@@ -294,6 +294,14 @@ a.publishnew {
 }
 .editor-image-container {
     width: 540px;
+    margin-top: 25px;
+}
+
+.too-many-images {
+    width: 100%;
+    float: left;
+    height: 40px;
+    color: #f00;
 }
 
 .tags-wrapper {

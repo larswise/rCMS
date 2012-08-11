@@ -84,8 +84,7 @@ namespace ZCMS.Core.Backend.Controllers
 
         public void GetCurrentImage(string key)
         {
-            WebImage wi = new WebImage(_worker.CmsContentRepository.RetrieveAttachment(key));
-            wi.FileName = "kluss.png";
+            WebImage wi = new WebImage(_worker.CmsContentRepository.RetrieveAttachment(key));            
             wi.Write();
         }
 

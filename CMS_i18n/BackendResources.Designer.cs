@@ -151,6 +151,24 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Images.
+        /// </summary>
+        public static string FileManagerLaunch {
+            get {
+                return ResourceManager.GetString("FileManagerLaunch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have the maximum number of images attached to this page..
+        /// </summary>
+        public static string FileManagerNoMoreFilesAllowed {
+            get {
+                return ResourceManager.GetString("FileManagerNoMoreFilesAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drag files to the panel or click the upload button.
         /// </summary>
         public static string FileManagerTopTips {

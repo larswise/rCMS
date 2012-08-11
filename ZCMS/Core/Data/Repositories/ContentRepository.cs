@@ -119,21 +119,35 @@ namespace ZCMS.Core.Data.Repositories
             _session.Advanced.GetMetadataFor(fileDocument)["Raven-Cascade-Delete-Documents"] = RavenJArray.FromObject(new[] { fileDocument.FileKey });
             _documentStore.DatabaseCommands.PutAttachment(fileDocument.FileKey, null, dataStream, null);
 
-            // rework this, no direct relation from page to file.
-            //ZCMSPage cmspage = GetCmsPage(fileDocument.PageId);
-            //var property = cmspage.Properties.Where(p => p is ImageListProperty).FirstOrDefault();
-            //if (property != null)
-            //{
-            //    try
-            //    {
-            //        ((List<string>)cmspage.Properties.Where(p => p is ImageListProperty).First().PropertyValue).Add(fileDocument.FileKey);
-            //    }
-            //    catch
-            //    {
-            //    }
-                
-            //}
-            _session.SaveChanges();
+            _session.SaveChanges(); //base controller does this!
+        }
+
+        public List<ZCMSFileDocument> AttachToPage(List<string> attachments, string pageId)
+        {
+            try
+            {
+                ZCMSPage cmspage = _session.Load<ZCMSPage>(pageId);
+
+                if (cmspage != null && cmspage.Properties.Where(p => p is ImageListProperty).Any())
+                {
+                    int count = ((List<string>)cmspage.Properties.Where(p => p is ImageListProperty).First().PropertyValue).Count;
+                    if (count >= 6)
+                        return new List<ZCMSFileDocument>();
+
+                    foreach(string attach in attachments) 
+                    {
+                        ((List<string>)cmspage.Properties.Where(p => p is ImageListProperty).First().PropertyValue).Add(attach);
+                    }
+                }
+                _session.SaveChanges();
+                var items = _session.Query<ZCMSFileDocument>().ToList().Where(fd => attachments.Any(a => a == fd.FileKey)).ToList();
+                return items;
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.Write(ex.Message + " - " + ex.StackTrace);
+                return null;
+            }
         }
 
         public MemoryStream RetrieveAttachment(string key)
@@ -145,18 +159,21 @@ namespace ZCMS.Core.Data.Repositories
         public List<ZCMSFileDocument> QueryAttachment(List<string> extensionValue, string filterFreeText)
         {
             if (extensionValue.Count == 1 && extensionValue.First() == "*")
-                return _session.Query<ZCMSFileDocument>().ToList();
+                if (String.IsNullOrEmpty(filterFreeText))
+                    return _session.Query<ZCMSFileDocument>().ToList();
+                else
+                    return _session.Query<ZCMSFileDocument>().ToList().Where(z => z.FileName.Contains(filterFreeText)).ToList();
             else
             {
 
-                Func<ZCMSFileDocument, bool> predicate; 
-                if(!String.IsNullOrEmpty(filterFreeText))
+                Func<ZCMSFileDocument, bool> predicate;
+                if (!String.IsNullOrEmpty(filterFreeText))
                     predicate = (x => x.FileName.Contains(filterFreeText));
-                else 
+                else
                     predicate = (x => x.FileName.Length > 0);
 
                 return _session.Query<ZCMSFileDocument>().ToList().
-                    Where(z => extensionValue.Any(s => s==z.Extension) && predicate.Invoke(z)).ToList();
+                    Where(z => extensionValue.Any(s => s == z.Extension) && predicate.Invoke(z)).ToList();
             }
         }
 

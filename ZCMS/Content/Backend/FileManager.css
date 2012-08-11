@@ -52,6 +52,10 @@
     margin-top: 20px;
 }
 
+#FileManagerFileListModal {
+    clear: both;
+}
+
 #FileManagerFileListWrap {
     min-height: 400px;
 }
@@ -68,6 +72,9 @@
     height: 40px;
 }
 
+a.file-selector {
+    color: #000 !important;
+}
 .file-filter-label {
     padding: 5px 5px 5px 0;
     vertical-align: middle;

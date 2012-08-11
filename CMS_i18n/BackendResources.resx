@@ -279,4 +279,10 @@
   <data name="ViewPage" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="FileManagerLaunch" xml:space="preserve">
+    <value>Add Images</value>
+  </data>
+  <data name="FileManagerNoMoreFilesAllowed" xml:space="preserve">
+    <value>You have the maximum number of images attached to this page.</value>
+  </data>
 </root>

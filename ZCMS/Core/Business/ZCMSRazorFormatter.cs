@@ -35,12 +35,15 @@ namespace ZCMS.Core.Business
         {
             var task = Task.Factory.StartNew(() =>
                 {
-                    var viewPath = type.Name.Replace("<", "_");// "";// Get path to the view by the name of the type
+                    
+                    string template = string.Empty;
 
-                    var template = File.ReadAllText(viewPath);
+                    if(type.AssemblyQualifiedName.Contains("List") && type.AssemblyQualifiedName.Contains("ZCMSFileDocument"))
+                        template = File.ReadAllText(@"C:\Projects\ZCMS\ZCMS\Core\Backend\Views\Shared\Partials\FileManagerList.cshtml");
 
-                    Razor.Compile(template, type, type.Name);
-                    var razor = Razor.Run(type.Name, value);
+
+                    Razor.Compile(template, type, type.FullName);
+                    var razor = Razor.Run(type.FullName, value);
 
                     var buf = System.Text.Encoding.Default.GetBytes(razor);
 

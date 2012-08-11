@@ -239,7 +239,6 @@
     <Compile Include="Core\Business\ZCMSPage.cs" />
     <Compile Include="Core\Business\ZCMSCMSPageTypes.cs" />
     <Compile Include="Core\Business\ZCMSPageFactory.cs" />
-    <Compile Include="Core\Business\ZCMSRazorFormatter.cs" />
     <Compile Include="Core\Business\ZCMSViewEngine.cs" />
     <Compile Include="Core\Business\ZCMSModelBinders.cs">
       <SubType>Code</SubType>
@@ -309,8 +308,6 @@
     <Content Include="Core\Backend\Views\Shared\Partials\PageBase.cshtml" />
     <Content Include="Core\Backend\Views\PageEditor.cshtml" />
     <Content Include="Core\Backend\Views\Shared\_backendLayout.cshtml" />
-    <Content Include="Core\Backend\Views\Shared\EditorTemplates\Date.cshtml" />
-    <Content Include="Core\Backend\Views\Shared\EditorTemplates\Web.config" />
     <Content Include="Core\Backend\Scripts\backend_mainmenu.js" />
     <Content Include="Scripts\fileuploader.js" />
     <Content Include="Views\Shared\EditorTemplates\TextProperty.cshtml" />
@@ -325,6 +322,8 @@
     <Content Include="Core\Backend\Views\Web.config" />
     <Content Include="Core\Backend\Views\Shared\Partials\FileManagerList.cshtml" />
     <Content Include="Core\Backend\Views\Shared\Partials\FileSelector.cshtml" />
+    <Content Include="Core\Backend\Views\List_ZCMSFileDocument_.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\UploadUnit.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -615,8 +614,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Core\Backend\Views\Shared\EditorTemplates\tinymce_full_compressed.cshtml" />
-    <Content Include="Core\Backend\Views\Shared\EditorTemplates\tinymce_full.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full_compressed.cshtml" />

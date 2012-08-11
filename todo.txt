@@ -10,19 +10,27 @@ Todos!
 files and file manager
 
 [x] Tag files with extensions/date etc, separate table
-
 [x] Ajax search for files, filter list
 [x] Tag, untag by extensions
+[x] Insert local image
+[x] Insert local images from pages, opens filebrowser in modal, can upload
+[x] Show files (last 20)
+[x] Generic modal with common viewmodel (can render a named partial view) and close callback
+[x] Upload files from the modal...
 
+
+[] Delete images from pages
+[] Delete images from file manager
+[] auto remove referenced images from pages on file deleted.
+[] Edit image (modal) -> name (and color/grayscale?)
+[] distinguish filetypes (documents and images only allowed)
+[] some sort of dynamic content snap-in for tinymce to insert docs/imgs in the editor pane!.
 [] Possible to delete a document
-[] Generic modal with common viewmodel (can render a named partial view) and close callback
-[] Upload files from the modal...
 [] Button for insert document in tinymce?
-[] Insert local image
-[] Insert local images from pages, opens filebrowser in modal, can upload
-[] Show files (last 20)
 [] Comments! (cascade delete on page delete)
 [] Comment admin (dashboard?)
+[] Refine versioning architecture.
+[] Authentication and authorization (Users and roles)
 [] Finish up container page
 [] start thinking about dashboard
 [] start thinking about defining custom page types

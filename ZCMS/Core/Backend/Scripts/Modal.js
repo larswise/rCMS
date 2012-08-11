@@ -16,10 +16,17 @@
             this.getdata(this.config.contentcontainer);
             var element = $(this.config.contentcontainer);
             this.config.closebutton = $("#modal-close").clone().appendTo(this.$elem).show();
+
+            var closeHandler = null;
+            if (this.config.closehandler)
+                closeHandler = this.config.closehandler;
             this.config.closebutton.click(function () {
+                if (closeHandler)
+                    closeHandler();
                 element.html('');
                 element.parent().fadeOut('slow');
                 $(".modalBack").fadeOut('fast');
+                                
             });
             return this;
         },

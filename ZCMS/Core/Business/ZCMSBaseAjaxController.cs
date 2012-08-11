@@ -25,6 +25,7 @@ namespace ZCMS.Core.Business
 
         protected override void Dispose(bool disposing)
         {
+            _worker.SaveAllChanges();
             _worker.CloseSession();
             base.Dispose(disposing);
         }

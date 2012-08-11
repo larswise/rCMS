@@ -14,10 +14,24 @@ namespace ZCMS
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.MapHttpRoute(
+                name: "ApiRouteForAttach",
+                routeTemplate: "api/{controller}/AttachFilesToPage"
+            );
+
+
+            routes.MapHttpRoute(
+                name: "DefaultApiFilter",
+                routeTemplate: "api/{controller}/{action}/{filter}",
+                defaults: new { filter = RouteParameter.Optional }
+            );
+
+            routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            
 
             // backend...
 
