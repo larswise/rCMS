@@ -1,5 +1,7 @@
 #file-uploader {
     height: 230px;
+    min-width: 300px;
+    max-width: 450px;
 }
 
 #file-uploader-help {

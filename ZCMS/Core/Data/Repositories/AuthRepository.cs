@@ -26,8 +26,16 @@ namespace ZCMS.Core.Data.Repositories
             _documentStore = store;
             _session = sess;
         }
+
+        public string GetCurrentUserName()
+        {            
+            var user = _session.Query<AuthorizationUser>().Where(a => a.Id == String.Format("Authorization/Users/{0}", HttpContext.Current.User.Identity.Name)).FirstOrDefault();
+            if (user != null)
+                return !String.IsNullOrEmpty(user.Name) ? user.Name : user.Id;
+            else
+                return CMS_i18n.BackendResources.UnknownPublisher;
+        }
         
-        // not finished!
         public void SetPermissions(string user)
         {
             var perms = new DocumentAuthorization()
@@ -79,7 +87,7 @@ namespace ZCMS.Core.Data.Repositories
 
                 _session.Store(new AuthorizationUser
                 {
-                    Id = String.Format("Authorization/Users/{0}", "larswise"),
+                    Id = String.Format("Authorization/Users/{0}", ConfigurationManager.AppSettings["RavenDBAccountUser"].ToString()),
                     Name = "larswise",
                     Roles = new List<string>() { String.Format("Authorization/Roles/{0}", "Administrators") },
                     Permissions = 
@@ -117,9 +125,9 @@ namespace ZCMS.Core.Data.Repositories
                 _session.Store(new AuthenticationUser
                 {
                     Name = "Chief Editor",
-                    Id = String.Format("Raven/Users/larswise"),
+                    Id = String.Format("Raven/Users/{0}", ConfigurationManager.AppSettings["RavenDBAccountUser"].ToString()),
                     AllowedDatabases = new[] { "*" }
-                }.SetPassword("sunwolf43"));
+                }.SetPassword(ConfigurationManager.AppSettings["RavenDBAccountPassword"].ToString()));
 
             }
             catch (Exception e)

@@ -56,7 +56,8 @@ function FileUploader() {
     var uploader = new qq.FileUploader({
         element: document.getElementById('file-uploader'),
         action: '/Admin/UploadAttachment/' + $("#CurrentPage").text(),
-        debug: true
+        debug: true,
+        allowedExtensions: ['jpg','jpeg','png','gif','tif','tiff','bmp','eps','vsd','txt','rtf','doc','docx','xls','xlsx','ppt','pptx','pdf','mp3','mpeg','mp4','avi','accdb']
     });
 
     if ($("label[for='New']").text() == "New") {

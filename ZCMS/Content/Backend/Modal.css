@@ -1,15 +1,15 @@
 ﻿.cmsModal {
-width: 450px;
-height: 300px;
+
 background: #fff;
 border: 1px solid #000;
 z-index: 10;
 position: absolute;
 border-radius: 5px;
+min-width: 175px;
 }
 
 .cmsModalInner {
-padding: 5px;
+padding: 15px;
 }
 .modalBack {
     display: none;

@@ -4,13 +4,16 @@
     var items = Model;
     
 }
+<script type="text/javascript">
+    var item = @Html.Action("GetImages", new { key = items })
+</script>
+<div class="editor-image-container" data-bind="foreach: images">
 
-<div class="editor-image-container">
-@if(items != null) {
-    foreach (string o in items)
-    {
-        
-        <div class="unit-imagelist"><img src="@Url.Action("GetCurrentImage", "Backend", new { key = o.ToString() })" alt="" /></div>        
-    }
-}
+        <div class="unit-imagelist">
+        <img width="75px" src="" data-bind="attr: {src: imagePath}" />
+            <div class="delete-it">
+                <a href="javascript:void(0);" data-bind="click: $root.removeImage">delete</a>
+            </div>
+        </div>
+    
 </div>

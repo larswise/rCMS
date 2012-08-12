@@ -15,7 +15,14 @@ namespace ZCMS
         {
             routes.MapHttpRoute(
                 name: "ApiRouteForAttach",
-                routeTemplate: "api/{controller}/AttachFilesToPage"
+                routeTemplate: "api/{controller}/AttachFilesToPage",
+                defaults: new { Controller = "AjaxBackend", Action = "AttachFilesToPage" }
+            );
+
+            routes.MapHttpRoute(
+                name: "ApiRouteForDetach",
+                routeTemplate: "api/{controller}/DetachFilesFromPage",
+                defaults: new { Controller = "AjaxBackend", Action = "DetachFilesFromPage" }
             );
 
 

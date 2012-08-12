@@ -38,6 +38,20 @@ namespace ZCMS.Core.Backend.Controllers
             return _worker.CmsContentRepository.AttachToPage(param.Keys, param.Id);
         }
 
+        [System.Web.Http.HttpPost]
+        public string RemoveAttachmentFromPage(MultiSimpleParameter param)
+        {
+            try
+            {
+                return _worker.CmsContentRepository.DetachFromPage(param.Param1.Split('=')[1], param.Param2);
+            }
+            catch
+            {
+                return "failed to detach...";
+            }
+        }
+
+
         
     }
 
@@ -45,5 +59,11 @@ namespace ZCMS.Core.Backend.Controllers
     {
         public List<string> Keys { get; set; }
         public string Id { get; set; }
+    }
+
+    public class MultiSimpleParameter
+    {
+        public string Param1 { get; set; }
+        public string Param2 { get; set; }
     }
 }

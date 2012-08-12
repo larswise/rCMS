@@ -45,8 +45,9 @@ namespace ZCMS.Core.Bootstrapper
                 if (worker.ConfigRepository.InitialSetup())
                 {
                     worker.ConfigRepository.EnsureDbExists(true);
-                    worker.ConfigRepository.WireUpVersioning();
                     worker.AuthenticationRepository.CreateDefaultUserAndRoles();
+                    worker.ConfigRepository.WireUpVersioning();
+                    
                     
 
                     IZCMSPageType pt1 = new ArticlePage();
@@ -74,20 +75,20 @@ namespace ZCMS.Core.Bootstrapper
 
         private UnitOfWork GetUnitOfWork()
         {
-            // ensure dbexists, set default user/pw from config etc...
             var documentStore = new DocumentStore
             {
                 Url = "http://localhost:8088",
-                DefaultDatabase = ConfigurationManager.AppSettings["RavenDBDefaultDb"].ToString(),                
+                DefaultDatabase = ConfigurationManager.AppSettings["RavenDBDefaultDb"].ToString(),
                 Conventions =
                 {
                     FindTypeTagName = type => typeof(IZCMSPageType).IsAssignableFrom(type) ? "IZCMSPageType" : null,
                 },
-                Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["RavenDBDefaultAdminUser"].ToString(), ConfigurationManager.AppSettings["RavenDBDefaultPassword"].ToString()),
+                Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["RavenDBWindowsUser"].ToString(), ConfigurationManager.AppSettings["RavenDBWindowsPassword"].ToString()),
             };
-            
+
             documentStore.Initialize();
-            documentStore.JsonRequestFactory.EnableBasicAuthenticationOverUnsecureHttpEvenThoughPasswordsWouldBeSentOverTheWireInClearTextToBeStolenByHackers = true;
+            documentStore.JsonRequestFactory.EnableBasicAuthenticationOverUnsecureHttpEvenThoughPasswordsWouldBeSentOverTheWireInClearTextToBeStolenByHackers = true;            
+            documentStore.DatabaseCommands.EnsureDatabaseExists(ConfigurationManager.AppSettings["RavenDBDefaultDb"].ToString(), true);
             
             UnitOfWork worker = new UnitOfWork(documentStore);
             return worker;

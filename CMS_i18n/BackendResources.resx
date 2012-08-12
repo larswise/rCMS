@@ -285,4 +285,19 @@
   <data name="FileManagerNoMoreFilesAllowed" xml:space="preserve">
     <value>You have the maximum number of images attached to this page.</value>
   </data>
+  <data name="PageImageListRemoveImage" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="FilePickerSaveSelected" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="PageConfirmDelete" xml:space="preserve">
+    <value>Yes!</value>
+  </data>
+  <data name="PageConfirmDeleteSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="UnknownPublisher" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
 </root>

@@ -235,6 +235,33 @@ a.publishnew {
     float: left;
     width: 90px;
     height: 100px;
+    text-align: center;
+    position: relative;
+    
+}
+
+.delete-it {
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+.delete-it a {
+    color: #000 !important;
+}
+
+.file-picker-save-selected {
+    background: #FFD800;
+    padding: 3px;
+    font-size: small;
+    border-radius: 2px;
+    border: 1px solid black;
+    float: right;
+    position:absolute;
+    right:10px;
+    top: 45px;
+    cursor: pointer;
 }
 
 .edit-top-save {
@@ -303,6 +330,8 @@ a.publishnew {
     height: 40px;
     color: #f00;
 }
+
+
 
 .tags-wrapper {
     width: 520px;
@@ -417,6 +446,23 @@ input.datefield {
 }
 .rev-col-view img, .rev-col-use img {
     max-width: 16px;
+}
+
+
+/* delete modal/partialview */
+
+.confirm-delete {
+    text-align: center;
+}
+
+.confirm-delete a {
+    background: #ffd800;
+    padding: 5px;
+    border: 1px solid #000;
+    font-weight: bold;
+    border-radius: 2px;
+    color: #000;
+    text-decoration: none;
 }
 
 /* Styles for basic forms

@@ -17,21 +17,24 @@ files and file manager
 [x] Show files (last 20)
 [x] Generic modal with common viewmodel (can render a named partial view) and close callback
 [x] Upload files from the modal...
+[x] Delete images from pages
+[x] Possible to delete a document
 
+misc
 
-[] Delete images from pages
+[] document creation, last modified, created/modified by.
 [] Delete images from file manager
+[] distinguish filetypes (documents and images only allowed)
+[] Finish up container page
+
 [] auto remove referenced images from pages on file deleted.
 [] Edit image (modal) -> name (and color/grayscale?)
-[] distinguish filetypes (documents and images only allowed)
 [] some sort of dynamic content snap-in for tinymce to insert docs/imgs in the editor pane!.
-[] Possible to delete a document
 [] Button for insert document in tinymce?
 [] Comments! (cascade delete on page delete)
 [] Comment admin (dashboard?)
 [] Refine versioning architecture.
 [] Authentication and authorization (Users and roles)
-[] Finish up container page
 [] start thinking about dashboard
 [] start thinking about defining custom page types
 [] code cleanup

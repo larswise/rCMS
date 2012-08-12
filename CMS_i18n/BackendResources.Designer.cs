@@ -187,6 +187,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string FilePickerSaveSelected {
+            get {
+                return ResourceManager.GetString("FilePickerSaveSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Files.
         /// </summary>
         public static string FilesMenu {
@@ -349,6 +358,24 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Yes!.
+        /// </summary>
+        public static string PageConfirmDelete {
+            get {
+                return ResourceManager.GetString("PageConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        public static string PageConfirmDeleteSure {
+            get {
+                return ResourceManager.GetString("PageConfirmDeleteSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page Content.
         /// </summary>
         public static string PageDefaultEditor {
@@ -363,6 +390,15 @@ namespace CMS_i18n {
         public static string PageID {
             get {
                 return ResourceManager.GetString("PageID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string PageImageListRemoveImage {
+            get {
+                return ResourceManager.GetString("PageImageListRemoveImage", resourceCulture);
             }
         }
         
@@ -516,6 +552,15 @@ namespace CMS_i18n {
         public static string TagsDelete {
             get {
                 return ResourceManager.GetString("TagsDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anonymous.
+        /// </summary>
+        public static string UnknownPublisher {
+            get {
+                return ResourceManager.GetString("UnknownPublisher", resourceCulture);
             }
         }
         

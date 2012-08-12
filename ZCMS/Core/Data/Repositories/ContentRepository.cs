@@ -87,6 +87,17 @@ namespace ZCMS.Core.Data.Repositories
             _session.SaveChanges();
         }
 
+        public void DeleteCmsPage(ZCMSPage page)
+        {
+            ZCMSPage pageToDelete = _session.Query<ZCMSPage>().Where(p => p.PageID == page.PageID).FirstOrDefault();
+            //ZCMSPage pageToDelete = _session.Load<ZCMSPage>(page.PageID);
+            if (pageToDelete != null)
+            {
+                _session.Delete<ZCMSPage>(pageToDelete);
+                _session.SaveChanges();
+            }
+        }
+
         public List<IZCMSPageType> GetPageTypes()
         {
             List<IZCMSPageType> pageTypes = _session.Query<IZCMSPageType>().Where(pt => pt.PageTypeName != String.Empty).ToList();
@@ -150,10 +161,40 @@ namespace ZCMS.Core.Data.Repositories
             }
         }
 
+        public string DetachFromPage(string key, string pageId)
+        {
+            try
+            {
+                ZCMSPage cmspage = _session.Load<ZCMSPage>(pageId);
+
+                if (cmspage != null && cmspage.Properties.Where(p => p is ImageListProperty).Any())
+                {
+
+                    if (((List<string>)cmspage.Properties.Where(p => p is ImageListProperty).First().PropertyValue).Contains(key))
+                    {
+                        ((List<string>)cmspage.Properties.Where(p => p is ImageListProperty).First().PropertyValue).Remove(key);
+                    }
+                    
+                }
+                _session.SaveChanges();
+                return "success";
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.Write(ex.Message + " - " + ex.StackTrace);
+                return ex.Message;
+            }
+        }
+
         public MemoryStream RetrieveAttachment(string key)
         {
             var attachment = _documentStore.DatabaseCommands.GetAttachment(key);
             return (MemoryStream)attachment.Data();
+        }
+
+        public List<string> RetrieveMultipleAttachments(List<string> keys)
+        {            
+            return _session.Query<ZCMSFileDocument>().ToList().Where(z => keys.Any(s => s == z.FileKey)).Select(k => "/Backend/GetCurrentImage?key=" + k.FileKey).ToList();
         }
 
         public List<ZCMSFileDocument> QueryAttachment(List<string> extensionValue, string filterFreeText)

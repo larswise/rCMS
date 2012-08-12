@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Raven.Client;
 using ZCMS.Core.Business;
 using ZCMS.Core.Data;
@@ -87,6 +88,13 @@ namespace ZCMS.Core.Backend.Controllers
             WebImage wi = new WebImage(_worker.CmsContentRepository.RetrieveAttachment(key));
             
             wi.Write();
+        }
+
+        public string GetImages(List<string> key)
+        {
+            var items = _worker.CmsContentRepository.RetrieveMultipleAttachments(key);
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return serializer.Serialize(items);
         }
 
         public ActionResult RenderLeftMenu(string id)
@@ -206,7 +214,12 @@ namespace ZCMS.Core.Backend.Controllers
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult PageEditor(ZCMSPage page)
-        {            
+        {
+            if (Request.Form["delete-page"] != null && Request.Form["delete-page"] == "true")
+            {
+                _worker.CmsContentRepository.DeleteCmsPage(page);
+                return RedirectToAction("DashBoard");
+            }
             TryValidateModel(page);
             ZCMSPage ravenPage = _worker.CmsContentRepository.GetCmsPage(page.PageID.ToString());
             if (ModelState.IsValid)
@@ -227,6 +240,8 @@ namespace ZCMS.Core.Backend.Controllers
                     }
                     
                     ravenPage.StartPublish = page.StartPublish;
+                    ravenPage.LastModified = DateTime.Now;
+                    ravenPage.LastChangedBy = _worker.AuthenticationRepository.GetCurrentUserName();
                     ravenPage.Status = page.Status;
                     ravenPage.ShowInMenus = page.ShowInMenus;
                     ravenPage.AllowComments = page.AllowComments;
@@ -237,6 +252,10 @@ namespace ZCMS.Core.Backend.Controllers
                 }
                 else
                 {
+                    page.WrittenBy = _worker.AuthenticationRepository.GetCurrentUserName();
+                    page.LastChangedBy = page.WrittenBy;
+                    page.LastModified = DateTime.Now;
+                    
                     _worker.CmsContentRepository.CreateCmsPage(page);
                 }
                 return RedirectToAction("PageEditor", new { pageId = page.PageID });

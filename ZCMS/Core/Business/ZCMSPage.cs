@@ -10,18 +10,22 @@ namespace ZCMS.Core.Business
     {        
         private DateTime? _startPublish;
         private DateTime? _endPublish;
+        private DateTime _created;
+        private DateTime _lastModified;
         private PageStatus _status;
         private int _pageId;
         private string _pageName;
+        private string _writtenBy;
+        private string _lastChangedBy;
+        
         private bool _showInMenu;
         private bool _allowComments;
-        private DateTime _created;
+        
 
         private List<ZCMSProperty> _properties = new List<ZCMSProperty>();
 
         public ZCMSPage(params ZCMSProperty[] properties)
-        {
-            _created = DateTime.Now;
+        {            
             foreach (ZCMSProperty item in properties)
                 _properties.Add(item);
 
@@ -29,8 +33,7 @@ namespace ZCMS.Core.Business
         }
 
         public ZCMSPage()
-        {
-            _created = DateTime.Now;
+        {            
             if (_properties == null)
                 _properties = new List<ZCMSProperty>();
         }
@@ -151,6 +154,54 @@ namespace ZCMS.Core.Business
             set
             {
                 _allowComments = value;
+            }
+        }
+
+        public string WrittenBy
+        {
+            get
+            {
+                return _writtenBy;
+            }
+            set
+            {
+                _writtenBy = value;
+            }
+        }
+
+        public string LastChangedBy
+        {
+            get
+            {
+                return _lastChangedBy;
+            }
+            set
+            {
+                _lastChangedBy = value;
+            }
+        }
+
+        public DateTime Created
+        {
+            get
+            {
+                return _created;
+            }
+            set
+            {
+                _created = value;
+            }
+        }
+
+        public DateTime LastModified
+        {
+            get
+            {
+                return _lastModified;
+            }
+            set
+            {
+                _lastModified = value;
             }
         }
 

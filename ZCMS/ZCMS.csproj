@@ -298,6 +298,7 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Core\Backend\Scripts\AdminInit.js" />
     <Content Include="Core\Backend\Scripts\Modal.js" />
+    <Content Include="Core\Backend\Scripts\PageEditor.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Backend\Backend.css" />
     <Content Include="Core\Backend\Views\Shared\Partials\Web.config" />
@@ -323,6 +324,7 @@
     <Content Include="Core\Backend\Views\Shared\Partials\FileManagerList.cshtml" />
     <Content Include="Core\Backend\Views\Shared\Partials\FileSelector.cshtml" />
     <Content Include="Core\Backend\Views\Shared\Partials\UploadUnit.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\ConfirmDelete.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
