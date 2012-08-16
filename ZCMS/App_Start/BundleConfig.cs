@@ -21,8 +21,14 @@ namespace ZCMS
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/BackendScripts").Include(
-            "~/Core/Backend/Scripts/*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/BackendScriptsCommon").Include(
+            "~/Core/Backend/Scripts/backend_mainmenu.js", "~/Core/Backend/Scripts/Modal.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/BackendScriptsPage").Include(
+            "~/Core/Backend/Scripts/PageEditor.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/BackendScriptsFile").Include(
+            "~/Core/Backend/Scripts/AdminInit.js"));
                     
 
             bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(

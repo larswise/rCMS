@@ -98,6 +98,16 @@ namespace ZCMS.Core.Data.Repositories
             }
         }
 
+        public void DeleteAttachments(List<string> keys)
+        {
+            var docs = _session.Query<ZCMSFileDocument>().ToList().Where(fd => keys.Any(a => a == fd.FileKey)).ToList();
+            foreach (ZCMSFileDocument doc in docs)
+            {
+                _session.Delete<ZCMSFileDocument>(doc);
+            }
+            _session.SaveChanges();
+        }
+
         public List<IZCMSPageType> GetPageTypes()
         {
             List<IZCMSPageType> pageTypes = _session.Query<IZCMSPageType>().Where(pt => pt.PageTypeName != String.Empty).ToList();

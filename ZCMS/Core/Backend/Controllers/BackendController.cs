@@ -97,6 +97,12 @@ namespace ZCMS.Core.Backend.Controllers
             return serializer.Serialize(items);
         }
 
+        public string DeleteAttachments(List<string> files)
+        {
+            _worker.CmsContentRepository.DeleteAttachments(files);
+            return string.Format(CMS_i18n.BackendResources.FileManagerFilesWasDeleted, files.Count);
+        }
+
         public ActionResult RenderLeftMenu(string id)
         {
             try
@@ -177,8 +183,9 @@ namespace ZCMS.Core.Backend.Controllers
         {
             try
             {
-                
+                var headers = System.Web.HttpContext.Current.Request.Headers;
                 var stream = Request.InputStream;
+                
                 MemoryStream mstream = new MemoryStream();
                 stream.CopyTo(mstream);
                 mstream.Position = 0;
@@ -255,7 +262,7 @@ namespace ZCMS.Core.Backend.Controllers
                     page.WrittenBy = _worker.AuthenticationRepository.GetCurrentUserName();
                     page.LastChangedBy = page.WrittenBy;
                     page.LastModified = DateTime.Now;
-                    
+                    page.Created = DateTime.Now;
                     _worker.CmsContentRepository.CreateCmsPage(page);
                 }
                 return RedirectToAction("PageEditor", new { pageId = page.PageID });

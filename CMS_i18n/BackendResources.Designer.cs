@@ -88,6 +88,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to by.
+        /// </summary>
+        public static string ByPrompt {
+            get {
+                return ResourceManager.GetString("ByPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Configure Site!.
         /// </summary>
         public static string ConfigureMenu {
@@ -102,6 +111,15 @@ namespace CMS_i18n {
         public static string ContainerHeading {
             get {
                 return ResourceManager.GetString("ContainerHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to on.
+        /// </summary>
+        public static string DatePrompt {
+            get {
+                return ResourceManager.GetString("DatePrompt", resourceCulture);
             }
         }
         
@@ -129,6 +147,15 @@ namespace CMS_i18n {
         public static string EndPublish {
             get {
                 return ResourceManager.GetString("EndPublish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} files was successfully deleted.
+        /// </summary>
+        public static string FileManagerFilesWasDeleted {
+            get {
+                return ResourceManager.GetString("FileManagerFilesWasDeleted", resourceCulture);
             }
         }
         
@@ -376,6 +403,24 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created by.
+        /// </summary>
+        public static string PageCreatedBy {
+            get {
+                return ResourceManager.GetString("PageCreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created.
+        /// </summary>
+        public static string PageCreatedDate {
+            get {
+                return ResourceManager.GetString("PageCreatedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page Content.
         /// </summary>
         public static string PageDefaultEditor {
@@ -399,6 +444,24 @@ namespace CMS_i18n {
         public static string PageImageListRemoveImage {
             get {
                 return ResourceManager.GetString("PageImageListRemoveImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last modified by.
+        /// </summary>
+        public static string PageLastModifiedBy {
+            get {
+                return ResourceManager.GetString("PageLastModifiedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last modified.
+        /// </summary>
+        public static string PageLastModifiedDate {
+            get {
+                return ResourceManager.GetString("PageLastModifiedDate", resourceCulture);
             }
         }
         
@@ -561,6 +624,15 @@ namespace CMS_i18n {
         public static string UnknownPublisher {
             get {
                 return ResourceManager.GetString("UnknownPublisher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allowed: letters, numbers, spaces, dashes.
+        /// </summary>
+        public static string ValidationPageNameAllowedChars {
+            get {
+                return ResourceManager.GetString("ValidationPageNameAllowedChars", resourceCulture);
             }
         }
         

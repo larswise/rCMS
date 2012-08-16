@@ -24,6 +24,13 @@ $(document).ready(function () {
         });
     });
 
+    $(".file-md-ir").click(function () {
+        if(!$(this).hasClass('file-md-ir-active'))
+            $(this).addClass('file-md-ir-active');
+        else
+            $(this).removeClass('file-md-ir-active');
+    });
+
     $("#save-publish-page").click(function (e) {
         $("#page-editor-form").submit();
     });
@@ -49,8 +56,40 @@ $(document).ready(function () {
         FilterFileList();
     });
 
-
+    $(".file-delete").click(function () {
+        $("#modal").modal({
+            message: 'Confirm Delete',
+            silentclosebutton: $("#modal-close"),
+            callbackclosebuttoninternal: "#confirm-deletion-final",
+            contentcontainer: $(".cmsModalInner"),
+            dataurl: "/Backend/RenderUnit/ConfirmDelete",
+            closehandler: FileConfirmDelete
+        });
+    });
 });
+
+function FileConfirmDelete() {
+    console.log("go delete it...");
+    var deleteArray = $.map($(".file-md-ir-active"), function (item, index) {
+        return $(item).find('img[data-operation="delete"]').attr('data-val');
+    });
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(deleteArray),
+        url: '/Backend/DeleteAttachments',
+        contentType: 'application/json; charset=UTF-8',
+        success: function (data) {
+            $(".file-md-ir-active").remove();
+            $(".deleted-status").html(data).fadeIn('slow', 'easeInSine');
+        },
+        error: function () {
+            console.log("something went wrong with ajax!");
+        },
+        traditional: true
+    });
+
+}
 
 function FileUploader() {
     var uploader = new qq.FileUploader({

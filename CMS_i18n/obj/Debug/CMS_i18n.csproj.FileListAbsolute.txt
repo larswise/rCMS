@@ -11,3 +11,5 @@ c:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.BackendResources.resources
 c:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.csproj.GenerateResource.Cache
 c:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.dll
 c:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.pdb
+C:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.Formats.resources
+C:\Projects\ZCMS\CMS_i18n\obj\Debug\CMS_i18n.csprojResolveAssemblyReference.cache

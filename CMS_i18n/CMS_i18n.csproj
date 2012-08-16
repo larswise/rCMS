@@ -49,6 +49,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BackendResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Formats.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Formats.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Units.Designer.cs">
       <DependentUpon>Units.resx</DependentUpon>
@@ -69,6 +74,10 @@
     <EmbeddedResource Include="BackendResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BackendResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formats.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Formats.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

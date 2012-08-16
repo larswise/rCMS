@@ -56,7 +56,7 @@ clear: both;
 
 #Header {
     background: #000;
-    height: 110px;
+    overflow: hidden;
 }
 
 #LogoContainer {
@@ -179,11 +179,28 @@ a.publishnew {
     font-weight: bold;
 }
 
-.edit-top-nw {
+
+.meta-unit {
+    display: table-row;
     float: left;
+    width: 100%;
+    padding: 5px 0;
+    margin: 1px 0 0 0;
+    background: #f0f0f0;
+}
+
+.meta-label {
+    float: left;
+    padding-left: 10px;
+    min-width: 110px;
+    font-size: smaller;
+}
+
+.edit-top-nw {
     padding: 10px 10px 0 10px;
     font-weight: bold;
     min-width: 100px;
+    background: #f0f0f0;
 }
 
 
@@ -213,6 +230,7 @@ a.publishnew {
 .custom-properties-edit-wrap {
     float: left;
     clear: left;
+    width: 100%;
 }
 
 .edit-unit {
@@ -234,7 +252,7 @@ a.publishnew {
 .unit-imagelist {
     float: left;
     width: 90px;
-    height: 100px;
+    height: 125px;
     text-align: center;
     position: relative;
     
@@ -309,9 +327,11 @@ a.publishnew {
 
 .editor-controls-wrap {
     height: 35px;
+    background: #f0f0f0;
 }
 .unit-imagelist img {
-    max-width: 80px;    
+    max-width: 80px;  
+    max-height: 120px  
 }
 
 .save-success {

@@ -40,7 +40,7 @@ namespace ZCMS.Core.Business
 
         public ZCMSPage(dynamic bpt)
         {
-            _created = DateTime.Now;
+            
             this._properties = bpt.Properties;
             Sort();
         }
@@ -106,6 +106,7 @@ namespace ZCMS.Core.Business
         [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "PageName")]
         [Required(ErrorMessageResourceType = typeof(CMS_i18n.BackendResources), ErrorMessageResourceName = "ValidationPageNameRequired")]
         [StringLength(50, MinimumLength = 1, ErrorMessageResourceType = typeof(CMS_i18n.BackendResources), ErrorMessageResourceName = "ValidationPageNameLength")]
+        [RegularExpression(@"^[A-z0-9\s]+", ErrorMessageResourceType = typeof(CMS_i18n.BackendResources), ErrorMessageResourceName = "ValidationPageNameAllowedChars")]
         public string PageName
         {
             get

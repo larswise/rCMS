@@ -87,7 +87,6 @@ namespace ZCMS.Core.Data.Repositories
                 
                 if (pageTypes == null || pageTypes.Count == 0)
                     throw new Exception("No pagetypes!");
-                _session.SaveChanges();
                 _session.Store(new ZCMSMenu()
                 {
                     MenuItems = new List<ZCMSMenuItem>()
@@ -96,7 +95,6 @@ namespace ZCMS.Core.Data.Repositories
                         new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuUploadFiles, ItemAction = "FileManager" }
                     }
                 }, "Menu/FilesMenu");
-                _session.SaveChanges();
                
                 _session.Store(new ZCMSMenu()
                 {
@@ -107,7 +105,6 @@ namespace ZCMS.Core.Data.Repositories
                         }).ToList()
                     
                 }, "Menu/PublishMenu");
-                _session.SaveChanges();
 
                 _session.Store(new ZCMSMenu()
                 {
@@ -116,7 +113,6 @@ namespace ZCMS.Core.Data.Repositories
                     new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuConfigPageTypes, ItemAction = "ConfigurePageTypes" }
                 }
                 }, "Menu/ConfigureMenu");
-                _session.SaveChanges();
 
                 _session.Store(new ZCMSMenu()
                 {

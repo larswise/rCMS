@@ -5,11 +5,32 @@
     @Html.Label(CMS_i18n.BackendResources.PageID):
 
     <span id="CurrentPage">@Html.DisplayFor(m => m.PageID)</span>
-</div>
-<div class="edit-top-nw">
+
     @Html.Label(CMS_i18n.BackendResources.PageStatus):
 
     @Html.Label(Model.Status.ToString())
+</div>
+<div class="meta-unit">
+<div class="meta-label">
+    @CMS_i18n.BackendResources.PageCreatedBy
+</div>
+<div class="meta-label">
+    @Model.WrittenBy
+</div>
+<div class="meta-label">
+    @CMS_i18n.BackendResources.DatePrompt @Model.Created.ToString(String.Format("{0}", CMS_i18n.Formats.DateFormat))
+</div>
+</div>
+<div class="meta-unit">
+<div class="meta-label">
+    @CMS_i18n.BackendResources.PageLastModifiedBy
+</div>
+<div class="meta-label">
+    @Model.LastChangedBy
+</div>
+<div class="meta-label">
+    @CMS_i18n.BackendResources.DatePrompt @Model.LastModified.ToString(String.Format("{0}", CMS_i18n.Formats.DateFormat))
+</div>
 </div>
 <div class="edit-top-save">
     

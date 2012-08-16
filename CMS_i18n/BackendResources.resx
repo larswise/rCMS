@@ -300,4 +300,28 @@
   <data name="UnknownPublisher" xml:space="preserve">
     <value>Anonymous</value>
   </data>
+  <data name="ByPrompt" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="DatePrompt" xml:space="preserve">
+    <value>on</value>
+  </data>
+  <data name="PageCreatedBy" xml:space="preserve">
+    <value>Created by</value>
+  </data>
+  <data name="PageCreatedDate" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="PageLastModifiedBy" xml:space="preserve">
+    <value>Last modified by</value>
+  </data>
+  <data name="PageLastModifiedDate" xml:space="preserve">
+    <value>Last modified</value>
+  </data>
+  <data name="ValidationPageNameAllowedChars" xml:space="preserve">
+    <value>Allowed: letters, numbers, spaces, dashes</value>
+  </data>
+  <data name="FileManagerFilesWasDeleted" xml:space="preserve">
+    <value>{0} files was successfully deleted</value>
+  </data>
 </root>

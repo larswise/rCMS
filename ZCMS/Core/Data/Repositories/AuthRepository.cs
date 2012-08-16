@@ -99,28 +99,7 @@ namespace ZCMS.Core.Data.Repositories
                             }
                         }
                 });
-
-                _session.Store(new AuthorizationUser
-                {
-                    Id = String.Format("Authorization/Users/{0}", ConfigurationManager.AppSettings["RavenDBDefaultAdminUser"].ToString()),
-                    Name = "Admin",
-                    Roles = new List<string>() { String.Format("Authorization/Roles/{0}", "Administrators") },
-                    Permissions = 
-                        {
-                            new OperationPermission
-                            {
-                                Allow = true,
-                                Operation = "*"
-                            }
-                        }
-                });
-
-                _session.Store(new AuthenticationUser
-                {
-                    Name = "ZCMS Service Account",
-                    Id = String.Format(String.Format("Raven/Users/{0}", ConfigurationManager.AppSettings["RavenDBDefaultAdminUser"].ToString())),
-                    AllowedDatabases = new[] { "*" }
-                }.SetPassword(ConfigurationManager.AppSettings["RavenDBDefaultPassword"].ToString()));
+                _session.SaveChanges();
 
                 _session.Store(new AuthenticationUser
                 {

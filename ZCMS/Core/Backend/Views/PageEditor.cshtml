@@ -5,6 +5,7 @@
     Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
 }
 @{ Html.BeginForm("PageEditor", "Backend", null, FormMethod.Post, new { @enctype = "multipart/form-data", @id="page-editor-form" }); }
+@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsPage")
 <div class="editor-controls-wrap">
 
 <div class="page-editor-tools-save">

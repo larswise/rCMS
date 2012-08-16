@@ -3,10 +3,11 @@
     ViewBag.Title = "FileManager";
     Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
 }
+@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsFile")
 <div id="FileManagerWrap">
     
 <h2>File Manager</h2>
-
+    <div class="deleted-status" style="display: none;"></div>
     <a href="javascript:void(0);" class="file-manager-upload">@CMS_i18n.BackendResources.FileManagerUploadNew</a>
 
     <div id="FileManagerExtensionList">

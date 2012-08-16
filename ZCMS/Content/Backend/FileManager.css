@@ -23,6 +23,14 @@
     display: table-row;
 }
 
+.file-md-ir:hover {
+    background: #cacaca;
+}
+
+.file-md-ir-active {
+    background: #cacaca;
+}
+
 .file-md-hr div {
     padding-right:15px;
     font-size: medium;
@@ -128,4 +136,9 @@ a.file-manager-upload {
     float: left;
     vertical-align: middle;
     margin-bottom: 10px;    
+}
+
+.deleted-status {
+    color: #090;
+    padding-bottom: 20px;
 }
