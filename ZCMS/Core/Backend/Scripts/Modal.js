@@ -12,8 +12,9 @@
         init: function () {
             this.config = $.extend({}, this.defaults, this.options);
             this.buildmodal();
-            this.displayModal();
+            
             this.getdata(this.config.contentcontainer, this.config.closehandler, this.config.callbackclosebuttoninternal);
+            this.displayModal();
             var element = $(this.config.contentcontainer);
             this.config.closebutton = $("#modal-close").clone().appendTo(this.$elem).show();
 
@@ -51,8 +52,9 @@
         buildmodal: function () {
             this.$elem.after("<div class='modalBack'></div>");
             if (this.$elem.children(".modal-header").length < 1) {
-                this.$elem.prepend("<div class='modal-header'>" + this.config.message + "</div>");
+                this.$elem.prepend("<div class='modal-header'></div>");
             }
+            $(".modal-header").text(this.config.message);
         },
         getdata: function (element, handler, handlertrigger) {
             $.ajax({
@@ -82,7 +84,7 @@
         }
     };
 
-    Modal.defaults = Plugin.prototype.defaults;
+    //Modal.defaults = Plugin.prototype.defaults;
 
     $.fn.modal = function (options) {
         return this.each(function () {

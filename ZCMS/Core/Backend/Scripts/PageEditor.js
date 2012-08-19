@@ -12,6 +12,11 @@ $(function () {
         });
     });
 
+    $("#PageName").keyup(function () {
+        $("#url-slug").text($(this).val().replace(new RegExp("[^a-zA-Z0-9\_]+", "g"), "-"));
+        $("#UrlSlug").val($("#url-slug").text());
+    });
+
     // ImageList mvvm
     var imagesArray = new Array();
     var counter = 0;

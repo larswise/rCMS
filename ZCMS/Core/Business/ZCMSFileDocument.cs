@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -14,6 +17,8 @@ namespace ZCMS.Core.Business
         private string _fileName;
         private string _extension;
         private string _description;
+        private string _contentType;
+        private FileType _fileType;
 
         public ZCMSFileDocument(string fileName, string description)
         {
@@ -35,9 +40,46 @@ namespace ZCMS.Core.Business
             _fileKey = key;
             _description = description;
             _extension = ext;
+            _contentType = ((NameValueCollection)ConfigurationManager.GetSection("FileContentTypes"))[_extension.ToLower()].ToString();
 
         }
 
+        [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "FileDocumentContentType")]
+        public string ContentType
+        {
+            get
+            {
+                return !String.IsNullOrEmpty(_contentType) ? _contentType : ((NameValueCollection)ConfigurationManager.GetSection("FileContentTypes"))[_extension.ToLower()].ToString();
+            }
+            set
+            {
+                _contentType = value;
+            }
+        }
+
+        public FileType FileType
+        {
+            get
+            {                
+                if (ConfigurationManager.AppSettings["ImageFileFormats"].Split(',').Where(z => z == this._extension.ToLower()).Any())
+                    return FileType.ImageFile;
+                else if (ConfigurationManager.AppSettings["DocumentFileFormats"].Split(',').Where(z => z == this._extension.ToLower()).Any())
+                    return FileType.DocumentFile;
+                else if (ConfigurationManager.AppSettings["VideoFileFormats"].Split(',').Where(z => z == this._extension.ToLower()).Any())
+                    return FileType.VideoFile;
+                else if (ConfigurationManager.AppSettings["AudioFileFormats"].Split(',').Where(z => z == this._extension.ToLower()).Any())
+                    return FileType.AudioFile;
+                else
+                    return FileType.Unknown;                
+
+            }
+            set
+            {
+                _fileType = value;
+            }
+        }
+
+        [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "FileDocumentFileName")]
         public string FileName 
         {
             get
@@ -55,11 +97,11 @@ namespace ZCMS.Core.Business
         {
             get
             {
-                return _extension;
+                return _extension.ToLower();
             }
             set
             {
-                _extension = value;
+                _extension = value.ToLower();
             }
         }
 

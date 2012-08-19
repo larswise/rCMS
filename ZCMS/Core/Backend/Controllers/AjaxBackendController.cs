@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using ZCMS.Core.Business;
 using ZCMS.Core.Data;
@@ -29,13 +30,13 @@ namespace ZCMS.Core.Backend.Controllers
         [System.Web.Http.HttpGet]
         public List<ZCMSFileDocument> FileSelector(string filter)
         {
-            return _worker.CmsContentRepository.QueryAttachment(new List<string>() {"*"}, filter).Take(25).OrderBy(o => o.Created).Reverse().ToList();
+            return _worker.FileRepository.QueryAttachment(new List<string>() { "*" }, filter).Take(25).OrderBy(o => o.Created).Reverse().ToList();
         }
 
         [System.Web.Http.HttpPost]
         public List<ZCMSFileDocument> AttachFilesToPage(SimpleParameter param)
         {
-            return _worker.CmsContentRepository.AttachToPage(param.Keys, param.Id);
+            return _worker.FileRepository.AttachToPage(param.Keys, param.Id);
         }
 
         [System.Web.Http.HttpPost]
@@ -43,7 +44,7 @@ namespace ZCMS.Core.Backend.Controllers
         {
             try
             {
-                return _worker.CmsContentRepository.DetachFromPage(param.Param1.Split('=')[1], param.Param2);
+                return _worker.FileRepository.DetachFromPage(param.Param1.Split('=')[1], param.Param2);
             }
             catch
             {
@@ -51,7 +52,24 @@ namespace ZCMS.Core.Backend.Controllers
             }
         }
 
-
+        [System.Web.Http.HttpGet]
+        public dynamic GetPages(string filter)
+        {
+            var items = _worker.CmsContentRepository.SearchPages(filter).Select(z =>
+                    new
+                    {
+                        PageName = z.PageName,
+                        PageId = z.PageID,
+                        Created = z.Created.ToString(CMS_i18n.Formats.DateFormat),
+                        LastModified = z.LastModified.ToString(CMS_i18n.Formats.DateFormat),
+                        CreatedBy = z.WrittenBy,
+                        LastModifiedBy = z.LastChangedBy,
+                        Status = z.Status,
+                        StartPublish = z.StartPublish.Value.ToString(CMS_i18n.Formats.DateFormat),
+                        EndPublish = z.EndPublish.HasValue ? z.EndPublish.Value.ToString(CMS_i18n.Formats.DateFormat) : string.Empty
+                    });
+            return items;
+        }
         
     }
 

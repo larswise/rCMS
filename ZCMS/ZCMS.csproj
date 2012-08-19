@@ -227,10 +227,12 @@
     <Compile Include="Core\Backend\Controllers\BackendController.cs" />
     <Compile Include="Core\Bootstrapper\ZCMSBootstrapper.cs" />
     <Compile Include="Core\Business\AutofacControllerFactory.cs" />
+    <Compile Include="Core\Business\Indexes.cs" />
     <Compile Include="Core\Business\ZCMSBaseAjaxController.cs" />
     <Compile Include="Core\Business\ZCMSApplication.cs" />
     <Compile Include="Core\Business\ZCMSBaseController.cs" />
     <Compile Include="Core\Business\ZCMSBasicProperties.cs" />
+    <Compile Include="Core\Business\ZCMSDashBoard.cs" />
     <Compile Include="Core\Business\ZCMSEnums.cs" />
     <Compile Include="Core\Business\ZCMSFileDocument.cs" />
     <Compile Include="Core\Business\ZCMSFileManager.cs" />
@@ -247,9 +249,11 @@
     <Compile Include="Core\Data\Repositories\AuthRepository.cs" />
     <Compile Include="Core\Data\Repositories\ConfigurationRepository.cs" />
     <Compile Include="Core\Data\Repositories\ContentRepository.cs" />
+    <Compile Include="Core\Data\Repositories\FileRepository.cs" />
     <Compile Include="Core\Data\UnitOfWork.cs" />
     <Compile Include="Core\Security\ZCMSAuthenticateAttribute.cs" />
     <Compile Include="Core\Security\ZCMSRequireSslAttribute.cs" />
+    <Compile Include="Core\Utils\ImageEffects.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -261,6 +265,7 @@
     <Content Include="Content\Backend\fileuploader.css" />
     <Content Include="Content\Backend\Images\bgleftmenu.png" />
     <Content Include="Content\Backend\Images\cmslogo.png" />
+    <Content Include="Content\Backend\Dashboard.css" />
     <Content Include="Content\Backend\Images\delete.png" />
     <Content Include="Content\Backend\Images\document_library.png" />
     <Content Include="Content\Backend\Images\files.png" />
@@ -297,6 +302,7 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Core\Backend\Scripts\AdminInit.js" />
+    <Content Include="Core\Backend\Scripts\Dashboard.js" />
     <Content Include="Core\Backend\Scripts\Modal.js" />
     <Content Include="Core\Backend\Scripts\PageEditor.js" />
     <Content Include="Global.asax" />
@@ -322,9 +328,13 @@
     <Content Include="Core\Backend\Views\Shared\Web.config" />
     <Content Include="Core\Backend\Views\Web.config" />
     <Content Include="Core\Backend\Views\Shared\Partials\FileManagerList.cshtml" />
-    <Content Include="Core\Backend\Views\Shared\Partials\FileSelector.cshtml" />
-    <Content Include="Core\Backend\Views\Shared\Partials\UploadUnit.cshtml" />
-    <Content Include="Core\Backend\Views\Shared\Partials\ConfirmDelete.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\Modals\FileSelector.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\Modals\UploadUnit.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\Modals\ConfirmDelete.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\PartialPageError.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\Modals\EditFile.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\Modals\Web.config" />
+    <Content Include="Core\Backend\Views\Dashboard.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">

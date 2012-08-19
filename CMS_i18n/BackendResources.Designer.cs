@@ -115,6 +115,78 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DashboardDeleteCurrent {
+            get {
+                return ResourceManager.GetString("DashboardDeleteCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string DashboardEditCurrent {
+            get {
+                return ResourceManager.GetString("DashboardEditCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string DashboardStatusFilterAll {
+            get {
+                return ResourceManager.GetString("DashboardStatusFilterAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drafts.
+        /// </summary>
+        public static string DashboardStatusFilterDrafts {
+            get {
+                return ResourceManager.GetString("DashboardStatusFilterDrafts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string DashboardStatusFilterLabel {
+            get {
+                return ResourceManager.GetString("DashboardStatusFilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Published.
+        /// </summary>
+        public static string DashboardStatusFilterPublished {
+            get {
+                return ResourceManager.GetString("DashboardStatusFilterPublished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string DashboardTextFilterLabel {
+            get {
+                return ResourceManager.GetString("DashboardTextFilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string DashboardViewCurrent {
+            get {
+                return ResourceManager.GetString("DashboardViewCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to on.
         /// </summary>
         public static string DatePrompt {
@@ -147,6 +219,24 @@ namespace CMS_i18n {
         public static string EndPublish {
             get {
                 return ResourceManager.GetString("EndPublish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content type.
+        /// </summary>
+        public static string FileDocumentContentType {
+            get {
+                return ResourceManager.GetString("FileDocumentContentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File name.
+        /// </summary>
+        public static string FileDocumentFileName {
+            get {
+                return ResourceManager.GetString("FileDocumentFileName", resourceCulture);
             }
         }
         
@@ -205,6 +295,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uploaded file.
+        /// </summary>
+        public static string FileManagerUploadedDescription {
+            get {
+                return ResourceManager.GetString("FileManagerUploadedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upload a new file.
         /// </summary>
         public static string FileManagerUploadNew {
@@ -237,6 +336,42 @@ namespace CMS_i18n {
         public static string FileUploadButtonText {
             get {
                 return ResourceManager.GetString("FileUploadButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Effect.
+        /// </summary>
+        public static string ImageApplyEffect {
+            get {
+                return ResourceManager.GetString("ImageApplyEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grayscale.
+        /// </summary>
+        public static string ImageApplyGrayscale {
+            get {
+                return ResourceManager.GetString("ImageApplyGrayscale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate.
+        /// </summary>
+        public static string ImageApplyRotate {
+            get {
+                return ResourceManager.GetString("ImageApplyRotate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sepia.
+        /// </summary>
+        public static string ImageApplySepia {
+            get {
+                return ResourceManager.GetString("ImageApplySepia", resourceCulture);
             }
         }
         
@@ -394,7 +529,7 @@ namespace CMS_i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure?.
+        ///   Looks up a localized string similar to Are you sure? All selected files will be deleted!.
         /// </summary>
         public static string PageConfirmDeleteSure {
             get {
@@ -480,6 +615,15 @@ namespace CMS_i18n {
         public static string PageStatus {
             get {
                 return ResourceManager.GetString("PageStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Url-Slug.
+        /// </summary>
+        public static string PageUrlSlug {
+            get {
+                return ResourceManager.GetString("PageUrlSlug", resourceCulture);
             }
         }
         

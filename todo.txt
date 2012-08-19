@@ -21,11 +21,12 @@ files and file manager
 [x] Possible to delete a document
 [x] document creation, last modified, created/modified by.
 [x] Delete images from file manager
+[x] distinguish filetypes (documents and images only allowed)
+[x] auto remove referenced images from pages on file deleted. (they are now ignored, a temp solution!)
 
 misc
 
-[] distinguish filetypes (documents and images only allowed)
-[] auto remove referenced images from pages on file deleted.
+
 [] Edit image (modal) -> name (and color/grayscale?)
 
 [] Finish up container page

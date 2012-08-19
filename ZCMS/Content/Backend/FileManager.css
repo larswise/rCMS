@@ -142,3 +142,46 @@ a.file-manager-upload {
     color: #090;
     padding-bottom: 20px;
 }
+
+.file-edit-wrap {
+    padding: 15px;
+}
+
+.file-col {
+    float: left;
+    padding: 5px;
+    min-width: 100px;
+}
+
+.file-col input {
+    width: 325px;
+}
+
+.file-col select {
+    min-width: 335px;
+}
+
+.file-edit-row {
+    padding-top: 10px;
+    clear: both;
+}
+
+.file-edit-contents {
+    max-width: 500px;
+    max-height: 500px;
+    padding: 15px;
+}
+
+.file-edit-image img {
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.file-apply-effect {
+    float: left;
+    padding: 5px;
+}
+
+.file-progressbar {
+    padding: 10px 5px 10px 5px;
+}

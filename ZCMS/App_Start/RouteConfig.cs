@@ -33,6 +33,12 @@ namespace ZCMS
             );
 
             routes.MapHttpRoute(
+                name: "ParamApiFilter",
+                routeTemplate: "api/{controller}/{action}/{param}",
+                defaults: new { param = RouteParameter.Optional }
+            );
+
+            routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
@@ -48,6 +54,11 @@ namespace ZCMS
                 new { Controller = "Backend", Action = "FileSelector", filterFreeText = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                "ApplyImageEffect",
+                "Backend/ApplyImageEffect/{effect}/{imageKey}",
+                new { Controller = "Backend", Action = "ApplyImageEffect", effect = UrlParameter.Optional, imageKey = UrlParameter.Optional }
+            );
 
             string mainAdminPath =
             string.IsNullOrEmpty(((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainAdminUrl)
@@ -62,6 +73,13 @@ namespace ZCMS
                 {
                     pageType = @"^[A-z]+$"
                 }
+            );
+
+            routes.MapRoute(
+                "Backend_FileManager",
+                mainAdminPath + "FileManager/{mParameter}",
+                new { Controller = "Backend", action = "FileManager", mParameter = UrlParameter.Optional }
+
             );
 
             routes.MapRoute(

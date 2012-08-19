@@ -23,8 +23,8 @@ namespace ZCMS.Core.Business
             ZCMSBootstrapper bs = new ZCMSBootstrapper();
                         
             bs.SetIOCAppContainer();
+
             
-                         
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new ZCMSViewEngine());
 

@@ -27,7 +27,7 @@ namespace ZCMS.Core.Business
             model.PageName = bindingContext.ValueProvider.GetValue("PageName").AttemptedValue;
             var valMenue = bindingContext.ValueProvider.GetValue("ShowInMenus").AttemptedValue;
             model.ShowInMenus = Convert.ToBoolean(bindingContext.ValueProvider.GetValue("ShowInMenus").AttemptedValue.Split(',')[0]);
-
+            model.UrlSlug = bindingContext.ValueProvider.GetValue("UrlSlug").AttemptedValue;
             model.AllowComments = Convert.ToBoolean(bindingContext.ValueProvider.GetValue("AllowComments").AttemptedValue.Split(',')[0]);
             try
             {

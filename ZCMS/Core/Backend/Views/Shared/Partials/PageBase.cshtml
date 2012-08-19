@@ -48,6 +48,12 @@
     @Html.EditorFor(model => model.StartPublish)
     @Html.ValidationMessageFor(model => model.StartPublish)
 </div>
+<div class="unit-label">
+    @Html.LabelFor(model => model.ShowInMenus):
+</div>
+<div class="unit-unit">
+    @Html.EditorFor(model => model.ShowInMenus)
+</div>
 </div>
 <div class="edit-unit">
 <div class="unit-label">
@@ -57,18 +63,6 @@
     @Html.EditorFor(model => model.EndPublish)
     @Html.ValidationMessageFor(model => model.EndPublish)
 </div>
-</div>
-<div class="edit-unit">
-<div class="unit-label">
-    @Html.LabelFor(model => model.ShowInMenus):
-</div>
-<div class="unit-unit">
-    @Html.EditorFor(model => model.ShowInMenus)
-</div>
-
-
-</div>
-<div class="edit-unit">
 <div class="unit-label">
     @Html.LabelFor(model => model.AllowComments):
 </div>
@@ -76,8 +70,17 @@
     @Html.EditorFor(model => model.AllowComments)
 </div>
 
-
 </div>
+<div class="edit-unit">
+<div class="unit-label">
+    @Html.LabelFor(model => model.UrlSlug)
+</div>
+<div class="unit-unit">
+    /<span style="font-style: italic;" id="url-slug">@(!String.IsNullOrEmpty(Model.UrlSlug) ? Model.UrlSlug : String.Empty)</span>
+    @Html.HiddenFor(m => m.UrlSlug)
+</div>
+</div>
+
 <div class="page-edit-top">
 <div class="edit-top-label">
     @Html.LabelFor(model => model.PageName):

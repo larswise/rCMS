@@ -24,13 +24,6 @@ $(document).ready(function () {
         });
     });
 
-    $(".file-md-ir").click(function () {
-        if(!$(this).hasClass('file-md-ir-active'))
-            $(this).addClass('file-md-ir-active');
-        else
-            $(this).removeClass('file-md-ir-active');
-    });
-
     $("#save-publish-page").click(function (e) {
         $("#page-editor-form").submit();
     });
@@ -56,6 +49,11 @@ $(document).ready(function () {
         FilterFileList();
     });
 
+    FileMarkDeleteInit();
+    FileEditInit();
+});
+
+function FileMarkDeleteInit() {
     $(".file-delete").click(function () {
         $("#modal").modal({
             message: 'Confirm Delete',
@@ -66,7 +64,27 @@ $(document).ready(function () {
             closehandler: FileConfirmDelete
         });
     });
-});
+
+    $(".file-md-ir").click(function () {
+        if (!$(this).hasClass('file-md-ir-active'))
+            $(this).addClass('file-md-ir-active');
+        else
+            $(this).removeClass('file-md-ir-active');
+    });
+}
+
+function FileEditInit() {
+    $(".file-edit").click(function () {
+        $("#modal").modal({
+            message: 'Edit File',
+            silentclosebutton: $("#modal-close"),
+            callbackclosebuttoninternal: "#confirm-edit",
+            contentcontainer: $(".cmsModalInner"),
+            dataurl: "/Backend/FileEditor/" + $(this).attr('data-val'),
+            closehandler: FileConfirmChanges
+        });
+    });
+}
 
 function FileConfirmDelete() {
     console.log("go delete it...");
@@ -91,10 +109,10 @@ function FileConfirmDelete() {
 
 }
 
-function FileUploader() {
+function FileUploader(currentPage) {    
     var uploader = new qq.FileUploader({
         element: document.getElementById('file-uploader'),
-        action: '/Admin/UploadAttachment/' + $("#CurrentPage").text(),
+        action: '/Admin/UploadAttachment/' + currentPage,
         debug: true,
         allowedExtensions: ['jpg','jpeg','png','gif','tif','tiff','bmp','eps','vsd','txt','rtf','doc','docx','xls','xlsx','ppt','pptx','pdf','mp3','mpeg','mp4','avi','accdb']
     });
@@ -116,7 +134,7 @@ function FilterFileList() {
     }
 
     var arr = $.map($(".file-extension img:not('[class=deselected]')"), function (item, index) {
-        return $(item).attr('data-val');
+        return $(item).attr('data-val').toLowerCase();
     });
     var freeText = $(".file-manager-filter-input").val();
     var postData = { extensionFilter: arr, filterFreeText: freeText };
@@ -128,6 +146,8 @@ function FilterFileList() {
         url: '/Backend/FileManagerList',
         success: function (data) {
             $("#FileManagerFileList").hide().html(data).fadeIn('slow', 'easeInSine');
+            FileMarkDeleteInit();
+            FileEditInit();
         },
         error: function () {
             console.log("something went wrong with ajax!");
@@ -137,3 +157,24 @@ function FilterFileList() {
 }
 
 
+function FileConfirmChanges() {
+    // implement this!
+}
+
+function ApplyImageEffect(effect, image) {
+    $(".file-progressbar").show();
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '/Backend/ApplyImageEffect/' + effect + '/' + image.attr('data-val'),
+        success: function (data) {
+            image.attr('src', '/Backend/GetCurrentImage?key='+data+'&ts='+new Date().getMilliseconds());
+            $(".file-progressbar").hide();
+        },
+        error: function () {
+            console.log("something went wrong with ajax!");
+            $(".file-progressbar").hide();
+        },
+        traditional: true
+    });
+}

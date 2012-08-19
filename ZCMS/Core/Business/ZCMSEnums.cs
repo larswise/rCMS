@@ -15,4 +15,13 @@ namespace ZCMS.Core.Business
         [Display(Name = "New")]
         New
     }
+
+    public enum FileType
+    {
+        ImageFile,
+        DocumentFile,
+        VideoFile,
+        AudioFile,
+        Unknown
+    }
 }

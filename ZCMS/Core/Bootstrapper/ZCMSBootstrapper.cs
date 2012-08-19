@@ -23,8 +23,8 @@ namespace ZCMS.Core.Bootstrapper
             UnitOfWork worker = GetUnitOfWork();
             try
             {
-                
 
+                worker.CreateIndexes();
                 worker.OpenSession();
                 var builder = new ContainerBuilder();
                 builder.RegisterModelBinderProvider();

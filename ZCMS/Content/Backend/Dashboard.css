@@ -1,0 +1,128 @@
+﻿
+#dashboard-current-page {
+    margin: 10px;
+    border: 1px dotted #000;
+    background: #d0d0d0;
+    float: left;
+    min-width: 350px;
+}
+
+#dashboard-current-page:hover {
+    background: #e1e1e1;
+}
+
+.current-page-head {
+    background: #b0b0b0;
+    font-weight: bold;
+    height: 18px;
+    padding: 5px 10px 5px 10px;
+}
+
+.current-page-row {
+    padding: 5px 10px 5px 10px;
+    clear: both;
+    border-bottom: 1px dotted #c0c0c0;
+    overflow: hidden;
+}
+.current-page-row div {
+    float: left;
+    font-weight: bold;
+    max-width: 275px;
+    font-size: smaller;
+}
+
+.current-page-row div div {
+    padding-right: 10px;
+}
+
+.current-page-row .current-page-operation {
+    float: right !important;
+}
+
+.dashboard-page-label {
+    color: #000;
+    font-size: smaller;
+    min-width: 90px;
+}
+
+.dashboard-page-item {
+    color: #000;
+    font-size: smaller;
+}
+
+/* operations */
+
+.current-page-operation {
+    padding: 0 7px 0 7px;
+}
+
+a.dashboard-edit-current {
+    padding-right: 20px;
+    text-decoration: none;
+    background-image: url('images/edit_pencil.png');
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: right;
+    opacity: 0.5;
+    display: inline-block;
+    color: #000;
+    font-size: smaller;
+}
+
+a.dashboard-view-current {
+    padding-right: 20px;
+    text-decoration: none;
+    background-image: url('images/view.png');
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: right;
+    opacity: 0.5;
+    display: inline-block;
+    color: #000;
+    font-size: smaller;    
+}
+
+a.dashboard-delete-current {
+    padding-right: 20px;
+    text-decoration: none;
+    background-image: url('images/trash.png');
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: right; 
+    opacity: 0.5;    
+    display: inline-block;   
+    color: #000;
+    font-size: smaller;    
+}
+
+.current-page-operation a:hover {
+    opacity: 100;
+}
+
+/* filter */
+#dashboard-filter {
+    margin: 10px;
+    clear: both;
+    min-height: 75px;
+}
+
+.dashboard-filter-label {
+    min-width: 100px;
+}
+
+.dashboard-filter-label, .dashboard-filter-control {
+    float: left;
+}
+
+.dashboard-filter-control a {
+    padding: 5px;
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.dashboard-filter-buttons, .dashboard-filter-input {
+    margin: 5px 0 5px 0;
+    clear: both;
+}

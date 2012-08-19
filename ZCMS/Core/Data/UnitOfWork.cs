@@ -13,6 +13,7 @@ using ZCMS.Core.Business;
 using Microsoft.CSharp.RuntimeBinder;
 using Raven.Bundles.Authorization.Model;
 using ZCMS.Core.Data.Repositories;
+using Raven.Client.Indexes;
 
 namespace ZCMS.Core.Data
 {
@@ -23,6 +24,7 @@ namespace ZCMS.Core.Data
         private ConfigurationRepository _configRepository;
         private AuthRepository _authRepository;
         private ContentRepository _contentRepository;
+        private FileRepository _fileRepository;
 
         public UnitOfWork(DocumentStore documentStore)
         {
@@ -62,6 +64,17 @@ namespace ZCMS.Core.Data
             }
         }
 
+        public FileRepository FileRepository
+        {
+            get
+            {
+                if (_fileRepository != null)
+                    return _fileRepository;
+                else
+                    return _fileRepository = new FileRepository(_documentStore, _session);
+            }
+        }
+
         public void OpenSession()
         {
             _session = _documentStore.OpenSession();
@@ -79,6 +92,11 @@ namespace ZCMS.Core.Data
             _authRepository = null;
             _configRepository = null;
             _contentRepository = null;
+        }
+
+        public void CreateIndexes()
+        {
+            IndexCreation.CreateIndexes(typeof(PageIndexer).Assembly, _documentStore);
         }
 
         public void Dispose()

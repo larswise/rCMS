@@ -295,7 +295,7 @@
     <value>Yes!</value>
   </data>
   <data name="PageConfirmDeleteSure" xml:space="preserve">
-    <value>Are you sure?</value>
+    <value>Are you sure? All selected files will be deleted!</value>
   </data>
   <data name="UnknownPublisher" xml:space="preserve">
     <value>Anonymous</value>
@@ -323,5 +323,53 @@
   </data>
   <data name="FileManagerFilesWasDeleted" xml:space="preserve">
     <value>{0} files was successfully deleted</value>
+  </data>
+  <data name="FileManagerUploadedDescription" xml:space="preserve">
+    <value>Uploaded file</value>
+  </data>
+  <data name="PageUrlSlug" xml:space="preserve">
+    <value>Url-Slug</value>
+  </data>
+  <data name="FileDocumentContentType" xml:space="preserve">
+    <value>Content type</value>
+  </data>
+  <data name="FileDocumentFileName" xml:space="preserve">
+    <value>File name</value>
+  </data>
+  <data name="ImageApplyGrayscale" xml:space="preserve">
+    <value>Grayscale</value>
+  </data>
+  <data name="ImageApplySepia" xml:space="preserve">
+    <value>Sepia</value>
+  </data>
+  <data name="ImageApplyEffect" xml:space="preserve">
+    <value>Apply Effect</value>
+  </data>
+  <data name="ImageApplyRotate" xml:space="preserve">
+    <value>Rotate</value>
+  </data>
+  <data name="DashboardDeleteCurrent" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DashboardEditCurrent" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DashboardViewCurrent" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="DashboardStatusFilterAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="DashboardStatusFilterDrafts" xml:space="preserve">
+    <value>Drafts</value>
+  </data>
+  <data name="DashboardStatusFilterLabel" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="DashboardStatusFilterPublished" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="DashboardTextFilterLabel" xml:space="preserve">
+    <value>Search</value>
   </data>
 </root>

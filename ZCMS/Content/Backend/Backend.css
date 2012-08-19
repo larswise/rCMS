@@ -20,6 +20,10 @@ textarea {
     resize: none;
 }
 
+img {
+    border: 0;
+}
+
 textarea.multilinetextproperty {
     width: 500px;
     height: 75px;
@@ -475,7 +479,7 @@ input.datefield {
     text-align: center;
 }
 
-.confirm-delete a {
+.confirm-delete a, .file-apply-effect a {
     background: #ffd800;
     padding: 5px;
     border: 1px solid #000;

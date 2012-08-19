@@ -27,6 +27,9 @@ namespace ZCMS
             bundles.Add(new ScriptBundle("~/bundles/BackendScriptsPage").Include(
             "~/Core/Backend/Scripts/PageEditor.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/BackendScriptsDashboard").Include(
+            "~/Core/Backend/Scripts/Dashboard.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/BackendScriptsFile").Include(
             "~/Core/Backend/Scripts/AdminInit.js"));
                     
@@ -34,7 +37,12 @@ namespace ZCMS
             bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(
             "~/Scripts/tinymce/jquery.tinymce.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css/backend/main").Include("~/Content/Backend/backend.css", "~/Content/Backend/FileManager.css", "~/Content/Backend/Modal.css"));
+            bundles.Add(new StyleBundle("~/Content/css/backend/main").Include
+                ("~/Content/Backend/backend.css", 
+                "~/Content/Backend/FileManager.css", 
+                "~/Content/Backend/Modal.css", 
+                "~/Content/Backend/Dashboard.css"));
+
             bundles.Add(new StyleBundle("~/Content/css/backend/fileupload").Include("~/Content/Backend/fileuploader.css"));
             bundles.Add(new StyleBundle("~/Content/css/auth/styles").Include("~/Content/Auth/Auth.css"));
 

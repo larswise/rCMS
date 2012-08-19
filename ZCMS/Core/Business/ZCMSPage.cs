@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace ZCMS.Core.Business
@@ -17,7 +18,8 @@ namespace ZCMS.Core.Business
         private string _pageName;
         private string _writtenBy;
         private string _lastChangedBy;
-        
+        private string _urlSlug;
+
         private bool _showInMenu;
         private bool _allowComments;
         
@@ -119,6 +121,19 @@ namespace ZCMS.Core.Business
             }
         }
 
+        [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "PageUrlSlug")]
+        public string UrlSlug 
+        {
+            get
+            {
+                return _urlSlug;
+            }
+            set
+            {
+                _urlSlug = value;
+            }
+        }
+
         [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "PageStatus")]
         public PageStatus Status
         {
@@ -204,6 +219,16 @@ namespace ZCMS.Core.Business
             {
                 _lastModified = value;
             }
+        }
+
+        public string GetPropertyValues()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var item in Properties)
+            {
+                builder.Append(item.PropertyValue + " ");
+            }
+            return builder.ToString();
         }
 
     }

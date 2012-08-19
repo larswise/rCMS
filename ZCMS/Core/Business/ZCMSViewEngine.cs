@@ -21,7 +21,7 @@ namespace ZCMS.Core.Business
                 "~/Core/Backend/Views/Shared/Units/{0}.cshtml",
                 "~/Core/Backend/Views/{1}/Partials/{0}.cshtml",
                 "~/Core/Backend/Views/Shared/Partials/{0}.cshtml",
-                "~/Core/Backend/Views/Shared/Partials/{1}.cshtml",
+                "~/Core/Backend/Views/Shared/Partials/Modals/{0}.cshtml",
                 "~/Core/Backend/Views/Shared/EditorTemplates/{0}.cshtml",
                 "~/Views/Shared/EditorTemplates/{0}.cshtml",
 

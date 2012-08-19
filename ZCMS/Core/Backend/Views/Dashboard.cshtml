@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
+}
+@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsDashboard")
+<script type="text/javascript">
+    var pageItems = @Html.Action("GetPages", new { key = "publishedpages" })
+</script>
+<div id="dashboard-wrapper">
+    
+    <div id="dashboard-header"></div>
+    <div id="dashboard-filter">
+        <div class="dashboard-filter-buttons">
+            <div class="dashboard-filter-label">@CMS_i18n.BackendResources.DashboardStatusFilterLabel</div>
+            <div class="dashboard-filter-control">
+                <a class="dashboard-filter-link" data-val="all" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterAll</a>
+                <a class="dashboard-filter-link" data-val="published" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterPublished</a>
+                <a class="dashboard-filter-link" data-val="drafts" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterDrafts</a>
+            </div>
+        </div>
+
+        <div class="dashboard-filter-input">
+            <div class="dashboard-filter-label">@CMS_i18n.BackendResources.DashboardTextFilterLabel</div>
+            <div class="dashboard-filter-control">@Html.TextBox("dashboard-text-filter")</div>
+        </div>
+
+    </div>
+
+    <div id="dashboard-published-pages" data-bind="foreach: pages">
+        <div id="dashboard-current-page">
+            <div class="current-page-head" data-bind="text: PageId"></div>
+            <div class="current-page-row">
+            <div class="current-page-title" data-bind="text: PageName"></div>            
+            <div class="current-page-operation"><a href="#" class="dashboard-view-current">@CMS_i18n.BackendResources.DashboardViewCurrent</a></div>            
+            </div>
+            <div class="current-page-row">
+            <div class="current-page-createdby">
+                <div class="dashboard-page-label">@CMS_i18n.BackendResources.PageCreatedBy</div>
+                <div class="dashboard-page-item" data-bind="text: CreatedBy"></div>
+                <div class="dashboard-page-item">@CMS_i18n.BackendResources.DatePrompt</div>                
+            </div>
+            <div class="current-page-created">                
+                <div class="dashboard-page-item" data-bind="text: Created"></div>                
+            </div>
+            <div class="current-page-operation"><a href="#" class="dashboard-edit-current">@CMS_i18n.BackendResources.DashboardEditCurrent</a></div>
+             </div>
+            <div class="current-page-row">
+            <div class="current-page-modified">
+                <div class="dashboard-page-label">@CMS_i18n.BackendResources.PageLastModifiedBy</div>
+                <div class="dashboard-page-item" data-bind="text: LastModifiedBy"></div>
+                <div class="dashboard-page-item">@CMS_i18n.BackendResources.DatePrompt</div>                
+            </div>
+            <div class="current-page-modifiedby">                
+                <div class="dashboard-page-item" data-bind="text: LastModified"></div>                
+            </div>
+            <div class="current-page-operation"><a href="#" class="dashboard-delete-current">@CMS_i18n.BackendResources.DashboardDeleteCurrent</a></div>@*     
+            <div class="current-page-id">
+                <div class="dashboard-page-label">@CMS_i18n.BackendResources.PageID</div>
+                <div class="dashboard-page-item" data-bind="text: PageId"></div>
+            </div> *@    
+            </div>                  
+            </div>
+        </div>
+
+    <div class="dashboard-separator"></div>
+    
+</div>

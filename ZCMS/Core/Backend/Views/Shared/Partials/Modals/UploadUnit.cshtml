@@ -1,7 +1,8 @@
 ﻿<script src="@Url.Content("~/Scripts/fileuploader.js")"></script>
 <script>
     $(document).ready(function () {
-        FileUploader();
+        console.log("hmm... " + $("#CurrentPage").text());
+        FileUploader($("#CurrentPage").text());
     });
 </script>
 @System.Web.Optimization.Styles.Render("~/Content/css/backend/fileupload")
