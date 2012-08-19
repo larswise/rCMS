@@ -28,6 +28,8 @@ namespace ZCMS.Core.Business.Content
             _properties.Add(new BooleanProperty() { Order = 6, PropertyName = CMS_i18n.BackendResources.SelectedOrNot, PropertyValue = false });
             _properties.Add(new TagsProperty() { Order = 4, PropertyName = CMS_i18n.BackendResources.Tags, PropertyValue = new List<string>() });
             _properties.Add(new ImageListProperty() { Order = 5, PropertyName = CMS_i18n.BackendResources.ImageCarousel, PropertyValue = new List<string>() });
+
+            _pageTypeDisplayName = CMS_i18n.BackendResources.PageTypeDisplayArticle;
         }
 
         public string PageTypeName
@@ -82,6 +84,8 @@ namespace ZCMS.Core.Business.Content
 
             _properties.Add(new TextProperty() { Order = 1, PropertyName = CMS_i18n.BackendResources.ContainerHeading, PropertyValue = " " });
             _properties.Add(new TagsProperty() { Order = 3, PropertyName = CMS_i18n.BackendResources.Tags, PropertyValue = new List<string>() });
+
+            _pageTypeDisplayName = CMS_i18n.BackendResources.PageTypeDisplayContainer;
         }
 
         public string PageTypeName

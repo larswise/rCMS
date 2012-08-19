@@ -133,6 +133,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your content.
+        /// </summary>
+        public static string DashBoardHeader {
+            get {
+                return ResourceManager.GetString("DashBoardHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string DashboardStatusFilterAll {

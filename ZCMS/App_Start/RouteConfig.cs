@@ -84,8 +84,8 @@ namespace ZCMS
 
             routes.MapRoute(
                 "Backend_PublishPageWithType",
-                mainAdminPath + "PageEditor/{pageId}/{pageType}",
-                new { Controller = "Backend", action = "PageEditor", pageId = UrlParameter.Optional, pageType = UrlParameter.Optional }
+                mainAdminPath + "{action}/{pageId}/{pageType}",
+                new { Controller = "Backend", pageId = UrlParameter.Optional, pageType = UrlParameter.Optional }
             );
             
             routes.MapRoute(

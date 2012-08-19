@@ -79,6 +79,7 @@
 <div class="unit-unit">
     /<span style="font-style: italic;" id="url-slug">@(!String.IsNullOrEmpty(Model.UrlSlug) ? Model.UrlSlug : String.Empty)</span>
     @Html.HiddenFor(m => m.UrlSlug)
+    @Html.HiddenFor(m => m.PageType)
 </div>
 </div>
 

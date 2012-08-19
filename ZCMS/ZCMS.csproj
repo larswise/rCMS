@@ -239,7 +239,7 @@
     <Compile Include="Core\Business\ZCMSLeftViewModel.cs" />
     <Compile Include="Core\Business\Navigation\ZCMSMenu.cs" />
     <Compile Include="Core\Business\Content\ZCMSPage.cs" />
-    <Compile Include="Core\Business\Content\ZCMSCMSPageTypes.cs" />
+    <Compile Include="Core\Business\Content\ZCMSPageTypes.cs" />
     <Compile Include="Core\Business\Content\ZCMSPageFactory.cs" />
     <Compile Include="Core\Business\ZCMSViewEngine.cs" />
     <Compile Include="Core\Business\ZCMSModelBinders.cs">

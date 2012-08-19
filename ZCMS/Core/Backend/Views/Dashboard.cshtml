@@ -8,15 +8,18 @@
 </script>
 <div id="dashboard-wrapper">
     
-    <div id="dashboard-header"></div>
-    <div id="dashboard-filter">
-        <div class="dashboard-filter-buttons">
-            <div class="dashboard-filter-label">@CMS_i18n.BackendResources.DashboardStatusFilterLabel</div>
-            <div class="dashboard-filter-control">
+    <div id="dashboard-header">
+        @CMS_i18n.BackendResources.DashBoardHeader
+    </div>
+    <div class="dashboard-filter-links">
                 <a class="dashboard-filter-link" data-val="all" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterAll</a>
                 <a class="dashboard-filter-link" data-val="published" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterPublished</a>
                 <a class="dashboard-filter-link" data-val="drafts" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterDrafts</a>
             </div>
+    <div id="dashboard-filter">
+        <div class="dashboard-filter-buttons">
+            <div class="dashboard-filter-label">@CMS_i18n.BackendResources.DashboardStatusFilterLabel</div>
+            
         </div>
 
         <div class="dashboard-filter-input">
@@ -28,10 +31,10 @@
 
     <div id="dashboard-published-pages" data-bind="foreach: pages">
         <div id="dashboard-current-page">
-            <div class="current-page-head" data-bind="text: PageId"></div>
-            <div class="current-page-row">
-            <div class="current-page-title" data-bind="text: PageName"></div>            
-            <div class="current-page-operation"><a href="#" class="dashboard-view-current">@CMS_i18n.BackendResources.DashboardViewCurrent</a></div>            
+            <div class="current-page-head">
+                <span class="page-label" data-bind="text: PageName"></span> - 
+                <span class="page-label-type" data-bind="text: PageType"></span>
+                (<span class="page-label-id" data-bind="text: PageId"></span>)
             </div>
             <div class="current-page-row">
             <div class="current-page-createdby">
@@ -41,9 +44,9 @@
             </div>
             <div class="current-page-created">                
                 <div class="dashboard-page-item" data-bind="text: Created"></div>                
+            </div>                           
+            <div class="current-page-operation"><a href="#" class="dashboard-view-current">@CMS_i18n.BackendResources.DashboardViewCurrent</a></div>            
             </div>
-            <div class="current-page-operation"><a href="" class="dashboard-edit-current" data-bind="attr: {href: EditUrl}">@CMS_i18n.BackendResources.DashboardEditCurrent</a></div>
-             </div>
             <div class="current-page-row">
             <div class="current-page-modified">
                 <div class="dashboard-page-label">@CMS_i18n.BackendResources.PageLastModifiedBy</div>
@@ -53,10 +56,14 @@
             <div class="current-page-modifiedby">                
                 <div class="dashboard-page-item" data-bind="text: LastModified"></div>                
             </div>
+            <div class="current-page-operation"><a href="" class="dashboard-edit-current" data-bind="attr: {href: EditUrl}">@CMS_i18n.BackendResources.DashboardEditCurrent</a></div>
+             </div>
+            <div class="current-page-row">
+            <div class="current-page-status">
+                <span class="page-status" class="" data-bind="attr: {class: Status},text: Status"></span>
+            </div>
             <div class="current-page-operation"><a href="#" class="dashboard-delete-current">@CMS_i18n.BackendResources.DashboardDeleteCurrent</a></div>@*     
-            <div class="current-page-id">
-                <div class="dashboard-page-label">@CMS_i18n.BackendResources.PageID</div>
-                <div class="dashboard-page-item" data-bind="text: PageId"></div>
+            
             </div> *@    
             </div>                  
             </div>

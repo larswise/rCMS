@@ -49,6 +49,8 @@ namespace ZCMS.Core.Data.Repositories
 
         public List<ZCMSPage> SearchPages(string query)
         {
+            if (String.IsNullOrEmpty(query))
+                return _session.Query<ZCMSPage>().Take(25).ToList();
             return _session.Advanced.LuceneQuery<ZCMSPage, PageIndexer>().Search("Body", query).ToList();
 
         }

@@ -65,9 +65,10 @@ namespace ZCMS.Core.Backend.Controllers
                         LastModified = z.LastModified.ToString(CMS_i18n.Formats.DateFormat),
                         CreatedBy = z.WrittenBy,
                         LastModifiedBy = z.LastChangedBy,
-                        Status = z.Status,
+                        Status = z.Status.ToString(),
                         StartPublish = z.StartPublish.Value.ToString(CMS_i18n.Formats.DateFormat),
                         EndPublish = z.EndPublish.HasValue ? z.EndPublish.Value.ToString(CMS_i18n.Formats.DateFormat) : string.Empty,
+                        PageType = z.PageType,
                         EditUrl = "/" + ((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainAdminUrl + "/PageEditor/" + z.PageID
                     });
             return items;

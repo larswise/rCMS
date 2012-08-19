@@ -1,10 +1,16 @@
-﻿
+﻿#dashboard-header {
+    font-size: 35px;
+    padding: 0 0 20px 0;
+    margin: 10px;
+    float: left;
+}
+
 #dashboard-current-page {
     margin: 10px;
     border: 1px dotted #000;
     background: #d0d0d0;
     float: left;
-    min-width: 350px;
+    min-width: 500px;
 }
 
 #dashboard-current-page:hover {
@@ -13,10 +19,26 @@
 
 .current-page-head {
     background: #b0b0b0;
-    font-weight: bold;
     height: 18px;
     padding: 5px 10px 5px 10px;
+    font-size: small;
 }
+
+.page-label-id {
+    font-weight: normal;
+    font-size: small;
+}
+
+.page-label-type {
+    font-weight: normal;
+    font-style: italic;
+    font-size: small;
+}
+
+.current-page-header span {
+    padding-right: 10px;
+}
+
 
 .current-page-row {
     padding: 5px 10px 5px 10px;
@@ -37,6 +59,26 @@
 
 .current-page-row .current-page-operation {
     float: right !important;
+}
+
+.current-page-status .Published {
+    padding-left: 18px;
+    text-decoration: none;
+    background-image: url('images/published.png');
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: left;   
+    display: inline-block;   
+}
+
+.current-page-status .Draft {
+    padding-left: 18px;
+    text-decoration: none;
+    background-image: url('images/draft.png');
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: left;   
+    display: inline-block;     
 }
 
 .dashboard-page-label {
@@ -110,19 +152,26 @@ a.dashboard-delete-current {
     min-width: 100px;
 }
 
-.dashboard-filter-label, .dashboard-filter-control {
+.dashboard-filter-links {
+    margin-top: 25px;
     float: left;
 }
 
-.dashboard-filter-control a {
+.dashboard-filter-label {
+    float: left;
+}
+
+.dashboard-filter-links a {
     padding: 5px;
     background: #000;
     color: #fff;
     font-weight: bold;
     text-decoration: none;
+    border-radius: .25em;
 }
 
 .dashboard-filter-buttons, .dashboard-filter-input {
     margin: 5px 0 5px 0;
     clear: both;
+    min-height: 35px;
 }

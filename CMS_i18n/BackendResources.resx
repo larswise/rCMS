@@ -378,4 +378,7 @@
   <data name="PageTypeDisplayContainer" xml:space="preserve">
     <value>Container</value>
   </data>
+  <data name="DashBoardHeader" xml:space="preserve">
+    <value>Your content</value>
+  </data>
 </root>

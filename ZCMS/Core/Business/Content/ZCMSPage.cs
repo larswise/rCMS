@@ -19,6 +19,7 @@ namespace ZCMS.Core.Business.Content
         private string _writtenBy;
         private string _lastChangedBy;
         private string _urlSlug;
+        private string _pageType;
 
         private bool _showInMenu;
         private bool _allowComments;
@@ -45,6 +46,7 @@ namespace ZCMS.Core.Business.Content
             
             this._properties = bpt.Properties;
             Sort();
+            this._pageType = ((IZCMSPageType)bpt).PageTypeDisplayName;
         }
 
         private void Sort()
@@ -229,6 +231,18 @@ namespace ZCMS.Core.Business.Content
                 builder.Append(item.PropertyValue + " ");
             }
             return builder.ToString();
+        }
+
+        public string PageType
+        {
+            get
+            {
+                return _pageType;
+            }
+            set
+            {
+                _pageType = value;
+            }
         }
 
     }
