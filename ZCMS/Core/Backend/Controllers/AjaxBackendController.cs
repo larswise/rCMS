@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using ZCMS.Core.Business;
+using ZCMS.Core.Business.Content;
 using ZCMS.Core.Data;
 
 namespace ZCMS.Core.Backend.Controllers
@@ -66,7 +67,8 @@ namespace ZCMS.Core.Backend.Controllers
                         LastModifiedBy = z.LastChangedBy,
                         Status = z.Status,
                         StartPublish = z.StartPublish.Value.ToString(CMS_i18n.Formats.DateFormat),
-                        EndPublish = z.EndPublish.HasValue ? z.EndPublish.Value.ToString(CMS_i18n.Formats.DateFormat) : string.Empty
+                        EndPublish = z.EndPublish.HasValue ? z.EndPublish.Value.ToString(CMS_i18n.Formats.DateFormat) : string.Empty,
+                        EditUrl = "/" + ((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainAdminUrl + "/PageEditor/" + z.PageID
                     });
             return items;
         }

@@ -38,7 +38,7 @@ var PublishedViewModel;
 function PublishedPagesViewModel(arrayParam) {
     var self = this;
     self.pages = ko.observableArray(ko.utils.arrayMap(arrayParam, function (page) {
-        return { PageName: page.PageName, PageId: page.PageId, Created: page.Created, CreatedBy: page.CreatedBy, LastModified: page.LastModified, LastModifiedBy: page.LastModifiedBy, Status: page.Status, StartPublish: page.StartPublish, EndPublish: page.EndPublish };
+        return { PageName: page.PageName, PageId: page.PageId, Created: page.Created, CreatedBy: page.CreatedBy, LastModified: page.LastModified, LastModifiedBy: page.LastModifiedBy, Status: page.Status, StartPublish: page.StartPublish, EndPublish: page.EndPublish, EditUrl: page.EditUrl };
     }));
 
 
@@ -63,4 +63,5 @@ function PageItem(item) {
     self.Status = item.Status;
     self.StartPublish = item.StartPublish;
     self.EndPublish = item.EndPublish;
+    self.EditUrl = item.EditUrl;
 }

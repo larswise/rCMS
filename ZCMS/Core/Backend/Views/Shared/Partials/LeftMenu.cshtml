@@ -1,22 +1,40 @@
-
+@model List<ZCMS.Core.Business.ZCMSMenu>
 <div id="LeftAdminMenuWrapper">
     <div id="LeftAdminMenu">
         <div class="LeftAdminWelcome">
             
 
-            @if (ViewData["MenuData"] != null)
-            {
-                { Html.RenderPartial("SubMenu", ViewData["MenuData"]); }
-            }
-            else 
-            {
+                @foreach (var item in Model)
+                {                    
+                    <div class="MenuItem">
+                        @if(item.MenuItems.Count==0) 
+                        {
+                        <a href="@Url.Action(item.MenuName, item.MenuController, new { Controller = item.MenuController, Area = item.MenuArea })" data-val="@item.MenuName" class="@item.MenuName.ToLower() mainmenuitem">
+                            @item.MenuName                                
+                        </a>
+                        } else 
+                        {
+                        <a href="javascript:void(0);" data-val="@item.MenuName" class="@item.MenuName.ToLower() mainmenuitem">
+                            @item.MenuName                                
+                        </a>                            
+                        }
+                        @foreach(var sub in item.MenuItems)
+                        {
+                        <div class="SubMenuItem">
+                            <a href="@Url.Action(sub.ItemAction, item.MenuController, new { Controller = item.MenuController, Area = item.MenuArea, mParameter = sub.ItemName, pageId = "" })" class="@sub.ItemAction.ToLower() submenuitem">@sub.ItemDisplay</a>
+                        </div>
+                        }
+                    </div>
+                }
+            
+
             <div class="LeftAdminWelcomeHeader">
             @CMS_i18n.BackendResources.LeftMenuWelcome
             </div>
             <div class="LeftAdminWelcomeText">
                 @CMS_i18n.BackendResources.LeftMenuWelcomeText
             </div>
-            }
+            
         </div>
     </div>
 

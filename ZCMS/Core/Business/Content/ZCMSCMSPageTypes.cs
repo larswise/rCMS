@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ZCMS.Core.Business
+namespace ZCMS.Core.Business.Content
 {
     public interface IZCMSPageType
     {
         string PageTypeName { get; }
         List<ZCMSProperty> Properties { get; set; }
         string FriendlyPageTypeName { get; }
+        string PageTypeDisplayName { get; set; }
     }
 
     public class ArticlePage : IZCMSPageType
     {
         private List<ZCMSProperty> _properties;
+        private string _pageTypeDisplayName;
+
         public ArticlePage()
         {
             _properties = new List<ZCMSProperty>();
@@ -43,6 +46,18 @@ namespace ZCMS.Core.Business
             }
         }
 
+        public string PageTypeDisplayName 
+        {
+            get
+            {
+                return _pageTypeDisplayName;
+            }
+            set
+            {
+                _pageTypeDisplayName = value;
+            }
+        }
+
         public List<ZCMSProperty> Properties
         {
             get
@@ -59,6 +74,8 @@ namespace ZCMS.Core.Business
     public class ContainerPage : IZCMSPageType
     {
         private List<ZCMSProperty> _properties;
+        private string _pageTypeDisplayName;
+
         public ContainerPage()
         {
             _properties = new List<ZCMSProperty>();
@@ -92,6 +109,18 @@ namespace ZCMS.Core.Business
             set
             {                
                 _properties = (List<ZCMSProperty>)value;                
+            }
+        }
+
+        public string PageTypeDisplayName
+        {
+            get
+            {
+                return _pageTypeDisplayName;
+            }
+            set
+            {
+                _pageTypeDisplayName = value;
             }
         }
     }

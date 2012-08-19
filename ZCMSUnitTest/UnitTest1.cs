@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Raven.Client.Document;
 using ZCMS.Core.Business;
+using ZCMS.Core.Business.Content;
 using ZCMS.Core.Data;
 
 namespace ZCMSUnitTest

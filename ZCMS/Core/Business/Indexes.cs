@@ -5,6 +5,7 @@ using System.Web;
 using Raven.Client.Indexes;
 using Raven.Client.Extensions;
 using Raven.Abstractions.Indexing;
+using ZCMS.Core.Business.Content;
 
 namespace ZCMS.Core.Business
 {

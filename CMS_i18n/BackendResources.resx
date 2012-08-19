@@ -372,4 +372,10 @@
   <data name="DashboardTextFilterLabel" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="PageTypeDisplayArticle" xml:space="preserve">
+    <value>Article</value>
+  </data>
+  <data name="PageTypeDisplayContainer" xml:space="preserve">
+    <value>Container</value>
+  </data>
 </root>

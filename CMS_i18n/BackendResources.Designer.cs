@@ -619,6 +619,24 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Article.
+        /// </summary>
+        public static string PageTypeDisplayArticle {
+            get {
+                return ResourceManager.GetString("PageTypeDisplayArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Container.
+        /// </summary>
+        public static string PageTypeDisplayContainer {
+            get {
+                return ResourceManager.GetString("PageTypeDisplayContainer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Url-Slug.
         /// </summary>
         public static string PageUrlSlug {

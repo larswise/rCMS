@@ -23,21 +23,24 @@ files and file manager
 [x] Delete images from file manager
 [x] distinguish filetypes (documents and images only allowed)
 [x] auto remove referenced images from pages on file deleted. (they are now ignored, a temp solution!)
+[x] Edit image (modal) -> name (and color/grayscale?)
+[x] start thinking about dashboard
+[z] Comments! (cascade delete on page delete) --> DETTE BLIR FRONT-END MED FACEBOOK/E.L
+[z] Comment admin (dashboard?) --> DETTE BLIR FRONT-END MED FACEBOOK/E.L
 
 misc
 
 
-[] Edit image (modal) -> name (and color/grayscale?)
-
+[] Finish up dashboard
 [] Finish up container page
+[] Authentication and authorization (Users and roles)
 
 [] some sort of dynamic content snap-in for tinymce to insert docs/imgs in the editor pane!.
 [] Button for insert document in tinymce?
-[] Comments! (cascade delete on page delete)
-[] Comment admin (dashboard?)
+
 [] Refine versioning architecture.
-[] Authentication and authorization (Users and roles)
-[] start thinking about dashboard
+
+
 [] start thinking about defining custom page types
 [] code cleanup
 [] plugins architecture

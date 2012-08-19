@@ -1,11 +1,11 @@
-﻿@model List<ZCMS.Core.Business.ZCMSMenuItem>
+﻿@model List<ZCMS.Core.Business.ZCMSMenu>
 
 <div class="publish-menu-wrapper">
     <div class="publish-menu-title">
         <h2>@CMS_i18n.BackendResources.PublishNew</h2>
     </div>
     <div class="publish-menu-pagetypes">
-        @foreach(var item in Model) {
+        @foreach(var item in Model.First().MenuItems) {
         <div class="publish-menu-pagetype">
             + @Html.ActionLink(item.ItemName, item.ItemAction, new { pageId = string.Empty, mParameter = item.ItemName })
         </div>

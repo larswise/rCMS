@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ZCMS.Core.Business
+namespace ZCMS.Core.Business.Content
 {
     public abstract class ZCMSProperty
     {

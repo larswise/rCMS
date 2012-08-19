@@ -97,7 +97,7 @@ clear: both;
 }
 
 .MenuItem {
-    float: left;
+    
     padding: 5px 20px;
     line-height: 28px;
 }
@@ -106,6 +106,18 @@ clear: both;
     opacity:0.7;
     filter:alpha(opacity=70);
 }
+
+.SubMenuItem {
+    padding: 0 0 0 30px;    
+    line-height: 20px !important; 
+    display: none;
+}
+
+.SubMenuItem a {
+    color: #000 !important;
+    font-size: small !important;   
+}
+
 
 .MenuItem a:link, .MenuItem a:visited {
     color: #fff;
@@ -121,7 +133,7 @@ clear: both;
 
 
 
-a.configuresite {
+a.configure {
     background-image: url('images/gear.png');
     background-size: 24px 24px;
     background-repeat: no-repeat;
@@ -130,7 +142,7 @@ a.configuresite {
     display: inline-block;
 }
 
-a.filessite {
+a.files {
     background-image: url('images/files.png');
     background-size: 24px 24px;    
     background-repeat: no-repeat;
@@ -139,7 +151,7 @@ a.filessite {
     display: inline-block;
 }
 
-a.securesite {
+a.security {
     background-image: url('images/lock.png');
     background-size: 24px 24px;    
     background-repeat: no-repeat;
@@ -157,7 +169,7 @@ a.dashboard {
     display: inline-block;    
 }
 
-a.publishnew {
+a.publish {
     background-image: url('images/arrow_up.png');
     background-size: 24px 24px;    
     background-repeat: no-repeat;
@@ -410,12 +422,12 @@ input.datefield {
 }
 
 .LeftAdminWelcome {
-    padding-top: 25px;
+    padding-top: 20px;
     color: #c0c0c0;
-    text-align: center;
 }
 .LeftAdminWelcomeHeader {
-    font-size: 75px;
+    padding-top: 50px;
+    font-size: 35px;
     line-height: 75px;
 }
 

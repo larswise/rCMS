@@ -11,12 +11,14 @@ namespace ZCMS.Core.Business
     {
         public ZCMSMenu Model { get; set; }
         protected UnitOfWork _worker;
-        public ZCMSBaseController(UnitOfWork work)
+        protected List<ZCMSMenu> _menu;
+
+        public ZCMSBaseController(UnitOfWork work, List<ZCMSMenu> menu)
         {
             _worker = work;
+            _menu = menu;
 
-            if (System.Web.HttpContext.Current.Request.Cookies["active-menu"]!=null)
-                ViewData["MenuData"] = _worker.CmsContentRepository.GetMenu(System.Web.HttpContext.Current.Request.Cookies["active-menu"].Value.ToString());
+            ViewData["MenuData"] = _menu;
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

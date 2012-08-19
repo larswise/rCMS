@@ -10,6 +10,10 @@ namespace ZCMS.Core.Business
     {
         private List<ZCMSMenuItem> _menuItems;
         private string _menuName;
+        private string _menuController;
+        private string _menuArea;
+        private int _prio;
+
         public ZCMSMenu()
         {
             _menuItems = new List<ZCMSMenuItem>();
@@ -27,6 +31,18 @@ namespace ZCMS.Core.Business
             }
         }
 
+        public int Priority
+        {
+            get
+            {
+                return _prio;
+            }
+            set
+            {
+                _prio = value;
+            }
+        }
+
         public string MenuName
         {
             get
@@ -38,11 +54,37 @@ namespace ZCMS.Core.Business
                 _menuName = value;
             }
         }
+
+        public string MenuController
+        {
+            get
+            {
+                return _menuController;
+            }
+            set
+            {
+                _menuController = value;
+            }
+        }
+
+        public string MenuArea
+        {
+            get
+            {
+                return _menuArea;
+            }
+            set
+            {
+                _menuArea = value;
+            }
+        }
+
     }
 
     public class ZCMSMenuItem
     {
         public string ItemName { get; set; }
-        public string ItemAction { get; set; }
+        public string ItemDisplay { get; set; }
+        public string ItemAction { get; set; }        
     }
 }

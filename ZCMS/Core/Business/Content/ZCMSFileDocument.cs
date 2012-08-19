@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace ZCMS.Core.Business
+namespace ZCMS.Core.Business.Content
 {
     public class ZCMSFileDocument
     {

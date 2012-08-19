@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Raven.Client;
 using ZCMS.Core.Business;
+using ZCMS.Core.Business.Content;
 using ZCMS.Core.Data;
 using ZCMS.Core.Security;
 using ZCMS.Core.Utils;
@@ -21,7 +22,7 @@ namespace ZCMS.Core.Backend.Controllers
     public class BackendController : ZCMSBaseController
     {
         
-        public BackendController(UnitOfWork worker):base(worker) { }
+        public BackendController(UnitOfWork worker, List<ZCMSMenu> menu):base(worker, menu) { }
 
         public ActionResult AdminStart()
         {
@@ -33,10 +34,7 @@ namespace ZCMS.Core.Backend.Controllers
         {
             dynamic pagePublishType = ZCMSPageFactory.GetPagePublishType(mParameter);        
     
-            // just testing...
-            var items = _worker.FileRepository.GetAllFileTypes();
-            var recent = _worker.FileRepository.GetN_MostRecentAttachments(5);
-
+            
             if (pageId.HasValue)
             {
 
@@ -222,7 +220,8 @@ namespace ZCMS.Core.Backend.Controllers
                         LastModifiedBy = z.LastChangedBy,
                         Status = z.Status,
                         StartPublish = z.StartPublish.Value.ToString(CMS_i18n.Formats.DateFormat),
-                        EndPublish = z.EndPublish.HasValue ? z.EndPublish.Value.ToString(CMS_i18n.Formats.DateFormat) : string.Empty
+                        EndPublish = z.EndPublish.HasValue ? z.EndPublish.Value.ToString(CMS_i18n.Formats.DateFormat) : string.Empty,
+                        EditUrl = "/"+((ZCMSApplication)HttpContext.ApplicationInstance).MainAdminUrl+"/PageEditor/"+z.PageID
                     });
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             return serializer.Serialize(items);

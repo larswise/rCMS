@@ -1,11 +1,10 @@
-@model ZCMS.Core.Business.ZCMSPage
+@model ZCMS.Core.Business.Content.ZCMSPage
 
 @{
     ViewBag.Title = "EditPage";
     Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
 }
 @{ Html.BeginForm("PageEditor", "Backend", null, FormMethod.Post, new { @enctype = "multipart/form-data", @id="page-editor-form" }); }
-@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsPage")
 <div class="editor-controls-wrap">
 
 <div class="page-editor-tools-save">
@@ -52,7 +51,7 @@
 @for (int i = 0; i<Model.Properties.Count; i++)
 {
     <div class="edit-unit">
-        @if(Model.Properties[i] is ZCMS.Core.Business.RichTextProperty) {            
+        @if(Model.Properties[i] is ZCMS.Core.Business.Content.RichTextProperty) {            
             <div class="unit-label">
             @Html.Label(Model.Properties[i].PropertyName):
             </div>
@@ -62,13 +61,13 @@
             @Html.HiddenFor(m => m.Properties[i].Order)
                             
                         
-            @Html.EditorFor(m => ((ZCMS.Core.Business.RichTextProperty)m.Properties[i]).PropertyValue)
+            @Html.EditorFor(m => ((ZCMS.Core.Business.Content.RichTextProperty)m.Properties[i]).PropertyValue)
             </div>
         }
-        else if (Model.Properties[i] is ZCMS.Core.Business.TextProperty)
+        else if (Model.Properties[i] is ZCMS.Core.Business.Content.TextProperty)
         {
             <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.TextProperty)Model.Properties[i]).PropertyName):
+            @Html.Label(((ZCMS.Core.Business.Content.TextProperty)Model.Properties[i]).PropertyName):
             </div>
             <div class="unit-unit">
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
@@ -78,10 +77,10 @@
             @Html.EditorFor(m => m.Properties[i].PropertyValue)
             </div>
         }
-        else if (Model.Properties[i] is ZCMS.Core.Business.MultiLineTextProperty)
+        else if (Model.Properties[i] is ZCMS.Core.Business.Content.MultiLineTextProperty)
         {
             <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.MultiLineTextProperty)Model.Properties[i]).PropertyName):
+            @Html.Label(((ZCMS.Core.Business.Content.MultiLineTextProperty)Model.Properties[i]).PropertyName):
             </div>
             <div class="unit-unit">
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
@@ -91,9 +90,10 @@
             @Html.TextAreaFor(m => m.Properties[i].PropertyValue, new { @class="multilinetextproperty" })
             </div>
         }
-        else if (Model.Properties[i] is ZCMS.Core.Business.BooleanProperty) {
+        else if (Model.Properties[i] is ZCMS.Core.Business.Content.BooleanProperty)
+        {
             <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.BooleanProperty)Model.Properties[i]).PropertyName):
+            @Html.Label(((ZCMS.Core.Business.Content.BooleanProperty)Model.Properties[i]).PropertyName):
             </div>
             <div class="unit-unit">
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
@@ -102,10 +102,12 @@
             
             @Html.EditorFor(m => m.Properties[i].PropertyValue)
             </div>
-        } else if(Model.Properties[i] is ZCMS.Core.Business.ImageListProperty) {
+        }
+        else if (Model.Properties[i] is ZCMS.Core.Business.Content.ImageListProperty)
+        {
             <div class="unit-label">
                 
-            @Html.Label(((ZCMS.Core.Business.ImageListProperty)Model.Properties[i]).PropertyName):
+            @Html.Label(((ZCMS.Core.Business.Content.ImageListProperty)Model.Properties[i]).PropertyName):
             </div>
             <div class="unit-unit">
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
@@ -116,18 +118,20 @@
             {
                 <span class="too-many-images">@CMS_i18n.BackendResources.FileManagerNoMoreFilesAllowed</span>
             }
-            @Html.EditorFor(m => ((ZCMS.Core.Business.ImageListProperty)m.Properties[i]).PropertyValue)
+            @Html.EditorFor(m => ((ZCMS.Core.Business.Content.ImageListProperty)m.Properties[i]).PropertyValue)
             </div>
-        } else if(Model.Properties[i] is ZCMS.Core.Business.TagsProperty) {
+        }
+        else if (Model.Properties[i] is ZCMS.Core.Business.Content.TagsProperty)
+        {
             <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.TagsProperty)Model.Properties[i]).PropertyName):
+            @Html.Label(((ZCMS.Core.Business.Content.TagsProperty)Model.Properties[i]).PropertyName):
             </div>
             <div class="unit-unit">
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
             @Html.HiddenFor(m => m.Properties[i].PropertyName)
             @Html.HiddenFor(m => m.Properties[i].Order)
             
-            @Html.EditorFor(m => ((ZCMS.Core.Business.TagsProperty)m.Properties[i]).PropertyValue)
+            @Html.EditorFor(m => ((ZCMS.Core.Business.Content.TagsProperty)m.Properties[i]).PropertyValue)
             </div>            
         }
         else {

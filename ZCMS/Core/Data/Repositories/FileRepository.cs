@@ -7,6 +7,7 @@ using Raven.Client;
 using Raven.Client.Document;
 using Raven.Json.Linq;
 using ZCMS.Core.Business;
+using ZCMS.Core.Business.Content;
 
 namespace ZCMS.Core.Data.Repositories
 {

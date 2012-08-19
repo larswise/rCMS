@@ -8,6 +8,7 @@ using Raven.Client.Document;
 using Raven.Json.Linq;
 using Raven.Client.Extensions;
 using ZCMS.Core.Business;
+using ZCMS.Core.Business.Content;
 
 namespace ZCMS.Core.Data.Repositories
 {
@@ -81,46 +82,65 @@ namespace ZCMS.Core.Data.Repositories
             try
             {
 
-                System.Threading.Thread.Sleep(10000);
+                System.Threading.Thread.Sleep(2000);
                 List<IZCMSPageType> pageTypes = _session.Query<IZCMSPageType>().Where(pt => pt.PageTypeName != String.Empty).ToList();
 
                 
                 if (pageTypes == null || pageTypes.Count == 0)
                     throw new Exception("No pagetypes!");
+
                 _session.Store(new ZCMSMenu()
                 {
+                    MenuController = "Backend",
+                    MenuName = CMS_i18n.BackendResources.MenuDashBoard,
                     MenuItems = new List<ZCMSMenuItem>()
                     {
-                        new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuMyFiles, ItemAction = "FileManager" }, 
-                        new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuUploadFiles, ItemAction = "FileManager" }
+                    }
+                }, "Menu/Dashboard");
+
+                _session.Store(new ZCMSMenu()
+                {   
+                    MenuController = "Backend",
+                    MenuName = CMS_i18n.BackendResources.MenuFiles,
+                    MenuItems = new List<ZCMSMenuItem>()
+                    {
+                        new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuMyFiles, ItemDisplay = CMS_i18n.BackendResources.MenuMyFiles, ItemAction = "FileManager" }, 
+                        new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuUploadFiles, ItemDisplay = CMS_i18n.BackendResources.MenuUploadFiles, ItemAction = "FileManager" }
                     }
                 }, "Menu/FilesMenu");
                
                 _session.Store(new ZCMSMenu()
                 {
+                    MenuController = "Backend",
+                    MenuName = CMS_i18n.BackendResources.MenuPublishNew,
                     MenuItems = pageTypes.Select(p => new ZCMSMenuItem()
                         {
                             ItemName = p.FriendlyPageTypeName,
-                            ItemAction = "PageEditor"
+                            ItemAction = "PageEditor",
+                            ItemDisplay = p.PageTypeDisplayName
                         }).ToList()
                     
                 }, "Menu/PublishMenu");
 
                 _session.Store(new ZCMSMenu()
                 {
+                    MenuController = "Backend",
+                    MenuName = CMS_i18n.BackendResources.MenuConfigure,
                     MenuItems = new List<ZCMSMenuItem>()
                 {
-                    new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuConfigPageTypes, ItemAction = "ConfigurePageTypes" }
+                    new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuConfigPageTypes, ItemDisplay = CMS_i18n.BackendResources.MenuConfigPageTypes, ItemAction = "ConfigurePageTypes" }
                 }
                 }, "Menu/ConfigureMenu");
 
                 _session.Store(new ZCMSMenu()
                 {
+                    MenuController = "Backend",
+                    MenuName = CMS_i18n.BackendResources.MenuSecurity,
                     MenuItems = new List<ZCMSMenuItem>()
-                {
-                    new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuSecurityUsers, ItemAction = "ManageSecurity" },
-                    new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuSecurityRoles, ItemAction = "ManageSecurity" }
-                }
+                    {
+                        new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuSecurityUsers, ItemDisplay = CMS_i18n.BackendResources.MenuSecurityUsers, ItemAction = "ManageSecurity" },
+                        new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuSecurityRoles, ItemDisplay = CMS_i18n.BackendResources.MenuSecurityRoles, ItemAction = "ManageSecurity" }
+                    }
                 }, "Menu/SecurityMenu");
                 _session.SaveChanges();
             }

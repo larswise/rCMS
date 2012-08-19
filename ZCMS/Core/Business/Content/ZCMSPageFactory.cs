@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ZCMS.Core.Business
+namespace ZCMS.Core.Business.Content
 {
     public static class ZCMSPageFactory
     {
@@ -13,7 +13,7 @@ namespace ZCMS.Core.Business
 
             try
             {
-                pagePublishType = Activator.CreateInstance(Type.GetType("ZCMS.Core.Business." + pageType));
+                pagePublishType = Activator.CreateInstance(Type.GetType("ZCMS.Core.Business.Content." + pageType));
             }
             catch
             {

@@ -12,12 +12,15 @@ using Autofac.Integration.WebApi;
 using Raven.Client.Document;
 using Raven.Client.Extensions;
 using ZCMS.Core.Business;
+using ZCMS.Core.Business.Content;
 using ZCMS.Core.Data;
+
 
 namespace ZCMS.Core.Bootstrapper
 {
     public class ZCMSBootstrapper
     {
+
         public void SetIOCAppContainer()
         {
             UnitOfWork worker = GetUnitOfWork();
@@ -35,28 +38,30 @@ namespace ZCMS.Core.Bootstrapper
                 builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
                 builder.RegisterInstance(worker).SingleInstance();
                 builder.RegisterFilterProvider();
-
-
-                var container = builder.Build();
-
-                DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-                GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-
+                
                 if (worker.ConfigRepository.InitialSetup())
                 {
                     worker.ConfigRepository.EnsureDbExists(true);
                     worker.AuthenticationRepository.CreateDefaultUserAndRoles();
                     worker.ConfigRepository.WireUpVersioning();
-                    
-                    
+                                        
 
                     IZCMSPageType pt1 = new ArticlePage();
+                    pt1.PageTypeDisplayName = CMS_i18n.BackendResources.PageTypeDisplayArticle;
+
                     IZCMSPageType pt2 = new ContainerPage();
+                    pt2.PageTypeDisplayName = CMS_i18n.BackendResources.PageTypeDisplayContainer;
+
                     worker.CmsContentRepository.RegisterPageType(pt1);
                     worker.CmsContentRepository.RegisterPageType(pt2);
 
                     worker.ConfigRepository.SetUpMenus();
                 }
+                builder.RegisterInstance(worker.CmsContentRepository.GetMainMenus()).SingleInstance();
+                var container = builder.Build();
+                
+                DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+                GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             }
             catch (Exception ex)
             {

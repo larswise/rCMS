@@ -2,11 +2,9 @@ $(document).ready(function () {
     
     $(".mainmenuitem").click(function (e) {
         var clicked = $(this).attr('data-val');
-        $.get("/Backend/RenderLeftMenu/" + clicked, function (data) {
+        console.log("im here ... " + $(this).find(".SubMenuItem"));
+        $(this).parent().find(".SubMenuItem").slideToggle('fast', 'easeInSine');
 
-            $(".LeftAdminWelcome").hide().html(data).fadeIn('slow', 'easeInSine', function () {
-            });
-        });
     });
 
     $("#view-document-versions").click(function (e) {

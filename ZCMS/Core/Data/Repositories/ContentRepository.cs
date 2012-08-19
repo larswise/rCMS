@@ -13,6 +13,7 @@ using Raven.Client.Document.SessionOperations;
 using Raven.Json.Linq;
 using ZCMS.Core.Business;
 using System.Linq.Expressions;
+using ZCMS.Core.Business.Content;
 
 namespace ZCMS.Core.Data.Repositories
 {
@@ -119,6 +120,11 @@ namespace ZCMS.Core.Data.Repositories
         {
             var item = _session.Load<ZCMSMenu>("Menu/" + id).MenuItems;
             return item;
+        }
+
+        public List<ZCMSMenu> GetMainMenus()
+        {
+            return _session.Query<ZCMSMenu>().ToList();
         }
     }
 }

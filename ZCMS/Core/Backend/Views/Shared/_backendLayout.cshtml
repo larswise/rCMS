@@ -1,6 +1,6 @@
 ﻿
 @{
-    var menuItems = (List<ZCMS.Core.Business.ZCMSMenuItem>)ViewData["MenuData"] as List<ZCMS.Core.Business.ZCMSMenuItem>;
+    var menuItems = (List<ZCMS.Core.Business.ZCMSMenu>)ViewData["MenuData"] as List<ZCMS.Core.Business.ZCMSMenu>;
  }
 <!DOCTYPE html>
 
@@ -24,21 +24,12 @@
                 <img src="~/Content/backend/images/cmslogo.png" alt="" />
             </div>
             <div id="TopMenuContainer">
-                <div class="MenuItem"><a href="@Url.Action("Dashboard", "Backend")" data-val="Dashboard" class="dashboard mainmenuitem">@CMS_i18n.BackendResources.MenuDashBoard</a></div>
-
-                <div class="MenuItem"><a href="javascript:void(0);" data-val="PublishMenu" class="publishnew mainmenuitem">@CMS_i18n.BackendResources.MenuPublishNew</a></div>
-
-                <div class="MenuItem"><a href="javascript:void(0);" data-val="FilesMenu" class="filessite mainmenuitem">@CMS_i18n.BackendResources.MenuFiles</a></div>
-
-                <div class="MenuItem"><a href="javascript:void(0);" data-val="ConfigureMenu" class="configuresite mainmenuitem">@CMS_i18n.BackendResources.MenuConfigure</a></div>
-
-                <div class="MenuItem"><a href="javascript:void(0);" data-val="SecurityMenu" class="securesite mainmenuitem">@CMS_i18n.BackendResources.MenuSecurity</a></div>
-
+                
             </div>
         </div>
         <div id="MainContainer">
             <div id="LeftContainer">
-                @Html.Partial("LeftMenu", null)</div>
+                @Html.Partial("LeftMenu", menuItems)</div>
 
 
             <div id="RightContainer">@RenderBody()</div>

@@ -24,11 +24,12 @@ namespace ZCMS.Core.Business
                         
             bs.SetIOCAppContainer();
 
+            MainAdminUrl = "Admin";
+            MainContentUrl = "Pages";
             
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new ZCMSViewEngine());
-
-            
+                        
             AreaRegistration.RegisterAllAreas();
             //GlobalConfiguration.Configuration.Formatters.Add(new ZCMSRazorFormatter());
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -41,23 +42,22 @@ namespace ZCMS.Core.Business
         {
             get
             {
-                return "Articles";
+                return HttpContext.Current.Application["DefaultFrontendPath"].ToString();
             }
             set
             {
-                // raven db to set it
-                MainContentUrl = value;
+                HttpContext.Current.Application["DefaultFrontendPath"] = value;
             }
         }
 
         public string MainAdminUrl {
             get
             {
-                return "Admin";
+                return HttpContext.Current.Application["DefaultBackendPath"].ToString();
             }
             set
             {
-                MainAdminUrl = value;
+                HttpContext.Current.Application["DefaultBackendPath"] = value;
             }
         }
 

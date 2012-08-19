@@ -18,15 +18,17 @@ $(function () {
     });
 
     // ImageList mvvm
-    var imagesArray = new Array();
-    var counter = 0;
-    $.each(item, function () {
-        imagesArray[counter] = new ImageItem(this);
-        counter++;
-    });
-    ImageListViewModel = new ImagesViewModel(imagesArray);
-    ko.applyBindings(ImageListViewModel);
-
+    if (typeof item==='undefined') {}
+    else {
+        var imagesArray = new Array();
+        var counter = 0;
+        $.each(item, function () {
+            imagesArray[counter] = new ImageItem(this);
+            counter++;
+        });
+        ImageListViewModel = new ImagesViewModel(imagesArray);
+        ko.applyBindings(ImageListViewModel);
+    }
 
     $(".unit-imagelist img").mouseover(function (e) {
         var posX = e.pageX;

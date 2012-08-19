@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Dashboard";
     Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
 }
@@ -43,7 +42,7 @@
             <div class="current-page-created">                
                 <div class="dashboard-page-item" data-bind="text: Created"></div>                
             </div>
-            <div class="current-page-operation"><a href="#" class="dashboard-edit-current">@CMS_i18n.BackendResources.DashboardEditCurrent</a></div>
+            <div class="current-page-operation"><a href="" class="dashboard-edit-current" data-bind="attr: {href: EditUrl}">@CMS_i18n.BackendResources.DashboardEditCurrent</a></div>
              </div>
             <div class="current-page-row">
             <div class="current-page-modified">

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Autofac.Integration.Mvc;
+using ZCMS.Core.Business.Content;
 
 namespace ZCMS.Core.Business
 {
@@ -61,7 +62,7 @@ namespace ZCMS.Core.Business
                 {
 
                     var type = bindingContext.ValueProvider.GetValue("Properties["+ i +"].PropertyType").AttemptedValue;
-                    if (type == "ZCMS.Core.Business.RichTextProperty")
+                    if (type == "ZCMS.Core.Business.Content.RichTextProperty")
                     {
                         RichTextProperty prop = new RichTextProperty();
                         prop.PropertyName = bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyName").AttemptedValue;
@@ -69,7 +70,7 @@ namespace ZCMS.Core.Business
                         prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("Properties[" + i + "].Order").AttemptedValue);
                         model.Properties.Add(prop);
                     }
-                    else if (type == "ZCMS.Core.Business.BooleanProperty")
+                    else if (type == "ZCMS.Core.Business.Content.BooleanProperty")
                     {
                         BooleanProperty prop = new BooleanProperty();
                         prop.PropertyName = bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyName").AttemptedValue;
@@ -81,7 +82,7 @@ namespace ZCMS.Core.Business
                         prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("Properties[" + i + "].Order").AttemptedValue);
                         model.Properties.Add(prop);
                     }
-                    else if (type == "ZCMS.Core.Business.TagsProperty")
+                    else if (type == "ZCMS.Core.Business.Content.TagsProperty")
                     {
                         TagsProperty tp = new TagsProperty();
                         tp.PropertyName = bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyName").AttemptedValue;
