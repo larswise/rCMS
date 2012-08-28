@@ -11,26 +11,41 @@ $(function () {
 
     $("#dashboard-text-filter").keyup(function () {
         if ($(this).val().length > 2 || $(this).val().length == 0) {
-            
-            $.ajax({
-                type: 'GET',
-                dataType: 'json',
-                url: '/api/AjaxBackend/GetPages/' + $(this).val(),
-                success: function (data) {
-                    PagesViewModel.removeAll();
-                    for (i = 0; i < data.length; i++) {                        
-                        PagesViewModel.addPage(new PageItem(data[i]));                        
-                    }
-                },
-                error: function () {
-                    console.log("something went wrong with ajax!");
-                },
-                traditional: true
-            });
-
+            simpleParameter = new Object();
+            simpleParameter.Param1 = $(this).val();
+            simpleParameter.Param2 = "";
+            GetDashboardPages(simpleParameter);
         }
     });
+
+    $(".dashboard-filter-link").click(function () {
+        simpleParameter = new Object();
+        simpleParameter.Param1 = "";
+        simpleParameter.Param2 = $(this).attr('data-val');
+        GetDashboardPages(simpleParameter);
+    });
+
 });
+
+function GetDashboardPages(param) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json; charset=UTF-8',
+        url: getPagesServiceUrl,
+        data: JSON.stringify(param),
+        success: function (data) {
+            PagesViewModel.removeAll();
+            for (i = 0; i < data.length; i++) {
+                PagesViewModel.addPage(new PageItem(data[i]));
+            }
+        },
+        error: function () {
+            console.log("something went wrong with ajax!");
+        },
+        traditional: true
+    });
+}
 // MVVM Published Pages
 
 var PublishedViewModel;

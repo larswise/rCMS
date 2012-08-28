@@ -178,7 +178,7 @@ namespace CMS_i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
+        ///   Looks up a localized string similar to Find documents.
         /// </summary>
         public static string DashboardTextFilterLabel {
             get {
@@ -246,6 +246,15 @@ namespace CMS_i18n {
         public static string FileDocumentFileName {
             get {
                 return ResourceManager.GetString("FileDocumentFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string FileManagerEditFileApply {
+            get {
+                return ResourceManager.GetString("FileManagerEditFileApply", resourceCulture);
             }
         }
         
@@ -822,6 +831,24 @@ namespace CMS_i18n {
         public static string ValidationPageNameRequired {
             get {
                 return ResourceManager.GetString("ValidationPageNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field is required.
+        /// </summary>
+        public static string ValidationPagePropertyRequired {
+            get {
+                return ResourceManager.GetString("ValidationPagePropertyRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field must be between {0} and {1} characters in length.
+        /// </summary>
+        public static string ValidationPagePropertyRequiredAndLength {
+            get {
+                return ResourceManager.GetString("ValidationPagePropertyRequiredAndLength", resourceCulture);
             }
         }
         

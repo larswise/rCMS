@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using ZCMS.Core.Auth.Business;
 using ZCMS.Core.Data;
 
 namespace ZCMS.Core.Auth
@@ -24,21 +25,22 @@ namespace ZCMS.Core.Auth
         }
 
         [HttpPost]
-        public ActionResult SignIn(FormCollection coll)
+        public ActionResult SignIn(ZCMSUser user)
         {
-            string pass = coll["pass"].ToString();
-            string user = coll["username"].ToString();
-
-            if (_worker.AuthenticationRepository.AuthenticateUser(user, pass))
+            if (TryValidateModel(user))
             {
-                FormsAuthentication.SetAuthCookie(user, true);
-                return RedirectToAction("PageEditor", "Backend");
+                if (_worker.AuthenticationRepository.AuthenticateUser(user.Username, user.Password))
+                {
+                    FormsAuthentication.SetAuthCookie(user.Username, true);
+                    return RedirectToAction("Dashboard", new { Controller = "Backend", Action = "Dashboard" });
+                }
+                else
+                {
+                    ViewData["LogonFail"] = CMS_i18n.Auth.LogonFailedMessage;
+                }
             }
-            else
-            {
-                ViewData["LogonFail"] = CMS_i18n.Auth.LogonFailedMessage;
-                return View(ViewData["LogonFailed"]);
-            }
+            return View(user);
+            
         }
 
         public ActionResult SignOut()

@@ -28,6 +28,7 @@ padding: 15px;
     padding: 5px;
     min-height: 25px;
     font-weight: bold;
+    cursor: move;
 }
 #modal-close {
 position: absolute;

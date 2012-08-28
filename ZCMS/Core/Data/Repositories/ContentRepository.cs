@@ -28,36 +28,37 @@ namespace ZCMS.Core.Data.Repositories
             _session = sess;
         }
 
-        public void SaveCmsPage(ZCMSPage page)
-        {
-            _session.SaveChanges();
-        }
-
         public ZCMSPage GetCmsPage(string pageID)
         {
-            Int32 pgid;
-
-            if (!Int32.TryParse(pageID, out pgid))
-            {
-                return _session.Load<ZCMSPage>(pageID);
-            }
-
-            ZCMSPage page = _session.Load<ZCMSPage>(pageID);
-            
-            return page;
+            return _session.Load<ZCMSPage>(pageID);
         }
 
-        public List<ZCMSPage> SearchPages(string query)
+        public List<ZCMSPage> SearchPages(string query, PageStatus status)
         {
-            if (String.IsNullOrEmpty(query))
+            if (status==PageStatus.Published||status==PageStatus.Draft)
+                return _session.Query<ZCMSPage>().Where(p => p.Status==status).Take(25).ToList();
+            if(status==PageStatus.Any && String.IsNullOrEmpty(query))
                 return _session.Query<ZCMSPage>().Take(25).ToList();
             return _session.Advanced.LuceneQuery<ZCMSPage, PageIndexer>().Search("Body", query).ToList();
 
         }
 
-        public List<ZCMSPage> GetRecentPages()
-        {
-            return _session.Query<ZCMSPage>().ToList();
+        public List<ZCMSPage> GetRecentPages(DateTime ?fromDate, int ?numItems)
+        {             
+            if (fromDate.HasValue && numItems.HasValue)
+                return _session.Query<ZCMSPage>().Where(p => p.Created >= fromDate.Value).Take(numItems.Value).ToList();
+            else if(fromDate.HasValue)
+            {                
+                return _session.Query<ZCMSPage>().Where(p => p.Created >= fromDate.Value).ToList();
+            }
+            else if (numItems.HasValue)
+            {
+                return _session.Query<ZCMSPage>().Take(numItems.Value).ToList();
+            }
+            else
+            {
+                throw new Exception("Either fromDate or numItems must have a value!");
+            }
         }
 
         public List<ZCMSMetaData> GetPastRevisions(string pageID)
@@ -80,8 +81,6 @@ namespace ZCMS.Core.Data.Repositories
             return metadatas.ToList();
         }
 
-
-
         public void RegisterPageType(IZCMSPageType pageTypeInstance)
         {
             IZCMSPageType pt = _session.Load<IZCMSPageType>(pageTypeInstance.FriendlyPageTypeName);//.Where(p => p.PageTypeName == pageTypeInstance.PageTypeName).FirstOrDefault();
@@ -94,10 +93,7 @@ namespace ZCMS.Core.Data.Repositories
 
         public void CreateCmsPage(ZCMSPage page)
         {
-
             _session.Store(page, page.PageID.ToString());
-            
-            _session.SaveChanges();
         }
 
         public void DeleteCmsPage(ZCMSPage page)
@@ -106,7 +102,6 @@ namespace ZCMS.Core.Data.Repositories
             if (pageToDelete != null)
             {
                 _session.Delete<ZCMSPage>(pageToDelete);
-                _session.SaveChanges();
             }
         }
 

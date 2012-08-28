@@ -12,18 +12,14 @@
         @CMS_i18n.BackendResources.DashBoardHeader
     </div>
     <div class="dashboard-filter-links">
-                <a class="dashboard-filter-link" data-val="all" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterAll</a>
-                <a class="dashboard-filter-link" data-val="published" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterPublished</a>
-                <a class="dashboard-filter-link" data-val="drafts" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterDrafts</a>
+                <a class="dashboard-filter-link" data-val="Any" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterAll</a>
+                <a class="dashboard-filter-link" data-val="Published" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterPublished</a>
+                <a class="dashboard-filter-link" data-val="Draft" href="javascript:void(0);">@CMS_i18n.BackendResources.DashboardStatusFilterDrafts</a>
             </div>
     <div id="dashboard-filter">
-        <div class="dashboard-filter-buttons">
-            <div class="dashboard-filter-label">@CMS_i18n.BackendResources.DashboardStatusFilterLabel</div>
-            
-        </div>
-
+        
         <div class="dashboard-filter-input">
-            <div class="dashboard-filter-label">@CMS_i18n.BackendResources.DashboardTextFilterLabel</div>
+            <div class="dashboard-filter-label">@CMS_i18n.BackendResources.DashboardTextFilterLabel:</div>
             <div class="dashboard-filter-control">@Html.TextBox("dashboard-text-filter")</div>
         </div>
 

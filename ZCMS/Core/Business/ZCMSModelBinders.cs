@@ -16,21 +16,21 @@ namespace ZCMS.Core.Business
         public ZCMSPageModelBinder()
         {
         }
-
+        
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
 
             ZCMSPage model = (ZCMSPage)Activator.CreateInstance(bindingContext.ModelType);
-            model.StartPublish = null;
-            model.EndPublish = null;
+            //model.StartPublish = null;
+            //model.EndPublish = null;
 
             //var items = bindingContext.ValueProvider.GetValue("Properties").AttemptedValue;
             model.PageName = bindingContext.ValueProvider.GetValue("PageName").AttemptedValue;
-            var valMenue = bindingContext.ValueProvider.GetValue("ShowInMenus").AttemptedValue;
-            model.ShowInMenus = Convert.ToBoolean(bindingContext.ValueProvider.GetValue("ShowInMenus").AttemptedValue.Split(',')[0]);
-            model.UrlSlug = bindingContext.ValueProvider.GetValue("UrlSlug").AttemptedValue;
+            //var valMenue = bindingContext.ValueProvider.GetValue("ShowInMenus").AttemptedValue;
+            //model.ShowInMenus = Convert.ToBoolean(bindingContext.ValueProvider.GetValue("ShowInMenus").AttemptedValue.Split(',')[0]);
+            //model.UrlSlug = bindingContext.ValueProvider.GetValue("UrlSlug").AttemptedValue;
             model.PageType = bindingContext.ValueProvider.GetValue("PageType").AttemptedValue;
-            model.AllowComments = Convert.ToBoolean(bindingContext.ValueProvider.GetValue("AllowComments").AttemptedValue.Split(',')[0]);
+            //model.AllowComments = Convert.ToBoolean(bindingContext.ValueProvider.GetValue("AllowComments").AttemptedValue.Split(',')[0]);
             try
             {
                 model.PageID = Int32.Parse(bindingContext.ValueProvider.GetValue("PageID").AttemptedValue);
@@ -46,18 +46,18 @@ namespace ZCMS.Core.Business
                 model.Status = PageStatus.Published;
 
             DateTime spd, epd;
-            bool sp = DateTime.TryParse(bindingContext.ValueProvider.GetValue("StartPublish").AttemptedValue, out spd);
-            if (sp)
-                model.StartPublish = spd;
+            //bool sp = DateTime.TryParse(bindingContext.ValueProvider.GetValue("StartPublish").AttemptedValue, out spd);
+            //if (sp)
+            //    model.StartPublish = spd;
 
-            bool ep = DateTime.TryParse(bindingContext.ValueProvider.GetValue("EndPublish").AttemptedValue, out epd);
-            if (ep)
-                model.EndPublish = epd;
+            //bool ep = DateTime.TryParse(bindingContext.ValueProvider.GetValue("EndPublish").AttemptedValue, out epd);
+            //if (ep)
+            //    model.EndPublish = epd;
 
             var items2 = bindingContext.ValueProvider.GetValue("Properties[0].PropertyName").AttemptedValue;
 
             // limiting number of properties to 8 on purpose
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 12; i++)
             {
                 try
                 {
@@ -69,6 +69,10 @@ namespace ZCMS.Core.Business
                         prop.PropertyName = bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyName").AttemptedValue;
                         prop.PropertyValue = bindingContext.ValueProvider.GetValue("PropertyValue").AttemptedValue;
                         prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("Properties[" + i + "].Order").AttemptedValue);
+                        if (bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyValidator")!=null)
+                            prop.PropertyValidator = bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyValidator").AttemptedValue;
+                        else
+                            prop.PropertyValidator = string.Empty;
                         model.Properties.Add(prop);
                     }
                     else if (type == "ZCMS.Core.Business.Content.BooleanProperty")
@@ -83,6 +87,31 @@ namespace ZCMS.Core.Business
                         prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("Properties[" + i + "].Order").AttemptedValue);
                         model.Properties.Add(prop);
                     }
+                    else if (type == "ZCMS.Core.Business.Content.DisplayOnlyTextProperty")
+                    {
+                        DisplayOnlyTextProperty prop = new DisplayOnlyTextProperty();
+                        prop.PropertyName = bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyName").AttemptedValue;
+                        prop.PropertyValue = bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyValue").AttemptedValue;
+                        prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("Properties[" + i + "].Order").AttemptedValue);
+                        model.Properties.Add(prop);
+                    }
+                    else if (type == "ZCMS.Core.Business.Content.DateProperty")
+                    {
+                        DateProperty prop = new DateProperty();
+                        prop.PropertyName = bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyName").AttemptedValue;
+                        string val = string.Empty;
+                        if(!String.IsNullOrEmpty(bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyValue").AttemptedValue))
+                            prop.PropertyValue = Convert.ToDateTime(bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyValue").AttemptedValue);
+                        else 
+                            prop.PropertyValue = null;
+
+                        prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("Properties[" + i + "].Order").AttemptedValue);
+                        if (bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyValidator")!=null)
+                            prop.PropertyValidator = bindingContext.ValueProvider.GetValue("Properties[" + i + "].PropertyValidator").AttemptedValue;
+                        else
+                            prop.PropertyValidator = string.Empty;
+                        model.Properties.Add(prop);
+                    }
                     else if (type == "ZCMS.Core.Business.Content.TagsProperty")
                     {
                         TagsProperty tp = new TagsProperty();
@@ -95,7 +124,7 @@ namespace ZCMS.Core.Business
                             List<string> tags = new List<string>();
                             foreach (string s in tagvalues)
                             {
-                                if(s!=null && s!=string.Empty)
+                                if (s != null && s != string.Empty)
                                     tags.Add(s);
                             }
                             tp.PropertyValue = tags;
@@ -119,6 +148,8 @@ namespace ZCMS.Core.Business
                                 var value = bindingContext.ValueProvider.GetValue("Properties[" + i + "]." + propInfo.Name).AttemptedValue;
                                 if (propInfo.PropertyType.FullName == "System.Int32")
                                     propInfo.SetValue(propInstance, Int32.Parse(value));
+                                else if (propInfo.PropertyType.FullName == "FluentValidation.IValidator")
+                                    propInfo.SetValue(propInstance, Activator.CreateInstance(Type.GetType(value)));
                                 else
                                     propInfo.SetValue(propInstance, value);
                             }
@@ -127,7 +158,7 @@ namespace ZCMS.Core.Business
                             }
                         }
 
-                        model.Properties.Add((ZCMSProperty)propInstance);
+                        model.Properties.Add((IZCMSProperty)propInstance);
                     }
                 }
                 catch

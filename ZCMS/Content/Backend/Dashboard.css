@@ -1,4 +1,8 @@
-﻿#dashboard-header {
+﻿#dashboard-wrapper {
+    height: 100%;
+}
+
+#dashboard-header {
     font-size: 35px;
     padding: 0 0 20px 0;
     margin: 10px;
@@ -145,11 +149,17 @@ a.dashboard-delete-current {
 #dashboard-filter {
     margin: 10px;
     clear: both;
-    min-height: 75px;
+    min-height: 40px;
 }
 
-.dashboard-filter-label {
-    min-width: 100px;
+.dashboard-filter-label, .dashboard-filter-control {
+    padding: 10px 0 0 10px;
+    float: left;
+    font-weight: bold;
+}
+
+.dashboard-filter-control input {
+    width: 350px;
 }
 
 .dashboard-filter-links {
@@ -157,9 +167,7 @@ a.dashboard-delete-current {
     float: left;
 }
 
-.dashboard-filter-label {
-    float: left;
-}
+
 
 .dashboard-filter-links a {
     padding: 5px;

@@ -35,7 +35,6 @@ namespace ZCMSUnitTest
             worker.ConfigRepository.WireUpVersioning();
 
             ZCMSPage page = new ZCMSPage(new ArticlePage());
-            worker.CmsContentRepository.SaveCmsPage(page);
         }
     }
 }

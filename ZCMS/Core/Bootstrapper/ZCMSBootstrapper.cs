@@ -9,10 +9,12 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using FluentValidation.Mvc;
 using Raven.Client.Document;
 using Raven.Client.Extensions;
 using ZCMS.Core.Business;
 using ZCMS.Core.Business.Content;
+using ZCMS.Core.Business.Validators;
 using ZCMS.Core.Data;
 
 
@@ -34,6 +36,7 @@ namespace ZCMS.Core.Bootstrapper
 
                 builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
                 builder.RegisterControllers(Assembly.GetExecutingAssembly());
+                
 
                 builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
                 builder.RegisterInstance(worker).SingleInstance();
@@ -58,8 +61,16 @@ namespace ZCMS.Core.Bootstrapper
                     worker.ConfigRepository.SetUpMenus();
                 }
                 builder.RegisterInstance(worker.CmsContentRepository.GetMainMenus()).SingleInstance();
+
+                ZCMSModelValidatorProvider validatorProvider = new ZCMSModelValidatorProvider();
+                ModelValidatorProviders.Providers.Clear();
+                ModelValidatorProviders.Providers.Add(validatorProvider);
+
+                builder.RegisterInstance(validatorProvider).SingleInstance();
                 var container = builder.Build();
-                
+
+                //FluentValidationModelValidatorProvider.Configure();
+
                 DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
                 GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             }

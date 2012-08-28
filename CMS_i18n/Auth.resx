@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AuthPasswordRequired" xml:space="preserve">
+    <value>Password is required</value>
+  </data>
+  <data name="AuthUsernameRequired" xml:space="preserve">
+    <value>Username is required</value>
+  </data>
   <data name="LoginTopMessage" xml:space="preserve">
     <value>You need to sign-in to access this resource!</value>
   </data>
@@ -125,6 +131,9 @@
   </data>
   <data name="LogonFailedMessage" xml:space="preserve">
     <value>Incorrect credentials, please try again.</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Sign out</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
     <value>Password</value>

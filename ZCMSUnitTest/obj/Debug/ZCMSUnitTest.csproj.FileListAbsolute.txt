@@ -58,3 +58,16 @@ C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Newtonsoft.Json.xml
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.csprojResolveAssemblyReference.cache
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.dll
 C:\Projects\ZCMS\ZCMSUnitTest\obj\Debug\ZCMSUnitTest.pdb
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\FluentValidation.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\FluentValidation.pdb
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\FluentValidation.xml
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\de\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\es\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\fr\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\it\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\nl\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\pl\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\pt\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\ru\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\sv\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\tr\FluentValidation.resources.dll

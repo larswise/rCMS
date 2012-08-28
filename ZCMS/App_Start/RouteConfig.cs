@@ -51,13 +51,13 @@ namespace ZCMS
             routes.MapRoute(
                 "FilterFileManager",
                 "Backend/FileSelector/{filterFreeText}",
-                new { Controller = "Backend", Action = "FileSelector", filterFreeText = UrlParameter.Optional }
+                new { Controller = "File", Action = "FileSelector", filterFreeText = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 "ApplyImageEffect",
-                "Backend/ApplyImageEffect/{effect}/{imageKey}",
-                new { Controller = "Backend", Action = "ApplyImageEffect", effect = UrlParameter.Optional, imageKey = UrlParameter.Optional }
+                "File/ApplyImageEffect/{effect}/{imageKey}",
+                new { Controller = "File", Action = "ApplyImageEffect", effect = UrlParameter.Optional, imageKey = UrlParameter.Optional }
             );
 
             string mainAdminPath =
@@ -91,7 +91,7 @@ namespace ZCMS
             routes.MapRoute(
                 "Backend_upload",
                 mainAdminPath + "UploadAttachment/{pageId}",
-                new { Controller = "Backend", action = "UploadAttachment", pageId = UrlParameter.Optional }
+                new { Controller = "File", action = "UploadAttachment", pageId = UrlParameter.Optional }
             );
 
 

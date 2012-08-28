@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ZCMS.Core.Data;
+using ZCMS.Core.Security;
 
 namespace ZCMS.Core.Business
 {
-    public class ZCMSBaseController : Controller
+    [ZCMSAuthenticate(Roles = "Administrators")]
+    public abstract class ZCMSBaseController : Controller
     {
         public ZCMSMenu Model { get; set; }
         protected UnitOfWork _worker;
@@ -19,6 +21,11 @@ namespace ZCMS.Core.Business
             _menu = menu;
 
             ViewData["MenuData"] = _menu;
+        }
+
+        public ZCMSBaseController(UnitOfWork work)
+        {
+            _worker = work;
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

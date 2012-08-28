@@ -27,20 +27,19 @@ files and file manager
 [x] start thinking about dashboard
 [z] Comments! (cascade delete on page delete) --> DETTE BLIR FRONT-END MED FACEBOOK/E.L
 [z] Comment admin (dashboard?) --> DETTE BLIR FRONT-END MED FACEBOOK/E.L
+[z] Finish up dashboard
+[z] Finish up container page
 
 misc
 
 
-[] Finish up dashboard
-[] Finish up container page
-[] Authentication and authorization (Users and roles)
 
+[] Authentication and authorization (Users and roles)
 [] some sort of dynamic content snap-in for tinymce to insert docs/imgs in the editor pane!.
 [] Button for insert document in tinymce?
-
+[] Page type for newsletter
+[] NServiceBus for sending newsletters?
 [] Refine versioning architecture.
-
-
 [] start thinking about defining custom page types
 [] code cleanup
 [] plugins architecture

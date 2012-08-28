@@ -5,25 +5,28 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FluentValidation;
 
 namespace ZCMS.Core.Business.Content
 {
-    public abstract class ZCMSProperty
+    public interface IZCMSProperty
     {
-        public abstract int Order { get; set; }
-        public abstract object PropertyValue { get; set; }
-        public abstract string PropertyName { get; set; }
-        public abstract string PropertyType { get; }
+        int Order { get; set; }
+        object PropertyValue { get; set; }
+        string PropertyName { get; set; }
+        string PropertyType { get; }
+        string PropertyValidator { get; set; }
     }
 
-    public class BooleanProperty : ZCMSProperty
+    public class BooleanProperty : IZCMSProperty
     {
         public BooleanProperty() { }
         private object _isTrue;
         private string _propertyName;
         private int? _order;
+        private string _validator;
 
-        public override object PropertyValue 
+        public object PropertyValue 
         {
             get
             {
@@ -35,7 +38,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyName 
+        public string PropertyName 
         {
             get
             {
@@ -47,7 +50,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override int Order
+        public int Order
         {
             get
             {
@@ -59,7 +62,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyType
+        public string PropertyType
         {
             get
             {
@@ -67,17 +70,30 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
+        public string PropertyValidator
+        {
+            get
+            {
+                return _validator;
+            }
+            set
+            {
+                _validator = value;
+            }
+        }
+
     }
 
-    public class TagsProperty : ZCMSProperty
+    public class TagsProperty : IZCMSProperty
     {
         public TagsProperty() { }
         private List<string> _tags;
         private string _propertyName;
         private int? _order;
+        private string _validator;
 
         [UIHint("TagsProperty")]
-        public override object PropertyValue
+        public object PropertyValue
         {
             get
             {
@@ -100,7 +116,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyName
+        public string PropertyName
         {
             get
             {
@@ -112,7 +128,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override int Order
+        public int Order
         {
             get
             {
@@ -124,7 +140,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyType
+        public string PropertyType
         {
             get
             {
@@ -132,18 +148,97 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
+        public string PropertyValidator
+        {
+            get
+            {
+                return _validator;
+            }
+            set
+            {
+                _validator = value;
+            }
+        }
     }
 
-    public class RichTextProperty : ZCMSProperty
+    public class DateProperty : IZCMSProperty
+    {
+        private DateTime _textValue;
+        private string _propertyName;
+        private int? _order;
+        private string _validator;
+
+        public DateProperty() { }
+
+        [DataType(DataType.Date)]
+        public object PropertyValue
+        {
+            get
+            {
+                return _textValue;
+            }
+            set
+            {
+                _textValue = Convert.ToDateTime(value);
+            }
+        }
+
+        public string PropertyName
+        {
+            get
+            {
+                return _propertyName;
+            }
+            set
+            {
+                _propertyName = value;
+            }
+        }
+
+        public int Order
+        {
+            get
+            {
+                return _order.HasValue ? _order.Value : 0;
+            }
+            set
+            {
+                _order = value;
+            }
+        }
+
+        public string PropertyType
+        {
+            get
+            {
+                return this.GetType().FullName;
+            }
+        }
+
+        public string PropertyValidator
+        {
+            get
+            {
+                return _validator;
+            }
+            set
+            {
+                _validator = value;
+            }
+        }
+    }
+
+    public class RichTextProperty : IZCMSProperty
     {
         private object _textValue;
         private string _propertyName;
         private int? _order;
+        private string _validator;
 
         public RichTextProperty() { } 
 
         [UIHint("tinymce_full"), AllowHtml]
-        public override object PropertyValue
+        public object PropertyValue
         {
             get
             {
@@ -155,7 +250,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyName
+        public string PropertyName
         {
             get
             {
@@ -167,7 +262,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override int Order
+        public int Order
         {
             get
             {
@@ -179,25 +274,38 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyType
+        public string PropertyType
         {
             get
             {
                 return this.GetType().FullName;
             }
         }
+
+        public string PropertyValidator
+        {
+            get
+            {
+                return _validator;
+            }
+            set
+            {
+                _validator = value;
+            }
+        }
     }
 
-    public class TextProperty : ZCMSProperty
+    public class TextProperty : IZCMSProperty
     {
         private object _textValue;
         private string _propertyName;
         private int? _order;
+        private string _validator;
 
         public TextProperty() { }
 
 
-        public override object PropertyValue
+        public object PropertyValue
         {
             get 
             {
@@ -209,7 +317,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyName
+        public string PropertyName
         {
             get
             {
@@ -221,7 +329,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override int Order
+        public int Order
         {
             get
             {
@@ -233,26 +341,38 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyType
+        public string PropertyType
         {
             get
             {
                 return this.GetType().FullName;
             }
         }
+
+        public string PropertyValidator
+        {
+            get
+            {
+                return _validator;
+            }
+            set
+            {
+                _validator = value;
+            }
+        }
     }
 
-    public class MultiLineTextProperty : ZCMSProperty
+    public class DisplayOnlyTextProperty : IZCMSProperty
     {
         private object _textValue;
         private string _propertyName;
         private int? _order;
+        private string _validator;
 
-        public MultiLineTextProperty() { }
+        public DisplayOnlyTextProperty() { }
 
 
-        [DataType(DataType.MultilineText)]
-        public override object PropertyValue
+        public object PropertyValue
         {
             get
             {
@@ -264,7 +384,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyName
+        public string PropertyName
         {
             get
             {
@@ -276,7 +396,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override int Order
+        public int Order
         {
             get
             {
@@ -288,25 +408,106 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyType
+        public string PropertyType
         {
             get
             {
                 return this.GetType().FullName;
             }
         }
+
+        public string PropertyValidator
+        {
+            get
+            {
+                return _validator;
+            }
+            set
+            {
+                _validator = value;
+            }
+        }
+    }
+
+    public class MultiLineTextProperty : IZCMSProperty
+    {
+        private object _textValue;
+        private string _propertyName;
+        private int? _order;
+        private string _validator;
+
+        public MultiLineTextProperty() { }
+
+
+        [DataType(DataType.MultilineText)]
+        public object PropertyValue
+        {
+            get
+            {
+                return _textValue;
+            }
+            set
+            {
+                _textValue = value;
+            }
+        }
+
+        public string PropertyName
+        {
+            get
+            {
+                return _propertyName;
+            }
+            set
+            {
+                _propertyName = value;
+            }
+        }
+
+        public int Order
+        {
+            get
+            {
+                return _order.HasValue ? _order.Value : 0;
+            }
+            set
+            {
+                _order = value;
+            }
+        }
+
+        public string PropertyType
+        {
+            get
+            {
+                return this.GetType().FullName;
+            }
+        }
+
+        public string PropertyValidator
+        {
+            get
+            {
+                return _validator;
+            }
+            set
+            {
+                _validator = value;
+            }
+        }
     }
     
-    public class ImageListProperty : ZCMSProperty
+    public class ImageListProperty : IZCMSProperty
     {        
         private string _propertyName;
         private int? _order;
         private List<string> _imageVirtualPaths = new List<string>();
+        private string _validator;
 
         public ImageListProperty() { }
 
         [UIHint("ImageListProperty")]
-        public override object PropertyValue 
+        public object PropertyValue 
         {
             get
             {
@@ -329,7 +530,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyName
+        public string PropertyName
         {
             get
             {
@@ -341,7 +542,7 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override int Order
+        public int Order
         {
             get
             {
@@ -353,11 +554,22 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
-        public override string PropertyType
+        public string PropertyType
         {
             get
             {
                 return this.GetType().FullName;
+            }
+        }
+
+        public string PropertyValidator {
+            get
+            {
+                return _validator;
+            }
+            set
+            {
+                _validator = value;
             }
         }
     }

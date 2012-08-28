@@ -23,14 +23,13 @@
             <div id="LogoContainer">
                 <img src="~/Content/backend/images/cmslogo.png" alt="" />
             </div>
-            <div id="TopMenuContainer">
-                
+            <div id="right-top">
+                @HttpContext.Current.User.Identity.Name, @Html.ActionLink(CMS_i18n.Auth.Logout, "SignOut", new { Controller = "Authentication", Action = "SignOut" }, new { @class = "logoutlinktop" })
             </div>
         </div>
         <div id="MainContainer">
             <div id="LeftContainer">
                 @Html.Partial("LeftMenu", menuItems)</div>
-
 
             <div id="RightContainer">@RenderBody()</div>
 

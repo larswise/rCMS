@@ -65,6 +65,7 @@ clear: both;
 
 #LogoContainer {
     padding: 8px;
+    float: left;
 }
 
 #MainContainer {
@@ -171,6 +172,15 @@ a.dashboard {
 
 a.publish {
     background-image: url('images/arrow_up.png');
+    background-size: 24px 24px;    
+    background-repeat: no-repeat;
+    background-position: 0px 3px;    
+    text-indent: 28px;
+    display: inline-block;    
+}
+
+a.topics {
+    background-image: url('images/topics.png');
     background-size: 24px 24px;    
     background-repeat: no-repeat;
     background-position: 0px 3px;    
@@ -406,7 +416,7 @@ input.single-line {
 }
 
 input.datefield {
-    width: 100px;
+    width: 150px;
 }
 
 #LeftAdminMenuWrapper {
@@ -499,6 +509,20 @@ input.datefield {
     border-radius: 2px;
     color: #000;
     text-decoration: none;
+}
+
+
+/* Auth */
+.logoutlinktop {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#right-top {
+    float: right;
+    color: #fff;
+    margin: 10px;
 }
 
 /* Styles for basic forms

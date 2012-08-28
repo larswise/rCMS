@@ -1,5 +1,43 @@
 ﻿@model ZCMS.Core.Business.Content.ZCMSPage
 @System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsPage")
+
+<div class="page-editor-tools-save">
+    <a href="javascript:void(0);" id="save-publish-page">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/arrow_up.png")" alt="-" title="@CMS_i18n.BackendResources.SavePublishPage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.SavePublishPage</span>
+    </a>
+    </div>
+<div class="page-editor-tools-save-draft">
+    <a href="javascript:void(0);" id="save-draft-page">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/diskette.png")" alt="-" title="@CMS_i18n.BackendResources.SaveDraftPage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.SaveDraftPage</span>
+    </a>
+</div>
+<div class="page-editor-tools-versions">
+    <a href="javascript:void(0);" id="view-document-versions" data-val="@Model.PageID">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/history2.png")" alt="-" title="@CMS_i18n.BackendResources.ViewDifferentVersions" />
+        <span class="page-actions">@CMS_i18n.BackendResources.ViewDifferentVersions</span></a>
+    
+</div>
+<div class="page-editor-tools-view">
+    <a href="@Url.Action("ViewPage", "Frontend", new { pageId = Model.PageID })" id="view-document">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/eye_open.png")" alt="-" title="@CMS_i18n.BackendResources.ViewPage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.ViewPage</span>
+    </a>
+    
+</div>
+<div class="page-editor-tools-delete">
+    <a href="@Url.Action("ViewPage", "Frontend", new { pageId = Model.PageID })" id="delete-document">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/trash_can.png")" alt="-" title="@CMS_i18n.BackendResources.DeletePage" />
+        <span class="page-actions">@CMS_i18n.BackendResources.DeletePage</span>        
+    </a>
+    
+</div>
+
+<div class="norevs" style="display:none;">@CMS_i18n.BackendResources.NoRevisions</div>
+<div class="noupload" style="display:none;">@CMS_i18n.BackendResources.NoUpload</div>
+<div id="RevisionsContainer"></div>
+
 <div class="custom-properties-edit-wrap">
 <div class="edit-unit">
 <div class="edit-top-nw">
@@ -42,54 +80,18 @@
 </div>
 </div>
 <div class="edit-unit">
-<div class="unit-label">
-    @Html.LabelFor(model => model.StartPublish):
-</div>
-<div class="unit-unit">
-    @Html.EditorFor(model => model.StartPublish)
-    @Html.ValidationMessageFor(model => model.StartPublish)
-</div>
-<div class="unit-label">
-    @Html.LabelFor(model => model.ShowInMenus):
-</div>
-<div class="unit-unit">
-    @Html.EditorFor(model => model.ShowInMenus)
-</div>
-</div>
-<div class="edit-unit">
-<div class="unit-label">
-    @Html.LabelFor(model => model.EndPublish):
-</div>
-<div class="unit-unit">
-    @Html.EditorFor(model => model.EndPublish)
-    @Html.ValidationMessageFor(model => model.EndPublish)
-</div>
-<div class="unit-label">
-    @Html.LabelFor(model => model.AllowComments):
-</div>
-<div class="unit-unit">
-    @Html.EditorFor(model => model.AllowComments)
-</div>
 
-</div>
-<div class="edit-unit">
-<div class="unit-label">
-    @Html.LabelFor(model => model.UrlSlug)
-</div>
 <div class="unit-unit">
-    /<span style="font-style: italic;" id="url-slug">@(!String.IsNullOrEmpty(Model.UrlSlug) ? Model.UrlSlug : String.Empty)</span>
-    @Html.HiddenFor(m => m.UrlSlug)
     @Html.HiddenFor(m => m.PageType)
 </div>
 </div>
-
 <div class="page-edit-top">
 <div class="edit-top-label">
     @Html.LabelFor(model => model.PageName):
 </div>
 <div class="edit-top-unit">
     @Html.EditorFor(model => model.PageName)
-    @Html.ValidationMessageFor(model => model.PageName)
+    @Html.ValidationMessage("PageName.PageName")
 </div>
 </div>
 </div>

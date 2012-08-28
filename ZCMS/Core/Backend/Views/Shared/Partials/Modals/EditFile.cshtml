@@ -17,6 +17,12 @@
         <div class="file-col">@Html.TextBoxFor(model => model.FileName)</div>
     </div>
     <div class="file-edit-row">
+        <div class="file-col">@Html.LabelFor(model => model.Description)</div>
+        <div class="file-col">
+        @Html.TextBoxFor(model => model.Description)
+        </div>
+    </div>
+    <div class="file-edit-row">
         <div class="file-col">@Html.LabelFor(model => model.ContentType)</div>
         <div class="file-col">
         @Html.DropDownList("file-content-type", contentTypeItems)
@@ -28,7 +34,7 @@
             @if (Model.FileType == ZCMS.Core.Business.FileType.ImageFile)
             {
                 <div class="file-edit-image">
-                    <img src="@Url.Action("GetCurrentImage", new { key = Model.FileKey })" data-val="@Model.FileKey" alt="" />
+                    <img src="@Url.Action("GetCurrentImage", "File", new { key = Model.FileKey })" data-val="@Model.FileKey" alt="" />
                 </div>
                 <div class="file-apply-effect">                    
                     <b>@CMS_i18n.BackendResources.ImageApplyEffect</b>
@@ -42,6 +48,9 @@
                 <div class="file-apply-effect">                    
                     <a href="javascript:void(0);" class="apply-effect" data-val="grayscale">@CMS_i18n.BackendResources.ImageApplyGrayscale</a>
                 </div>
+                <div class="file-apply-effect">                    
+                    <a href="javascript:void(0);" class="apply-effect" id="filemanager-edit-ok" data-val="grayscale">@CMS_i18n.BackendResources.FileManagerEditFileApply</a>
+                </div>                
                 <div class="file-progressbar" style="display:none;">
                     <img src="~/Content/Backend/Images/progress-bar.gif" alt="" />
                 </div>

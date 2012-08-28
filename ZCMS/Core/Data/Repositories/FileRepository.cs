@@ -129,7 +129,7 @@ namespace ZCMS.Core.Data.Repositories
 
         public List<string> RetrieveMultipleAttachments(List<string> keys)
         {
-            return _session.Load<ZCMSFileDocument>(keys.ToArray()).Where(i => i != null).Select(k => "/Backend/GetCurrentImage?key=" + k.FileKey).ToList();
+            return _session.Load<ZCMSFileDocument>(keys.ToArray()).Where(i => i != null).Select(k => "/File/GetCurrentImage?key=" + k.FileKey).ToList();
         }
 
         public List<ZCMSFileDocument> QueryAttachment(List<string> extensionValue, string filterFreeText)

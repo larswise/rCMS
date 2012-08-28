@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model ZCMS.Core.Auth.Business.ZCMSUser
 @{
     ViewBag.Title = "Logon...";
     Layout = "~/Core/Auth/Views/Shared/_authenticationLayout.cshtml";
@@ -19,7 +19,7 @@
     </div>
 
     <div class="logon-control">
-        @Html.TextBox("username")
+        @Html.TextBoxFor(m => m.Username)
     </div>
 
     <div class="logon-label">
@@ -27,7 +27,7 @@
     </div>
 
     <div class="logon-control">
-        @Html.Password("pass")
+        @Html.PasswordFor(m => m.Password)
     </div>
 
     <div class="logon-label">

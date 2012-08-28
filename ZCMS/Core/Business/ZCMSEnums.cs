@@ -13,7 +13,9 @@ namespace ZCMS.Core.Business
         [Display(Name = "Draft")]
         Draft,
         [Display(Name = "New")]
-        New
+        New,
+        [Display(Name = "Any")]
+        Any
     }
 
     public enum FileType

@@ -17,8 +17,7 @@ using ZCMS.Core.Utils;
 
 
 namespace ZCMS.Core.Backend.Controllers
-{
-    [ZCMSAuthenticate(Roles = "Administrators")]
+{    
     public class BackendController : ZCMSBaseController
     {
         
@@ -94,10 +93,9 @@ namespace ZCMS.Core.Backend.Controllers
 
                 if (ravenPage != null)
                 {
-                    ravenPage.EndPublish = page.EndPublish;
                     ravenPage.PageID = page.PageID;
                     ravenPage.PageName = page.PageName;
-                    ravenPage.UrlSlug = page.UrlSlug;
+                    
                     for (int i = 0; i < ravenPage.Properties.Count; i++)
                     {
                         if (!(ravenPage.Properties[i] is ImageListProperty))
@@ -105,15 +103,11 @@ namespace ZCMS.Core.Backend.Controllers
                             ravenPage.Properties[i] = page.Properties[i];
                         }
                     }
-
-                    ravenPage.StartPublish = page.StartPublish;
+                                        
                     ravenPage.LastModified = DateTime.Now;
                     ravenPage.LastChangedBy = _worker.AuthenticationRepository.GetCurrentUserName();
-                    ravenPage.Status = page.Status;
-                    ravenPage.ShowInMenus = page.ShowInMenus;
-                    ravenPage.AllowComments = page.AllowComments;
+                    ravenPage.Status = page.Status;                   
 
-                    _worker.CmsContentRepository.SaveCmsPage(ravenPage);
                     TempData["DocumentSaved"] = CMS_i18n.BackendResources.DocumentSaved;
                     return RedirectToAction("PageEditor", new { pageId = ravenPage.PageID });
                 }
@@ -155,60 +149,20 @@ namespace ZCMS.Core.Backend.Controllers
             ZCMSPage pg = _worker.CmsContentRepository.GetCmsPage(actual);
             ZCMSPage pgrev = _worker.CmsContentRepository.GetCmsPage(id.Replace(".", "/"));
             pg.Properties = pgrev.Properties;
-            pg.StartPublish = pgrev.StartPublish;
-            pg.EndPublish = pgrev.EndPublish;
+            
             pg.PageName = pgrev.PageName;
-            pg.ShowInMenus = pgrev.ShowInMenus;
-            pg.AllowComments = pgrev.AllowComments;
-
-            _worker.CmsContentRepository.SaveCmsPage(pg);
+            
 
             return RedirectToAction("PageEditor", new { pageId = pg.PageID });
         }
         #endregion
 
         #region Ajax Helper Methods
-        public void GetCurrentImage(string key)
-        {
-            WebImage wi = new WebImage(_worker.FileRepository.RetrieveAttachment(key));
-            
-            wi.Write();
-        }
 
-        public string ApplyImageEffect(string effect, string imageKey)
-        {
-            var attachment = _worker.FileRepository.RetrieveAttachmentItem(imageKey);
-            System.Drawing.Bitmap bitMap = null;
-            if (effect == "grayscale")
-                bitMap = ImageEffects.Grayscale(new System.Drawing.Bitmap(attachment.Data()));
-            else if (effect == "sepia")
-                bitMap = ImageEffects.Sepia(new System.Drawing.Bitmap(attachment.Data()), 10);
-            else if(effect == "rotate")
-                bitMap = ImageEffects.Rotate(new System.Drawing.Bitmap(attachment.Data()), 90);
-            
-            if (bitMap != null)
-            {
-                
-                MemoryStream imageMs = new MemoryStream();
-                bitMap.Save(imageMs, System.Drawing.Imaging.ImageFormat.Jpeg);
-                imageMs.Position = 0;
-                _worker.FileRepository.UpdateAttachment(imageKey, imageMs);
-            }
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-
-            return serializer.Serialize(imageKey);
-        }
-
-        public string GetImages(List<string> key)
-        {
-            var items = _worker.FileRepository.RetrieveMultipleAttachments(key);
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            return serializer.Serialize(items);
-        }
 
         public string GetPages(string key)
         {
-            var items = _worker.CmsContentRepository.GetRecentPages()
+            var items = _worker.CmsContentRepository.GetRecentPages(null, 12)
                 .Select(z => 
                     new 
                     { 
@@ -219,8 +173,8 @@ namespace ZCMS.Core.Backend.Controllers
                         CreatedBy = z.WrittenBy,
                         LastModifiedBy = z.LastChangedBy,
                         Status = z.Status.ToString(),
-                        StartPublish = z.StartPublish.Value.ToString(CMS_i18n.Formats.DateFormat),
-                        EndPublish = z.EndPublish.HasValue ? z.EndPublish.Value.ToString(CMS_i18n.Formats.DateFormat) : string.Empty,
+                        StartPublish = z.Properties.Where(p => p.PropertyName == "Start publish").FirstOrDefault().PropertyValue,
+                        EndPublish = z.Properties.Where(p => p.PropertyName == "End Publish").FirstOrDefault().PropertyValue,
                         PageType = z.PageType,                       
                         EditUrl = "/"+((ZCMSApplication)HttpContext.ApplicationInstance).MainAdminUrl+"/PageEditor/"+z.PageID
                     });
@@ -228,44 +182,9 @@ namespace ZCMS.Core.Backend.Controllers
             return serializer.Serialize(items);
         }
 
-        public string DeleteAttachments(List<string> files)
-        {
-            _worker.FileRepository.DeleteAttachments(files);
-            return string.Format(CMS_i18n.BackendResources.FileManagerFilesWasDeleted, files.Count);
-        }
         #endregion
 
         #region Partial view rendering
-        public ActionResult RenderLeftMenu(string id)
-        {
-            try
-            {
-                HttpCookie cookie = new HttpCookie("active-menu");
-
-                cookie.Value = id;
-                Response.Cookies.Add(cookie);
-
-                return PartialView("SubMenu", _worker.CmsContentRepository.GetMenu(id));
-            }
-            catch(Exception e)
-            {
-                return View(e);
-            }
-        }
-
-
-        public ActionResult FileManagerList(List<string> extensionFilter, string filterFreeText)
-        {
-            List<ZCMSFileDocument> docs;
-
-            if (extensionFilter == null || extensionFilter.Count == 0)
-                docs = _worker.FileRepository.QueryAttachment(new List<string>() { "*" }, string.Empty);
-            else
-                docs = _worker.FileRepository.QueryAttachment(extensionFilter, filterFreeText);
-            return PartialView("FileManagerList", docs.Take(25).OrderBy(o => o.Created).Reverse().ToList());
-        }
-
-
 
         public ActionResult RenderAllRevisions(string id)
         {
@@ -282,81 +201,6 @@ namespace ZCMS.Core.Backend.Controllers
                 return PartialView();
             }
         }
-
-        public ActionResult FileSelector(string filterFreeText)
-        {
-            return PartialView("FileSelector", _worker.FileRepository.QueryAttachment(
-                new List<string>(System.Configuration.ConfigurationManager.AppSettings["ImageFileFormats"].ToString().Split(',')), filterFreeText).Take(25).OrderBy(o => o.Created).Reverse().ToList());
-        }
-
-        public ActionResult FileEditor(string id)
-        {
-            bool selected = false;
-            var file = _worker.FileRepository.Get(id);
-            List<SelectListItem> items = new List<SelectListItem>();
-            NameValueCollection contentTypes = (NameValueCollection)ConfigurationManager.GetSection("FileContentTypes");
-            foreach (var key in contentTypes.AllKeys)
-            {
-                selected = (key.Equals(file.Extension.ToLower()));
-                SelectListItem itm = new SelectListItem() { Text = contentTypes[key].ToString(), Value = key, Selected = selected };
-                items.Add(itm);
-            }
-            ViewData["AvailableContentTypes"] = items;
-
-            return PartialView("EditFile", _worker.FileRepository.Get(id));
-        }
-
-        public ActionResult RenderUnit(string id)
-        {
-            try
-            {                
-                return PartialView(id);
-            }
-            catch(Exception e)
-            {
-                return PartialView("PartialPageError", e.Message);
-            }
-        }
-
-        public ActionResult UploadAttachment()
-        {
-            try
-            {
-                HttpPostedFileBase postedFile = null;
-                Stream postedFileStream = null;
-
-                string fileName = string.Empty;
-                // Internet Exploder!
-                if (Request.Files["qqfile"] != null)
-                {
-                    postedFile = Request.Files["qqfile"] as HttpPostedFileBase;
-                    postedFileStream = postedFile.InputStream;
-                    fileName = postedFile.FileName;
-                }
-                // firefox / chrome etc
-                else if (Request.InputStream != null)
-                {
-                    postedFileStream = Request.InputStream;
-                    fileName = Request.QueryString["qqfile"] as string;
-                }
-
-                MemoryStream mstream = new MemoryStream();
-                postedFileStream.CopyTo(mstream);
-                mstream.Position = 0;
-
-                ZCMSFileDocument fDocument = new ZCMSFileDocument(fileName, CMS_i18n.BackendResources.FileManagerUploadedDescription);
-
-                _worker.FileRepository.StoreAttachment(fDocument, mstream);
-                
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = ex.Message }, "text/html");
-            }
-
-            return Json(new { success = true }, "text/html");
-        }
-
         #endregion
 
     }

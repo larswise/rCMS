@@ -61,6 +61,24 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password is required.
+        /// </summary>
+        public static string AuthPasswordRequired {
+            get {
+                return ResourceManager.GetString("AuthPasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is required.
+        /// </summary>
+        public static string AuthUsernameRequired {
+            get {
+                return ResourceManager.GetString("AuthUsernameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You need to sign-in to access this resource!.
         /// </summary>
         public static string LoginTopMessage {
@@ -84,6 +102,15 @@ namespace CMS_i18n {
         public static string LogonFailedMessage {
             get {
                 return ResourceManager.GetString("LogonFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign out.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
             }
         }
         

@@ -53,10 +53,11 @@ namespace ZCMS.Core.Backend.Controllers
             }
         }
 
-        [System.Web.Http.HttpGet]
-        public dynamic GetPages(string filter)
+        [System.Web.Http.HttpPost]
+        public dynamic PostGetPages(MultiSimpleParameter filter)
         {
-            var items = _worker.CmsContentRepository.SearchPages(filter).Select(z =>
+            PageStatus status = !String.IsNullOrEmpty(filter.Param2) ? (PageStatus)Enum.Parse(typeof(PageStatus), filter.Param2) : PageStatus.Any;
+            var items = _worker.CmsContentRepository.SearchPages(filter.Param1, status).Take(12).Select(z =>
                     new
                     {
                         PageName = z.PageName,
@@ -66,8 +67,8 @@ namespace ZCMS.Core.Backend.Controllers
                         CreatedBy = z.WrittenBy,
                         LastModifiedBy = z.LastChangedBy,
                         Status = z.Status.ToString(),
-                        StartPublish = z.StartPublish.Value.ToString(CMS_i18n.Formats.DateFormat),
-                        EndPublish = z.EndPublish.HasValue ? z.EndPublish.Value.ToString(CMS_i18n.Formats.DateFormat) : string.Empty,
+                        StartPublish = z.Properties.Where(p => p.PropertyName == "Start publish").FirstOrDefault().PropertyValue,
+                        EndPublish = z.Properties.Where(p => p.PropertyName == "End Publish").FirstOrDefault().PropertyValue,
                         PageType = z.PageType,
                         EditUrl = "/" + ((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainAdminUrl + "/PageEditor/" + z.PageID
                     });

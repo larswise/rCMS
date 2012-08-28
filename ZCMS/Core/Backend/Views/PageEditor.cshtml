@@ -7,46 +7,9 @@
 @{ Html.BeginForm("PageEditor", "Backend", null, FormMethod.Post, new { @enctype = "multipart/form-data", @id="page-editor-form" }); }
 <div class="editor-controls-wrap">
 
-<div class="page-editor-tools-save">
-    <a href="javascript:void(0);" id="save-publish-page">
-        <img border="0" src="@Url.Content("~/Content/Backend/images/arrow_up.png")" alt="-" title="@CMS_i18n.BackendResources.SavePublishPage" />
-        <span class="page-actions">@CMS_i18n.BackendResources.SavePublishPage</span>
-    </a>
-    </div>
-<div class="page-editor-tools-save-draft">
-    <a href="javascript:void(0);" id="save-draft-page">
-        <img border="0" src="@Url.Content("~/Content/Backend/images/diskette.png")" alt="-" title="@CMS_i18n.BackendResources.SaveDraftPage" />
-        <span class="page-actions">@CMS_i18n.BackendResources.SaveDraftPage</span>
-    </a>
-</div>
-<div class="page-editor-tools-versions">
-    <a href="javascript:void(0);" id="view-document-versions" data-val="@Model.PageID">
-        <img border="0" src="@Url.Content("~/Content/Backend/images/history2.png")" alt="-" title="@CMS_i18n.BackendResources.ViewDifferentVersions" />
-        <span class="page-actions">@CMS_i18n.BackendResources.ViewDifferentVersions</span></a>
-    
-</div>
-<div class="page-editor-tools-view">
-    <a href="@Url.Action("ViewPage", "Frontend", new { pageId = Model.PageID })" id="view-document">
-        <img border="0" src="@Url.Content("~/Content/Backend/images/eye_open.png")" alt="-" title="@CMS_i18n.BackendResources.ViewPage" />
-        <span class="page-actions">@CMS_i18n.BackendResources.ViewPage</span>
-    </a>
-    
-</div>
-<div class="page-editor-tools-delete">
-    <a href="@Url.Action("ViewPage", "Frontend", new { pageId = Model.PageID })" id="delete-document">
-        <img border="0" src="@Url.Content("~/Content/Backend/images/trash_can.png")" alt="-" title="@CMS_i18n.BackendResources.DeletePage" />
-        <span class="page-actions">@CMS_i18n.BackendResources.DeletePage</span>        
-    </a>
-    
-</div>
-
-<div class="norevs" style="display:none;">@CMS_i18n.BackendResources.NoRevisions</div>
-<div class="noupload" style="display:none;">@CMS_i18n.BackendResources.NoUpload</div>
-<div id="RevisionsContainer"></div>
-
-
 @Html.Partial("PageBase", Model)
-
+<div class="custom-properties-edit-wrap">
+</div>
 <div class="custom-properties-edit-wrap">
 @for (int i = 0; i<Model.Properties.Count; i++)
 {
@@ -59,9 +22,10 @@
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
             @Html.HiddenFor(m => m.Properties[i].PropertyName)
             @Html.HiddenFor(m => m.Properties[i].Order)
-                            
+            @Html.HiddenFor(m => m.Properties[i].PropertyValidator.GetType().FullName)
                         
             @Html.EditorFor(m => ((ZCMS.Core.Business.Content.RichTextProperty)m.Properties[i]).PropertyValue)
+            @Html.ValidationMessage("Properties."+Model.Properties[i].PropertyType)
             </div>
         }
         else if (Model.Properties[i] is ZCMS.Core.Business.Content.TextProperty)
@@ -73,8 +37,10 @@
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
             @Html.HiddenFor(m => m.Properties[i].PropertyName)
             @Html.HiddenFor(m => m.Properties[i].Order)
+            @Html.HiddenFor(m => m.Properties[i].PropertyValidator)
             
-            @Html.EditorFor(m => m.Properties[i].PropertyValue)
+            @Html.TextBoxFor(m => m.Properties[i].PropertyValue, new { @class = "text-box single-line" })
+            @Html.ValidationMessage("Properties."+Model.Properties[i].PropertyType)
             </div>
         }
         else if (Model.Properties[i] is ZCMS.Core.Business.Content.MultiLineTextProperty)
@@ -86,8 +52,10 @@
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
             @Html.HiddenFor(m => m.Properties[i].PropertyName)
             @Html.HiddenFor(m => m.Properties[i].Order)
-            
+            @Html.HiddenFor(m => m.Properties[i].PropertyValidator)
+
             @Html.TextAreaFor(m => m.Properties[i].PropertyValue, new { @class="multilinetextproperty" })
+            @Html.ValidationMessage("Properties."+Model.Properties[i].PropertyType)
             </div>
         }
         else if (Model.Properties[i] is ZCMS.Core.Business.Content.BooleanProperty)
@@ -99,7 +67,8 @@
             @Html.HiddenFor(m => m.Properties[i].PropertyType)
             @Html.HiddenFor(m => m.Properties[i].PropertyName)
             @Html.HiddenFor(m => m.Properties[i].Order)
-            
+            @Html.HiddenFor(m => m.Properties[i].PropertyValidator)
+
             @Html.EditorFor(m => m.Properties[i].PropertyValue)
             </div>
         }
@@ -133,6 +102,32 @@
             
             @Html.EditorFor(m => ((ZCMS.Core.Business.Content.TagsProperty)m.Properties[i]).PropertyValue)
             </div>            
+        } else if (Model.Properties[i] is ZCMS.Core.Business.Content.DateProperty) 
+        {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.Content.DateProperty)Model.Properties[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m.Properties[i].PropertyType)
+            @Html.HiddenFor(m => m.Properties[i].PropertyName)
+            @Html.HiddenFor(m => m.Properties[i].Order)
+            @Html.HiddenFor(m => m.Properties[i].PropertyValidator)
+            
+            @Html.TextBoxFor(m => m.Properties[i].PropertyValue, new { @class = "datefield", type = "date"  })
+            @Html.ValidationMessage("Properties."+Model.Properties[i].PropertyType)
+            </div>         
+        } else if(Model.Properties[i] is ZCMS.Core.Business.Content.DisplayOnlyTextProperty)
+        {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.Content.DisplayOnlyTextProperty)Model.Properties[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+                /<span style="font-style: italic;" id="url-slug">@(Model.Properties[i].PropertyValue!=null ? Model.Properties[i].PropertyValue.ToString() : String.Empty)</span>                
+                @Html.HiddenFor(m => m.Properties[i].PropertyType)
+                @Html.HiddenFor(m => m.Properties[i].PropertyName)
+                @Html.HiddenFor(m => m.Properties[i].Order)
+                @Html.HiddenFor(m => m.Properties[i].PropertyValue, new { @class = "actual-property-value" })
+            </div>
         }
         else {
             @Html.EditorFor(m => m.Properties[i].PropertyValue)

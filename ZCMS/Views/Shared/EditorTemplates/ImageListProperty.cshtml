@@ -5,7 +5,7 @@
     
 }
 <script type="text/javascript">
-    var item = @Html.Action("GetImages", new { key = items })
+    var item = @Html.Action("GetImages", "File", new { key = items })
 </script>
 <div class="editor-image-container" data-bind="foreach: images">
 

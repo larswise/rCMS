@@ -1,6 +1,37 @@
 ﻿
 $(function () {
-    $(".datefield").datepicker();
+    $(".datefield").datetimepicker();
+
+    $("#view-document-versions").click(function (e) {
+        $.get("/Backend/RenderAllRevisions/" + $(this).attr('data-val'), function (data) {
+
+            if (data) {
+                $("#RevisionsContainer").hide().html(data).fadeIn('slow', 'easeInSine', function () { });
+            } else {
+                console.log(data);
+                $("#RevisionsContainer").hide().html($(".norevs").text()).fadeIn('slow', 'easeInSine', function () { });
+            }
+            $("#close-revisions").click(function (e) {
+                $("#RevisionsContainer").fadeOut('slow', 'easeOutSine', function () { });
+            });
+        });
+    });
+
+    $("#save-publish-page").click(function (e) {
+        $("#page-editor-form").submit();
+    });
+
+    $("#save-draft-page").click(function (e) {
+        $('<input>').attr({
+            type: 'hidden',
+            id: 'save-draft',
+            name: 'save-draft',
+            value: '1'
+        }).appendTo('#page-editor-form');
+
+        $("#page-editor-form").submit();
+    });
+
     $(".file-selector").click(function () {
         $("#modal").modal({
             message: 'File Selector',
@@ -14,7 +45,7 @@ $(function () {
 
     $("#PageName").keyup(function () {
         $("#url-slug").text($(this).val().replace(new RegExp("[^a-zA-Z0-9\_]+", "g"), "-"));
-        $("#UrlSlug").val($("#url-slug").text());
+        $("#url-slug").parent().find(".actual-property-value").val($("#url-slug").text());
     });
 
     // ImageList mvvm
@@ -84,7 +115,7 @@ function OnFileSelectorClose() {
             success: function (data) {
                 for (i = 0; i < data.length; i++) {
                     console.log("A file was attached... : " + data[i].FileKey);
-                    var newImgItem = new ImageItem("/Backend/GetCurrentImage?key=" + data[i].FileKey);
+                    var newImgItem = new ImageItem("/File/GetCurrentImage?key=" + data[i].FileKey);
                     ImageListViewModel.addImage(newImgItem);
                 }
             },

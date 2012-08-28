@@ -61,6 +61,12 @@
     <Reference Include="Esent.Interop">
       <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\Esent.Interop.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.3.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC4.3.4.0.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>..\packages\RavenDB.Database.1.2.2059-Unstable\lib\net40\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
@@ -222,12 +228,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Core\Auth\Business\ZCMSUser.cs" />
     <Compile Include="Core\Auth\Controllers\AuthenticationController.cs" />
     <Compile Include="Core\Backend\Controllers\AjaxBackendController.cs" />
     <Compile Include="Core\Backend\Controllers\BackendController.cs" />
+    <Compile Include="Core\Backend\Controllers\FileController.cs" />
     <Compile Include="Core\Bootstrapper\ZCMSBootstrapper.cs" />
     <Compile Include="Core\Business\AutofacControllerFactory.cs" />
+    <Compile Include="Core\Business\Content\ZCMSBasePage.cs" />
     <Compile Include="Core\Business\Indexes.cs" />
+    <Compile Include="Core\Business\Validators\ZCMSValidators.cs" />
     <Compile Include="Core\Business\ZCMSBaseAjaxController.cs" />
     <Compile Include="Core\Business\ZCMSApplication.cs" />
     <Compile Include="Core\Business\ZCMSBaseController.cs" />
@@ -301,7 +311,7 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
-    <Content Include="Core\Backend\Scripts\AdminInit.js" />
+    <Content Include="Core\Backend\Scripts\FileManager.js" />
     <Content Include="Core\Backend\Scripts\Dashboard.js" />
     <Content Include="Core\Backend\Scripts\Modal.js" />
     <Content Include="Core\Backend\Scripts\PageEditor.js" />
@@ -317,6 +327,7 @@
     <Content Include="Core\Backend\Views\Shared\_backendLayout.cshtml" />
     <Content Include="Core\Backend\Scripts\backend_mainmenu.js" />
     <Content Include="Scripts\fileuploader.js" />
+    <Content Include="Scripts\timepickeraddon.js" />
     <Content Include="Views\Shared\EditorTemplates\TextProperty.cshtml" />
     <Content Include="Core\Backend\Views\Shared\Partials\SubMenu.cshtml" />
     <Content Include="Core\Backend\Views\Shared\Partials\RenderAllRevisions.cshtml" />
@@ -632,7 +643,6 @@
     <Content Include="Core\Backend\Views\FileManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Core\Auth\Scripts\" />
     <Folder Include="Core\Frontend\" />
     <Folder Include="Models\" />

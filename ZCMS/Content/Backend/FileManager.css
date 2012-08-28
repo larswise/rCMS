@@ -175,6 +175,15 @@ a.file-manager-upload {
 .file-edit-image img {
     max-width: 400px;
     max-height: 400px;
+    vertical-align: middle;
+    text-align:center;
+}
+
+
+.file-edit-image {
+    vertical-align: middle;
+    text-align:center;
+    padding-bottom: 15px;
 }
 
 .file-apply-effect {

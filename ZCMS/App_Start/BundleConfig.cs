@@ -12,7 +12,7 @@ namespace ZCMS
 
             
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                        "~/Scripts/jquery-ui*"));
+                        "~/Scripts/jquery-ui*", "~/Scripts/timepickeraddon.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
@@ -31,7 +31,7 @@ namespace ZCMS
             "~/Core/Backend/Scripts/Dashboard.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/BackendScriptsFile").Include(
-            "~/Core/Backend/Scripts/AdminInit.js"));
+            "~/Core/Backend/Scripts/FileManager.js"));
                     
 
             bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(

@@ -370,7 +370,7 @@
     <value>Published</value>
   </data>
   <data name="DashboardTextFilterLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Find documents</value>
   </data>
   <data name="PageTypeDisplayArticle" xml:space="preserve">
     <value>Article</value>
@@ -380,5 +380,14 @@
   </data>
   <data name="DashBoardHeader" xml:space="preserve">
     <value>Your content</value>
+  </data>
+  <data name="FileManagerEditFileApply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="ValidationPagePropertyRequired" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="ValidationPagePropertyRequiredAndLength" xml:space="preserve">
+    <value>Field must be between {0} and {1} characters in length</value>
   </data>
 </root>
