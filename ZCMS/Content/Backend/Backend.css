@@ -207,8 +207,7 @@ a.topics {
 
 
 .meta-unit {
-    display: table-row;
-    float: left;
+
     width: 100%;
     padding: 5px 0;
     margin: 1px 0 0 0;
@@ -259,6 +258,17 @@ a.topics {
     width: 100%;
 }
 
+.loader-unit {
+    padding: 25px 5px 5px 5px;
+    text-align: center;
+    width: 100%;
+    display: none;
+}
+
+.meta-wrap {
+    float: left;    
+}
+
 .edit-unit {
     width: 0 auto;
     overflow: hidden;
@@ -296,15 +306,14 @@ a.topics {
 }
 
 .file-picker-save-selected {
-    background: #FFD800;
+    background: #505050;
     padding: 3px;
     font-size: small;
-    border-radius: 2px;
+    border-radius: .25em;
+    clear: both;
     border: 1px solid black;
-    float: right;
-    position:absolute;
-    right:10px;
-    top: 45px;
+    color: #fff;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -385,8 +394,8 @@ a.topics {
 }
 
 .tag-item {
-    border-radius: 10px;
-    background: #FFD800;
+    border-radius: 5px;
+    background: #505050;
     height: 30px;
     margin: 5px 5px 0 5px;
     width: auto;
@@ -400,6 +409,7 @@ a.topics {
 .tag {
     padding: 5px;
     font-size: small;
+    color: #fff;
 }
 
 .tag-del img {
@@ -550,6 +560,12 @@ textarea {
     margin: 0.5em 0 0 0;
 }
 
+
+/* TABS */
+#zcms-tab-unit-1, #zcms-tab-unit-2, #zcms-tab-unit-3 {
+    padding: 15px;
+    background: #d9d9d9;
+}
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/

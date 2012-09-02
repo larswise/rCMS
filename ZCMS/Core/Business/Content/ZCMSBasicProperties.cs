@@ -16,6 +16,7 @@ namespace ZCMS.Core.Business.Content
         string PropertyName { get; set; }
         string PropertyType { get; }
         string PropertyValidator { get; set; }
+        Tab DisplayInTab { get; set; }
     }
 
     public class BooleanProperty : IZCMSProperty
@@ -25,6 +26,8 @@ namespace ZCMS.Core.Business.Content
         private string _propertyName;
         private int? _order;
         private string _validator;
+        private Tab _displayInTab;
+
 
         public object PropertyValue 
         {
@@ -82,6 +85,18 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
+        public Tab DisplayInTab
+        {
+            get
+            {
+                return _displayInTab;
+            }
+            set
+            {
+                _displayInTab = value;
+            }
+        }
+
     }
 
     public class TagsProperty : IZCMSProperty
@@ -91,6 +106,7 @@ namespace ZCMS.Core.Business.Content
         private string _propertyName;
         private int? _order;
         private string _validator;
+        private Tab _displayInTab;
 
         [UIHint("TagsProperty")]
         public object PropertyValue
@@ -159,6 +175,18 @@ namespace ZCMS.Core.Business.Content
                 _validator = value;
             }
         }
+
+        public Tab DisplayInTab
+        {
+            get
+            {
+                return _displayInTab;
+            }
+            set
+            {
+                _displayInTab = value;
+            }
+        }
     }
 
     public class DateProperty : IZCMSProperty
@@ -167,6 +195,7 @@ namespace ZCMS.Core.Business.Content
         private string _propertyName;
         private int? _order;
         private string _validator;
+        private Tab _displayInTab;
 
         public DateProperty() { }
 
@@ -226,6 +255,18 @@ namespace ZCMS.Core.Business.Content
                 _validator = value;
             }
         }
+
+        public Tab DisplayInTab
+        {
+            get
+            {
+                return _displayInTab;
+            }
+            set
+            {
+                _displayInTab = value;
+            }
+        }
     }
 
     public class RichTextProperty : IZCMSProperty
@@ -234,6 +275,7 @@ namespace ZCMS.Core.Business.Content
         private string _propertyName;
         private int? _order;
         private string _validator;
+        private Tab _displayInTab;
 
         public RichTextProperty() { } 
 
@@ -293,6 +335,18 @@ namespace ZCMS.Core.Business.Content
                 _validator = value;
             }
         }
+
+        public Tab DisplayInTab
+        {
+            get
+            {
+                return _displayInTab;
+            }
+            set
+            {
+                _displayInTab = value;
+            }
+        }
     }
 
     public class TextProperty : IZCMSProperty
@@ -301,6 +355,7 @@ namespace ZCMS.Core.Business.Content
         private string _propertyName;
         private int? _order;
         private string _validator;
+        private Tab _displayInTab;
 
         public TextProperty() { }
 
@@ -360,6 +415,18 @@ namespace ZCMS.Core.Business.Content
                 _validator = value;
             }
         }
+
+        public Tab DisplayInTab
+        {
+            get
+            {
+                return _displayInTab;
+            }
+            set
+            {
+                _displayInTab = value;
+            }
+        }
     }
 
     public class DisplayOnlyTextProperty : IZCMSProperty
@@ -368,6 +435,7 @@ namespace ZCMS.Core.Business.Content
         private string _propertyName;
         private int? _order;
         private string _validator;
+        private Tab _displayInTab;
 
         public DisplayOnlyTextProperty() { }
 
@@ -427,6 +495,18 @@ namespace ZCMS.Core.Business.Content
                 _validator = value;
             }
         }
+
+        public Tab DisplayInTab
+        {
+            get
+            {
+                return _displayInTab;
+            }
+            set
+            {
+                _displayInTab = value;
+            }
+        }
     }
 
     public class MultiLineTextProperty : IZCMSProperty
@@ -435,6 +515,7 @@ namespace ZCMS.Core.Business.Content
         private string _propertyName;
         private int? _order;
         private string _validator;
+        private Tab _displayInTab;
 
         public MultiLineTextProperty() { }
 
@@ -495,6 +576,18 @@ namespace ZCMS.Core.Business.Content
                 _validator = value;
             }
         }
+
+        public Tab DisplayInTab
+        {
+            get
+            {
+                return _displayInTab;
+            }
+            set
+            {
+                _displayInTab = value;
+            }
+        }
     }
     
     public class ImageListProperty : IZCMSProperty
@@ -503,6 +596,7 @@ namespace ZCMS.Core.Business.Content
         private int? _order;
         private List<string> _imageVirtualPaths = new List<string>();
         private string _validator;
+        private Tab _displayInTab;
 
         public ImageListProperty() { }
 
@@ -570,6 +664,18 @@ namespace ZCMS.Core.Business.Content
             set
             {
                 _validator = value;
+            }
+        }
+
+        public Tab DisplayInTab
+        {
+            get
+            {
+                return _displayInTab;
+            }
+            set
+            {
+                _displayInTab = value;
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Web;
 using Raven.Bundles.Authorization.Model;
 using Raven.Bundles.Authentication;
 using Raven.Bundles.Versioning;
+using Raven.Client.Authorization;
 using Raven.Client.Versioning;
 using Raven.Client;
 using Raven.Client.Document;
@@ -47,8 +48,8 @@ namespace ZCMS.Core.Data.Repositories
                         Allow = true,
                         Operation = "*",
                         Role = "Authorization/Roles/Administrators",
-                        User = "larswise",
-                        Priority = 1
+                        User = user,
+                        Priority = 1                        
                     }
                 }
             };
@@ -68,11 +69,24 @@ namespace ZCMS.Core.Data.Repositories
                                 new OperationPermission
                                 {
                                     Allow = true,
-                                    Operation = "*"
+                                    Operation = "*",
+                                    Tags = { "Elevated" }
+                                },
+                                new OperationPermission
+                                {
+                                    Allow = true,
+                                    Operation = "SaveAPage",
+                                    Tags = { "Elevated" }
+                                },
+                                new OperationPermission
+                                {
+                                    Allow = true,
+                                    Operation = "RetrieveAPage",
+                                    Tags = { "Elevated" }
                                 }
                             }
                 });
-
+                
                 _session.Store(new AuthorizationRole
                 {
                     Id = String.Format("Authorization/Roles/{0}", "Users"),
@@ -80,7 +94,8 @@ namespace ZCMS.Core.Data.Repositories
                                 new OperationPermission
                                 {
                                     Allow = true,
-                                    Operation = "*"
+                                    Operation = "RetrieveAPage",
+                                    Tags = { "Elevated" }
                                 }
                             }
                 });
@@ -99,7 +114,8 @@ namespace ZCMS.Core.Data.Repositories
                             }
                         }
                 });
-                _session.SaveChanges();
+
+                
 
                 _session.Store(new AuthenticationUser
                 {
@@ -108,6 +124,21 @@ namespace ZCMS.Core.Data.Repositories
                     AllowedDatabases = new[] { "*" }
                 }.SetPassword(ConfigurationManager.AppSettings["RavenDBAccountPassword"].ToString()));
 
+                _session.Store(new AuthorizationUser
+                {
+                    Id = String.Format("Authorization/Users/testuser"),
+                    Name = "Testulf Svulst",
+                    Roles = new List<string>() { String.Format("Authorization/Roles/Users") },
+
+                });
+
+                _session.Store(new AuthenticationUser
+                {
+                    Name = "Cheff",
+                    Id = String.Format("Raven/Users/testuser"),
+                    AllowedDatabases = new[] { "*" }
+                }.SetPassword("zlol"));
+                _session.SaveChanges();
             }
             catch (Exception e)
             {

@@ -9,6 +9,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Raven.Client;
+using ZCMS.Core.Auth.Business;
 using ZCMS.Core.Business;
 using ZCMS.Core.Business.Content;
 using ZCMS.Core.Data;
@@ -31,9 +32,10 @@ namespace ZCMS.Core.Backend.Controllers
         #region Page Actions
         public ActionResult PageEditor(int ?pageId, string mParameter)
         {
-            dynamic pagePublishType = ZCMSPageFactory.GetPagePublishType(mParameter);        
-    
-            
+            dynamic pagePublishType = ZCMSPageFactory.GetPagePublishType(mParameter);
+
+            ViewData["PermissionSet"] = PermissionSet.GetAvailablePermissions().Select(x => new SelectListItem { Value = x.PermissionValue, Text = x.PermissionDisplay });
+                
             if (pageId.HasValue)
             {
 
@@ -106,7 +108,7 @@ namespace ZCMS.Core.Backend.Controllers
                                         
                     ravenPage.LastModified = DateTime.Now;
                     ravenPage.LastChangedBy = _worker.AuthenticationRepository.GetCurrentUserName();
-                    ravenPage.Status = page.Status;                   
+                    ravenPage.Status = page.Status;
 
                     TempData["DocumentSaved"] = CMS_i18n.BackendResources.DocumentSaved;
                     return RedirectToAction("PageEditor", new { pageId = ravenPage.PageID });
@@ -117,7 +119,7 @@ namespace ZCMS.Core.Backend.Controllers
                     page.LastChangedBy = page.WrittenBy;
                     page.LastModified = DateTime.Now;
                     page.Created = DateTime.Now;
-                    _worker.CmsContentRepository.CreateCmsPage(page);
+                    _worker.CmsContentRepository.CreateCmsPage(page, Request.Form["PermissionSet"].ToString());
                 }
                 return RedirectToAction("PageEditor", new { pageId = page.PageID });
             }
@@ -173,8 +175,8 @@ namespace ZCMS.Core.Backend.Controllers
                         CreatedBy = z.WrittenBy,
                         LastModifiedBy = z.LastChangedBy,
                         Status = z.Status.ToString(),
-                        StartPublish = z.Properties.Where(p => p.PropertyName == "Start publish").FirstOrDefault().PropertyValue,
-                        EndPublish = z.Properties.Where(p => p.PropertyName == "End Publish").FirstOrDefault().PropertyValue,
+                        StartPublish = z.StartPublish,
+                        EndPublish = z.EndPublish,
                         PageType = z.PageType,                       
                         EditUrl = "/"+((ZCMSApplication)HttpContext.ApplicationInstance).MainAdminUrl+"/PageEditor/"+z.PageID
                     });

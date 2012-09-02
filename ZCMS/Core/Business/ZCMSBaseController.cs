@@ -32,6 +32,7 @@ namespace ZCMS.Core.Business
         {
             base.OnActionExecuting(filterContext);
             _worker.OpenSession();
+            
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)

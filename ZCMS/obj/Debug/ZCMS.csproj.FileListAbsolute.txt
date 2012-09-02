@@ -22,7 +22,6 @@ C:\Projects\ZCMS\ZCMS\bin\NuGet.Core.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Backup.exe
 C:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authentication.dll
-C:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authorization.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Lightweight.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Versioning.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Database.dll
@@ -63,7 +62,6 @@ C:\Projects\ZCMS\ZCMS\bin\NLog.xml
 C:\Projects\ZCMS\ZCMS\bin\Raven.Abstractions.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Backup.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authentication.pdb
-C:\Projects\ZCMS\ZCMS\bin\Raven.Bundles.Authorization.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Lightweight.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Versioning.pdb
 C:\Projects\ZCMS\ZCMS\bin\Raven.Database.pdb
@@ -102,3 +100,5 @@ C:\Projects\ZCMS\ZCMS\bin\pt\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMS\bin\ru\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMS\bin\sv\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMS\bin\tr\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Authorization.dll
+C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Authorization.pdb

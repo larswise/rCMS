@@ -14,7 +14,6 @@ C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\CMS_i18n.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Autofac.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Autofac.Integration.Mvc.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Autofac.Integration.WebApi.dll
-C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Bundles.Authorization.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Bundles.Authentication.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Versioning.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Lucene.Net.dll
@@ -39,7 +38,6 @@ C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\System.Web.Http.xml
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\System.Web.Http.WebHost.xml
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\CMS_i18n.pdb
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Autofac.xml
-C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Bundles.Authorization.pdb
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Bundles.Authentication.pdb
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Versioning.pdb
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Lucene.Net.pdb
@@ -71,3 +69,5 @@ C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\pt\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\ru\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\sv\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\tr\FluentValidation.resources.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Authorization.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Authorization.pdb

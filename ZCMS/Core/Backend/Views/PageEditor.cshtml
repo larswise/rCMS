@@ -1,143 +1,73 @@
 @model ZCMS.Core.Business.Content.ZCMSPage
-
 @{
     ViewBag.Title = "EditPage";
     Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
+    var tab1 = Model.Properties.Where(m => m.DisplayInTab == ZCMS.Core.Business.Tab.Tab1).ToList();
+    var tab2 = Model.Properties.Where(m => m.DisplayInTab == ZCMS.Core.Business.Tab.Tab2).ToList();
+    var tab3 = Model.Properties.Where(m => m.DisplayInTab == ZCMS.Core.Business.Tab.Tab3).ToList();
+
+    
 }
 @{ Html.BeginForm("PageEditor", "Backend", null, FormMethod.Post, new { @enctype = "multipart/form-data", @id="page-editor-form" }); }
+
 <div class="editor-controls-wrap">
 
 @Html.Partial("PageBase", Model)
+<div id="zcms-tabs">
+    <ul>
+		<li><a href="#zcms-tab-unit-1">General</a></li>
+		<li><a href="#zcms-tab-unit-2">Content</a></li>
+		<li><a href="#zcms-tab-unit-3">More</a></li>
+	</ul>
+<div id="zcms-tab-unit-1">
+<div class="page-edit-top">
+       
+<div class="edit-top-label">
+    @Html.LabelFor(model => model.PageName):
+</div>
+<div class="edit-top-unit">
+    @Html.EditorFor(model => model.PageName)
+    @Html.ValidationMessage("PageName.PageName")
+</div>
+</div>
+<div class="page-edit-top">        
+<div class="edit-top-label">
+    @Html.LabelFor(m => m.StartPublish):
+</div>
+<div class="edit-top-unit">
+    @Html.EditorFor(m => m.StartPublish, new { @class = "datefield", type = "date"  })
+    @Html.ValidationMessage("StartPublish.StartPublish")
+</div>  
+</div>
+<div class="page-edit-top">
+<div class="edit-top-label">
+     @Html.LabelFor(m => m.EndPublish):
+</div>
+<div class="edit-top-unit">
+     @Html.EditorFor(m => m.EndPublish, new { @class = "datefield", type = "date"  })
+     @Html.ValidationMessage("EndPublish.EndPublish")
+</div> 
+</div>
+@Html.Partial("PageProperties", Model.Properties, new ViewDataDictionary() {{ "tabstart", 0 }, { "tabend", tab1.Count }})
+<!-- permission set -->
 <div class="custom-properties-edit-wrap">
+<div class="edit-top-label">
+     @Html.Label(CMS_i18n.BackendResources.PagePermissions):
 </div>
-<div class="custom-properties-edit-wrap">
-@for (int i = 0; i<Model.Properties.Count; i++)
-{
-    <div class="edit-unit">
-        @if(Model.Properties[i] is ZCMS.Core.Business.Content.RichTextProperty) {            
-            <div class="unit-label">
-            @Html.Label(Model.Properties[i].PropertyName):
-            </div>
-            <div class="unit-unit">
-            @Html.HiddenFor(m => m.Properties[i].PropertyType)
-            @Html.HiddenFor(m => m.Properties[i].PropertyName)
-            @Html.HiddenFor(m => m.Properties[i].Order)
-            @Html.HiddenFor(m => m.Properties[i].PropertyValidator.GetType().FullName)
-                        
-            @Html.EditorFor(m => ((ZCMS.Core.Business.Content.RichTextProperty)m.Properties[i]).PropertyValue)
-            @Html.ValidationMessage("Properties."+Model.Properties[i].PropertyType)
-            </div>
-        }
-        else if (Model.Properties[i] is ZCMS.Core.Business.Content.TextProperty)
-        {
-            <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.Content.TextProperty)Model.Properties[i]).PropertyName):
-            </div>
-            <div class="unit-unit">
-            @Html.HiddenFor(m => m.Properties[i].PropertyType)
-            @Html.HiddenFor(m => m.Properties[i].PropertyName)
-            @Html.HiddenFor(m => m.Properties[i].Order)
-            @Html.HiddenFor(m => m.Properties[i].PropertyValidator)
-            
-            @Html.TextBoxFor(m => m.Properties[i].PropertyValue, new { @class = "text-box single-line" })
-            @Html.ValidationMessage("Properties."+Model.Properties[i].PropertyType)
-            </div>
-        }
-        else if (Model.Properties[i] is ZCMS.Core.Business.Content.MultiLineTextProperty)
-        {
-            <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.Content.MultiLineTextProperty)Model.Properties[i]).PropertyName):
-            </div>
-            <div class="unit-unit">
-            @Html.HiddenFor(m => m.Properties[i].PropertyType)
-            @Html.HiddenFor(m => m.Properties[i].PropertyName)
-            @Html.HiddenFor(m => m.Properties[i].Order)
-            @Html.HiddenFor(m => m.Properties[i].PropertyValidator)
-
-            @Html.TextAreaFor(m => m.Properties[i].PropertyValue, new { @class="multilinetextproperty" })
-            @Html.ValidationMessage("Properties."+Model.Properties[i].PropertyType)
-            </div>
-        }
-        else if (Model.Properties[i] is ZCMS.Core.Business.Content.BooleanProperty)
-        {
-            <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.Content.BooleanProperty)Model.Properties[i]).PropertyName):
-            </div>
-            <div class="unit-unit">
-            @Html.HiddenFor(m => m.Properties[i].PropertyType)
-            @Html.HiddenFor(m => m.Properties[i].PropertyName)
-            @Html.HiddenFor(m => m.Properties[i].Order)
-            @Html.HiddenFor(m => m.Properties[i].PropertyValidator)
-
-            @Html.EditorFor(m => m.Properties[i].PropertyValue)
-            </div>
-        }
-        else if (Model.Properties[i] is ZCMS.Core.Business.Content.ImageListProperty)
-        {
-            <div class="unit-label">
-                
-            @Html.Label(((ZCMS.Core.Business.Content.ImageListProperty)Model.Properties[i]).PropertyName):
-            </div>
-            <div class="unit-unit">
-            @Html.HiddenFor(m => m.Properties[i].PropertyType)
-            @Html.HiddenFor(m => m.Properties[i].PropertyName)
-            @Html.HiddenFor(m => m.Properties[i].Order)
-            <a href="javascript:void(0);" class="file-selector">@CMS_i18n.BackendResources.FileManagerLaunch</a>
-            @if (((List<string>)Model.Properties[i].PropertyValue).Count >= 6)
-            {
-                <span class="too-many-images">@CMS_i18n.BackendResources.FileManagerNoMoreFilesAllowed</span>
-            }
-            @Html.EditorFor(m => ((ZCMS.Core.Business.Content.ImageListProperty)m.Properties[i]).PropertyValue)
-            </div>
-        }
-        else if (Model.Properties[i] is ZCMS.Core.Business.Content.TagsProperty)
-        {
-            <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.Content.TagsProperty)Model.Properties[i]).PropertyName):
-            </div>
-            <div class="unit-unit">
-            @Html.HiddenFor(m => m.Properties[i].PropertyType)
-            @Html.HiddenFor(m => m.Properties[i].PropertyName)
-            @Html.HiddenFor(m => m.Properties[i].Order)
-            
-            @Html.EditorFor(m => ((ZCMS.Core.Business.Content.TagsProperty)m.Properties[i]).PropertyValue)
-            </div>            
-        } else if (Model.Properties[i] is ZCMS.Core.Business.Content.DateProperty) 
-        {
-            <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.Content.DateProperty)Model.Properties[i]).PropertyName):
-            </div>
-            <div class="unit-unit">
-            @Html.HiddenFor(m => m.Properties[i].PropertyType)
-            @Html.HiddenFor(m => m.Properties[i].PropertyName)
-            @Html.HiddenFor(m => m.Properties[i].Order)
-            @Html.HiddenFor(m => m.Properties[i].PropertyValidator)
-            
-            @Html.TextBoxFor(m => m.Properties[i].PropertyValue, new { @class = "datefield", type = "date"  })
-            @Html.ValidationMessage("Properties."+Model.Properties[i].PropertyType)
-            </div>         
-        } else if(Model.Properties[i] is ZCMS.Core.Business.Content.DisplayOnlyTextProperty)
-        {
-            <div class="unit-label">
-            @Html.Label(((ZCMS.Core.Business.Content.DisplayOnlyTextProperty)Model.Properties[i]).PropertyName):
-            </div>
-            <div class="unit-unit">
-                /<span style="font-style: italic;" id="url-slug">@(Model.Properties[i].PropertyValue!=null ? Model.Properties[i].PropertyValue.ToString() : String.Empty)</span>                
-                @Html.HiddenFor(m => m.Properties[i].PropertyType)
-                @Html.HiddenFor(m => m.Properties[i].PropertyName)
-                @Html.HiddenFor(m => m.Properties[i].Order)
-                @Html.HiddenFor(m => m.Properties[i].PropertyValue, new { @class = "actual-property-value" })
-            </div>
-        }
-        else {
-            @Html.EditorFor(m => m.Properties[i].PropertyValue)
-        }
-    
-    </div>
-}
+<div class="edit-top-unit">
+     @Html.DropDownList("PermissionSet")
+</div> 
+</div>
+<!-- permission set end -->
+</div>
+<div id="zcms-tab-unit-2">
+@Html.Partial("PageProperties", Model.Properties, new ViewDataDictionary() {{ "tabstart", tab1.Count }, { "tabend", tab1.Count+tab2.Count }})
+</div>
+<div id="zcms-tab-unit-3">
+@Html.Partial("PageProperties", Model.Properties, new ViewDataDictionary() {{ "tabstart", Model.Properties.Count-tab3.Count }, { "tabend", Model.Properties.Count }})
 </div>
 </div>
-
+</div>
 @{ Html.EndForm(); }
 
 <!-- modal -->

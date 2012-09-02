@@ -102,8 +102,9 @@
     <Reference Include="Raven.Bundles.Authentication">
       <HintPath>..\packages\RavenDB.Bundles.Authentication.1.2.2059-Unstable\lib\net40\Raven.Bundles.Authentication.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Bundles.Authorization">
-      <HintPath>..\packages\RavenDB.Bundles.Authorization.1.2.2059-Unstable\lib\net40\Raven.Bundles.Authorization.dll</HintPath>
+    <Reference Include="Raven.Client.Authorization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Users\Administrator\Raven.Client.Authorization.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -228,6 +229,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Core\Auth\Business\PermissionSet.cs" />
     <Compile Include="Core\Auth\Business\ZCMSUser.cs" />
     <Compile Include="Core\Auth\Controllers\AuthenticationController.cs" />
     <Compile Include="Core\Backend\Controllers\AjaxBackendController.cs" />
@@ -261,6 +263,7 @@
     <Compile Include="Core\Data\Repositories\ContentRepository.cs" />
     <Compile Include="Core\Data\Repositories\FileRepository.cs" />
     <Compile Include="Core\Data\UnitOfWork.cs" />
+    <Compile Include="Core\Frontend\Controllers\FrontendController.cs" />
     <Compile Include="Core\Security\ZCMSAuthenticateAttribute.cs" />
     <Compile Include="Core\Security\ZCMSRequireSslAttribute.cs" />
     <Compile Include="Core\Utils\ImageEffects.cs" />
@@ -344,6 +347,11 @@
     <Content Include="Core\Backend\Views\Shared\Partials\Modals\EditFile.cshtml" />
     <Content Include="Core\Backend\Views\Shared\Partials\Modals\Web.config" />
     <Content Include="Core\Backend\Views\Dashboard.cshtml" />
+    <Content Include="Core\Backend\Views\Shared\Partials\PageProperties.cshtml" />
+    <Content Include="Core\Frontend\Views\Shared\_frontendLayout.cshtml" />
+    <Content Include="Core\Frontend\Views\ViewPage.cshtml" />
+    <Content Include="Core\Frontend\Views\Web.config" />
+    <Content Include="Core\Frontend\Views\Shared\Web.config" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -644,7 +652,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Auth\Scripts\" />
-    <Folder Include="Core\Frontend\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Backend\" />
   </ItemGroup>

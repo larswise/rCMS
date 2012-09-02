@@ -256,7 +256,7 @@
     <value>Show in menu</value>
   </data>
   <data name="StartPublish" xml:space="preserve">
-    <value>Start publish</value>
+    <value>Start Publish</value>
   </data>
   <data name="Tags" xml:space="preserve">
     <value>Tags</value>
@@ -389,5 +389,20 @@
   </data>
   <data name="ValidationPagePropertyRequiredAndLength" xml:space="preserve">
     <value>Field must be between {0} and {1} characters in length</value>
+  </data>
+  <data name="ValidationPageDateTime" xml:space="preserve">
+    <value>Not a valid date</value>
+  </data>
+  <data name="PagePermissions" xml:space="preserve">
+    <value>Permission</value>
+  </data>
+  <data name="PermissionSetAdmin" xml:space="preserve">
+    <value>Deny</value>
+  </data>
+  <data name="PermissionSetElevated" xml:space="preserve">
+    <value>Elevated</value>
+  </data>
+  <data name="PermissionSetNone" xml:space="preserve">
+    <value>None</value>
   </data>
 </root>

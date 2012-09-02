@@ -1,3 +1,2 @@
 ﻿@model DateTime?
-
-@Html.TextBoxFor(m => m.HasValue ? (Convert.ToDateTime(m.Value)!=DateTime.MinValue? m.Value.ToString(CMS_i18n.Formats.DateFormat) : "") : "", new { @class = "datefield", type = "date"  })
+@Html.TextBox("", (Model.HasValue&&Model.Value!=DateTime.MinValue ? Model.Value.ToString(CMS_i18n.Formats.DateFormat) : string.Empty), new { @class = "datefield", type = "date" })

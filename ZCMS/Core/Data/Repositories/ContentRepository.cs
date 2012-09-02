@@ -10,10 +10,12 @@ using Raven.Client.Extensions;
 using Raven.Client.Linq;
 using Raven.Client.Util;
 using Raven.Client.Document.SessionOperations;
+using Raven.Client.Authorization;
 using Raven.Json.Linq;
 using ZCMS.Core.Business;
 using System.Linq.Expressions;
 using ZCMS.Core.Business.Content;
+using Raven.Bundles.Authorization.Model;
 
 namespace ZCMS.Core.Data.Repositories
 {
@@ -30,7 +32,19 @@ namespace ZCMS.Core.Data.Repositories
 
         public ZCMSPage GetCmsPage(string pageID)
         {
+            _session.SecureFor("Authorization/Users/" + HttpContext.Current.User.Identity.Name, "RetrieveAPage");            
             return _session.Load<ZCMSPage>(pageID);
+        }
+
+        public ZCMSPage GetCmsPageBySlug(string slug)
+        {
+            var page = _session.Advanced.LuceneQuery<ZCMSPage, PageIndexer>().Search("Slug", slug).ToList().FirstOrDefault();
+
+            var ops = _session.Advanced.IsOperationAllowedOnDocument("Authorization/Users/" + (!String.IsNullOrEmpty(HttpContext.Current.User.Identity.Name)?HttpContext.Current.User.Identity.Name:"Anonymous"), "RetrievePage", page.PageID.ToString());
+            //_session.SecureFor("Authorization/Users/" + HttpContext.Current.User.Identity.Name, "RetrieveAPage");
+            if(!ops.IsAllowed)
+                throw new UnauthorizedAccessException(String.Join(", ", ops.Reasons.ToArray()));
+            return page;            
         }
 
         public List<ZCMSPage> SearchPages(string query, PageStatus status)
@@ -91,9 +105,27 @@ namespace ZCMS.Core.Data.Repositories
             }
         }
 
-        public void CreateCmsPage(ZCMSPage page)
+        public void CreateCmsPage(ZCMSPage page, string permission)
         {
+            _session.SecureFor("Authorization/Users/"+HttpContext.Current.User.Identity.Name, "SaveAPage");
+            
             _session.Store(page, page.PageID.ToString());
+
+            var doc = _session.Load<ZCMSPage>(page.PageID);
+
+            if (!String.IsNullOrEmpty(permission) && !permission.Equals("None"))
+            {
+                _session.SetAuthorizationFor(page, new Raven.Bundles.Authorization.Model.DocumentAuthorization()
+                {
+                    Tags = { permission },
+                    Permissions =
+                    {
+                        new DocumentPermission() { Allow = true, Operation = "RetrievePage", Role = "Authorization/Roles/Users" },
+                        new DocumentPermission() { Allow = true, Operation = "RetrievePage", Role = "Authorization/Roles/Administrators" },
+                        new DocumentPermission() { Allow = true, Operation = "EditPage", Role = "Authorization/Roles/Administrators" }
+                    }
+                });
+            }
         }
 
         public void DeleteCmsPage(ZCMSPage page)

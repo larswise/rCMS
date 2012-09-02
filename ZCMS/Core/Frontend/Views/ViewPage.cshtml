@@ -1,0 +1,15 @@
+﻿@model ZCMS.Core.Business.Content.ZCMSPage
+@{
+    Layout = "~/Core/Frontend/Views/Shared/_frontendLayout.cshtml";
+}
+
+    <div>
+    @if(Model == null)
+    {
+        <div>No pages was returned </div>
+    }
+    else 
+    {
+        <div>We have page @Model.PageName</div>
+    }
+    </div>

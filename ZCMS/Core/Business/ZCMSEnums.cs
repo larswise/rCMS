@@ -18,6 +18,27 @@ namespace ZCMS.Core.Business
         Any
     }
 
+    public enum Tab
+    {
+        [Display(Name = "Tab1")]
+        Tab1,
+        [Display(Name = "Tab2")]
+        Tab2,
+        [Display(Name = "Tab3")]
+        Tab3
+
+    }
+
+    public enum PageType
+    {
+        [Display(Name = "Contentpage")]
+        Contentpage,
+        [Display(Name = "Email")]
+        Email,
+        [Display(Name = "Form")]
+        Formpage
+    }
+
     public enum FileType
     {
         ImageFile,

@@ -2,6 +2,8 @@
 $(function () {
     $(".datefield").datetimepicker();
 
+    $("#zcms-tabs").tabs({ idPrefix: "#zcms-tab-unit" });
+
     $("#view-document-versions").click(function (e) {
         $.get("/Backend/RenderAllRevisions/" + $(this).attr('data-val'), function (data) {
 
@@ -65,7 +67,7 @@ $(function () {
         var posX = e.pageX;
         var posY = e.pageY;
         
-        var template = "<div class='fullsize' style='position:absolute;z-index:10000; max-width: 400; max-height: 400; top:65%; left:50%;overflow:visible;background:#c0c0c0;padding:10px;border:1px solid black;'>" +
+        var template = "<div class='fullsize' style='position:absolute;z-index:10000; max-width: 400; max-height: 400; top:40%; left:50%;overflow:hidden;background:#c0c0c0;padding:10px;border:1px solid black;'>" +
                        "<img style='max-width: 400px; max-height: 400px; !important; vertical-align: middle;text-align:center' src='" + $(this).attr('src') + "' alt=' ' /></div>";
 
         $('.editor-image-container').before(template);

@@ -65,6 +65,17 @@ namespace ZCMS
             ?
             string.Empty : ((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainAdminUrl.TrimEnd('/') + "/";
 
+
+            string mainFrontendPath =
+            string.IsNullOrEmpty(((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainContentUrl)
+            ?
+            string.Empty : ((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainContentUrl.TrimEnd('/') + "/";
+            routes.MapRoute(
+                "Frontend",
+                mainFrontendPath + "{slug}",
+                new { Controller = "Frontend", Action = "ViewPage", slug = UrlParameter.Optional }
+            );
+
             routes.MapRoute(
                 "Backend_PublishPageTypeNoID",
                 mainAdminPath + "PageEditor/{pageType}",
@@ -93,7 +104,6 @@ namespace ZCMS
                 mainAdminPath + "UploadAttachment/{pageId}",
                 new { Controller = "File", action = "UploadAttachment", pageId = UrlParameter.Optional }
             );
-
 
 
             routes.MapRoute(

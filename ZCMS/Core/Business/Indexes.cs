@@ -14,6 +14,7 @@ namespace ZCMS.Core.Business
         public class Result 
         {
             public string Body { get; set; }
+            public string Slug { get; set; }
         }
 
         public PageIndexer()
@@ -21,10 +22,13 @@ namespace ZCMS.Core.Business
             AddMap<ZCMSPage>(items => from x in items
                             select new Result 
                             {  
-                                 Body = x.GetPropertyValues() + " " + x.WrittenBy + " " + x.LastChangedBy + " " + x.PageName + " " + x.PageID.ToString()
+                                Slug = x.SlugValue,
+                                Body = x.PropertyValues + " " + x.WrittenBy + " " + x.LastChangedBy + " " + x.PageName + " " + x.PageID.ToString()
+                                 
                             });
 
             Index(x => x.Body, FieldIndexing.Analyzed);
+            Index(x => x.Slug, FieldIndexing.Analyzed);
         }
     }
 }

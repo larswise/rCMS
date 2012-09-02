@@ -6,6 +6,7 @@ using System.Web;
 using Raven.Bundles.Authentication;
 using Raven.Bundles.Versioning;
 using Raven.Client.Versioning;
+using Raven.Client.Authorization;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Json.Linq;
@@ -82,8 +83,19 @@ namespace ZCMS.Core.Data
 
         public void SaveAllChanges()
         {
-            if (_session != null)
-                _session.SaveChanges();
+            try
+            {
+                if (_session != null)
+                    _session.SaveChanges();
+            }
+            catch (Raven.Database.Exceptions.OperationVetoedException ove)
+            {
+                throw ove;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void CloseSession()

@@ -39,6 +39,7 @@
 <div id="RevisionsContainer"></div>
 
 <div class="custom-properties-edit-wrap">
+<div class="meta-wrap">
 <div class="edit-unit">
 <div class="edit-top-nw">
     @Html.Label(CMS_i18n.BackendResources.PageID):
@@ -79,19 +80,11 @@
     }
 </div>
 </div>
-<div class="edit-unit">
-
-<div class="unit-unit">
-    @Html.HiddenFor(m => m.PageType)
+</div>
+<div class="meta-wrap">
+<div class="loader-unit">
+    <img src="/Content/Backend/Images/103.gif" alt="" />
 </div>
 </div>
-<div class="page-edit-top">
-<div class="edit-top-label">
-    @Html.LabelFor(model => model.PageName):
-</div>
-<div class="edit-top-unit">
-    @Html.EditorFor(model => model.PageName)
-    @Html.ValidationMessage("PageName.PageName")
-</div>
-</div>
+@Html.HiddenFor(m => m.PageType)
 </div>

@@ -12,6 +12,8 @@ namespace ZCMS.Core.Business
         private static string[] NewViewFormats = new[] { 
                 "~/Core/Backend/Views/{0}.cshtml",
                 "~/Core/Auth/Views/{0}.cshtml",
+                "~/Core/Frontend/Views/{0}.cshtml",
+                "~/Core/Frontend/Views/{0}/{0}.cshtml",
                 "~/Core/Auth/Views/{0}/{0}.cshtml",
                 "~/Core/Backend/Views/Shared/Partials/{0}.cshtml"
         };

@@ -38,6 +38,41 @@ namespace ZCMS.Core.Business.Validators
         }
     }
 
+    public class DateTimeValidator : AbstractValidator<string>
+    {
+        public DateTimeValidator(bool required, string shortDisplayName)
+        {
+            if (required)
+            {
+                RuleFor(x => x)
+                    .Must(BeAValidDate)
+                    .WithMessage(CMS_i18n.BackendResources.ValidationPageDateTime)
+                    .Must(RequiredDate)
+                    .WithMessage(CMS_i18n.BackendResources.ValidationPagePropertyRequired)
+                    .OverridePropertyName(shortDisplayName);
+            }
+            else
+                RuleFor(x => x).NotEmpty().WithMessage(CMS_i18n.BackendResources.ValidationPageDateTime).OverridePropertyName(shortDisplayName);
+        }
+
+        private bool BeAValidDate(string value)
+        {
+            DateTime dt;
+            if (DateTime.TryParse(value, out dt))
+                return true;
+            return false;
+        }
+
+        private bool RequiredDate(string value)
+        {
+            DateTime dt;
+            if (DateTime.TryParse(value, out dt) && dt >= DateTime.MinValue)
+                return true;
+            else
+                return false;
+        }
+    }
+
 
 
     public class DatePropertyNotEmptyValidator : AbstractValidator<IZCMSProperty>
@@ -53,22 +88,24 @@ namespace ZCMS.Core.Business.Validators
 
     public class ZCMSModelValidatorProvider : ModelValidatorProvider
     {
+        private List<string> validateProperties = new List<string>() { "Name", "Start Publish", "End Publish" };
         public override IEnumerable<ModelValidator> GetValidators(ModelMetadata metadata, ControllerContext context)
         {
-            if(metadata.Model is List<IZCMSProperty>)
+            if (metadata.Model != null)
             {
-                foreach (var modelItem in (List<IZCMSProperty>)metadata.Model)
+                if (metadata.Model is List<IZCMSProperty>)
                 {
-                    yield return new ValidationAdapter(metadata, modelItem, context);
+                    foreach (var modelItem in (List<IZCMSProperty>)metadata.Model)
+                    {
+                        yield return new ValidationAdapter(metadata, modelItem, context);
+                    }
+                }
+
+                if (metadata.Model.GetType() == typeof(DateTime) || (!String.IsNullOrEmpty(metadata.DisplayName) && metadata.DisplayName == "Name"))
+                {
+                    yield return new ValidationAdapter(metadata, context);
                 }
             }
-
-            if (!String.IsNullOrEmpty(metadata.DisplayName) && metadata.DisplayName.Equals("Name"))
-            {
-                yield return new ValidationAdapter(metadata, context);
-            }
-            
-
         }
     }
 
@@ -105,16 +142,29 @@ namespace ZCMS.Core.Business.Validators
 
             if (Metadata.Model != null)
             {
-                FluentValidation.Results.ValidationResult result = new TextStringLengthNotNullEmptyValidator("PageName").Validate(Metadata.Model.ToString());
-
+                FluentValidation.Results.ValidationResult result;
+                if (Metadata.Model.GetType() == typeof(string) && Metadata.IsRequired && Metadata.AdditionalValues.Count > 0)
+                    result = new TextStringLengthNotNullEmptyValidator(Metadata.AdditionalValues["PropName"].ToString()).Validate(Metadata.Model.ToString());
+                else if (Metadata.Model.GetType() == typeof(DateTime))
+                {
+                    if (Metadata.AdditionalValues.Count > 0 && Metadata.AdditionalValues["PropName"] != null)
+                        result = new DateTimeValidator(Metadata.IsRequired, Metadata.AdditionalValues["PropName"].ToString()).Validate(Metadata.Model.ToString());
+                    else
+                        result = new FluentValidation.Results.ValidationResult();
+                }
+                else
+                    result = new FluentValidation.Results.ValidationResult();
                 return result.Errors.Select(fault => new ModelValidationResult
                 {
                     MemberName = fault.PropertyName,
                     Message = fault.ErrorMessage
                 });
             }
+            else
+            {
 
-            return Enumerable.Empty<ModelValidationResult>();
+                return Enumerable.Empty<ModelValidationResult>();
+            }
         }
     }
 }

@@ -24,14 +24,32 @@ namespace ZCMS.Core.Business.Content
 
         }         
 
-        public string GetPropertyValues()
+        public string PropertyValues
         {
-            StringBuilder builder = new StringBuilder();
-            foreach (var item in Properties)
+            get
             {
-                builder.Append(item.PropertyValue + " ");
+                StringBuilder builder = new StringBuilder();
+                foreach (var item in Properties)
+                {
+                    builder.Append(item.PropertyValue + " ");
+                }
+                return builder.ToString();
             }
-            return builder.ToString();
+        }
+
+        public string SlugValue
+        {
+            get
+            {
+                if (Properties.Where(p => p is DisplayOnlyTextProperty).Any())
+                {
+                    return Properties.Where(p => p is DisplayOnlyTextProperty).FirstOrDefault().PropertyValue.ToString();
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
         }
 
     }

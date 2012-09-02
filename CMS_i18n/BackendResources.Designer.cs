@@ -628,6 +628,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Permission.
+        /// </summary>
+        public static string PagePermissions {
+            get {
+                return ResourceManager.GetString("PagePermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string PageStatus {
@@ -660,6 +669,33 @@ namespace CMS_i18n {
         public static string PageUrlSlug {
             get {
                 return ResourceManager.GetString("PageUrlSlug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deny.
+        /// </summary>
+        public static string PermissionSetAdmin {
+            get {
+                return ResourceManager.GetString("PermissionSetAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elevated.
+        /// </summary>
+        public static string PermissionSetElevated {
+            get {
+                return ResourceManager.GetString("PermissionSetElevated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string PermissionSetNone {
+            get {
+                return ResourceManager.GetString("PermissionSetNone", resourceCulture);
             }
         }
         
@@ -772,7 +808,7 @@ namespace CMS_i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start publish.
+        ///   Looks up a localized string similar to Start Publish.
         /// </summary>
         public static string StartPublish {
             get {
@@ -804,6 +840,15 @@ namespace CMS_i18n {
         public static string UnknownPublisher {
             get {
                 return ResourceManager.GetString("UnknownPublisher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not a valid date.
+        /// </summary>
+        public static string ValidationPageDateTime {
+            get {
+                return ResourceManager.GetString("ValidationPageDateTime", resourceCulture);
             }
         }
         

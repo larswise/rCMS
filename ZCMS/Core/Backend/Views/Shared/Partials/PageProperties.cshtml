@@ -1,0 +1,139 @@
+﻿@model List<ZCMS.Core.Business.Content.IZCMSProperty>
+@{
+    var start = ViewData["tabstart"] != null ? Int32.Parse(ViewData["tabstart"].ToString()) : 0;
+    var end = ViewData["tabstart"] != null ? Int32.Parse(ViewData["tabend"].ToString()) : 0;
+}
+<div class="custom-properties-edit-wrap">
+@for (int i = start; i<end; i++)
+{
+    <div class="edit-unit">
+        @if(Model[i] is ZCMS.Core.Business.Content.RichTextProperty) {            
+            <div class="unit-label">
+            @Html.Label(Model[i].PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m[i].PropertyType)
+            @Html.HiddenFor(m => m[i].PropertyName)
+            @Html.HiddenFor(m => m[i].Order)
+            @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].PropertyValidator.GetType().FullName)
+                        
+            @Html.EditorFor(m => ((ZCMS.Core.Business.Content.RichTextProperty)m[i]).PropertyValue)
+            @Html.ValidationMessage("Properties."+Model[i].PropertyType)
+            </div>
+        }
+        else if (Model[i] is ZCMS.Core.Business.Content.TextProperty)
+        {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.Content.TextProperty)Model[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m[i].PropertyType)
+            @Html.HiddenFor(m => m[i].PropertyName)
+            @Html.HiddenFor(m => m[i].Order)
+            @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].PropertyValidator)
+            
+            @Html.TextBoxFor(m => m[i].PropertyValue, new { @class = "text-box single-line" })
+            @Html.ValidationMessage("Properties."+Model[i].PropertyType)
+            </div>
+        }
+        else if (Model[i] is ZCMS.Core.Business.Content.MultiLineTextProperty)
+        {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.Content.MultiLineTextProperty)Model[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m[i].PropertyType)
+            @Html.HiddenFor(m => m[i].PropertyName)
+            @Html.HiddenFor(m => m[i].Order)
+            @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].PropertyValidator)
+
+            @Html.TextAreaFor(m => m[i].PropertyValue, new { @class="multilinetextproperty" })
+            @Html.ValidationMessage("Properties."+Model[i].PropertyType)
+            </div>
+        }
+        else if (Model[i] is ZCMS.Core.Business.Content.BooleanProperty)
+        {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.Content.BooleanProperty)Model[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m[i].PropertyType)
+            @Html.HiddenFor(m => m[i].PropertyName)
+            @Html.HiddenFor(m => m[i].Order)
+            @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].PropertyValidator)
+
+            @Html.EditorFor(m => m[i].PropertyValue)
+            </div>
+        }
+        else if (Model[i] is ZCMS.Core.Business.Content.ImageListProperty)
+        {
+            <div class="unit-label">
+                
+            @Html.Label(((ZCMS.Core.Business.Content.ImageListProperty)Model[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m[i].PropertyType)
+            @Html.HiddenFor(m => m[i].PropertyName)
+            @Html.HiddenFor(m => m[i].Order)
+            @Html.HiddenFor(m => m[i].DisplayInTab)
+            <a href="javascript:void(0);" class="file-selector">@CMS_i18n.BackendResources.FileManagerLaunch</a>
+            @if (((List<string>)Model[i].PropertyValue).Count >= 6)
+            {
+                <span class="too-many-images">@CMS_i18n.BackendResources.FileManagerNoMoreFilesAllowed</span>
+            }
+            @Html.EditorFor(m => ((ZCMS.Core.Business.Content.ImageListProperty)m[i]).PropertyValue)
+            </div>
+        }
+        else if (Model[i] is ZCMS.Core.Business.Content.TagsProperty)
+        {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.Content.TagsProperty)Model[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m[i].PropertyType)
+            @Html.HiddenFor(m => m[i].PropertyName)
+            @Html.HiddenFor(m => m[i].Order)
+            @Html.HiddenFor(m => m[i].DisplayInTab)
+
+            @Html.EditorFor(m => ((ZCMS.Core.Business.Content.TagsProperty)m[i]).PropertyValue)
+            </div>            
+        } else if (Model[i] is ZCMS.Core.Business.Content.DateProperty) 
+        {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.Content.DateProperty)Model[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+            @Html.HiddenFor(m => m[i].PropertyType)
+            @Html.HiddenFor(m => m[i].PropertyName)
+            @Html.HiddenFor(m => m[i].Order)
+            @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].PropertyValidator)
+            
+            @Html.TextBoxFor(m => m[i].PropertyValue, new { @class = "datefield", type = "date"  })
+            @Html.ValidationMessage("Properties."+Model[i].PropertyType)
+            </div>         
+        } else if(Model[i] is ZCMS.Core.Business.Content.DisplayOnlyTextProperty)
+        {
+            <div class="unit-label">
+            @Html.Label(((ZCMS.Core.Business.Content.DisplayOnlyTextProperty)Model[i]).PropertyName):
+            </div>
+            <div class="unit-unit">
+                /<span style="font-style: italic;" id="url-slug">@(Model[i].PropertyValue!=null ? Model[i].PropertyValue.ToString() : String.Empty)</span>                
+                @Html.HiddenFor(m => m[i].PropertyType)
+                @Html.HiddenFor(m => m[i].PropertyName)
+                @Html.HiddenFor(m => m[i].Order)
+                @Html.HiddenFor(m => m[i].DisplayInTab)
+                @Html.HiddenFor(m => m[i].PropertyValue, new { @class = "actual-property-value" })
+            </div>
+        }
+        else {
+            @Html.EditorFor(m => m[i].PropertyValue)
+        }
+    
+    </div>
+}
+</div>

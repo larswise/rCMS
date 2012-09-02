@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ZCMS.Core.Business.Content
 {
@@ -11,11 +13,15 @@ namespace ZCMS.Core.Business.Content
         private DateTime _created;
         private DateTime _lastModified;
         private PageStatus _status;
+        private PageType _pageContentType;
+        private DateTime _startPublish;
+        private DateTime _endPublish;
         private int _pageId;
         private string _pageName;
         private string _writtenBy;
         private string _lastChangedBy;
         private string _pageType;
+
         private List<IZCMSProperty> _properties = new List<IZCMSProperty>();
 
         public ZCMSBasePage(IZCMSProperty []properties)
@@ -71,9 +77,8 @@ namespace ZCMS.Core.Business.Content
         }
 
         [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "PageName")]
-        //[Required(ErrorMessageResourceType = typeof(CMS_i18n.BackendResources), ErrorMessageResourceName = "ValidationPageNameRequired")]
-        //[StringLength(50, MinimumLength = 1, ErrorMessageResourceType = typeof(CMS_i18n.BackendResources), ErrorMessageResourceName = "ValidationPageNameLength")]
-        //[RegularExpression(@"^[A-z0-9\s]+", ErrorMessageResourceType = typeof(CMS_i18n.BackendResources), ErrorMessageResourceName = "ValidationPageNameAllowedChars")]
+        [AdditionalMetadata("PropName", "PageName")]
+        [Required]
         public string PageName
         {
             get
@@ -96,6 +101,18 @@ namespace ZCMS.Core.Business.Content
             set
             {
                 _status = value;
+            }
+        }
+
+        public PageType PublishType
+        {
+            get
+            {
+                return _pageContentType;
+            }
+            set
+            {
+                _pageContentType = value;
             }
         }
 
@@ -159,6 +176,36 @@ namespace ZCMS.Core.Business.Content
             }
         }
 
+        [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "StartPublish", GroupName = "RequiredDate")]
+        [DataType(DataType.Date)]
+        [AdditionalMetadata("PropName", "StartPublish")]
+        [Required]
+        public DateTime StartPublish
+        {
+            get
+            {
+                return _startPublish;
+            }
+            set
+            {
+                _startPublish = value;
+            }
+        }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(CMS_i18n.BackendResources), ErrorMessageResourceName = "ValidationPageDateTime")]        
+        [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "EndPublish", ShortName="EndPublish")]
+        [AdditionalMetadata("PropName", "EndPublish")]
+        public DateTime EndPublish
+        {
+            get
+            {
+                return _endPublish;
+            }
+            set
+            {
+                _endPublish = value;
+            }
+        }
 
     }
 }
