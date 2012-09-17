@@ -205,6 +205,12 @@ a.topics {
     font-weight: bold;
 }
 
+.edit-top-label {
+    min-width: 75px;
+    max-width: 110px;
+    width: 110px;
+    padding-left: 10px;
+}
 
 .meta-unit {
 
@@ -226,14 +232,6 @@ a.topics {
     font-weight: bold;
     min-width: 100px;
     background: #f0f0f0;
-}
-
-
-.edit-top-label {
-    width: 110px;
-    min-width: 75px;
-    max-width: 110px;
-    padding-left: 10px;
 }
 
 .page-edit-top-small {
@@ -323,8 +321,7 @@ a.topics {
 }
 
 
-.page-editor-tools-save, .page-editor-tools-delete, .page-editor-tools-save-draft, .page-editor-tools-versions, .page-editor-tools-view {
-
+.page-editor-tools-save, .page-editor-tools-delete, .page-editor-tools-save-draft, .page-editor-tools-versions, .page-editor-tools-view, .social-editor-tools-save {
     float: left;
     padding: 0 15px 0 15px;
     text-align: center;
@@ -334,11 +331,11 @@ a.topics {
     height: 35px;
 }
 
-.page-editor-tools-save:hover, .page-editor-tools-delete:hover, .page-editor-tools-save-draft:hover, .page-editor-tools-versions:hover, .page-editor-tools-view:hover {
+.page-editor-tools-save:hover, .page-editor-tools-delete:hover, .page-editor-tools-save-draft:hover, .page-editor-tools-versions:hover, .page-editor-tools-view:hover, .social-editor-tools-save:hover {
     background: #808080;
 }
 
-.page-editor-tools-save img, .page-editor-tools-delete img, .page-editor-tools-save-draft img, .page-editor-tools-versions img, .page-editor-tools-view img {
+.page-editor-tools-save img, .page-editor-tools-delete img, .page-editor-tools-save-draft img, .page-editor-tools-versions img, .page-editor-tools-view img, .social-editor-tools-save img {
     max-width: 24px;
     max-height: 24px;
     vertical-align: middle;
@@ -353,7 +350,7 @@ a.topics {
 
 
 
-.editor-controls-wrap a {
+.editor-controls-wrap a, .social-editor-tools-save a {
     color: #fff;
     font-size: medium;
     font-weight: bold;
@@ -423,6 +420,10 @@ a.topics {
 
 input.single-line {
     width: 500px;
+}
+
+input.single-line-short {
+    width: 325px;
 }
 
 input.datefield {
@@ -533,6 +534,46 @@ input.datefield {
     float: right;
     color: #fff;
     margin: 10px;
+}
+
+/* Social */
+
+.editor-controls-wrap {
+    height: 35px;
+    background: #D9D9D9;
+}
+
+.social-top-label {
+    float: left;
+    padding: 5px;
+    width: 140px;
+    min-width: 75px;
+    max-width: 140px;
+    padding-left: 10px;    
+}
+
+.social-media-header {
+    padding: 10px 0 0 20px;
+    width: 100px;
+    float: left;
+    height: 100px;
+}
+
+.social-header {
+    padding: 10px 0 0 20px;
+    max-width: 600px;    
+}
+.social-wrap {
+    clear: both;
+    background: #d9d9d9;
+}
+
+.social-edit-top {
+    background-color: #D9D9D9;
+    color: #000000;
+    height: 30px;
+    overflow: hidden;
+    padding: 5px 0 0 5px;
 }
 
 /* Styles for basic forms

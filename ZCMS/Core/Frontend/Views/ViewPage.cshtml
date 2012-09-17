@@ -1,15 +1,28 @@
-﻿@model ZCMS.Core.Business.Content.ZCMSPage
+﻿@model ZCMS.Core.Business.Content.ZCMSContent<ZCMS.Core.Business.Content.ZCMSPage>
 @{
     Layout = "~/Core/Frontend/Views/Shared/_frontendLayout.cshtml";
+    var fbApiKey = !String.IsNullOrEmpty(Model.FacebookApiKey) ? Model.FacebookApiKey : "";
+    var twCnsKey = !String.IsNullOrEmpty(Model.TwitterConsumerKey) ? Model.TwitterConsumerKey : "";
 }
+<script type="text/javascript">
+    facebookApiKey = '@fbApiKey';
+    twitterConsumerKey = '@twCnsKey';
+</script>
+@System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+@System.Web.Optimization.Scripts.Render("~/bundles/FrontEnd")
 
+    <div id="fb-root"></div>
+    <a id="TwitterLogin" href="javascript:void(0);">twitter login...</a>
     <div>
-    @if(Model == null)
+    @if(Model.Instance == null)
     {
         <div>No pages was returned </div>
+        <span>@Model.GetMetadataValue("Reasons")</span>
     }
     else 
     {
-        <div>We have page @Model.PageName</div>
+        <div>We have page @Model.Instance.PageName</div>
+        <br />
+        <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1"></div>
     }
     </div>

@@ -34,100 +34,96 @@ namespace ZCMS.Core.Backend.Controllers
         {
             dynamic pagePublishType = ZCMSPageFactory.GetPagePublishType(mParameter);
 
-            ViewData["PermissionSet"] = PermissionSet.GetAvailablePermissions().Select(x => new SelectListItem { Value = x.PermissionValue, Text = x.PermissionDisplay });
-                
             if (pageId.HasValue)
             {
-
                 ViewData["CurrentPageId"] = pageId.HasValue ? pageId.Value : new Random().Next();
-                ZCMSPage page = _worker.CmsContentRepository.GetCmsPage(pageId.ToString());
-
-                if (page != null)
+                ZCMSContent<ZCMSPage> page = _worker.CmsContentRepository.GetCmsPage(pageId.ToString());
+                ViewData["PermissionSet"] = PermissionSet.GetAvailablePermissions(page.GetMetadataValue("Raven-Document-Authorization")).Select(x => new SelectListItem { Value = x.PermissionValue, Text = x.PermissionDisplay, Selected = x.Selected });
+                
+                if (page.Instance != null)
                 {
-                    List<WebImage> mses = new List<WebImage>();
-                    if (page.Properties.Where(p => p is ImageListProperty).Any())
-                    {
-                        var prop = page.Properties.Where(p => p is ImageListProperty).FirstOrDefault();
-                        List<string> images = (List<string>)prop.PropertyValue;
-                        foreach (var item in images)
-                        {
-                            mses.Add(new WebImage(_worker.FileRepository.RetrieveAttachment(item)));
-                        }
-                        TempData["ImageCollection"] = mses;
-                    }
-
- 
+                    TempData["ImageCollection"] = _worker.GetAttachments(page.Instance).Select(w => new WebImage(w)).ToList();                    
                     return View(page);
                 }
                 else
                 {
-                    ZCMSPage newPage = new ZCMSPage(pagePublishType);
-                    newPage.Status = PageStatus.New;
-                    newPage.PageID = Int32.Parse(ViewData["CurrentPageId"].ToString());
+                    ZCMSContent<ZCMSPage> newPage = new ZCMSContent<ZCMSPage>(new ZCMSPage(pagePublishType) { Status = PageStatus.New, PageID = Int32.Parse(ViewData["CurrentPageId"].ToString()) });
                     return View(newPage);
                 }
             }
             else
             {
-                ZCMSPage newPage = new ZCMSPage(pagePublishType);
-                newPage.Status = PageStatus.New;
-                ViewData["CurrentPageId"] = new Random().Next();
-                newPage.PageID = Int32.Parse(ViewData["CurrentPageId"].ToString());
+                ViewData["PermissionSet"] = PermissionSet.GetAvailablePermissions(string.Empty).Select(x => new SelectListItem { Value = x.PermissionValue, Text = x.PermissionDisplay, Selected = x.Selected });
+
+                ZCMSContent<ZCMSPage> newPage = new ZCMSContent<ZCMSPage>(new ZCMSPage(pagePublishType) { Status = PageStatus.New, PageID = new Random().Next() });
+                ViewData["CurrentPageId"] = newPage.Instance.PageID;
                 return View(newPage);
             }
-
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult PageEditor(ZCMSPage page)
+        public ActionResult PageEditor(ZCMSContent<ZCMSPage> page)
         {
             if (Request.Form["delete-page"] != null && Request.Form["delete-page"] == "true")
             {
-                _worker.CmsContentRepository.DeleteCmsPage(page);
+                _worker.CmsContentRepository.DeleteCmsPage(page.Instance);
                 return RedirectToAction("DashBoard");
             }
             TryValidateModel(page);
-            ZCMSPage ravenPage = _worker.CmsContentRepository.GetCmsPage(page.PageID.ToString());
+            ZCMSPage ravenPage = _worker.CmsContentRepository.GetCmsPage(page.Instance.PageID.ToString()).Instance;
             if (ModelState.IsValid)
             {
-
-
                 if (ravenPage != null)
                 {
-                    ravenPage.PageID = page.PageID;
-                    ravenPage.PageName = page.PageName;
-                    
+                    ravenPage.PageID = page.Instance.PageID;
+                    ravenPage.PageName = page.Instance.PageName;
+                    _worker.CmsContentRepository.SetPermissionsForPage(ravenPage, Request.Form["Permissions"].ToString());
                     for (int i = 0; i < ravenPage.Properties.Count; i++)
                     {
                         if (!(ravenPage.Properties[i] is ImageListProperty))
-                        {
-                            ravenPage.Properties[i] = page.Properties[i];
-                        }
+                            ravenPage.Properties[i] = page.Instance.Properties[i];                        
                     }
                                         
                     ravenPage.LastModified = DateTime.Now;
                     ravenPage.LastChangedBy = _worker.AuthenticationRepository.GetCurrentUserName();
-                    ravenPage.Status = page.Status;
-
+                    ravenPage.Status = page.Instance.Status;
+                    ravenPage.StartPublish = page.Instance.StartPublish;
+                    ravenPage.EndPublish = page.Instance.EndPublish;
+                    
                     TempData["DocumentSaved"] = CMS_i18n.BackendResources.DocumentSaved;
                     return RedirectToAction("PageEditor", new { pageId = ravenPage.PageID });
                 }
                 else
                 {
-                    page.WrittenBy = _worker.AuthenticationRepository.GetCurrentUserName();
-                    page.LastChangedBy = page.WrittenBy;
-                    page.LastModified = DateTime.Now;
-                    page.Created = DateTime.Now;
-                    _worker.CmsContentRepository.CreateCmsPage(page, Request.Form["PermissionSet"].ToString());
+                    page.Instance.WrittenBy = _worker.AuthenticationRepository.GetCurrentUserName();
+                    page.Instance.LastChangedBy = page.Instance.WrittenBy;
+                    page.Instance.LastModified = DateTime.Now;
+                    page.Instance.Created = DateTime.Now;
+                    _worker.CmsContentRepository.CreateCmsPage(page.Instance, Request.Form["Permissions"].ToString());
                 }
-                return RedirectToAction("PageEditor", new { pageId = page.PageID });
+                return RedirectToAction("PageEditor", new { pageId = page.Instance.PageID });
             }
             else
             {
-                ViewData["CurrentPageId"] = page.PageID;
-                return View(ravenPage == null ? page : ravenPage);
+                ViewData["CurrentPageId"] = page.Instance.PageID;
+                return View(ravenPage == null ? page.Instance : ravenPage);
             }
+        }
+
+        public ActionResult Social()
+        { 
+            ZCMSSocial zSocial = new ZCMSSocial(_worker.CmsContentRepository.GetSocialServiceConfigs());            
+            return View(zSocial);
+        }
+
+        [HttpPost]
+        public ActionResult Social(ZCMSSocial social)
+        {
+            social.Facebook.ServiceName = "Facebook";
+            social.Twitter.ServiceName = "Twitter";
+            _worker.CmsContentRepository.SaveSocialConfigs(social);
+            return RedirectToAction("Social");
         }
 
         public ActionResult Dashboard()
@@ -148,8 +144,8 @@ namespace ZCMS.Core.Backend.Controllers
             string[] pageIdArr = id.Split('.');
             string actual = pageIdArr[0];
 
-            ZCMSPage pg = _worker.CmsContentRepository.GetCmsPage(actual);
-            ZCMSPage pgrev = _worker.CmsContentRepository.GetCmsPage(id.Replace(".", "/"));
+            ZCMSPage pg = _worker.CmsContentRepository.GetCmsPage(actual).Instance;
+            ZCMSPage pgrev = _worker.CmsContentRepository.GetCmsPage(id.Replace(".", "/")).Instance;
             pg.Properties = pgrev.Properties;
             
             pg.PageName = pgrev.PageName;

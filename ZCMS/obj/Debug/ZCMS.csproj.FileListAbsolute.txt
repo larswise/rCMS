@@ -102,3 +102,5 @@ C:\Projects\ZCMS\ZCMS\bin\sv\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMS\bin\tr\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Authorization.dll
 C:\Projects\ZCMS\ZCMS\bin\Raven.Client.Authorization.pdb
+C:\Projects\ZCMS\ZCMS\bin\Facebook.dll
+C:\Projects\ZCMS\ZCMS\bin\Facebook.xml

@@ -47,4 +47,11 @@ namespace ZCMS.Core.Business
         AudioFile,
         Unknown
     }
+
+    public enum ContentViewStatus
+    {
+        Authorized,
+        NotAuthorized,
+        NotAuthenticated
+    }
 }

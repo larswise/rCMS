@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 using System.Web.Optimization;
 
 namespace ZCMS
@@ -32,7 +33,11 @@ namespace ZCMS
 
             bundles.Add(new ScriptBundle("~/bundles/BackendScriptsFile").Include(
             "~/Core/Backend/Scripts/FileManager.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/BackendScriptsSocial").Include(
+            "~/Core/Backend/Scripts/Social.js"));
                     
+            
 
             bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(
             "~/Scripts/tinymce/jquery.tinymce.js"));
@@ -60,6 +65,17 @@ namespace ZCMS
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            // Frontend bundle.
+            ScriptBundle frontEndBundle = new ScriptBundle("~/bundles/FrontEnd");
+            if (System.Web.HttpContext.Current.Application["ActiveSocialMedias"] != null)
+            {
+                foreach (string s in (List<string>)System.Web.HttpContext.Current.Application["ActiveSocialMedias"])
+                {
+                    frontEndBundle.Include("~/Scripts/" + s + ".js");
+                }
+            }
+            bundles.Add(frontEndBundle);
         }
     }
 }

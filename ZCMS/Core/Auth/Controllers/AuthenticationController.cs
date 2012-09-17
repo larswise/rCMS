@@ -19,9 +19,11 @@ namespace ZCMS.Core.Auth
             _worker = work;
         }
 
-        public ActionResult SignIn()
+        public ActionResult SignIn(string ReturnUrl)
         {
-            return View("SignIn");
+            ViewData["ReturnUrl"] = (!String.IsNullOrEmpty(ReturnUrl) ? ReturnUrl : String.Empty);
+
+            return View(new ZCMSUser() { ReturnUrl = ViewData["ReturnUrl"].ToString()});
         }
 
         [HttpPost]
@@ -32,7 +34,10 @@ namespace ZCMS.Core.Auth
                 if (_worker.AuthenticationRepository.AuthenticateUser(user.Username, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.Username, true);
-                    return RedirectToAction("Dashboard", new { Controller = "Backend", Action = "Dashboard" });
+                    if (!String.IsNullOrEmpty(user.ReturnUrl))
+                        return Redirect(user.ReturnUrl);
+                    else
+                        return RedirectToAction("Dashboard", new { Controller = "Backend", Action = "Dashboard" });
                 }
                 else
                 {

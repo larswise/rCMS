@@ -44,7 +44,11 @@ namespace ZCMS
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            
+            routes.MapHttpRoute(
+                name: "PlainApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
             // backend...
 

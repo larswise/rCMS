@@ -73,6 +73,13 @@ namespace ZCMS.Core.Bootstrapper
 
                 DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
                 GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+                // check if social media is set to active
+                List<SocialService> socialServices = worker.CmsContentRepository.GetSocialServiceConfigs();
+                System.Web.HttpContext.Current.Application["ActiveSocialMedias"] = 
+                    worker.CmsContentRepository.GetSocialServiceConfigs()
+                    .Where(a => a.Activated)
+                    .Select(s => s.ServiceName).ToList();
             }
             catch (Exception ex)
             {

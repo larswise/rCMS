@@ -405,4 +405,37 @@
   <data name="PermissionSetNone" xml:space="preserve">
     <value>None</value>
   </data>
+  <data name="PageNotPublished" xml:space="preserve">
+    <value>The page you requested is not available. It has either expired or is not yet published.</value>
+  </data>
+  <data name="MenuConfigureSocial" xml:space="preserve">
+    <value>Social</value>
+  </data>
+  <data name="FacebookConfigApiKey" xml:space="preserve">
+    <value>API Key</value>
+  </data>
+  <data name="FacebookConfigApiSecret" xml:space="preserve">
+    <value>App Secret</value>
+  </data>
+  <data name="TwitterConfigConsumerKey" xml:space="preserve">
+    <value>Consumer Key</value>
+  </data>
+  <data name="TwitterConfigConsumerSecret" xml:space="preserve">
+    <value>Consumer Secret</value>
+  </data>
+  <data name="SaveSocialMediaSettings" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SocialMediaActiveLabel" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="SocialMediaSettingsHeader" xml:space="preserve">
+    <value>Social Media Settings</value>
+  </data>
+  <data name="SocialMediaSettingsHeaderDescription" xml:space="preserve">
+    <value>When a social media is activated, a user will be able to write comments on your article by logging in to the social media service. Configuration at the social media developer site is required.</value>
+  </data>
+  <data name="TwitterConfigTokenSecret" xml:space="preserve">
+    <value>Token Secret</value>
+  </data>
 </root>

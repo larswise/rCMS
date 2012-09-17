@@ -25,7 +25,7 @@ namespace ZCMS.Core.Backend.Controllers
 
         public ZCMSPage GetPage(string id)
         {
-            return _worker.CmsContentRepository.GetCmsPage(id);
+            return _worker.CmsContentRepository.GetCmsPage(id).Instance;
         }
 
         [System.Web.Http.HttpGet]

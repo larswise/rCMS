@@ -1,0 +1,99 @@
+﻿@model ZCMS.Core.Business.ZCMSSocial
+@{
+    ViewBag.Title = "Configure Social Media";
+    Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
+}
+@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsCommon")
+@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsSocial")
+@{ Html.BeginForm("social", "Backend", null, FormMethod.Post, new { @id = "social-form" }); }
+<div class="social-controls-wrap">
+<div class="social-editor-tools-save">
+    <a href="javascript:void(0);" id="save-social">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/diskette.png")" alt="-" title="@CMS_i18n.BackendResources.SaveSocialMediaSettings" />
+        <span class="page-actions">@CMS_i18n.BackendResources.SaveSocialMediaSettings</span>
+    </a>
+    </div>
+</div>
+<div class="social-wrap">
+    <div class="social-header">
+    <h3>@CMS_i18n.BackendResources.SocialMediaSettingsHeader</h3>
+        @CMS_i18n.BackendResources.SocialMediaSettingsHeaderDescription
+    </div>
+
+    <div class="social-media-header">
+        <b>Facebook</b>
+    </div>
+    <div class="social-edit-top">       
+    <div class="social-top-label">
+    @Html.Label(CMS_i18n.BackendResources.FacebookConfigApiKey):
+    </div>
+    <div class="edit-top-unit">
+        @Html.TextBoxFor(model => model.Facebook.Key, new { @class = "text-box single-line-short" })
+        @Html.ValidationMessageFor(model => model.Facebook.Key)
+    </div>
+    </div>
+    <div class="social-edit-top">       
+    <div class="social-top-label">
+    @Html.Label(CMS_i18n.BackendResources.FacebookConfigApiSecret):
+    </div>
+    <div class="edit-top-unit">
+        @Html.TextBoxFor(model => model.Facebook.Secret, new { @class = "text-box single-line-short" })
+        @Html.HiddenFor(model => model.Facebook.ServiceName)
+        @Html.ValidationMessageFor(model => model.Facebook.Secret)
+    </div>
+    </div>
+    <div class="social-edit-top">       
+    <div class="social-top-label">
+    @Html.Label(CMS_i18n.BackendResources.SocialMediaActiveLabel):
+    </div>
+    <div class="edit-top-unit">
+        @Html.CheckBoxFor(model => model.Facebook.Activated)
+        @Html.ValidationMessageFor(model => model.Facebook.Activated)
+    </div>
+    </div>
+</div>
+<br />
+<div class="social-wrap">
+    <div class="social-media-header">
+        <b>Twitter</b>
+    </div>
+    <div class="social-edit-top">       
+    <div class="social-top-label">
+    @Html.Label(CMS_i18n.BackendResources.TwitterConfigConsumerKey):
+    </div>
+    <div class="edit-top-unit">
+        @Html.TextBoxFor(model => model.Twitter.Key, new { @class = "text-box single-line-short" })
+        @Html.ValidationMessageFor(model => model.Twitter.Key)
+    </div>
+    </div>
+    <div class="social-edit-top">       
+    <div class="social-top-label">
+    @Html.Label(CMS_i18n.BackendResources.TwitterConfigConsumerSecret):
+    </div>
+    <div class="edit-top-unit">
+        @Html.TextBoxFor(model => model.Twitter.Secret, new { @class = "text-box single-line-short" })
+        @Html.ValidationMessageFor(model => model.Twitter.Secret)
+        @Html.HiddenFor(model => model.Twitter.ServiceName)
+    </div>
+    </div>
+    <div class="social-edit-top">       
+    <div class="social-top-label">
+    @Html.Label(CMS_i18n.BackendResources.TwitterConfigTokenSecret):
+    </div>
+    <div class="edit-top-unit">
+        @Html.TextBoxFor(model => model.Twitter.PrivateToken, new { @class = "text-box single-line-short" })
+        @Html.ValidationMessageFor(model => model.Twitter.PrivateToken)
+    </div>
+    </div>
+    <div class="social-edit-top">       
+    <div class="social-top-label">
+    @Html.Label(CMS_i18n.BackendResources.SocialMediaActiveLabel):
+    </div>
+    <div class="edit-top-unit">
+        @Html.CheckBoxFor(model => model.Twitter.Activated)
+        @Html.ValidationMessageFor(model => model.Twitter.Activated)
+    </div>
+    </div>
+</div>
+
+@{ Html.EndForm(); }

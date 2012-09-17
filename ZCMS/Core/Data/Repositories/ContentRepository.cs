@@ -17,6 +17,7 @@ using System.Linq.Expressions;
 using ZCMS.Core.Business.Content;
 using Raven.Bundles.Authorization.Model;
 
+
 namespace ZCMS.Core.Data.Repositories
 {
     public class ContentRepository
@@ -30,39 +31,71 @@ namespace ZCMS.Core.Data.Repositories
             _session = sess;
         }
 
-        public ZCMSPage GetCmsPage(string pageID)
+        #region Public CMS Methods
+        public ZCMSContent<ZCMSPage> GetCmsPage(string pageID)
         {
-            _session.SecureFor("Authorization/Users/" + HttpContext.Current.User.Identity.Name, "RetrieveAPage");            
-            return _session.Load<ZCMSPage>(pageID);
+            var content = new ZCMSContent<ZCMSPage>(HttpContext.Current.User.Identity.IsAuthenticated) { Instance = _session.Load<ZCMSPage>(pageID), };
+            if(content.Instance!=null)
+                PopulatePageMetadata(ref content);
+            return content;
         }
 
-        public ZCMSPage GetCmsPageBySlug(string slug)
+        public ZCMSContent<ZCMSPage> GetCmsPageBySlug(string slug)
         {
+            ZCMSContent<ZCMSPage> p;
             var page = _session.Advanced.LuceneQuery<ZCMSPage, PageIndexer>().Search("Slug", slug).ToList().FirstOrDefault();
 
-            var ops = _session.Advanced.IsOperationAllowedOnDocument("Authorization/Users/" + (!String.IsNullOrEmpty(HttpContext.Current.User.Identity.Name)?HttpContext.Current.User.Identity.Name:"Anonymous"), "RetrievePage", page.PageID.ToString());
-            //_session.SecureFor("Authorization/Users/" + HttpContext.Current.User.Identity.Name, "RetrieveAPage");
-            if(!ops.IsAllowed)
-                throw new UnauthorizedAccessException(String.Join(", ", ops.Reasons.ToArray()));
-            return page;            
+            if ((page.StartPublish > DateTime.Now) || (page.EndPublish!=DateTime.MinValue && page.EndPublish < DateTime.Now))
+            {
+                p = new ZCMSContent<ZCMSPage>(HttpContext.Current.User.Identity.IsAuthenticated);
+                p.PushMetadata("Reasons", CMS_i18n.BackendResources.PageNotPublished);
+                return p;
+            }
+
+            var ops = _session.Advanced.IsOperationAllowedOnDocument
+                ("Authorization/Users/" + (!String.IsNullOrEmpty(HttpContext.Current.User.Identity.Name) ? HttpContext.Current.User.Identity.Name : "Anonymous"),
+                "RetrievePage",
+                page.PageID.ToString());
+
+            if (!ops.IsAllowed)
+            {
+                p = new ZCMSContent<ZCMSPage>(HttpContext.Current.User.Identity.IsAuthenticated);
+                p.PushMetadata("Reasons", String.Join(",", ops.Reasons.ToArray()));
+                p.PushMetadata("RedirectUrl", slug);                
+            }
+            else
+            {
+                p = new ZCMSContent<ZCMSPage>(page);
+
+                var items = _session.Load<SocialService>("Facebook", "Twitter");
+                if (items.Where(i => i.ServiceName == "Facebook").Any())
+                    p.FacebookApiKey = items.Where(i => i.Activated && i.ServiceName == "Facebook").First().Key;
+
+                if (items.Where(i => i.ServiceName == "Twitter").Any())
+                    p.TwitterConsumerKey = items.Where(i => i.Activated && i.ServiceName == "Twitter").First().Key;
+
+                PopulatePageMetadata(ref p);
+            }
+            
+            return p;
         }
 
         public List<ZCMSPage> SearchPages(string query, PageStatus status)
         {
-            if (status==PageStatus.Published||status==PageStatus.Draft)
-                return _session.Query<ZCMSPage>().Where(p => p.Status==status).Take(25).ToList();
-            if(status==PageStatus.Any && String.IsNullOrEmpty(query))
+            if (status == PageStatus.Published || status == PageStatus.Draft)
+                return _session.Query<ZCMSPage>().Where(p => p.Status == status).Take(25).ToList();
+            if (status == PageStatus.Any && String.IsNullOrEmpty(query))
                 return _session.Query<ZCMSPage>().Take(25).ToList();
             return _session.Advanced.LuceneQuery<ZCMSPage, PageIndexer>().Search("Body", query).ToList();
 
         }
 
-        public List<ZCMSPage> GetRecentPages(DateTime ?fromDate, int ?numItems)
-        {             
+        public List<ZCMSPage> GetRecentPages(DateTime? fromDate, int? numItems)
+        {
             if (fromDate.HasValue && numItems.HasValue)
                 return _session.Query<ZCMSPage>().Where(p => p.Created >= fromDate.Value).Take(numItems.Value).ToList();
-            else if(fromDate.HasValue)
-            {                
+            else if (fromDate.HasValue)
+            {
                 return _session.Query<ZCMSPage>().Where(p => p.Created >= fromDate.Value).ToList();
             }
             else if (numItems.HasValue)
@@ -107,20 +140,38 @@ namespace ZCMS.Core.Data.Repositories
 
         public void CreateCmsPage(ZCMSPage page, string permission)
         {
-            _session.SecureFor("Authorization/Users/"+HttpContext.Current.User.Identity.Name, "SaveAPage");
-            
+            _session.SecureFor("Authorization/Users/" + HttpContext.Current.User.Identity.Name, "SaveAPage");
             _session.Store(page, page.PageID.ToString());
+            SetPermissionsForPage(page, permission);
+            _session.SaveChanges();
+        }
 
-            var doc = _session.Load<ZCMSPage>(page.PageID);
-
-            if (!String.IsNullOrEmpty(permission) && !permission.Equals("None"))
-            {
+        public void SetPermissionsForPage(ZCMSPage page, string permission)
+        {
+            if (permission.Equals("Elevated"))
+            {                
                 _session.SetAuthorizationFor(page, new Raven.Bundles.Authorization.Model.DocumentAuthorization()
                 {
                     Tags = { permission },
                     Permissions =
                     {
                         new DocumentPermission() { Allow = true, Operation = "RetrievePage", Role = "Authorization/Roles/Users" },
+                        new DocumentPermission() { Allow = true, Operation = "RetrievePage", Role = "Authorization/Roles/Administrators" },
+                        new DocumentPermission() { Allow = true, Operation = "EditPage", Role = "Authorization/Roles/Administrators" }
+                    }
+                });
+            }
+            else if (permission.Equals("None"))
+            {
+                _session.Advanced.GetMetadataFor<ZCMSPage>(page).Remove("Raven-Document-Authorization");               
+            }
+            else if (permission.Equals("Admin"))
+            {
+                _session.SetAuthorizationFor(page, new Raven.Bundles.Authorization.Model.DocumentAuthorization()
+                {
+                    Tags = { permission },
+                    Permissions = 
+                    {
                         new DocumentPermission() { Allow = true, Operation = "RetrievePage", Role = "Authorization/Roles/Administrators" },
                         new DocumentPermission() { Allow = true, Operation = "EditPage", Role = "Authorization/Roles/Administrators" }
                     }
@@ -145,6 +196,10 @@ namespace ZCMS.Core.Data.Repositories
             return pageTypes;
         }
 
+        #endregion
+
+        #region Public methods settings
+
         public List<ZCMSMenuItem> GetMenu(string id)
         {
             var item = _session.Load<ZCMSMenu>("Menu/" + id).MenuItems;
@@ -155,5 +210,64 @@ namespace ZCMS.Core.Data.Repositories
         {
             return _session.Query<ZCMSMenu>().ToList();
         }
+
+        public List<SocialService> GetSocialServiceConfigs()
+        {
+            var items = _session.Query<SocialService>().ToList();
+            return items;
+        }
+
+        public void SaveSocialConfigs(ZCMSSocial social)
+        {
+            SocialService sc;
+            if ((sc = _session.Load<SocialService>("Facebook")) != null)
+            {
+                sc.Key = social.Facebook.Key;
+                sc.Secret = social.Facebook.Secret;
+                sc.Activated = social.Facebook.Activated;
+            }
+            else
+            {
+                _session.Store(social.Facebook, social.Facebook.ServiceName);
+            }
+
+            if ((sc = _session.Load<SocialService>("Twitter")) != null)
+            {
+                sc.Key = social.Twitter.Key;
+                sc.Secret = social.Twitter.Secret;
+                sc.PrivateToken = social.Twitter.PrivateToken;
+                sc.Activated = social.Twitter.Activated;
+            }
+            else
+            {
+                _session.Store(social.Twitter, social.Twitter.ServiceName);
+            }
+
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void PopulatePageMetadata(ref ZCMSContent<ZCMSPage> content)
+        {
+            foreach (var item in _session.Advanced.GetMetadataFor<ZCMSPage>(content.Instance))
+            {
+                if (item.Key == "Raven-Document-Authorization")
+                {
+                    try
+                    {
+                        RavenJValue value = (RavenJValue)item.Value.Values().Values().First();
+                        content.PushMetadata(item.Key, value.ToString());
+                    }
+                    catch(Exception e) { System.Diagnostics.Debug.Write(e.Message); }
+
+                }
+                else
+                    content.PushMetadata(item.Key.ToString(), item.Value.ToString());
+            }
+        }
+
+        #endregion
     }
 }

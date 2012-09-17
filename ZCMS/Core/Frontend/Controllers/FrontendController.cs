@@ -17,7 +17,11 @@ namespace ZCMS.Core.Frontend.Controllers
 
         public ActionResult ViewPage(string slug)
         {
-            return View(_worker.CmsContentRepository.GetCmsPageBySlug(slug));
+            var content = _worker.CmsContentRepository.GetCmsPageBySlug(slug);
+            if (content.Instance == null && content.ViewStatus == Business.ContentViewStatus.NotAuthenticated)
+                return RedirectToAction("signin", "authentication", new { ReturnUrl = "/pages/"+content.GetMetadataValue("RedirectUrl") });
+            else
+                return View(content);
         }
 
     }

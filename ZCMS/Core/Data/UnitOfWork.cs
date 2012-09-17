@@ -15,6 +15,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using Raven.Bundles.Authorization.Model;
 using ZCMS.Core.Data.Repositories;
 using Raven.Client.Indexes;
+using ZCMS.Core.Business.Content;
 
 namespace ZCMS.Core.Data
 {
@@ -116,5 +117,24 @@ namespace ZCMS.Core.Data
             _session.Dispose();
             _documentStore.Dispose();
         }
+
+        #region Getdata methods
+
+        public List<MemoryStream> GetAttachments(ZCMSPage page)
+        {
+            List<MemoryStream> mses = new List<MemoryStream>();
+            if (page.Properties.Where(p => p is ImageListProperty).Any())
+            {
+                var prop = page.Properties.Where(p => p is ImageListProperty).FirstOrDefault();
+                List<string> images = (List<string>)prop.PropertyValue;
+                foreach (var item in images)
+                {
+                    mses.Add(FileRepository.RetrieveAttachment(item));
+                }
+            }
+            return mses;
+        }
+
+        #endregion
     }
 }

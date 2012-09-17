@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Logon...";
     Layout = "~/Core/Auth/Views/Shared/_authenticationLayout.cshtml";
+    var returnUrl = ViewData["ReturnUrl"] != null ? ViewData["ReturnUrl"].ToString() : String.Empty;
 }
 
 @if (ViewData["LogonFail"] != null)
@@ -32,6 +33,7 @@
 
     <div class="logon-label">
         &nbsp;
+        @Html.HiddenFor(m => m.ReturnUrl)
     </div>
 
     <div class="logon-control">

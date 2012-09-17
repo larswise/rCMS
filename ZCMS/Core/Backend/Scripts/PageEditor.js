@@ -45,7 +45,7 @@ $(function () {
         });
     });
 
-    $("#PageName").keyup(function () {
+    $("#Instance_PageName").keyup(function () {
         $("#url-slug").text($(this).val().replace(new RegExp("[^a-zA-Z0-9\_]+", "g"), "-"));
         $("#url-slug").parent().find(".actual-property-value").val($("#url-slug").text());
     });

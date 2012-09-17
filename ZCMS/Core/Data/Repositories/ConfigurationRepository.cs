@@ -71,6 +71,13 @@ namespace ZCMS.Core.Data.Repositories
             _session.Store(new
             {
                 Exclude = true,
+                Id = "Raven/Versioning/SocialService",
+                MaxRevisions = 1
+            });
+
+            _session.Store(new
+            {
+                Exclude = true,
                 Id = "Raven/Versioning/ZCMSFileDocument",
                 MaxRevisions = 1
             });
@@ -128,7 +135,8 @@ namespace ZCMS.Core.Data.Repositories
                     MenuName = CMS_i18n.BackendResources.MenuConfigure,
                     MenuItems = new List<ZCMSMenuItem>()
                 {
-                    new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuConfigPageTypes, ItemDisplay = CMS_i18n.BackendResources.MenuConfigPageTypes, ItemAction = "ConfigurePageTypes" }
+                    new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuConfigPageTypes, ItemDisplay = CMS_i18n.BackendResources.MenuConfigPageTypes, ItemAction = "ConfigurePageTypes" },
+                    new ZCMSMenuItem() { ItemName = CMS_i18n.BackendResources.MenuConfigureSocial, ItemDisplay = CMS_i18n.BackendResources.MenuConfigureSocial, ItemAction = "Social" }
                 }
                 }, "Menu/ConfigureMenu");
 

@@ -71,3 +71,5 @@ C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\sv\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\tr\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Authorization.dll
 C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Raven.Client.Authorization.pdb
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Facebook.dll
+C:\Projects\ZCMS\ZCMSUnitTest\bin\Debug\Facebook.xml

@@ -7,11 +7,11 @@ namespace ZCMS.Core.Auth.Business
 {
     public static class PermissionSet
     {
-        public static IEnumerable<Permission> GetAvailablePermissions()
+        public static IEnumerable<Permission> GetAvailablePermissions(string permission)
         {
-            yield return new Permission() { PermissionDisplay = CMS_i18n.BackendResources.PermissionSetNone, PermissionValue = "None" };
-            yield return new Permission() { PermissionDisplay = CMS_i18n.BackendResources.PermissionSetElevated, PermissionValue = "Elevated" };
-            yield return new Permission() { PermissionDisplay = CMS_i18n.BackendResources.PermissionSetAdmin, PermissionValue = "Admin" };
+            yield return new Permission() { PermissionDisplay = CMS_i18n.BackendResources.PermissionSetNone, PermissionValue = "None", Selected = (permission == "None") ? true : false };
+            yield return new Permission() { PermissionDisplay = CMS_i18n.BackendResources.PermissionSetElevated, PermissionValue = "Elevated", Selected = (permission == "Elevated") ? true : false };
+            yield return new Permission() { PermissionDisplay = CMS_i18n.BackendResources.PermissionSetAdmin, PermissionValue = "Admin", Selected = (permission == "Admin") ? true : false };
         }
     }
 
@@ -19,5 +19,6 @@ namespace ZCMS.Core.Auth.Business
     {
         public string PermissionValue { get; set; }
         public string PermissionDisplay { get; set; }
+        public bool Selected { get; set; }
     }
 }

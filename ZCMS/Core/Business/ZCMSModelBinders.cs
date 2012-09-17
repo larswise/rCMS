@@ -20,7 +20,7 @@ namespace ZCMS.Core.Business
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             ZCMSPage model = (ZCMSPage)Activator.CreateInstance(bindingContext.ModelType);
-            model.PageName = bindingContext.ValueProvider.GetValue("PageName").AttemptedValue;
+            model.PageName = bindingContext.ValueProvider.GetValue("Instance.PageName").AttemptedValue;
             model.PageType = bindingContext.ValueProvider.GetValue("PageType").AttemptedValue;
             try
             {
@@ -33,12 +33,12 @@ namespace ZCMS.Core.Business
 
             DateTime start, end;
 
-            if(DateTime.TryParse(bindingContext.ValueProvider.GetValue("StartPublish").AttemptedValue, out start))
+            if (DateTime.TryParse(bindingContext.ValueProvider.GetValue("Instance.StartPublish").AttemptedValue, out start))
                 model.StartPublish = start;
             else
                 model.StartPublish = DateTime.MinValue;
 
-            if(DateTime.TryParse(bindingContext.ValueProvider.GetValue("EndPublish").AttemptedValue, out end))
+            if (DateTime.TryParse(bindingContext.ValueProvider.GetValue("Instance.EndPublish").AttemptedValue, out end))
                 model.EndPublish = end;
             else 
                 model.EndPublish = DateTime.MinValue;

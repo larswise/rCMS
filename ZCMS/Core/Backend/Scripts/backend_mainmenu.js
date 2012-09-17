@@ -18,7 +18,7 @@ $(document).ready(function () {
     
     $(".mainmenuitem").click(function (e) {
         var clicked = $(this).attr('data-val');
-        console.log("im here ... " + $(this).find(".SubMenuItem"));
+        
         $(this).parent().find(".SubMenuItem").slideToggle('fast', 'easeInSine');
 
     });

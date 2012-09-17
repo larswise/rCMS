@@ -13,5 +13,7 @@ namespace ZCMS.Core.Auth.Business
         [Required(ErrorMessageResourceType = typeof(CMS_i18n.Auth), ErrorMessageResourceName = "AuthPasswordRequired")]
         public string Password { get; set; }
         public string FullName { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 }

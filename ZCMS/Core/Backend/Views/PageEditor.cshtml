@@ -1,10 +1,10 @@
-@model ZCMS.Core.Business.Content.ZCMSPage
+@model ZCMS.Core.Business.Content.ZCMSContent<ZCMS.Core.Business.Content.ZCMSPage>
 @{
     ViewBag.Title = "EditPage";
     Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
-    var tab1 = Model.Properties.Where(m => m.DisplayInTab == ZCMS.Core.Business.Tab.Tab1).ToList();
-    var tab2 = Model.Properties.Where(m => m.DisplayInTab == ZCMS.Core.Business.Tab.Tab2).ToList();
-    var tab3 = Model.Properties.Where(m => m.DisplayInTab == ZCMS.Core.Business.Tab.Tab3).ToList();
+    var tab1 = Model.Instance.Properties.Where(m => m.DisplayInTab == ZCMS.Core.Business.Tab.Tab1).ToList();
+    var tab2 = Model.Instance.Properties.Where(m => m.DisplayInTab == ZCMS.Core.Business.Tab.Tab2).ToList();
+    var tab3 = Model.Instance.Properties.Where(m => m.DisplayInTab == ZCMS.Core.Business.Tab.Tab3).ToList();
 
     
 }
@@ -12,7 +12,7 @@
 
 <div class="editor-controls-wrap">
 
-@Html.Partial("PageBase", Model)
+@Html.Partial("PageBase", Model.Instance)
 <div id="zcms-tabs">
     <ul>
 		<li><a href="#zcms-tab-unit-1">General</a></li>
@@ -23,48 +23,48 @@
 <div class="page-edit-top">
        
 <div class="edit-top-label">
-    @Html.LabelFor(model => model.PageName):
+    @Html.LabelFor(model => model.Instance.PageName):
 </div>
 <div class="edit-top-unit">
-    @Html.EditorFor(model => model.PageName)
+    @Html.EditorFor(model => model.Instance.PageName)
     @Html.ValidationMessage("PageName.PageName")
 </div>
 </div>
 <div class="page-edit-top">        
 <div class="edit-top-label">
-    @Html.LabelFor(m => m.StartPublish):
+    @Html.LabelFor(m => m.Instance.StartPublish):
 </div>
 <div class="edit-top-unit">
-    @Html.EditorFor(m => m.StartPublish, new { @class = "datefield", type = "date"  })
+    @Html.EditorFor(m => m.Instance.StartPublish, new { @class = "datefield", type = "date"  })
     @Html.ValidationMessage("StartPublish.StartPublish")
 </div>  
 </div>
 <div class="page-edit-top">
 <div class="edit-top-label">
-     @Html.LabelFor(m => m.EndPublish):
+     @Html.LabelFor(m => m.Instance.EndPublish):
 </div>
 <div class="edit-top-unit">
-     @Html.EditorFor(m => m.EndPublish, new { @class = "datefield", type = "date"  })
+     @Html.EditorFor(m => m.Instance.EndPublish, new { @class = "datefield", type = "date"  })
      @Html.ValidationMessage("EndPublish.EndPublish")
 </div> 
 </div>
-@Html.Partial("PageProperties", Model.Properties, new ViewDataDictionary() {{ "tabstart", 0 }, { "tabend", tab1.Count }})
+@Html.Partial("PageProperties", Model.Instance.Properties, new ViewDataDictionary() {{ "tabstart", 0 }, { "tabend", tab1.Count }})
 <!-- permission set -->
 <div class="custom-properties-edit-wrap">
 <div class="edit-top-label">
      @Html.Label(CMS_i18n.BackendResources.PagePermissions):
 </div>
 <div class="edit-top-unit">
-     @Html.DropDownList("PermissionSet")
+     @Html.DropDownList("Permissions", (IEnumerable<SelectListItem>)ViewData["PermissionSet"])
 </div> 
 </div>
 <!-- permission set end -->
 </div>
 <div id="zcms-tab-unit-2">
-@Html.Partial("PageProperties", Model.Properties, new ViewDataDictionary() {{ "tabstart", tab1.Count }, { "tabend", tab1.Count+tab2.Count }})
+@Html.Partial("PageProperties", Model.Instance.Properties, new ViewDataDictionary() {{ "tabstart", tab1.Count }, { "tabend", tab1.Count+tab2.Count }})
 </div>
 <div id="zcms-tab-unit-3">
-@Html.Partial("PageProperties", Model.Properties, new ViewDataDictionary() {{ "tabstart", Model.Properties.Count-tab3.Count }, { "tabend", Model.Properties.Count }})
+@Html.Partial("PageProperties", Model.Instance.Properties, new ViewDataDictionary() {{ "tabstart", Model.Instance.Properties.Count-tab3.Count }, { "tabend", Model.Instance.Properties.Count }})
 </div>
 </div>
 </div>

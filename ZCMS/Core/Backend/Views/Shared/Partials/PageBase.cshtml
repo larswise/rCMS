@@ -20,7 +20,7 @@
     
 </div>
 <div class="page-editor-tools-view">
-    <a href="@Url.Action("ViewPage", "Frontend", new { pageId = Model.PageID })" id="view-document">
+    <a href="@Url.Action("ViewPage", "Frontend", new { slug = Model.SlugValue })" id="view-document">
         <img border="0" src="@Url.Content("~/Content/Backend/images/eye_open.png")" alt="-" title="@CMS_i18n.BackendResources.ViewPage" />
         <span class="page-actions">@CMS_i18n.BackendResources.ViewPage</span>
     </a>

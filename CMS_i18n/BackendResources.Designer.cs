@@ -232,6 +232,24 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to API Key.
+        /// </summary>
+        public static string FacebookConfigApiKey {
+            get {
+                return ResourceManager.GetString("FacebookConfigApiKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App Secret.
+        /// </summary>
+        public static string FacebookConfigApiSecret {
+            get {
+                return ResourceManager.GetString("FacebookConfigApiSecret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content type.
         /// </summary>
         public static string FileDocumentContentType {
@@ -439,6 +457,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Social.
+        /// </summary>
+        public static string MenuConfigureSocial {
+            get {
+                return ResourceManager.GetString("MenuConfigureSocial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         public static string MenuDashBoard {
@@ -628,6 +655,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The page you requested is not available. It has either expired or is not yet published..
+        /// </summary>
+        public static string PageNotPublished {
+            get {
+                return ResourceManager.GetString("PageNotPublished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Permission.
         /// </summary>
         public static string PagePermissions {
@@ -790,6 +826,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaveSocialMediaSettings {
+            get {
+                return ResourceManager.GetString("SaveSocialMediaSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to On/Off.
         /// </summary>
         public static string SelectedOrNot {
@@ -804,6 +849,33 @@ namespace CMS_i18n {
         public static string ShowInMenus {
             get {
                 return ResourceManager.GetString("ShowInMenus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activate.
+        /// </summary>
+        public static string SocialMediaActiveLabel {
+            get {
+                return ResourceManager.GetString("SocialMediaActiveLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Social Media Settings.
+        /// </summary>
+        public static string SocialMediaSettingsHeader {
+            get {
+                return ResourceManager.GetString("SocialMediaSettingsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When a social media is activated, a user will be able to write comments on your article by logging in to the social media service. Configuration at the social media developer site is required..
+        /// </summary>
+        public static string SocialMediaSettingsHeaderDescription {
+            get {
+                return ResourceManager.GetString("SocialMediaSettingsHeaderDescription", resourceCulture);
             }
         }
         
@@ -831,6 +903,33 @@ namespace CMS_i18n {
         public static string TagsDelete {
             get {
                 return ResourceManager.GetString("TagsDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consumer Key.
+        /// </summary>
+        public static string TwitterConfigConsumerKey {
+            get {
+                return ResourceManager.GetString("TwitterConfigConsumerKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consumer Secret.
+        /// </summary>
+        public static string TwitterConfigConsumerSecret {
+            get {
+                return ResourceManager.GetString("TwitterConfigConsumerSecret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token Secret.
+        /// </summary>
+        public static string TwitterConfigTokenSecret {
+            get {
+                return ResourceManager.GetString("TwitterConfigTokenSecret", resourceCulture);
             }
         }
         
