@@ -1,0 +1,38 @@
+﻿body {
+    font-family: Average sans, sans-serif;
+    font-size: 1.1em;
+}
+
+body > div {
+    width: 55%;
+}
+
+
+
+
+.ArticleHeading {
+    font-size: 2.2em;
+    font-weight: bold;
+    padding: .25em 0 .25em 0;
+}
+
+.Introduction {
+    font-weight: bold;
+}
+
+.imagelist-property {
+}
+
+.imagelist-image {
+    float: left;
+}
+
+.imagelist-image img {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+}
+
+.tags-property span {
+    padding: 0 .5em 0 0;
+}

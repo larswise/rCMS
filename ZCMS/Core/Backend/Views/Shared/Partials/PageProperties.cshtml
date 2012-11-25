@@ -16,6 +16,7 @@
             @Html.HiddenFor(m => m[i].PropertyName)
             @Html.HiddenFor(m => m[i].Order)
             @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].DisplayType)
             @Html.HiddenFor(m => m[i].PropertyValidator.GetType().FullName)
                         
             @Html.EditorFor(m => ((ZCMS.Core.Business.Content.RichTextProperty)m[i]).PropertyValue)
@@ -32,6 +33,7 @@
             @Html.HiddenFor(m => m[i].PropertyName)
             @Html.HiddenFor(m => m[i].Order)
             @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].DisplayType)
             @Html.HiddenFor(m => m[i].PropertyValidator)
             
             @Html.TextBoxFor(m => m[i].PropertyValue, new { @class = "text-box single-line" })
@@ -48,6 +50,7 @@
             @Html.HiddenFor(m => m[i].PropertyName)
             @Html.HiddenFor(m => m[i].Order)
             @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].DisplayType)
             @Html.HiddenFor(m => m[i].PropertyValidator)
 
             @Html.TextAreaFor(m => m[i].PropertyValue, new { @class="multilinetextproperty" })
@@ -64,6 +67,7 @@
             @Html.HiddenFor(m => m[i].PropertyName)
             @Html.HiddenFor(m => m[i].Order)
             @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].DisplayType)
             @Html.HiddenFor(m => m[i].PropertyValidator)
 
             @Html.EditorFor(m => m[i].PropertyValue)
@@ -80,6 +84,7 @@
             @Html.HiddenFor(m => m[i].PropertyName)
             @Html.HiddenFor(m => m[i].Order)
             @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].DisplayType)
             <a href="javascript:void(0);" class="file-selector">@CMS_i18n.BackendResources.FileManagerLaunch</a>
             @if (((List<string>)Model[i].PropertyValue).Count >= 6)
             {
@@ -98,6 +103,7 @@
             @Html.HiddenFor(m => m[i].PropertyName)
             @Html.HiddenFor(m => m[i].Order)
             @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].DisplayType)
 
             @Html.EditorFor(m => ((ZCMS.Core.Business.Content.TagsProperty)m[i]).PropertyValue)
             </div>            
@@ -111,6 +117,7 @@
             @Html.HiddenFor(m => m[i].PropertyName)
             @Html.HiddenFor(m => m[i].Order)
             @Html.HiddenFor(m => m[i].DisplayInTab)
+            @Html.HiddenFor(m => m[i].DisplayType)
             @Html.HiddenFor(m => m[i].PropertyValidator)
             
             @Html.TextBoxFor(m => m[i].PropertyValue, new { @class = "datefield", type = "date"  })
@@ -127,6 +134,7 @@
                 @Html.HiddenFor(m => m[i].PropertyName)
                 @Html.HiddenFor(m => m[i].Order)
                 @Html.HiddenFor(m => m[i].DisplayInTab)
+                @Html.HiddenFor(m => m[i].DisplayType)
                 @Html.HiddenFor(m => m[i].PropertyValue, new { @class = "actual-property-value" })
             </div>
         }

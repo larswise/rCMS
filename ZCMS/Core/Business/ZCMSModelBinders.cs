@@ -62,6 +62,7 @@ namespace ZCMS.Core.Business
                         prop.PropertyValue = bindingContext.ValueProvider.GetValue("PropertyValue").AttemptedValue;
                         prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("[" + i + "].Order").AttemptedValue);
                         prop.DisplayInTab = (Tab)Enum.Parse(typeof(Tab), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayInTab").AttemptedValue);
+                        prop.DisplayType = (DisplayType)Enum.Parse(typeof(DisplayType), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayType").AttemptedValue);
 
                         if (bindingContext.ValueProvider.GetValue("[" + i + "].PropertyValidator")!=null)
                             prop.PropertyValidator = bindingContext.ValueProvider.GetValue("[" + i + "].PropertyValidator").AttemptedValue;
@@ -80,6 +81,7 @@ namespace ZCMS.Core.Business
                             prop.PropertyValue = Convert.ToBoolean(bindingContext.ValueProvider.GetValue("[" + i + "].PropertyValue").AttemptedValue);
                         prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("[" + i + "].Order").AttemptedValue);
                         prop.DisplayInTab = (Tab)Enum.Parse(typeof(Tab), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayInTab").AttemptedValue);
+                        prop.DisplayType = (DisplayType)Enum.Parse(typeof(DisplayType), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayType").AttemptedValue);
                         model.Properties.Add(prop);
                     }
                     else if (type == "ZCMS.Core.Business.Content.DisplayOnlyTextProperty")
@@ -91,6 +93,7 @@ namespace ZCMS.Core.Business
 
                         var test = bindingContext.ValueProvider.GetValue("[" + i + "].DisplayInTab").AttemptedValue;
                         prop.DisplayInTab = (Tab)Enum.Parse(typeof(Tab), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayInTab").AttemptedValue);
+                        prop.DisplayType = (DisplayType)Enum.Parse(typeof(DisplayType), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayType").AttemptedValue);
                         model.Properties.Add(prop);
                     }
                     else if (type == "ZCMS.Core.Business.Content.DateProperty")
@@ -105,6 +108,7 @@ namespace ZCMS.Core.Business
 
                         prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("[" + i + "].Order").AttemptedValue);
                         prop.DisplayInTab = (Tab)Enum.Parse(typeof(Tab), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayInTab").AttemptedValue);
+                        prop.DisplayType = (DisplayType)Enum.Parse(typeof(DisplayType), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayType").AttemptedValue);
                         if (bindingContext.ValueProvider.GetValue("[" + i + "].PropertyValidator")!=null)
                             prop.PropertyValidator = bindingContext.ValueProvider.GetValue("[" + i + "].PropertyValidator").AttemptedValue;
                         else
@@ -117,6 +121,7 @@ namespace ZCMS.Core.Business
                         tp.PropertyName = bindingContext.ValueProvider.GetValue("[" + i + "].PropertyName").AttemptedValue;
                         tp.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("[" + i + "].Order").AttemptedValue);
                         tp.DisplayInTab = (Tab)Enum.Parse(typeof(Tab), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayInTab").AttemptedValue);
+                        tp.DisplayType = (DisplayType)Enum.Parse(typeof(DisplayType), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayType").AttemptedValue);
                         tp.PropertyValue = new List<string>();
                         try
                         {
@@ -153,6 +158,10 @@ namespace ZCMS.Core.Business
                                 else if (propInfo.PropertyType.FullName == "ZCMS.Core.Business.Tab")
                                 {
                                     propInfo.SetValue(propInstance, (Tab)Enum.Parse(typeof(Tab), value, true));
+                                }
+                                else if (propInfo.PropertyType.FullName == "ZCMS.Core.Business.DisplayType")
+                                {
+                                    propInfo.SetValue(propInstance, (DisplayType)Enum.Parse(typeof(DisplayType), value, true));
                                 }
                                 else
                                     propInfo.SetValue(propInstance, value);

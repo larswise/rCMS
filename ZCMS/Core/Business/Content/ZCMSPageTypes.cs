@@ -22,17 +22,17 @@ namespace ZCMS.Core.Business.Content
         public ArticlePage()
         {
             _properties = new List<IZCMSProperty>();
-            _properties.Add(new DisplayOnlyTextProperty() { Order = 0, PropertyName = CMS_i18n.BackendResources.PageUrlSlug, PropertyValue = "", PropertyValidator = typeof(TextPropertyNotNullEmptyValidator).FullName, DisplayInTab = Tab.Tab1 });
+            _properties.Add(new DisplayOnlyTextProperty() { DisplayType = Business.DisplayType.Editor, Order = 0, PropertyName = CMS_i18n.BackendResources.PageUrlSlug, PropertyValue = "", PropertyValidator = typeof(TextPropertyNotNullEmptyValidator).FullName, DisplayInTab = Tab.Tab1 });
 
-            _properties.Add(new BooleanProperty() { Order = 3, PropertyName = CMS_i18n.BackendResources.AllowComments, PropertyValue = false, DisplayInTab = Tab.Tab1 });
-            _properties.Add(new BooleanProperty() { Order = 4, PropertyName = CMS_i18n.BackendResources.ShowInMenus, PropertyValue = false, DisplayInTab = Tab.Tab1 });
+            _properties.Add(new BooleanProperty() { DisplayType = Business.DisplayType.Editor, Order = 3, PropertyName = CMS_i18n.BackendResources.AllowComments, PropertyValue = false, DisplayInTab = Tab.Tab1 });
+            _properties.Add(new BooleanProperty() { DisplayType = Business.DisplayType.Editor, Order = 4, PropertyName = CMS_i18n.BackendResources.ShowInMenus, PropertyValue = false, DisplayInTab = Tab.Tab1 });
 
-            _properties.Add(new TextProperty() { Order = 5, PropertyName = CMS_i18n.BackendResources.ArticleHeading, PropertyValue = " ", DisplayInTab = Tab.Tab2 });
-            _properties.Add(new MultiLineTextProperty() { Order = 6, PropertyName = CMS_i18n.BackendResources.ArticleIntro, PropertyValue = " ", DisplayInTab = Tab.Tab2 });
-            _properties.Add(new RichTextProperty() { Order = 7, PropertyName = CMS_i18n.BackendResources.PageDefaultEditor, PropertyValue = "", DisplayInTab = Tab.Tab2 });
+            _properties.Add(new TextProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 5, PropertyName = CMS_i18n.BackendResources.ArticleHeading, PropertyValue = " ", DisplayInTab = Tab.Tab2 });
+            _properties.Add(new MultiLineTextProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 6, PropertyName = CMS_i18n.BackendResources.ArticleIntro, PropertyValue = " ", DisplayInTab = Tab.Tab2 });
+            _properties.Add(new RichTextProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 7, PropertyName = CMS_i18n.BackendResources.PageDefaultEditor, PropertyValue = "", DisplayInTab = Tab.Tab2 });
 
-            _properties.Add(new TagsProperty() { Order = 8, PropertyName = CMS_i18n.BackendResources.Tags, PropertyValue = new List<string>(), DisplayInTab = Tab.Tab3 });
-            _properties.Add(new ImageListProperty() { Order = 9, PropertyName = CMS_i18n.BackendResources.ImageCarousel, PropertyValue = new List<string>(), DisplayInTab = Tab.Tab3 });
+            _properties.Add(new TagsProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 8, PropertyName = CMS_i18n.BackendResources.Tags, PropertyValue = new List<string>(), DisplayInTab = Tab.Tab3 });
+            _properties.Add(new ImageListProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 9, PropertyName = CMS_i18n.BackendResources.ImageCarousel, PropertyValue = new List<string>(), DisplayInTab = Tab.Tab3 });
 
             _pageTypeDisplayName = CMS_i18n.BackendResources.PageTypeDisplayArticle;
         }
@@ -86,10 +86,10 @@ namespace ZCMS.Core.Business.Content
         public ContainerPage()
         {
             _properties = new List<IZCMSProperty>();
-            _properties.Add(new DisplayOnlyTextProperty() { Order = 0, PropertyName = CMS_i18n.BackendResources.PageUrlSlug, PropertyValue = "", DisplayInTab = Tab.Tab1 });
+            _properties.Add(new DisplayOnlyTextProperty() { DisplayType = Business.DisplayType.Editor, Order = 0, PropertyName = CMS_i18n.BackendResources.PageUrlSlug, PropertyValue = "", DisplayInTab = Tab.Tab1 });
 
-            _properties.Add(new TextProperty() { Order = 3, PropertyName = CMS_i18n.BackendResources.ContainerHeading, PropertyValue = " ", DisplayInTab = Tab.Tab2 });
-            _properties.Add(new TagsProperty() { Order = 4, PropertyName = CMS_i18n.BackendResources.Tags, PropertyValue = new List<string>(), DisplayInTab = Tab.Tab2 });
+            _properties.Add(new TextProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 3, PropertyName = CMS_i18n.BackendResources.ContainerHeading, PropertyValue = " ", DisplayInTab = Tab.Tab2 });
+            _properties.Add(new TagsProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 4, PropertyName = CMS_i18n.BackendResources.Tags, PropertyValue = new List<string>(), DisplayInTab = Tab.Tab2 });
 
             _pageTypeDisplayName = CMS_i18n.BackendResources.PageTypeDisplayContainer;
         }

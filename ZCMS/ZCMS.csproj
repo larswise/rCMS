@@ -243,6 +243,8 @@
     <Compile Include="Core\Business\Content\ZCMSBasePage.cs" />
     <Compile Include="Core\Business\Content\ZCMSContent.cs" />
     <Compile Include="Core\Business\Indexes.cs" />
+    <Compile Include="Core\Business\Utils\OAuthUtils.cs" />
+    <Compile Include="Core\Business\Utils\StringUtils.cs" />
     <Compile Include="Core\Business\Validators\ZCMSValidators.cs" />
     <Compile Include="Core\Business\ZCMSBaseAjaxController.cs" />
     <Compile Include="Core\Business\ZCMSApplication.cs" />
@@ -252,11 +254,13 @@
     <Compile Include="Core\Business\ZCMSEnums.cs" />
     <Compile Include="Core\Business\Content\ZCMSFileDocument.cs" />
     <Compile Include="Core\Business\ZCMSFileManager.cs" />
+    <Compile Include="Core\Business\ZCMSGlobalConfig.cs" />
     <Compile Include="Core\Business\ZCMSLeftViewModel.cs" />
     <Compile Include="Core\Business\Navigation\ZCMSMenu.cs" />
     <Compile Include="Core\Business\Content\ZCMSPage.cs" />
     <Compile Include="Core\Business\Content\ZCMSPageTypes.cs" />
     <Compile Include="Core\Business\Content\ZCMSPageFactory.cs" />
+    <Compile Include="Core\Business\ZCMSPageTypes.cs" />
     <Compile Include="Core\Business\ZCMSSocial.cs" />
     <Compile Include="Core\Business\ZCMSViewEngine.cs" />
     <Compile Include="Core\Business\ZCMSModelBinders.cs">
@@ -293,6 +297,7 @@
     <Content Include="Content\Backend\Images\plus.png" />
     <Content Include="Content\Backend\Images\publish.png" />
     <Content Include="Content\Backend\Modal.css" />
+    <Content Include="Content\Frontend\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -359,9 +364,12 @@
     <Content Include="Core\Backend\Views\Shared\Partials\PageProperties.cshtml" />
     <Content Include="Core\Frontend\Views\Shared\_frontendLayout.cshtml" />
     <Content Include="Core\Frontend\Views\ViewPage.cshtml" />
-    <Content Include="Core\Frontend\Views\Web.config" />
+    <Content Include="Core\Frontend\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Core\Frontend\Views\Shared\Web.config" />
     <Content Include="Core\Backend\Views\Social.cshtml" />
+    <Content Include="Core\Backend\Views\PageTypeEditor.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -641,7 +649,9 @@
     <Content Include="Scripts\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\tinymce\utils\validate.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -659,6 +669,12 @@
     <Content Include="Views\Shared\EditorTemplates\ImageListProperty.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TagsProperty.cshtml" />
     <Content Include="Core\Backend\Views\FileManager.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\TextProperty.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Web.config" />
+    <Content Include="Views\Shared\DisplayTemplates\RichTextProperty.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MultiLineTextProperty.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\TagsProperty.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ImageListProperty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Backend\Images\Social\" />

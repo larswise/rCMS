@@ -45,7 +45,7 @@ namespace ZCMS.Core.Data.Repositories
             ZCMSContent<ZCMSPage> p;
             var page = _session.Advanced.LuceneQuery<ZCMSPage, PageIndexer>().Search("Slug", slug).ToList().FirstOrDefault();
 
-            if ((page.StartPublish > DateTime.Now) || (page.EndPublish!=DateTime.MinValue && page.EndPublish < DateTime.Now))
+            if (((page.StartPublish > DateTime.Now) || (page.EndPublish!=DateTime.MinValue && page.EndPublish < DateTime.Now)) || page.Status == PageStatus.Draft)
             {
                 p = new ZCMSContent<ZCMSPage>(HttpContext.Current.User.Identity.IsAuthenticated);
                 p.PushMetadata("Reasons", CMS_i18n.BackendResources.PageNotPublished);

@@ -67,6 +67,11 @@ namespace ZCMS.Core.Bootstrapper
                 ModelValidatorProviders.Providers.Add(validatorProvider);
 
                 builder.RegisterInstance(validatorProvider).SingleInstance();
+
+                ZCMSGlobalConfig gc = new ZCMSGlobalConfig();
+                gc.SocialServices = worker.CmsContentRepository.GetSocialServiceConfigs();
+                builder.RegisterInstance(gc).SingleInstance();
+
                 var container = builder.Build();
 
                 //FluentValidationModelValidatorProvider.Configure();

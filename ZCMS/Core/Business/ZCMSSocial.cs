@@ -17,6 +17,7 @@ namespace ZCMS.Core.Business
         }
 
         public ZCMSSocial() { }
+
     }
 
     public class SocialService
@@ -26,9 +27,10 @@ namespace ZCMS.Core.Business
         public string ServiceName { get; set; }
         public string Key { get; set; }
         public string Secret { get; set; }
+        public string PublicToken { get; set; }
         public string PrivateToken { get; set; }
         public bool Activated { get; set; }
     }
 
-
+    
 }

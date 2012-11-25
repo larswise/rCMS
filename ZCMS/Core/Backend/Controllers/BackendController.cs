@@ -126,6 +126,12 @@ namespace ZCMS.Core.Backend.Controllers
             return RedirectToAction("Social");
         }
 
+        public ActionResult PageTypeEditor(string mParameter)
+        {
+            ZCMSPageTypes typesViewModel = new ZCMSPageTypes() { PageTypes = _worker.CmsContentRepository.GetPageTypes() };
+            return View(typesViewModel);
+        }
+
         public ActionResult Dashboard()
         {
             return View("Dashboard");
@@ -174,7 +180,8 @@ namespace ZCMS.Core.Backend.Controllers
                         StartPublish = z.StartPublish,
                         EndPublish = z.EndPublish,
                         PageType = z.PageType,                       
-                        EditUrl = "/"+((ZCMSApplication)HttpContext.ApplicationInstance).MainAdminUrl+"/PageEditor/"+z.PageID
+                        EditUrl = "/"+((ZCMSApplication)HttpContext.ApplicationInstance).MainAdminUrl+"/PageEditor/"+z.PageID,
+                        ViewUrl = "/"+((ZCMSApplication)HttpContext.ApplicationInstance).MainContentUrl+"/"+z.SlugValue
                     });
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             return serializer.Serialize(items);

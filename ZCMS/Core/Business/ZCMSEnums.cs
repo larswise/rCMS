@@ -26,7 +26,13 @@ namespace ZCMS.Core.Business
         Tab2,
         [Display(Name = "Tab3")]
         Tab3
+    }
 
+    public enum DisplayType
+    {
+        Editor,
+        Everywhere,
+        Hidden
     }
 
     public enum PageType

@@ -72,6 +72,7 @@ clear: both;
     float: left;
     width: 100%;
     overflow: hidden;
+    padding-bottom: 100px;
 }
 
 #LeftContainer {
@@ -218,6 +219,7 @@ a.topics {
     padding: 5px 0;
     margin: 1px 0 0 0;
     background: #f0f0f0;
+    clear: both;
 }
 
 .meta-label {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,6 +10,7 @@ using System.Web.Http;
 using System.Web.Security;
 using Facebook;
 using ZCMS.Core.Business;
+using ZCMS.Core.Business.Utils;
 using ZCMS.Core.Data;
 
 namespace ZCMS.Core.Frontend.Controllers
@@ -31,26 +33,35 @@ namespace ZCMS.Core.Frontend.Controllers
             return result.id;
         }
 
-        public string GetTwitterSigningKey(string consumerKey)
+        public HttpResponseMessage GetTwitterSigningKey(string consumerKey)
         {
-            string hash = string.Empty;
+            var response = Request.CreateResponse(HttpStatusCode.Moved);
 
-            var socialConfig = _worker.CmsContentRepository.GetSocialServiceConfigs().Where(s => s.ServiceName == "Twitter").FirstOrDefault();
-
-            if (socialConfig != null)
+            ZCMSGlobalConfig gc = ZCMSGlobalConfig.Instance;
+            SocialService twitter;
+            if (gc != null && gc.SocialServices != null && (twitter = gc.SocialServices.FirstOrDefault(f => f.ServiceName == "Twitter"))!=null)
             {
-                string signingKey =
-                    Uri.EscapeDataString(socialConfig.Secret) + "&" +
-                    Uri.EscapeDataString(socialConfig.PrivateToken);
-
-                using (HMACSHA1 hmac = new HMACSHA1())
+                // see if it has tokens!
+                if (String.IsNullOrEmpty(twitter.PublicToken))
                 {
-                    hash = Convert.ToBase64String(
-                        hmac.ComputeHash(
-                        new ASCIIEncoding().GetBytes(signingKey)));
+                    string tokens = OAuthUtils.RequestNewTwitterToken(twitter);
+                    string oauthtoken;
+                    string oauthsecret;
+                    try
+                    {
+                        oauthtoken = tokens.Split('=')[1].Split('&')[0];
+                        oauthsecret = tokens.Split('=')[2].Split('&')[0];
+                        twitter.PublicToken = oauthtoken;
+                        twitter.PrivateToken = oauthsecret;                      
+                        
+                    }
+                    catch
+                    {
+                    }
                 }
+                response.Headers.Location = new Uri("https://api.twitter.com/oauth/authenticate?oauth_token=" + twitter.PublicToken);
             }
-            return hash;
-         }
+            return response;
+        }
     }
 }

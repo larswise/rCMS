@@ -8,7 +8,6 @@
     var item = @Html.Action("GetImages", "File", new { key = items })
 </script>
 <div class="editor-image-container" data-bind="foreach: images">
-
         <div class="unit-imagelist">
         <img width="75px" src="" data-bind="attr: {src: imagePath}" />
             <div class="delete-it">

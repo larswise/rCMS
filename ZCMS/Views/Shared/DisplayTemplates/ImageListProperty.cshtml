@@ -1,0 +1,10 @@
+﻿@model ZCMS.Core.Business.Content.ImageListProperty
+
+<div class="imagelist-property">
+    @foreach (var item in (List<string>)Model.PropertyValue)
+    {
+        <div class="imagelist-image">
+            <img src="@Url.Content("/File/GetCurrentImage?key=" + item.ToString())" alt="" border="0" >
+        </div>
+    }
+</div>

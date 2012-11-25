@@ -12,7 +12,7 @@
 @System.Web.Optimization.Scripts.Render("~/bundles/FrontEnd")
 
     <div id="fb-root"></div>
-    <a id="TwitterLogin" href="javascript:void(0);">twitter login...</a>
+    <a id="nadda" href="/api/AjaxFrontend?consumerKey=@twCnsKey">twitter login...</a>
     <div>
     @if(Model.Instance == null)
     {
@@ -24,5 +24,10 @@
         <div>We have page @Model.Instance.PageName</div>
         <br />
         <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1"></div>
+        
+        foreach (var item in Model.Instance.Properties.Where(p => p.DisplayType == ZCMS.Core.Business.DisplayType.Everywhere))
+        {
+            @Html.DisplayFor(d => item)
+        }
     }
     </div>

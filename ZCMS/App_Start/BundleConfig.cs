@@ -75,7 +75,9 @@ namespace ZCMS
                     frontEndBundle.Include("~/Scripts/" + s + ".js");
                 }
             }
+            
             bundles.Add(frontEndBundle);
+            bundles.Add(new StyleBundle("~/Content/Frontend/Styles").Include("~/Content/Frontend/*.css"));
         }
     }
 }
