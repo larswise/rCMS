@@ -138,7 +138,10 @@ namespace ZCMS.Core.Data.Repositories
                 if (String.IsNullOrEmpty(filterFreeText))
                     return _session.Query<ZCMSFileDocument>().ToList();
                 else
-                    return _session.Query<ZCMSFileDocument>().ToList().Where(z => z.FileName.Contains(filterFreeText)).ToList();
+//                  Contains is not supported, doing a substring match over a text field is a very slow operation, and is not allowed using the Linq API.
+//                  The recommended method is to use full text search (mark the field as Analyzed and use the Search() method to query it.
+                    return _session.Advanced.LuceneQuery<ZCMSFileDocument>().Where("FileName: *" + filterFreeText + "*").ToList();/*z => z.FileName.Contains(filterFreeText)).ToList();*/
+
             else
             {
 

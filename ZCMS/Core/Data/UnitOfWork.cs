@@ -80,6 +80,7 @@ namespace ZCMS.Core.Data
         public void OpenSession()
         {
             _session = _documentStore.OpenSession();
+            _session.Advanced.MaxNumberOfRequestsPerSession = 45;
         }
 
         public void SaveAllChanges()
@@ -101,10 +102,12 @@ namespace ZCMS.Core.Data
 
         public void CloseSession()
         {
+            
             _session.Dispose();
             _authRepository = null;
             _configRepository = null;
             _contentRepository = null;
+            //_session = null;
         }
 
         public void CreateIndexes()
