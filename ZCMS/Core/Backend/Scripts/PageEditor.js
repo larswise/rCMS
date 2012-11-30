@@ -82,7 +82,7 @@ $(function () {
             silentclosebutton: $("#modal-close"),
             callbackclosebuttoninternal: "#confirm-deletion-final",
             contentcontainer: $(".cmsModalInner"),
-            dataurl: "/Backend/RenderUnit/ConfirmDelete",
+            dataurl: "/File/RenderUnit/ConfirmDelete",
             closehandler: OnPageConfirmDelete
         });
     });
