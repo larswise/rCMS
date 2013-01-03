@@ -1,13 +1,11 @@
 ﻿@model ZCMS.Core.Business.Content.TagsProperty
 <div class="tags-property">
-    <span class="tags-title">
+    <h2>
         Tags:
-    </span>
-    @foreach (var item in (List<String>)Model.PropertyValue)
+    </h2>
+    @foreach (var tag in (List<string>)Model.PropertyValue)
     {
-        <span class="content-tag">
-            <a href="#">@item.ToString()</a>
-        </span>
+        <div class="tag">@tag</div>
     }
 </div>
 

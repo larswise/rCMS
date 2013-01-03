@@ -438,4 +438,58 @@
   <data name="TwitterConfigTokenSecret" xml:space="preserve">
     <value>Token Secret</value>
   </data>
+  <data name="DisqusConfigScript" xml:space="preserve">
+    <value>Discus Javascript</value>
+  </data>
+  <data name="SaveSiteDescriptionSettings" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SiteDescriptionMediaSettingsHeader" xml:space="preserve">
+    <value>Your website</value>
+  </data>
+  <data name="SiteDescriptionMediaSettingsHeaderDescription" xml:space="preserve">
+    <value>Entitle, describe and upload a logo.</value>
+  </data>
+  <data name="SiteDescriptionSiteDescription" xml:space="preserve">
+    <value>Site description</value>
+  </data>
+  <data name="SiteDescriptionSiteLogo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="SiteDescriptionSiteTitle" xml:space="preserve">
+    <value>Site title</value>
+  </data>
+  <data name="DashboardGroupsDescription" xml:space="preserve">
+    <value>Group and structurize your content. You can drag and drop items into topics.</value>
+  </data>
+  <data name="DashboardGroupsHeader" xml:space="preserve">
+    <value>Topics</value>
+  </data>
+  <data name="TopicsSettingsHeader" xml:space="preserve">
+    <value>Topics</value>
+  </data>
+  <data name="TopicsSettingsHeaderDescription" xml:space="preserve">
+    <value>Define your topics to better organize your content.</value>
+  </data>
+  <data name="TopicsHeaderCurrent" xml:space="preserve">
+    <value>Current topics</value>
+  </data>
+  <data name="TopicsHeaderNew" xml:space="preserve">
+    <value>Define a new topic</value>
+  </data>
+  <data name="TopicNewColor" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="TopicNewTitleLable" xml:space="preserve">
+    <value>Name &amp; Color</value>
+  </data>
+  <data name="TopicShowInMenu" xml:space="preserve">
+    <value>Show in menu</value>
+  </data>
+  <data name="TopicNewSubmitButton" xml:space="preserve">
+    <value>Create new topic!</value>
+  </data>
+  <data name="TopicNewDescriptionLable" xml:space="preserve">
+    <value>Description</value>
+  </data>
 </root>

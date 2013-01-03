@@ -1,0 +1,61 @@
+﻿@model ZCMS.Core.Business.Content.ZCMSSiteDescription
+@{
+    ViewBag.Title = "Website Description";
+    Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
+}
+@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsCommon")
+@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsSiteDescription")
+@{ Html.BeginForm("sitedescription", "Backend", null, FormMethod.Post, new { @id = "site-description-form" }); }
+<div class="site-description-controls-wrap">
+<div class="site-description-editor-tools-save">
+    <a href="javascript:void(0);" id="save-site-description">
+        <img border="0" src="@Url.Content("~/Content/Backend/images/diskette.png")" alt="-" title="@CMS_i18n.BackendResources.SaveSiteDescriptionSettings" />
+        <span class="page-actions">@CMS_i18n.BackendResources.SaveSiteDescriptionSettings</span>
+    </a>
+    </div>
+</div>
+
+<div class="site-description-wrap">
+    <div class="site-description-header">
+    <h2>@CMS_i18n.BackendResources.SiteDescriptionMediaSettingsHeader</h2>
+        @CMS_i18n.BackendResources.SiteDescriptionMediaSettingsHeaderDescription
+    </div>
+
+    <div class="site-description-edit-top">       
+    <div class="site-description-top-label">
+    @Html.Label(CMS_i18n.BackendResources.SiteDescriptionSiteTitle):
+    </div>
+    <div class="edit-top-unit">
+        @Html.TextBoxFor(model => model.SiteName, new { @class = "text-box single-line-short" })
+        @Html.ValidationMessageFor(model => model.SiteName)
+    </div>
+    </div>
+
+    <div class="site-description-edit-top">       
+    <div class="site-description-top-label">
+    @Html.Label(CMS_i18n.BackendResources.SiteDescriptionSiteDescription):
+    </div>
+    <div class="edit-top-unit">
+        @Html.TextAreaFor(model => model.SiteDescription, new { @class = "multi-line-short" })
+        @Html.ValidationMessageFor(model => model.SiteDescription)
+    </div>
+    </div>
+
+    <div class="site-description-edit-top">       
+    <div class="site-description-top-label">
+    @Html.Label(CMS_i18n.BackendResources.SiteDescriptionSiteLogo):
+    </div>
+    <div class="edit-top-unit">
+        <a href="javascript:void(0);" class="file-selector">@CMS_i18n.BackendResources.FileManagerLaunch</a>
+    </div>
+    </div>
+</div>
+
+@{ Html.EndForm(); }
+
+<!-- modal -->
+<div id="modal" style="display:none">
+<div class="cmsModalInner">
+</div>
+</div>
+<img src="@Url.Content("~/Content/Backend/Images/small_delete.png")" id="modal-close" alt="" style="display:none;" />

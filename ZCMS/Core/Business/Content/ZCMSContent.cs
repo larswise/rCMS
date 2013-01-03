@@ -54,6 +54,9 @@ namespace ZCMS.Core.Business.Content
         public string FacebookApiKey { get; set; }
         public string TwitterConsumerKey { get; set; }
 
+        public ZCMSSocial SocialServices { get; set; }
+        public ZCMSSiteDescription SiteDescription { get; set; }
+
         public void PushMetadata(string key, string value)
         {
             ZCMSMetaDataItem meta = new ZCMSMetaDataItem() { MetaKey = key, MetaValue = value };

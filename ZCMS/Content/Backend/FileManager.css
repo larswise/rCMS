@@ -58,7 +58,7 @@
 
 #FileManagerFileList {
     clear: both;
-    margin-top: 20px;
+    height: 400px;
 }
 
 #FileManagerFileListModal {
@@ -67,10 +67,11 @@
 
 #FileManagerFileListWrap {
     min-height: 400px;
+    width: 600px;
 }
 
 #FileManagerExtensionList {
-    
+    min-height: 165px;
 }
 
 .file-extension {
@@ -135,7 +136,8 @@ a.file-manager-upload {
     padding-left: 15px;
     float: left;
     vertical-align: middle;
-    margin-bottom: 10px;    
+    margin-bottom: 10px;
+    clear: right;    
 }
 
 .deleted-status {

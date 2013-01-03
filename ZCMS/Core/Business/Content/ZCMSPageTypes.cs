@@ -27,7 +27,7 @@ namespace ZCMS.Core.Business.Content
             _properties.Add(new BooleanProperty() { DisplayType = Business.DisplayType.Editor, Order = 3, PropertyName = CMS_i18n.BackendResources.AllowComments, PropertyValue = false, DisplayInTab = Tab.Tab1 });
             _properties.Add(new BooleanProperty() { DisplayType = Business.DisplayType.Editor, Order = 4, PropertyName = CMS_i18n.BackendResources.ShowInMenus, PropertyValue = false, DisplayInTab = Tab.Tab1 });
 
-            _properties.Add(new TextProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 5, PropertyName = CMS_i18n.BackendResources.ArticleHeading, PropertyValue = " ", DisplayInTab = Tab.Tab2 });
+            _properties.Add(new TextProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 5, PropertyName = CMS_i18n.BackendResources.ArticleHeading, PropertyValue = " ", DisplayInTab = Tab.Tab2, PropertyValidator = typeof(TextPropertyNotNullEmptyValidator).FullName });
             _properties.Add(new MultiLineTextProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 6, PropertyName = CMS_i18n.BackendResources.ArticleIntro, PropertyValue = " ", DisplayInTab = Tab.Tab2 });
             _properties.Add(new RichTextProperty() { DisplayType = Business.DisplayType.Everywhere, Order = 7, PropertyName = CMS_i18n.BackendResources.PageDefaultEditor, PropertyValue = "", DisplayInTab = Tab.Tab2 });
 

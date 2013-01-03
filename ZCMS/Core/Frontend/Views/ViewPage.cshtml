@@ -3,16 +3,12 @@
     Layout = "~/Core/Frontend/Views/Shared/_frontendLayout.cshtml";
     var fbApiKey = !String.IsNullOrEmpty(Model.FacebookApiKey) ? Model.FacebookApiKey : "";
     var twCnsKey = !String.IsNullOrEmpty(Model.TwitterConsumerKey) ? Model.TwitterConsumerKey : "";
+    var cmtsAllowed = Model.Instance.Properties.Any(p => p is ZCMS.Core.Business.Content.BooleanProperty && p.PropertyName == "Allow comments" && p.PropertyValue!=null && (bool)p.PropertyValue == true);
 }
-<script type="text/javascript">
-    facebookApiKey = '@fbApiKey';
-    twitterConsumerKey = '@twCnsKey';
-</script>
+
 @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
 @System.Web.Optimization.Scripts.Render("~/bundles/FrontEnd")
 
-    <div id="fb-root"></div>
-    <a id="nadda" href="/api/AjaxFrontend?consumerKey=@twCnsKey">twitter login...</a>
     <div>
     @if(Model.Instance == null)
     {
@@ -21,13 +17,27 @@
     }
     else 
     {
-        <div>We have page @Model.Instance.PageName</div>
-        <br />
-        <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1"></div>
+             
         
         foreach (var item in Model.Instance.Properties.Where(p => p.DisplayType == ZCMS.Core.Business.DisplayType.Everywhere))
         {
             @Html.DisplayFor(d => item)
+            // byline
+            if (item.PropertyName.Equals("Article Heading"))
+            {
+                <div class="byline">
+                    <span>@CMS_i18n.FrontendResources.BylinePublishedOn @Model.Instance.StartPublish.ToString(CMS_i18n.Formats.DateFormat) by @Model.Instance.WrittenBy</span>
+                </div>
+            }
         }
+
+        if (Model.SocialServices.Disqus.Activated && cmtsAllowed)
+        {
+            @Html.Raw(Model.SocialServices.Disqus.JsIntegration)
+        }
+
     }
     </div>
+
+<div style="background: #c0c0c0; padding: 1em;"><i><small>We found the requested page; @Model.Instance.PageName and we have sufficient permissions to display it!</small></i></div>
+        

@@ -107,6 +107,7 @@ namespace ZCMS.Core.Data
             _authRepository = null;
             _configRepository = null;
             _contentRepository = null;
+            _fileRepository = null;
             //_session = null;
         }
 

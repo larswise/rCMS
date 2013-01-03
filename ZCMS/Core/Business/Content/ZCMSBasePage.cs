@@ -177,7 +177,7 @@ namespace ZCMS.Core.Business.Content
         }
 
         [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "StartPublish", GroupName = "RequiredDate")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(CMS_i18n.BackendResources), ErrorMessageResourceName = "ValidationPageDateTime")]
         [AdditionalMetadata("PropName", "StartPublish")]
         [Required]
         public DateTime StartPublish
@@ -194,7 +194,6 @@ namespace ZCMS.Core.Business.Content
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(CMS_i18n.BackendResources), ErrorMessageResourceName = "ValidationPageDateTime")]        
         [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "EndPublish", ShortName="EndPublish")]
-        [AdditionalMetadata("PropName", "EndPublish")]
         public DateTime EndPublish
         {
             get

@@ -9,7 +9,8 @@ namespace ZCMS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-1.*", "~/Scripts/knockout-2.0.0.js"));
+                        "~/Scripts/jquery-1.6.2.js", "~/Scripts/knockout-2.0.0.js", "~/Scripts/modernizr-2.0.0.js"
+                        , "~/Scripts/slimScroll.min.js", "~/Scripts/jquery.colorPicker.js"));
 
             
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
@@ -36,8 +37,12 @@ namespace ZCMS
 
             bundles.Add(new ScriptBundle("~/bundles/BackendScriptsSocial").Include(
             "~/Core/Backend/Scripts/Social.js"));
-                    
-            
+
+            bundles.Add(new ScriptBundle("~/bundles/BackendScriptsTopics").Include(
+            "~/Core/Backend/Scripts/Topics.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/BackendScriptsSiteDescription").Include(
+                "~/Core/Backend/Scripts/SiteDescription.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(
             "~/Scripts/tinymce/jquery.tinymce.js"));
@@ -45,8 +50,10 @@ namespace ZCMS
             bundles.Add(new StyleBundle("~/Content/css/backend/main").Include
                 ("~/Content/Backend/backend.css", 
                 "~/Content/Backend/FileManager.css", 
-                "~/Content/Backend/Modal.css", 
-                "~/Content/Backend/Dashboard.css"));
+                "~/Content/Backend/Modal.css",
+                "~/Content/Backend/Dashboard.css",
+                "~/Content/Backend/Topics.css",
+                "~/Content/Backend/ColorPicker.css"));
 
             bundles.Add(new StyleBundle("~/Content/css/backend/fileupload").Include("~/Content/Backend/fileuploader.css"));
             bundles.Add(new StyleBundle("~/Content/css/auth/styles").Include("~/Content/Auth/Auth.css"));

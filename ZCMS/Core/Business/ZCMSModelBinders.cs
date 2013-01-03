@@ -82,6 +82,12 @@ namespace ZCMS.Core.Business
                         prop.Order = Int32.Parse(bindingContext.ValueProvider.GetValue("[" + i + "].Order").AttemptedValue);
                         prop.DisplayInTab = (Tab)Enum.Parse(typeof(Tab), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayInTab").AttemptedValue);
                         prop.DisplayType = (DisplayType)Enum.Parse(typeof(DisplayType), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayType").AttemptedValue);
+
+                        if (bindingContext.ValueProvider.GetValue("[" + i + "].PropertyValidator") != null)
+                            prop.PropertyValidator = bindingContext.ValueProvider.GetValue("[" + i + "].PropertyValidator").AttemptedValue;
+                        else
+                            prop.PropertyValidator = string.Empty;
+
                         model.Properties.Add(prop);
                     }
                     else if (type == "ZCMS.Core.Business.Content.DisplayOnlyTextProperty")
@@ -94,6 +100,12 @@ namespace ZCMS.Core.Business
                         var test = bindingContext.ValueProvider.GetValue("[" + i + "].DisplayInTab").AttemptedValue;
                         prop.DisplayInTab = (Tab)Enum.Parse(typeof(Tab), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayInTab").AttemptedValue);
                         prop.DisplayType = (DisplayType)Enum.Parse(typeof(DisplayType), bindingContext.ValueProvider.GetValue("[" + i + "].DisplayType").AttemptedValue);
+
+                        if (bindingContext.ValueProvider.GetValue("[" + i + "].PropertyValidator") != null)
+                            prop.PropertyValidator = bindingContext.ValueProvider.GetValue("[" + i + "].PropertyValidator").AttemptedValue;
+                        else
+                            prop.PropertyValidator = string.Empty;
+
                         model.Properties.Add(prop);
                     }
                     else if (type == "ZCMS.Core.Business.Content.DateProperty")

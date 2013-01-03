@@ -7,8 +7,10 @@
 
 
 #AuthWrapper {
-width:400px;height:150px;position:absolute;left:50%;top:35%;
-margin-left:-100px;margin-top:-50px; color: #fff;
+    position: relative;
+    margin: 8% auto auto auto;
+    width: 400px;
+    color: #fff;
 }
 
 .logo {
@@ -48,7 +50,8 @@ margin-left:-100px;margin-top:-50px; color: #fff;
 
 #LogonWrapper input[type="submit"] {
     width: 158px;
-    background: #ffd800;
+    background: #0af;
+    font-weight: bold;
 }
 
 .logon-failed {

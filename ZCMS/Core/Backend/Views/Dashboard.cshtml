@@ -26,11 +26,11 @@
     </div>
 
     <div id="dashboard-published-pages" data-bind="foreach: pages">
-        <div id="dashboard-current-page">
+        <div class="dashboard-current-page">
             <div class="current-page-head">
                 <span class="page-label" data-bind="text: PageName"></span> - 
                 <span class="page-label-type" data-bind="text: PageType"></span>
-                (<span class="page-label-id" data-bind="text: PageId"></span>)
+                (  <span class="page-label-id" data-bind="text: PageId"></span>)
             </div>
             <div class="current-page-row">
             <div class="current-page-createdby">
@@ -67,4 +67,34 @@
 
     <div class="dashboard-separator"></div>
     
+</div>
+<div id="dashboard-group-wrapper">
+    <div id="dashboard-group-header">
+    @CMS_i18n.BackendResources.DashboardGroupsHeader
+    </div>
+    <div id="dashboard-group-description">
+        @CMS_i18n.BackendResources.DashboardGroupsDescription
+    </div>
+    <div id="dashboard-groups">
+        <div id="gr1" class="content-group" style="background-color: #442359; color: #fff;">
+            <h2>ASP.NET MVC</h2>
+            <span numitems="count">5</span><span> items</span>
+        </div>
+        <div id="gr4" class="content-group" style="background-color: #0099FF;">
+            <h2>jQuery</h2>
+            <span numitems="count">5</span><span> items</span>
+        </div>
+        <div id="gr2" class="content-group" style="background-color: #bad80a;">
+            <h2>Javascript</h2>
+            <span numitems="count">5</span><span> items</span>
+        </div>
+        <div id="gr5" class="content-group" style="background-color: #b4009e;">
+            <h2>Service Oriented</h2>
+            <span numitems="count">5</span><span> items</span>
+        </div>
+        <div id="gr3" class="content-group" style="background-color: #000000; color: #fff;">
+            <h2>Non-sense</h2>
+            <span numitems="count">5</span><span> items</span>
+        </div>
+    </div>
 </div>

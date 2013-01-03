@@ -1,15 +1,66 @@
-﻿<!DOCTYPE html>
+﻿@model ZCMS.Core.Business.Content.ZCMSContent<ZCMS.Core.Business.Content.ZCMSPage>
+@{
+    var fbApiKey = !String.IsNullOrEmpty(Model.FacebookApiKey) ? Model.FacebookApiKey : "";
+    var twCnsKey = !String.IsNullOrEmpty(Model.TwitterConsumerKey) ? Model.TwitterConsumerKey : "";    
+}
+<!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, user-scalable=yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />  
     <title>@ViewBag.Title</title>
-    <link href='http://fonts.googleapis.com/css?family=Average+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
     @System.Web.Optimization.Styles.Render("~/Content/Frontend/Styles")
+
+    <script type="text/javascript">
+        facebookApiKey = '@fbApiKey';
+        twitterConsumerKey = '@twCnsKey';
+    </script>
+
 </head>
 <body>
-    <div>
-        @RenderBody()
-    </div>
+        <div id="page">
+        <div id="page-inner">
+        <div id="header">
+            <div><img src="@Url.Content("~/content/frontend/images/lalogo.png")" width="24" alt="" /></div>
+            <div>@Model.SiteDescription.SiteName</div>
+
+        </div>
+        <div id="theme-area">
+<div class="blog-introduction">
+    @Model.SiteDescription.SiteDescription
+</div>
+        </div>
+        
+            <div id="menu">
+                <div class="menu-item"><a href="#">Home</a></div>
+                <div class="menu-item"><a href="#">Archive</a></div>
+                <div class="menu-item"><a href="#">Wicked</a></div>
+                <div class="menu-item"><a href="#">About</a></div>
+
+            </div>
+        
+        <div id="main-area">
+        <div id="left-area">
+
+            @if (Model.SocialServices.Facebook.Activated)
+            {
+                <!--div id="fb-root"></div>
+                <div class="fb-login-button" data-show-faces="true" data-width="100" data-max-rows="2"></div-->
+                
+                <a id="nadda" href="/api/AjaxFrontend?consumerKey=@twCnsKey">twitter login...</a>
+            }
+
+        </div>
+        <div id="content-area">            
+            @RenderBody()</div>
+        </div>
+        </div>
+        </div>
+        <div id="footer">
+
+        </div>
+
 </body>
 </html>

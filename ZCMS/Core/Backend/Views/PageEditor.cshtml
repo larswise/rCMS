@@ -48,7 +48,8 @@
      @Html.ValidationMessage("EndPublish.EndPublish")
 </div> 
 </div>
-@Html.Partial("PageProperties", Model.Instance.Properties, new ViewDataDictionary() {{ "tabstart", 0 }, { "tabend", tab1.Count }})
+@{ViewData["tabstart"] = 0; ViewData["tabend"] = tab1.Count; }
+@Html.Partial("PageProperties", Model.Instance.Properties)
 <!-- permission set -->
 <div class="custom-properties-edit-wrap">
 <div class="edit-top-label">
@@ -61,10 +62,13 @@
 <!-- permission set end -->
 </div>
 <div id="zcms-tab-unit-2">
-@Html.Partial("PageProperties", Model.Instance.Properties, new ViewDataDictionary() {{ "tabstart", tab1.Count }, { "tabend", tab1.Count+tab2.Count }})
+@{ViewData["tabstart"] = tab1.Count; ViewData["tabend"] = tab1.Count + tab2.Count; }
+@Html.Partial("PageProperties", Model.Instance.Properties)
 </div>
 <div id="zcms-tab-unit-3">
-@Html.Partial("PageProperties", Model.Instance.Properties, new ViewDataDictionary() {{ "tabstart", Model.Instance.Properties.Count-tab3.Count }, { "tabend", Model.Instance.Properties.Count }})
+@{ViewData["tabstart"] = Model.Instance.Properties.Count - tab3.Count; ViewData["tabend"] = Model.Instance.Properties.Count; }
+@Html.Partial("PageProperties", Model.Instance.Properties)
+<!-- Html.Partial("PageProperties", Model.Instance.Properties, new ViewDataDictionary() {{ "tabstart", Model.Instance.Properties.Count-tab3.Count }, { "tabend", Model.Instance.Properties.Count }}) -->
 </div>
 </div>
 </div>

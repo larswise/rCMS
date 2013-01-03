@@ -1,0 +1,89 @@
+﻿@model ZCMS.Core.Business.Content.ZCMSTopics
+@{
+    ViewBag.Title = "Configure Topics";
+    Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
+}
+
+@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsCommon")
+@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsTopics")
+@{ Html.BeginForm("social", "Backend", null, FormMethod.Post, new { @id = "topics-form" }); }
+<script type="text/javascript">
+    var topics = '@Html.Action("GetTopics")';
+</script>
+<div class="topics-wrap">
+
+
+        <div class="topics-header topics-list-wrap">
+        <h2>@CMS_i18n.BackendResources.TopicsHeaderCurrent</h2>
+        <div class="topics-list" data-bind="foreach: topix">
+
+            <div class="topic-item" data-bind="style: { backgroundColor: Color }, uniqueId: name" data-prefix="tpi">
+                <div class="topic-remove"></div>
+                <div class="topic-name">
+                    <span class="topic-head" data-bind="text: Name"></span>
+                </div>
+                
+                <div class="topic-description" data-bind="text: Description"></div>
+                <div class="topic-showinmenu">
+                    <input type="checkbox" data-prefix="tpicb" data-bind="uniqueId: name, value: name,attr: { checked: ShowInMenu ? 'checked' : '' }" />
+                    <label data-bind="uniqueFor: name">@CMS_i18n.BackendResources.TopicShowInMenu</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="topics-header">
+    <h2>@CMS_i18n.BackendResources.TopicsSettingsHeader</h2>
+        @CMS_i18n.BackendResources.TopicsSettingsHeaderDescription
+    </div>
+
+    <div class="topics-header">
+        <h2>@CMS_i18n.BackendResources.TopicsHeaderNew</h2>
+        <div class="page-edit-top">
+        <div class="edit-top-label">
+             @Html.Label(@CMS_i18n.BackendResources.TopicNewTitleLable):
+        </div>
+        <div class="edit-top-unit">
+             @Html.TextBox("TopicName", null, new { @class = "text-box single-line-short"  })
+
+        </div> 
+        <div class="edit-top-unit">
+             @Html.EditorForModel("ColorPicker")
+        </div> 
+        </div>
+        <div class="page-edit-top" style="height: auto !important;">
+        <div class="edit-top-label">
+             @Html.Label(@CMS_i18n.BackendResources.TopicNewDescriptionLable):
+        </div>
+        <div class="edit-top-unit"">
+             @Html.TextArea("TopicDescription", null, new { @class = "multi-line-short"  })
+
+        </div> 
+        </div>
+        <div class="page-edit-top">
+        <div class="edit-top-label">
+             @Html.Label(@CMS_i18n.BackendResources.TopicShowInMenu):
+        </div>
+        <div class="edit-top-unit">
+             @Html.CheckBox("TopicShowInMenu") 
+
+        </div>  
+        </div>
+
+        <div class="page-edit-top">
+        <div class="edit-top-label">
+             
+        </div>
+        <div class="edit-top-unit">
+             <input type="button" id="newtopic-button" value="@CMS_i18n.BackendResources.TopicNewSubmitButton" />
+        </div> 
+        </div>
+    </div>
+
+
+
+</div>
+
+@{ Html.EndForm(); }

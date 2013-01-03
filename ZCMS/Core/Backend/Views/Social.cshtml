@@ -6,6 +6,7 @@
 @System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsCommon")
 @System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsSocial")
 @{ Html.BeginForm("social", "Backend", null, FormMethod.Post, new { @id = "social-form" }); }
+<div class="social-wrap">
 <div class="social-controls-wrap">
 <div class="social-editor-tools-save">
     <a href="javascript:void(0);" id="save-social">
@@ -16,7 +17,7 @@
 </div>
 <div class="social-wrap">
     <div class="social-header">
-    <h3>@CMS_i18n.BackendResources.SocialMediaSettingsHeader</h3>
+    <h2>@CMS_i18n.BackendResources.SocialMediaSettingsHeader</h2>
         @CMS_i18n.BackendResources.SocialMediaSettingsHeaderDescription
     </div>
 
@@ -52,7 +53,7 @@
     </div>
     </div>
 </div>
-<br />
+
 <div class="social-wrap">
     <div class="social-media-header">
         <b>Twitter</b>
@@ -96,4 +97,31 @@
     </div>
 </div>
 
+<div class="social-wrap">
+    <div class="social-media-header">
+        <b>Disqus</b>
+    </div>
+    <div class="social-edit-top">       
+    <div class="social-top-label">
+    @Html.Label(CMS_i18n.BackendResources.DisqusConfigScript):
+    </div>
+    <div class="edit-top-unit">
+        @Html.TextAreaFor(model => model.Disqus.JsIntegration, new { @class = "multi-line-short" })
+        @Html.ValidationMessageFor(model => model.Disqus.JsIntegration)
+    </div>
+    </div>    
+    
+    <div class="social-edit-top">       
+    <div class="social-top-label">
+    @Html.Label(CMS_i18n.BackendResources.SocialMediaActiveLabel):
+    </div>
+    <div class="edit-top-unit">
+        @Html.CheckBoxFor(model => model.Disqus.Activated)
+        @Html.ValidationMessageFor(model => model.Disqus.Activated)
+    </div>
+    </div>
+</div>
+
+
 @{ Html.EndForm(); }
+</div>

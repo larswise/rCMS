@@ -1,23 +1,79 @@
 ﻿#dashboard-wrapper {
     height: 100%;
+    float: left;
+    width: 75%;
 }
 
 #dashboard-header {
     font-size: 35px;
-    padding: 0 0 20px 0;
-    margin: 10px;
+    margin: 0 15px;
     float: left;
 }
 
-#dashboard-current-page {
-    margin: 10px;
+#dashboard-group-wrapper {
+    width: 25%;
+    float: right;
+    height: 100%;
+}
+
+#dashboard-group-header {
+    font-size: 35px;
+}
+
+#dashboard-group-description {
+    font-size: 15px;
+    padding-bottom: 8px;
+}
+
+#dashboard-groups {
+}
+
+#dashboard-groups > .ui-state-active {
+    background: #696969;
+    border: 1px dotted black;
+}
+
+.content-group {
+    border: 1px dotted black;
+    padding: 10px;
+    margin: 5px 10px 5px 0;
+    width: auto; 
+    float: left;    
+    min-width: 38.75%;
+    max-width: 88%; 
+    text-align: center;
+    opacity: 0.85;  
+    z-index: 10;
+}
+
+.content-group > div {
+    z-index: 0;
+}
+
+.content-group:hover {
+    background: #e1e1e1;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.content-group h2 {
+    padding: 0 !important;
+    font-size: 15px;
+}
+
+#dashboard-published-pages {
+    clear: both;
+    min-height: 300px;
+}
+
+.dashboard-current-page {
+    margin: 15px 0 0 15px;
     border: 1px dotted #000;
     background: #d0d0d0;
     float: left;
-    min-width: 500px;
 }
 
-#dashboard-current-page:hover {
+.dashboard-current-page:hover {
     background: #e1e1e1;
 }
 
@@ -26,6 +82,7 @@
     height: 18px;
     padding: 5px 10px 5px 10px;
     font-size: small;
+    cursor: move;
 }
 
 .page-label-id {
@@ -39,22 +96,22 @@
     font-size: small;
 }
 
-.current-page-header span {
+.current-page-head span {
     padding-right: 10px;
+    font-weight: bold;
 }
 
 
 .current-page-row {
-    padding: 5px 10px 5px 10px;
+    padding: .25em 1em .25em 1em;
     clear: both;
     border-bottom: 1px dotted #c0c0c0;
     overflow: hidden;
 }
 .current-page-row div {
     float: left;
-    font-weight: bold;
     max-width: 275px;
-    font-size: smaller;
+    font-size: small;
 }
 
 .current-page-row div div {
@@ -95,6 +152,7 @@
     color: #000;
     font-size: smaller;
 }
+
 
 /* operations */
 
@@ -147,15 +205,15 @@ a.dashboard-delete-current {
 
 /* filter */
 #dashboard-filter {
-    margin: 10px;
-    clear: both;
-    min-height: 40px;
+    margin: 0 15px;
+    float: left;
+    width: auto;
 }
 
 .dashboard-filter-label, .dashboard-filter-control {
-    padding: 10px 0 0 10px;
+    margin: 10px 0 0 0;
     float: left;
-    font-weight: bold;
+    padding-right: 5px;
 }
 
 .dashboard-filter-control input {
@@ -163,7 +221,7 @@ a.dashboard-delete-current {
 }
 
 .dashboard-filter-links {
-    margin-top: 25px;
+    margin: 15px 0 0 10px;
     float: left;
 }
 
@@ -180,6 +238,5 @@ a.dashboard-delete-current {
 
 .dashboard-filter-buttons, .dashboard-filter-input {
     margin: 5px 0 5px 0;
-    clear: both;
     min-height: 35px;
 }

@@ -21,6 +21,13 @@ $(document).ready(function () {
 
     FileMarkDeleteInit();
     FileEditInit();
+
+    $("#FileManagerFileList").slimScroll({
+        position: 'right',
+        railVisible: false,
+        alwaysVisible: false,
+        height: '400px'
+    });
 });
 
 function FileMarkDeleteInit() {

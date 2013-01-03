@@ -242,6 +242,8 @@
     <Compile Include="Core\Business\AutofacControllerFactory.cs" />
     <Compile Include="Core\Business\Content\ZCMSBasePage.cs" />
     <Compile Include="Core\Business\Content\ZCMSContent.cs" />
+    <Compile Include="Core\Business\Content\ZCMSSiteDescription.cs" />
+    <Compile Include="Core\Business\Content\ZCMSTopics.cs" />
     <Compile Include="Core\Business\Indexes.cs" />
     <Compile Include="Core\Business\Utils\OAuthUtils.cs" />
     <Compile Include="Core\Business\Utils\StringUtils.cs" />
@@ -250,6 +252,7 @@
     <Compile Include="Core\Business\ZCMSApplication.cs" />
     <Compile Include="Core\Business\ZCMSBaseController.cs" />
     <Compile Include="Core\Business\Content\ZCMSBasicProperties.cs" />
+    <Compile Include="Core\Business\ZCMSContentGroup.cs" />
     <Compile Include="Core\Business\ZCMSDashBoard.cs" />
     <Compile Include="Core\Business\ZCMSEnums.cs" />
     <Compile Include="Core\Business\Content\ZCMSFileDocument.cs" />
@@ -284,6 +287,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Auth\Auth.css" />
+    <Content Include="Content\Backend\colorPicker.css" />
     <Content Include="Content\Backend\FileManager.css" />
     <Content Include="Content\Backend\fileuploader.css" />
     <Content Include="Content\Backend\Images\bgleftmenu.png" />
@@ -297,6 +301,7 @@
     <Content Include="Content\Backend\Images\plus.png" />
     <Content Include="Content\Backend\Images\publish.png" />
     <Content Include="Content\Backend\Modal.css" />
+    <Content Include="Content\Backend\Topics.css" />
     <Content Include="Content\Frontend\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -329,7 +334,9 @@
     <Content Include="Core\Backend\Scripts\Dashboard.js" />
     <Content Include="Core\Backend\Scripts\Modal.js" />
     <Content Include="Core\Backend\Scripts\PageEditor.js" />
+    <Content Include="Core\Backend\Scripts\SiteDescription.js" />
     <Content Include="Core\Backend\Scripts\Social.js" />
+    <Content Include="Core\Backend\Scripts\Topics.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Backend\Backend.css" />
     <Content Include="Core\Backend\Views\Shared\Partials\Web.config" />
@@ -343,6 +350,7 @@
     <Content Include="Core\Backend\Scripts\backend_mainmenu.js" />
     <Content Include="Scripts\Facebook.js" />
     <Content Include="Scripts\fileuploader.js" />
+    <Content Include="Scripts\jquery.colorPicker.js" />
     <Content Include="Scripts\timepickeraddon.js" />
     <Content Include="Scripts\Twitter.js" />
     <Content Include="Views\Shared\EditorTemplates\TextProperty.cshtml" />
@@ -370,6 +378,8 @@
     <Content Include="Core\Frontend\Views\Shared\Web.config" />
     <Content Include="Core\Backend\Views\Social.cshtml" />
     <Content Include="Core\Backend\Views\PageTypeEditor.cshtml" />
+    <Content Include="Core\Backend\Views\SiteDescription.cshtml" />
+    <Content Include="Core\Backend\Views\Topics.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -675,9 +685,11 @@
     <Content Include="Views\Shared\DisplayTemplates\MultiLineTextProperty.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\TagsProperty.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ImageListProperty.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ColorPicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Backend\Images\Social\" />
+    <Folder Include="Content\Frontend\images\" />
     <Folder Include="Core\Auth\Scripts\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Backend\" />

@@ -129,29 +129,7 @@ function OnFileSelectorClose() {
     }
 }
 
-function FilterFileSelectorList(freeText) {
-    $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: '/api/AjaxBackend/FileSelector/' + freeText,
-        success: function (data) {
-            $("#FileManagerSelectorListing .file-md-ir").remove();
-            var builder = '';
-            for (i = 0; i < data.length; i++) {
-                builder += '' +
-                '<div class="file-md-ir" data-val="' + data[i].FileKey + '"><div class="file-md-ic"><input type="checkbox" name="' + data[i].FileKey + '" id="' + data[i].FileKey + '"/></div>' +
-                '<div class="file-md-ic"><img src="/Content/Backend/Images/Formats/' + data[i].Extension + '.png" alt="" /></div>' +
-                '<div class="file-md-ic" title="' + data[i].FileName + '">' + data[i].FileName + '</div></div>'
-            }
 
-            $("#FileManagerSelectorListing .file-md-hr").after(builder).fadeIn('slow', 'easeInSine');
-        },
-        error: function () {
-            console.log("something went wrong with ajax!");
-        },
-        traditional: true
-    });
-}
 
 // MVVM ImageList
 
@@ -167,7 +145,7 @@ function ImagesViewModel(arrayParam) {
         var detachFile = new Object();
         detachFile.Param1 = image.fileKey;
         detachFile.Param2 = $("span#CurrentPage").text();
-        console.log(detachFile.Param1);
+        //console.log(detachFile.Param1);
 
         // ajax remove image...
         
@@ -178,7 +156,7 @@ function ImagesViewModel(arrayParam) {
             data: JSON.stringify(detachFile),
             url: '/api/AjaxBackend/RemoveAttachmentFromPage/',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 self.images.remove(image);
             },
             error: function () {

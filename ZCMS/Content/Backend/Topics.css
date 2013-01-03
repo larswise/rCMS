@@ -1,0 +1,29 @@
+﻿.topic-item {
+    padding: 1em;
+    float: left;
+    margin: 5px 5px 0px 0;
+}
+
+.topics-list-wrap {
+    float: right;
+}
+
+.topic-head {
+    font-size: 18px;
+    font-weight: bold;
+    padding: .25em 0;
+}
+
+.topic-showinmenu input {
+    margin: 0 !important;
+}
+
+.topic-remove {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    float: right;
+    background-image: url('/content/backend/images/smallclose.png');
+    cursor: pointer;
+    
+}

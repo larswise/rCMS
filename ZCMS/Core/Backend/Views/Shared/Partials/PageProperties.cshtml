@@ -20,7 +20,7 @@
             @Html.HiddenFor(m => m[i].PropertyValidator.GetType().FullName)
                         
             @Html.EditorFor(m => ((ZCMS.Core.Business.Content.RichTextProperty)m[i]).PropertyValue)
-            @Html.ValidationMessage("Properties."+Model[i].PropertyType)
+            @Html.ValidationMessage("Instance." + @Model[i].PropertyName)
             </div>
         }
         else if (Model[i] is ZCMS.Core.Business.Content.TextProperty)
@@ -37,7 +37,7 @@
             @Html.HiddenFor(m => m[i].PropertyValidator)
             
             @Html.TextBoxFor(m => m[i].PropertyValue, new { @class = "text-box single-line" })
-            @Html.ValidationMessage("Properties."+Model[i].PropertyType)
+            @Html.ValidationMessage("Instance." + @Model[i].PropertyName)
             </div>
         }
         else if (Model[i] is ZCMS.Core.Business.Content.MultiLineTextProperty)
@@ -54,7 +54,7 @@
             @Html.HiddenFor(m => m[i].PropertyValidator)
 
             @Html.TextAreaFor(m => m[i].PropertyValue, new { @class="multilinetextproperty" })
-            @Html.ValidationMessage("Properties."+Model[i].PropertyType)
+            @Html.ValidationMessage("Instance." + @Model[i].PropertyName)
             </div>
         }
         else if (Model[i] is ZCMS.Core.Business.Content.BooleanProperty)
@@ -121,7 +121,7 @@
             @Html.HiddenFor(m => m[i].PropertyValidator)
             
             @Html.TextBoxFor(m => m[i].PropertyValue, new { @class = "datefield", type = "date"  })
-            @Html.ValidationMessage("Properties."+Model[i].PropertyType)
+            @Html.ValidationMessage("Instance." + @Model[i].PropertyName)
             </div>         
         } else if(Model[i] is ZCMS.Core.Business.Content.DisplayOnlyTextProperty)
         {
@@ -136,6 +136,8 @@
                 @Html.HiddenFor(m => m[i].DisplayInTab)
                 @Html.HiddenFor(m => m[i].DisplayType)
                 @Html.HiddenFor(m => m[i].PropertyValue, new { @class = "actual-property-value" })
+                @Html.HiddenFor(m => m[i].PropertyValidator)
+                @Html.ValidationMessage("Instance." + @Model[i].PropertyName)
             </div>
         }
         else {

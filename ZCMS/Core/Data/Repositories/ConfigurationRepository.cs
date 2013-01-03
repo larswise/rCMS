@@ -71,6 +71,13 @@ namespace ZCMS.Core.Data.Repositories
             _session.Store(new
             {
                 Exclude = true,
+                Id = "Raven/Versioning/ZCMSTopics",
+                MaxRevisions = 1
+            });
+
+            _session.Store(new
+            {
+                Exclude = true,
                 Id = "Raven/Versioning/SocialService",
                 MaxRevisions = 1
             });

@@ -97,6 +97,7 @@ namespace ZCMS
 
             );
 
+
             routes.MapRoute(
                 "Backend_PublishPageWithType",
                 mainAdminPath + "{action}/{pageId}/{pageType}",
@@ -125,6 +126,14 @@ namespace ZCMS
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+
+
+            routes.MapRoute(
+                "Backend_Generalc",
+                mainAdminPath + "{action}/{mParameter}",
+                new { Controller = "Backend", mParameter = UrlParameter.Optional }
+
             );
         }
     }

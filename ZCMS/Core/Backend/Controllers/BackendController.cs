@@ -12,6 +12,7 @@ using Raven.Client;
 using ZCMS.Core.Auth.Business;
 using ZCMS.Core.Business;
 using ZCMS.Core.Business.Content;
+using ZCMS.Core.Business.Validators;
 using ZCMS.Core.Data;
 using ZCMS.Core.Security;
 using ZCMS.Core.Utils;
@@ -70,7 +71,10 @@ namespace ZCMS.Core.Backend.Controllers
                 _worker.CmsContentRepository.DeleteCmsPage(page.Instance);
                 return RedirectToAction("DashBoard");
             }
-            TryValidateModel(page);
+
+            TryValidateModel(page.Instance);
+            //var validato = new ZCMSModelValidatorProvider();
+            //validato.GetValidators(
             ZCMSPage ravenPage = _worker.CmsContentRepository.GetCmsPage(page.Instance.PageID.ToString()).Instance;
             if (ModelState.IsValid)
             {
@@ -106,8 +110,9 @@ namespace ZCMS.Core.Backend.Controllers
             }
             else
             {
+                ViewData["PermissionSet"] = PermissionSet.GetAvailablePermissions(string.Empty).Select(x => new SelectListItem { Value = x.PermissionValue, Text = x.PermissionDisplay, Selected = x.Selected });
                 ViewData["CurrentPageId"] = page.Instance.PageID;
-                return View(ravenPage == null ? page.Instance : ravenPage);
+                return View(new ZCMSContent<ZCMSPage>(ravenPage == null ? page.Instance : ravenPage));
             }
         }
 
@@ -118,12 +123,40 @@ namespace ZCMS.Core.Backend.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Social(ZCMSSocial social)
         {
             social.Facebook.ServiceName = "Facebook";
             social.Twitter.ServiceName = "Twitter";
+            social.Disqus.ServiceName = "Disqus";
             _worker.CmsContentRepository.SaveSocialConfigs(social);
             return RedirectToAction("Social");
+        }
+
+        public ActionResult Topics()
+        {
+            ZCMSTopics zTopics = _worker.CmsContentRepository.GetTopics();
+            return View(zTopics);
+        }
+
+        [HttpPost]
+        public ActionResult Topics(ZCMSTopics topics)
+        {
+            _worker.CmsContentRepository.SaveTopics(topics);
+            return RedirectToAction("Topics");
+        }
+
+        public ActionResult SiteDescription()
+        {
+            ZCMSSiteDescription description = _worker.CmsContentRepository.GetSiteDescription();
+            return View(description);
+        }
+
+        [HttpPost]
+        public ActionResult SiteDescription(ZCMSSiteDescription description)
+        {
+            _worker.CmsContentRepository.SaveSiteDescription(description);
+            return RedirectToAction("SiteDescription");
         }
 
         public ActionResult PageTypeEditor(string mParameter)
@@ -187,6 +220,30 @@ namespace ZCMS.Core.Backend.Controllers
             return serializer.Serialize(items);
         }
 
+
+        public string GetTopics()
+        {
+            var items = _worker.CmsContentRepository.GetTopics();
+            if (items!= null && items.Topics != null && items.Topics.Count > 0)
+            {
+                var topics = items.Topics
+                   .Select(z =>
+                       new
+                       {
+                           Name = z.Name,
+                           Description = z.Description,
+                           Color = z.Color,
+                           ShowInMenu = z.ShowInMenu,
+                           TopicId = z.TopicId
+                       });
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                return serializer.Serialize(topics);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
         #endregion
 
         #region Partial view rendering

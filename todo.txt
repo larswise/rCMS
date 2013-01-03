@@ -32,7 +32,13 @@ files and file manager
 
 misc
 
-
+[ ] Topics with colors, images
+[ ] File groups
+[ ] Pagetype front-page
+[ ] Dashboard monitor and view-groups/send pages to groups...
+[ ] Validation of primitive types
+[ ] Main menu generation and sub-menu generation
+[ ] Caching of frontend
 
 [] Authentication and authorization (Users and roles)
 [] some sort of dynamic content snap-in for tinymce to insert docs/imgs in the editor pane!.

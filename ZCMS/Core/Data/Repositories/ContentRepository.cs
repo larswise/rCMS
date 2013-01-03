@@ -43,7 +43,7 @@ namespace ZCMS.Core.Data.Repositories
         public ZCMSContent<ZCMSPage> GetCmsPageBySlug(string slug)
         {
             ZCMSContent<ZCMSPage> p;
-            var page = _session.Advanced.LuceneQuery<ZCMSPage, PageIndexer>().Search("Slug", slug).ToList().FirstOrDefault();
+            var page = _session.Advanced.LuceneQuery<ZCMSPage, PageIndexer>().Search("Slug", slug).FirstOrDefault();
 
             if (((page.StartPublish > DateTime.Now) || (page.EndPublish!=DateTime.MinValue && page.EndPublish < DateTime.Now)) || page.Status == PageStatus.Draft)
             {
@@ -181,7 +181,8 @@ namespace ZCMS.Core.Data.Repositories
 
         public void DeleteCmsPage(ZCMSPage page)
         {
-            ZCMSPage pageToDelete = _session.Load<ZCMSPage>(page.PageID);
+            //ZCMSPage pageToDelete = _session.Load<ZCMSPage>(page.PageID);
+            var pageToDelete = _session.Query<ZCMSPage>().Where(p => p.PageID == page.PageID).FirstOrDefault();
             if (pageToDelete != null)
             {
                 _session.Delete<ZCMSPage>(pageToDelete);
@@ -243,6 +244,62 @@ namespace ZCMS.Core.Data.Repositories
                 _session.Store(social.Twitter, social.Twitter.ServiceName);
             }
 
+            if ((sc = _session.Load<SocialService>("Disqus")) != null)
+            {
+                sc.JsIntegration = social.Disqus.JsIntegration;
+                sc.Activated = social.Disqus.Activated;
+            }
+            else
+            {
+                _session.Store(social.Disqus, social.Disqus.ServiceName);
+            }
+
+        }
+
+        public ZCMSTopics GetTopics()
+        {
+            var topics = _session.Query<ZCMSTopics>().FirstOrDefault();
+            if (topics == null)
+            {
+                _session.Store(new ZCMSTopics());
+                _session.SaveChanges();
+                topics = _session.Query<ZCMSTopics>().FirstOrDefault();
+            }
+            return topics;
+        }
+
+        public void SaveTopics(ZCMSTopics topics)
+        {
+            ZCMSTopics savedtopics;
+            if ((savedtopics = _session.Query<ZCMSTopics>().FirstOrDefault()) != null)
+            {
+                savedtopics = topics;
+            }
+            else
+            {
+                _session.Store(topics);
+            }
+
+        }
+
+        public ZCMSSiteDescription GetSiteDescription()
+        {
+            return _session.Query<ZCMSSiteDescription>().SingleOrDefault();
+        }
+
+        public void SaveSiteDescription(ZCMSSiteDescription description)
+        {
+            ZCMSSiteDescription desc;
+            if ((desc = _session.Query<ZCMSSiteDescription>().SingleOrDefault()) != null)
+            {
+                desc.SiteDescription = description.SiteDescription;
+                desc.SiteLogo = description.SiteLogo;
+                desc.SiteName = description.SiteName;
+            }
+            else
+            {
+                _session.Store(description);
+            }
         }
 
         #endregion

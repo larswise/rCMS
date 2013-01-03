@@ -58,7 +58,7 @@ namespace ZCMS.Core.Business.Validators
         private bool BeAValidDate(string value)
         {
             DateTime dt;
-            if (DateTime.TryParse(value, out dt))
+            if (DateTime.TryParse(value, out dt) && dt>DateTime.MinValue)
                 return true;
             return false;
         }
@@ -93,17 +93,18 @@ namespace ZCMS.Core.Business.Validators
         {
             if (metadata.Model != null)
             {
-                if (metadata.Model is List<IZCMSProperty>)
+                if (metadata.Model is ZCMSPage)// List<IZCMSProperty>)
                 {
-                    foreach (var modelItem in (List<IZCMSProperty>)metadata.Model)
+                    foreach (var modelItem in ((ZCMSPage)metadata.Model).Properties)// (List<IZCMSProperty>)metadata.Model)
                     {
                         yield return new ValidationAdapter(metadata, modelItem, context);
-                    }
+                    }                    
                 }
 
-                if (metadata.Model.GetType() == typeof(DateTime) || (!String.IsNullOrEmpty(metadata.DisplayName) && metadata.DisplayName == "Name"))
+
+                else if (metadata.Model.GetType() == typeof(DateTime) || (!String.IsNullOrEmpty(metadata.DisplayName) && metadata.DisplayName == "Name"))
                 {
-                    yield return new ValidationAdapter(metadata, context);
+                    yield return new ValidationAdapter(metadata, null, context);
                 }
             }
         }
@@ -130,16 +131,17 @@ namespace ZCMS.Core.Business.Validators
             {
 
                 FluentValidation.Results.ValidationResult result = 
-                    ((IValidator)Activator.CreateInstance(Type.GetType(_currentProperty.PropertyValidator), _currentProperty.PropertyType)).Validate(_currentProperty);
+                    ((IValidator)Activator.CreateInstance(Type.GetType(_currentProperty.PropertyValidator), _currentProperty.PropertyName)).Validate(_currentProperty);
                 
-                return result.Errors.Select(fault => new ModelValidationResult
+                var item = result.Errors.Select(fault => new ModelValidationResult
                 {
                     MemberName = fault.PropertyName,
                     Message = fault.ErrorMessage
                 });
+                return item;
                 
             }
-
+            
             if (Metadata.Model != null)
             {
                 FluentValidation.Results.ValidationResult result;
@@ -160,11 +162,8 @@ namespace ZCMS.Core.Business.Validators
                     Message = fault.ErrorMessage
                 });
             }
-            else
-            {
-
-                return Enumerable.Empty<ModelValidationResult>();
-            }
+            return Enumerable.Empty<ModelValidationResult>();
+            
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿
 $(function () {
+
+    $(".content-group").click(function () { alert("I am just a mock-up, yet!"); });
+
     var PagesArray = new Array();
     var counter = 0;
     $.each(pageItems, function () {
@@ -10,11 +13,15 @@ $(function () {
     ko.applyBindings(PagesViewModel);
 
     $("#dashboard-text-filter").keyup(function () {
+        
         if ($(this).val().length > 2 || $(this).val().length == 0) {
             simpleParameter = new Object();
             simpleParameter.Param1 = $(this).val();
             simpleParameter.Param2 = "";
-            GetDashboardPages(simpleParameter);
+            PagesViewModel.removeAll();
+            $("#dashboard-published-pages").css("background", "url('/content/backend/images/bar_loader.png') no-repeat scroll 50% 50% transparent");
+            IgnoreUntilBreak.interceptKeypress(GetDashboardPages, simpleParameter);
+            //GetDashboardPages(simpleParameter);
         }
     });
 
@@ -22,28 +29,43 @@ $(function () {
         simpleParameter = new Object();
         simpleParameter.Param1 = "";
         simpleParameter.Param2 = $(this).attr('data-val');
-        GetDashboardPages(simpleParameter);
+        PagesViewModel.removeAll();
+        $("#dashboard-published-pages").css("background", "url('/content/backend/images/bar_loader.png') no-repeat scroll 50% 50% transparent");
+        IgnoreUntilBreak.interceptKeypress(GetDashboardPages, simpleParameter);
     });
 
+    $(".dashboard-current-page").draggable({ revert: "invalid" });
+
+    $(".content-group").droppable({
+        /*activeClass: "ui-state-hover",*/
+        hoverClass: "ui-state-active",
+        drop: function (event, ui) {
+            $(ui.draggable).remove();
+        }
+    });
 });
 
 function GetDashboardPages(param) {
+    
+        
     $.ajax({
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json; charset=UTF-8',
         url: getPagesServiceUrl,
         data: JSON.stringify(param),
-        success: function (data) {
-            PagesViewModel.removeAll();
+        success: function (data) {            
+            $("#dashboard-published-pages").css("background", "none");
             for (i = 0; i < data.length; i++) {
                 PagesViewModel.addPage(new PageItem(data[i]));
             }
+            
         },
         error: function () {
-            console.log("something went wrong with ajax!");
+            $("#dashboard-published-pages").css("background", "none");
         },
-        traditional: true
+        traditional: true,
+        async: true
     });
 }
 // MVVM Published Pages

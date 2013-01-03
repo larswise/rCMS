@@ -76,8 +76,41 @@ namespace ZCMS.Core.Backend.Controllers
                     });
             return items2;
         }
+
+        [System.Web.Http.HttpPost]
+        public dynamic PostTopic(ZCMSTopic mtopic)
+        {
+            try
+            {
+                var allTopics = _worker.CmsContentRepository.GetTopics();
+
+                if (!mtopic.TopicId.HasValue || mtopic.TopicId.Value==0)
+                {
+                    mtopic.TopicId = new Random().Next();
+                    allTopics.Topics.Add(mtopic);
+                }
+                else
+                {
+                    var editTopic = allTopics.Topics.Where(t => t.TopicId == mtopic.TopicId).FirstOrDefault();
+                    if (editTopic != null)
+                    {
+                        editTopic.Color = mtopic.Color;
+                        editTopic.Description = mtopic.Description;
+                        editTopic.Name = mtopic.Name;
+                        editTopic.ShowInMenu = mtopic.ShowInMenu;
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         
     }
+
+    
 
     public class SimpleParameter
     {

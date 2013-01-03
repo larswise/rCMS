@@ -133,6 +133,24 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group and structurize your content. You can drag and drop items into topics..
+        /// </summary>
+        public static string DashboardGroupsDescription {
+            get {
+                return ResourceManager.GetString("DashboardGroupsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topics.
+        /// </summary>
+        public static string DashboardGroupsHeader {
+            get {
+                return ResourceManager.GetString("DashboardGroupsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your content.
         /// </summary>
         public static string DashBoardHeader {
@@ -210,6 +228,15 @@ namespace CMS_i18n {
         public static string DeletePage {
             get {
                 return ResourceManager.GetString("DeletePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discus Javascript.
+        /// </summary>
+        public static string DisqusConfigScript {
+            get {
+                return ResourceManager.GetString("DisqusConfigScript", resourceCulture);
             }
         }
         
@@ -828,6 +855,15 @@ namespace CMS_i18n {
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
+        public static string SaveSiteDescriptionSettings {
+            get {
+                return ResourceManager.GetString("SaveSiteDescriptionSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
         public static string SaveSocialMediaSettings {
             get {
                 return ResourceManager.GetString("SaveSocialMediaSettings", resourceCulture);
@@ -849,6 +885,51 @@ namespace CMS_i18n {
         public static string ShowInMenus {
             get {
                 return ResourceManager.GetString("ShowInMenus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your website.
+        /// </summary>
+        public static string SiteDescriptionMediaSettingsHeader {
+            get {
+                return ResourceManager.GetString("SiteDescriptionMediaSettingsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entitle, describe and upload a logo..
+        /// </summary>
+        public static string SiteDescriptionMediaSettingsHeaderDescription {
+            get {
+                return ResourceManager.GetString("SiteDescriptionMediaSettingsHeaderDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site description.
+        /// </summary>
+        public static string SiteDescriptionSiteDescription {
+            get {
+                return ResourceManager.GetString("SiteDescriptionSiteDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logo.
+        /// </summary>
+        public static string SiteDescriptionSiteLogo {
+            get {
+                return ResourceManager.GetString("SiteDescriptionSiteLogo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site title.
+        /// </summary>
+        public static string SiteDescriptionSiteTitle {
+            get {
+                return ResourceManager.GetString("SiteDescriptionSiteTitle", resourceCulture);
             }
         }
         
@@ -903,6 +984,87 @@ namespace CMS_i18n {
         public static string TagsDelete {
             get {
                 return ResourceManager.GetString("TagsDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        public static string TopicNewColor {
+            get {
+                return ResourceManager.GetString("TopicNewColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string TopicNewDescriptionLable {
+            get {
+                return ResourceManager.GetString("TopicNewDescriptionLable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new topic!.
+        /// </summary>
+        public static string TopicNewSubmitButton {
+            get {
+                return ResourceManager.GetString("TopicNewSubmitButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name &amp; Color.
+        /// </summary>
+        public static string TopicNewTitleLable {
+            get {
+                return ResourceManager.GetString("TopicNewTitleLable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current topics.
+        /// </summary>
+        public static string TopicsHeaderCurrent {
+            get {
+                return ResourceManager.GetString("TopicsHeaderCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define a new topic.
+        /// </summary>
+        public static string TopicsHeaderNew {
+            get {
+                return ResourceManager.GetString("TopicsHeaderNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show in menu.
+        /// </summary>
+        public static string TopicShowInMenu {
+            get {
+                return ResourceManager.GetString("TopicShowInMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topics.
+        /// </summary>
+        public static string TopicsSettingsHeader {
+            get {
+                return ResourceManager.GetString("TopicsSettingsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define your topics to better organize your content..
+        /// </summary>
+        public static string TopicsSettingsHeaderDescription {
+            get {
+                return ResourceManager.GetString("TopicsSettingsHeaderDescription", resourceCulture);
             }
         }
         

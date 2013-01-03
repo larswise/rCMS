@@ -44,7 +44,9 @@ namespace ZCMS.Core.Frontend.Controllers
                 // see if it has tokens!
                 if (String.IsNullOrEmpty(twitter.PublicToken))
                 {
-                    string tokens = OAuthUtils.RequestNewTwitterToken(twitter);
+                    string tok = OAuthUtils.RequestNewTwitterToken(twitter);
+                    string tokens = tok.Split(';')[0];
+                    
                     string oauthtoken;
                     string oauthsecret;
                     try
@@ -52,14 +54,15 @@ namespace ZCMS.Core.Frontend.Controllers
                         oauthtoken = tokens.Split('=')[1].Split('&')[0];
                         oauthsecret = tokens.Split('=')[2].Split('&')[0];
                         twitter.PublicToken = oauthtoken;
-                        twitter.PrivateToken = oauthsecret;                      
-                        
+                        twitter.PrivateToken = oauthsecret;
+
                     }
                     catch
                     {
-                    }
+                    }                    
                 }
-                response.Headers.Location = new Uri("https://api.twitter.com/oauth/authenticate?oauth_token=" + twitter.PublicToken);
+
+                response.Headers.Location = new Uri("https://api.twitter.com/oauth/authorize?oauth_token=" + twitter.PublicToken);
             }
             return response;
         }
