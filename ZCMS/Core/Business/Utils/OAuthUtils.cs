@@ -26,7 +26,7 @@ namespace ZCMS.Core.Business.Utils
             @"https://api.twitter.com/oauth/request_token");
 
             hwr.Method = "POST";
-            hwr.Headers.Add("Authorization", GetAuthHeader("https://api.twitter.com/oauth/request_token", service.Key, service.Secret));
+            hwr.Headers.Add("Authorization", GetAuthHeader("https://api.twitter.com/oauth/request_token", "POST", service.Key, service.Secret, string.Empty).Split(';')[0]);
             string sh = hwr.Headers["Authorization"].ToString();
             hwr.ContentType = "application/x-www-form-urlencoded";
 
@@ -47,7 +47,7 @@ namespace ZCMS.Core.Business.Utils
             }
         }
 
-        public static string GetAuthHeader(string url, string key, string secret)
+        public static string GetAuthHeader(string url, string method, string key, string secret, string token)
         {
             string hash = string.Empty;
             string oauth_nonce = Convert.ToBase64String(new ASCIIEncoding().GetBytes(DateTime.Now.Ticks.ToString()));
@@ -68,7 +68,7 @@ namespace ZCMS.Core.Business.Utils
 
             StringBuilder preBaseString = new StringBuilder();
             StringBuilder bases = new StringBuilder();
-            preBaseString.Append("POST&");
+            preBaseString.Append(method + "&");
             preBaseString.Append(Uri.EscapeDataString(
                 url));
             preBaseString.Append("&");
@@ -103,10 +103,12 @@ namespace ZCMS.Core.Business.Utils
             oauthHeader += "oauth_nonce=\"" + UrlEncode(sd["oauth_nonce"]) + "\",";
             oauthHeader += "oauth_signature_method=\"" + UrlEncode(sd["oauth_signature_method"]) + "\",";
             oauthHeader += "oauth_timestamp=\"" + UrlEncode(sd["oauth_timestamp"]) + "\",";
+            if (!String.IsNullOrEmpty(token))
+                oauthHeader += "oauth_token=\"" + token + "\",";
             oauthHeader += "oauth_version=\"" + UrlEncode(sd["oauth_version"]) + "\",";
             oauthHeader += "oauth_signature=\"" + UrlEncode(hash) + "\"";
 
-            return oauthHeader + ";oauth_consumerkey=" + UrlEncode(sd["oauth_consumer_key"]) + "&oauth_signature_method=HMAC-SHA1&oauth_token=[TOKEN]&&oauth_timestamp=" + UrlEncode(sd["oauth_timestamp"]) + "&oauth_nonce=" + UrlEncode(sd["oauth_nonce"]) + "&oauth_signature=" + UrlEncode(hash);
+            return oauthHeader + ";oauth_consumer_key=" + UrlEncode(sd["oauth_consumer_key"]) + "&oauth_signature_method=HMAC-SHA1" + (!String.IsNullOrEmpty(token) ? "&oauth_token="+token : "") + "&oauth_timestamp=" + UrlEncode(sd["oauth_timestamp"]) + "&oauth_nonce=" + UrlEncode(sd["oauth_nonce"]) + "&oauth_signature=" + UrlEncode(hash);
         }
 
         public static string UrlEncode(string value)

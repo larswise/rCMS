@@ -1,0 +1,11 @@
+﻿@{
+    IEnumerable<ZCMS.Core.Business.Content.ZCMSTopic> topics = (IEnumerable<ZCMS.Core.Business.Content.ZCMSTopic>)this.ViewData.Values.Last();
+    List<SelectListItem> sl = topics.Select(t => new SelectListItem() { Text = t.Name, Value = t.TopicId.ToString(), Selected = (((int?)ViewData["topic"]).HasValue && ((int?)ViewData["topic"]).Value == t.TopicId) ? true : false }).ToList();
+    if (!sl.Any(s => s.Selected))
+    {
+        sl.FirstOrDefault(f => f.Value == "0").Selected = true;
+    }
+
+}
+
+@Html.DropDownList("Topic", sl)

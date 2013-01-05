@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ZCMS.Core.Business;
+using ZCMS.Core.Business.Utils;
 using ZCMS.Core.Data;
 
 namespace ZCMS.Core.Frontend.Controllers
@@ -28,9 +29,25 @@ namespace ZCMS.Core.Frontend.Controllers
 
         public ActionResult TwitterReturn()
         {
-            string tokentodostuffwith = Request.QueryString["oauth_token"].ToString();
+            ServicePointManager.Expect100Continue = false;
+            var conf = ZCMSGlobalConfig.Instance;
+            var tw = conf.SocialServices.Where(s => s.ServiceName == "Twitter").FirstOrDefault();
+            HttpWebRequest hwr =
+            (HttpWebRequest)HttpWebRequest.Create(
+            @"https://api.twitter.com/1.1/statuses/home_timeline.json?" + OAuthUtils.GetAuthHeader("https://api.twitter.com/1.1/statuses/home_timeline.json", "GET", tw.Key, tw.Secret, Request.QueryString["oauth_token"].ToString()).Split(';')[1].Replace("[TOKEN]", Request.QueryString["oauth_token"].ToString()));
 
-            // we can use the token to get the user home timeline etc...
+            hwr.Method = "GET";
+            //hwr.Headers.Add("Authorization", OAuthUtils.GetAuthHeader("https://api.twitter.com/1/statuses/home_timeline.json", twitter.Key, twitter.Secret));
+            //string sh = hwr.Headers["Authorization"].ToString();
+            //hwr.ContentType = "application/x-www-form-urlencoded";
+
+
+            hwr.Timeout = 3 * 60 * 1000;
+
+            WebResponse wresponse = hwr.GetResponse();
+            StreamReader reader = new StreamReader(wresponse.GetResponseStream());
+            string responseString = reader.ReadToEnd();
+            reader.Close();
 
 
             return RedirectToAction("ViewPage", new { slug = "signedin" });

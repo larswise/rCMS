@@ -78,6 +78,21 @@ namespace ZCMS.Core.Backend.Controllers
         }
 
         [System.Web.Http.HttpPost]
+        public bool PostPageTopic(Int32 pageId, Int32 topicId)
+        {
+            var page = _worker.CmsContentRepository.GetCmsPage(pageId.ToString());
+            if (page != null)
+            {
+                page.Instance.TopicId = topicId;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        [System.Web.Http.HttpPost]
         public dynamic PostTopic(ZCMSTopic mtopic)
         {
             try

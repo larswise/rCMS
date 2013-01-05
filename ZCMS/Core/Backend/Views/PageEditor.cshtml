@@ -66,6 +66,15 @@
 @Html.Partial("PageProperties", Model.Instance.Properties)
 </div>
 <div id="zcms-tab-unit-3">
+<div class="page-edit-top">
+<div class="edit-top-label">
+     @Html.LabelFor(m => m.Instance.TopicId):
+</div>
+<div class="edit-top-unit">
+@{ViewData["topic"] = Model.Instance.TopicId; }
+     @Html.EditorFor(m => m.Instance.TopicId, new { AllTopics = Model.AllTopics })
+</div> 
+</div>
 @{ViewData["tabstart"] = Model.Instance.Properties.Count - tab3.Count; ViewData["tabend"] = Model.Instance.Properties.Count; }
 @Html.Partial("PageProperties", Model.Instance.Properties)
 <!-- Html.Partial("PageProperties", Model.Instance.Properties, new ViewDataDictionary() {{ "tabstart", Model.Instance.Properties.Count-tab3.Count }, { "tabend", Model.Instance.Properties.Count }}) -->

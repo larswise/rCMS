@@ -252,7 +252,6 @@
     <Compile Include="Core\Business\ZCMSApplication.cs" />
     <Compile Include="Core\Business\ZCMSBaseController.cs" />
     <Compile Include="Core\Business\Content\ZCMSBasicProperties.cs" />
-    <Compile Include="Core\Business\ZCMSContentGroup.cs" />
     <Compile Include="Core\Business\ZCMSDashBoard.cs" />
     <Compile Include="Core\Business\ZCMSEnums.cs" />
     <Compile Include="Core\Business\Content\ZCMSFileDocument.cs" />
@@ -263,7 +262,6 @@
     <Compile Include="Core\Business\Content\ZCMSPage.cs" />
     <Compile Include="Core\Business\Content\ZCMSPageTypes.cs" />
     <Compile Include="Core\Business\Content\ZCMSPageFactory.cs" />
-    <Compile Include="Core\Business\ZCMSPageTypes.cs" />
     <Compile Include="Core\Business\ZCMSSocial.cs" />
     <Compile Include="Core\Business\ZCMSViewEngine.cs" />
     <Compile Include="Core\Business\ZCMSModelBinders.cs">
@@ -332,6 +330,7 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Core\Backend\Scripts\FileManager.js" />
     <Content Include="Core\Backend\Scripts\Dashboard.js" />
+    <Content Include="Core\Backend\Scripts\KnockedOut.js" />
     <Content Include="Core\Backend\Scripts\Modal.js" />
     <Content Include="Core\Backend\Scripts\PageEditor.js" />
     <Content Include="Core\Backend\Scripts\SiteDescription.js" />
@@ -686,6 +685,7 @@
     <Content Include="Views\Shared\DisplayTemplates\TagsProperty.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ImageListProperty.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ColorPicker.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Topic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Backend\Images\Social\" />

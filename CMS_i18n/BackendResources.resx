@@ -492,4 +492,10 @@
   <data name="TopicNewDescriptionLable" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="TopicID" xml:space="preserve">
+    <value>Topic</value>
+  </data>
+  <data name="TopicsNoneSelected" xml:space="preserve">
+    <value>None selected</value>
+  </data>
 </root>

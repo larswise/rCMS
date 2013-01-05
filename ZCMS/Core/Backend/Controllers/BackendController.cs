@@ -33,33 +33,34 @@ namespace ZCMS.Core.Backend.Controllers
         #region Page Actions
         public ActionResult PageEditor(int ?pageId, string mParameter)
         {
+            ZCMSContent<ZCMSPage> page;
             dynamic pagePublishType = ZCMSPageFactory.GetPagePublishType(mParameter);
-
+            
             if (pageId.HasValue)
             {
                 ViewData["CurrentPageId"] = pageId.HasValue ? pageId.Value : new Random().Next();
-                ZCMSContent<ZCMSPage> page = _worker.CmsContentRepository.GetCmsPage(pageId.ToString());
+                page = _worker.CmsContentRepository.GetCmsPage(pageId.ToString());
                 ViewData["PermissionSet"] = PermissionSet.GetAvailablePermissions(page.GetMetadataValue("Raven-Document-Authorization")).Select(x => new SelectListItem { Value = x.PermissionValue, Text = x.PermissionDisplay, Selected = x.Selected });
-                
+                                
                 if (page.Instance != null)
                 {
-                    TempData["ImageCollection"] = _worker.GetAttachments(page.Instance).Select(w => new WebImage(w)).ToList();                    
-                    return View(page);
+                    TempData["ImageCollection"] = _worker.GetAttachments(page.Instance).Select(w => new WebImage(w)).ToList();
                 }
                 else
                 {
-                    ZCMSContent<ZCMSPage> newPage = new ZCMSContent<ZCMSPage>(new ZCMSPage(pagePublishType) { Status = PageStatus.New, PageID = Int32.Parse(ViewData["CurrentPageId"].ToString()) });
-                    return View(newPage);
+                    page = new ZCMSContent<ZCMSPage>(new ZCMSPage(pagePublishType) { Status = PageStatus.New, PageID = Int32.Parse(ViewData["CurrentPageId"].ToString()) });
                 }
             }
             else
             {
                 ViewData["PermissionSet"] = PermissionSet.GetAvailablePermissions(string.Empty).Select(x => new SelectListItem { Value = x.PermissionValue, Text = x.PermissionDisplay, Selected = x.Selected });
 
-                ZCMSContent<ZCMSPage> newPage = new ZCMSContent<ZCMSPage>(new ZCMSPage(pagePublishType) { Status = PageStatus.New, PageID = new Random().Next() });
-                ViewData["CurrentPageId"] = newPage.Instance.PageID;
-                return View(newPage);
+                page = new ZCMSContent<ZCMSPage>(new ZCMSPage(pagePublishType) { Status = PageStatus.New, PageID = new Random().Next() });
+                ViewData["CurrentPageId"] = page.Instance.PageID;
             }
+            page.AllTopics = _worker.CmsContentRepository.GetTopics().Topics.OrderBy(o => o.Name).ToList();
+            page.AllTopics.Add(new ZCMSTopic() { TopicId = 0, Name = CMS_i18n.BackendResources.TopicsNoneSelected, Color = "" });
+            return View(page);
         }
 
         [HttpPost]
@@ -94,7 +95,7 @@ namespace ZCMS.Core.Backend.Controllers
                     ravenPage.Status = page.Instance.Status;
                     ravenPage.StartPublish = page.Instance.StartPublish;
                     ravenPage.EndPublish = page.Instance.EndPublish;
-                    
+                    ravenPage.TopicId = page.Instance.TopicId;
                     TempData["DocumentSaved"] = CMS_i18n.BackendResources.DocumentSaved;
                     return RedirectToAction("PageEditor", new { pageId = ravenPage.PageID });
                 }
@@ -167,7 +168,7 @@ namespace ZCMS.Core.Backend.Controllers
 
         public ActionResult Dashboard()
         {
-            return View("Dashboard");
+            return View("Dashboard", new ZCMSDashBoard() { Topics = _worker.CmsContentRepository.GetTopics().Topics  });
         }
 
         public ActionResult FileManager()

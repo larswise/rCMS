@@ -8,6 +8,6 @@ namespace ZCMS.Core.Business
 {
     public class ZCMSDashBoard
     {
-        List<ZCMSContentGroup> ContentGroups { get; set; }
+        public List<ZCMSTopic> Topics { get; set; }
     }
 }

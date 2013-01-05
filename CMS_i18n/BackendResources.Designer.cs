@@ -988,6 +988,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Topic.
+        /// </summary>
+        public static string TopicID {
+            get {
+                return ResourceManager.GetString("TopicID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string TopicNewColor {
@@ -1047,6 +1056,15 @@ namespace CMS_i18n {
         public static string TopicShowInMenu {
             get {
                 return ResourceManager.GetString("TopicShowInMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None selected.
+        /// </summary>
+        public static string TopicsNoneSelected {
+            get {
+                return ResourceManager.GetString("TopicsNoneSelected", resourceCulture);
             }
         }
         

@@ -1,10 +1,12 @@
-﻿@{
+﻿@model ZCMS.Core.Business.ZCMSDashBoard
+@{
     ViewBag.Title = "Dashboard";
     Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
 }
 @System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsDashboard")
 <script type="text/javascript">
-    var pageItems = @Html.Action("GetPages", new { key = "publishedpages" })
+    var pageItems = @Html.Action("GetPages", new { key = "publishedpages" });
+    var topics = @Html.Action("GetTopics");
 </script>
 <div id="dashboard-wrapper">
     
@@ -75,26 +77,11 @@
     <div id="dashboard-group-description">
         @CMS_i18n.BackendResources.DashboardGroupsDescription
     </div>
-    <div id="dashboard-groups">
-        <div id="gr1" class="content-group" style="background-color: #442359; color: #fff;">
-            <h2>ASP.NET MVC</h2>
-            <span numitems="count">5</span><span> items</span>
-        </div>
-        <div id="gr4" class="content-group" style="background-color: #0099FF;">
-            <h2>jQuery</h2>
-            <span numitems="count">5</span><span> items</span>
-        </div>
-        <div id="gr2" class="content-group" style="background-color: #bad80a;">
-            <h2>Javascript</h2>
-            <span numitems="count">5</span><span> items</span>
-        </div>
-        <div id="gr5" class="content-group" style="background-color: #b4009e;">
-            <h2>Service Oriented</h2>
-            <span numitems="count">5</span><span> items</span>
-        </div>
-        <div id="gr3" class="content-group" style="background-color: #000000; color: #fff;">
-            <h2>Non-sense</h2>
-            <span numitems="count">5</span><span> items</span>
-        </div>
+    <div id="dashboard-groups" data-bind="foreach: topix">   
+
+            <div  data-bind="style: { backgroundColor: Color }, uniqueId: name, attr: {id: TopicId}" data-prefix="tpi">
+                <h2 data-bind="text: Name"></h2>
+                <span></span><span> items</span>
+            </div>     
     </div>
 </div>

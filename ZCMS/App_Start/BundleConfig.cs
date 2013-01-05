@@ -30,7 +30,8 @@ namespace ZCMS
             "~/Core/Backend/Scripts/PageEditor.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/BackendScriptsDashboard").Include(
-            "~/Core/Backend/Scripts/Dashboard.js"));
+            "~/Core/Backend/Scripts/Dashboard.js",
+            "~/Core/Backend/Scripts/KnockedOut.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/BackendScriptsFile").Include(
             "~/Core/Backend/Scripts/FileManager.js"));
@@ -39,7 +40,8 @@ namespace ZCMS
             "~/Core/Backend/Scripts/Social.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/BackendScriptsTopics").Include(
-            "~/Core/Backend/Scripts/Topics.js"));
+            "~/Core/Backend/Scripts/Topics.js",
+            "~/Core/Backend/Scripts/KnockedOut.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/BackendScriptsSiteDescription").Include(
                 "~/Core/Backend/Scripts/SiteDescription.js"));

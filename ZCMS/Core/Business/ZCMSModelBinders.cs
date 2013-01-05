@@ -22,6 +22,7 @@ namespace ZCMS.Core.Business
             ZCMSPage model = (ZCMSPage)Activator.CreateInstance(bindingContext.ModelType);
             model.PageName = bindingContext.ValueProvider.GetValue("Instance.PageName").AttemptedValue;
             model.PageType = bindingContext.ValueProvider.GetValue("PageType").AttemptedValue;
+            model.TopicId = Int32.Parse(bindingContext.ValueProvider.GetValue("Instance.TopicId.Topic").AttemptedValue);
             try
             {
                 model.PageID = Int32.Parse(bindingContext.ValueProvider.GetValue("PageID").AttemptedValue);

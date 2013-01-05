@@ -135,4 +135,9 @@ namespace ZCMS.Core.Business.Content
         }
     }
 
+    public class ZCMSPageTypes
+    {
+        public List<IZCMSPageType> PageTypes { get; set; }
+    }
+
 }

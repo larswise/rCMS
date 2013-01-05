@@ -10,6 +10,7 @@ namespace ZCMS.Core.Business.Content
         private T _instance;
         private List<ZCMSMetaDataItem> _metaData;
         private ContentViewStatus _contentViewStatus;
+        private List<ZCMSTopic> _topics;
 
         public ZCMSContent(T instance)
         {
@@ -56,6 +57,18 @@ namespace ZCMS.Core.Business.Content
 
         public ZCMSSocial SocialServices { get; set; }
         public ZCMSSiteDescription SiteDescription { get; set; }
+
+        public List<ZCMSTopic> AllTopics
+        {
+            get
+            {
+                return _topics;
+            }
+            set
+            {
+                _topics = value;
+            }
+        }
 
         public void PushMetadata(string key, string value)
         {

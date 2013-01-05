@@ -17,6 +17,7 @@ namespace ZCMS.Core.Business.Content
         private DateTime _startPublish;
         private DateTime _endPublish;
         private int _pageId;
+        private int? _topicId;
         private string _pageName;
         private string _writtenBy;
         private string _lastChangedBy;
@@ -73,6 +74,20 @@ namespace ZCMS.Core.Business.Content
             set
             {
                 _pageId = value;
+            }
+        }
+        
+        [UIHint("Topic")]
+        [Display(ResourceType = typeof(CMS_i18n.BackendResources), Name = "TopicID")]
+        public int? TopicId
+        {
+            get
+            {
+                return _topicId;
+            }
+            set
+            {
+                _topicId = value;
             }
         }
 
