@@ -79,8 +79,8 @@ ko.bindingHandlers.uniqueFor = {
     }
 };
 
-function sortTiles() {
-    $('.topics-list > .topic-item').sort(function (a, b) {
+function sortTiles(selector) {
+    $(selector).sort(function (a, b) {
         $(b).css("color", isDark($(b).css("background-color")) ? 'white' : 'black');
         return $(a).height() * $(a).width() < $(b).height() * $(b).width() ? 1 : -1;
     }).appendTo('.topics-list');
@@ -113,7 +113,7 @@ function PostNewTopic(topic) {
         success: function (data) {
             TopixViewModel.addTopix(topic);
             setTileSize();
-            sortTiles();
+            sortTiles($('.topics-list > .topic-item'));
         },
         error: function () {
             alert("error");

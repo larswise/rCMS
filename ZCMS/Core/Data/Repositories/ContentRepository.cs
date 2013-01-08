@@ -218,6 +218,15 @@ namespace ZCMS.Core.Data.Repositories
             return items;
         }
 
+        public int GetCount<T>(Func<T, bool> func)
+        {
+            var stats = new RavenQueryStatistics();
+            var results = _session.Query<T>().Statistics(out stats).ToArray();
+            var inner = results.Where(p => func.Invoke(p)).ToArray();
+            
+            return inner.Count();
+        }
+
         public void SaveSocialConfigs(ZCMSSocial social)
         {
             SocialService sc;
@@ -265,6 +274,8 @@ namespace ZCMS.Core.Data.Repositories
                 _session.SaveChanges();
                 topics = _session.Query<ZCMSTopics>().FirstOrDefault();
             }
+
+            topics.Topics.ForEach(a => a.TotalCount = GetCount<ZCMSPage>(p => p.TopicId.HasValue && p.TopicId.Value == a.TopicId.Value));
             return topics;
         }
 

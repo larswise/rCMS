@@ -26,7 +26,7 @@ $(function () {
 
     //
     setTileSize();
-    sortTiles();
+    sortTiles($('.topics-list > .topic-item'));
     
 
 });

@@ -205,6 +205,15 @@ namespace CMS_i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Item(s).
+        /// </summary>
+        public static string DashboardTopicTotalItems {
+            get {
+                return ResourceManager.GetString("DashboardTopicTotalItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View.
         /// </summary>
         public static string DashboardViewCurrent {

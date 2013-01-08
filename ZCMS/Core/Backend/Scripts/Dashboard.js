@@ -11,7 +11,7 @@ $(function () {
         counter++;
     });
     PagesViewModel = new PublishedPagesViewModel(PagesArray);
-    ko.applyBindings(PagesViewModel);
+    
 
     $("#dashboard-text-filter").keyup(function () {
         
@@ -45,17 +45,7 @@ $(function () {
         }
     });
 
-    var TopixArray = new Array();
-    var counter = 0;
-    var topixx = {};
-    if (topics.length > 0) {
-        topixx = JSON.parse(topics);
-    }
-    $.each(topixx, function () {
-        TopixArray[counter] = new TopixItem(this);
-        counter++;
-    });
-    TopixViewModel = new TopixViewModel(TopixArray);
-    ko.applyBindings(TopixViewModel);
+    ko.applyBindings(PagesViewModel);
+    sortTiles($("#dashboard-groups > .content-group"));
 });
 

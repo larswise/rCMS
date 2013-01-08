@@ -498,4 +498,7 @@
   <data name="TopicsNoneSelected" xml:space="preserve">
     <value>None selected</value>
   </data>
+  <data name="DashboardTopicTotalItems" xml:space="preserve">
+    <value>Item(s)</value>
+  </data>
 </root>

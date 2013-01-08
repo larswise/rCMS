@@ -27,5 +27,6 @@ namespace ZCMS.Core.Business.Content
         public bool ShowInMenu { get; set; }
         public string Color { get; set; }
         public int? TopicId { get; set; }
+        public int? TotalCount { get; set; }
     }
 }
