@@ -56,35 +56,50 @@ namespace ZCMS.Core.Backend.Controllers
         [System.Web.Http.HttpPost]
         public dynamic PostGetPages(MultiSimpleParameter filter)
         {
-            PageStatus status = !String.IsNullOrEmpty(filter.Param2) ? (PageStatus)Enum.Parse(typeof(PageStatus), filter.Param2) : PageStatus.Any;
-            var items = _worker.CmsContentRepository.SearchPages(filter.Param1, status);
-            var items2 = items.Select(z =>
-                    new
-                    {
-                        PageName = z.PageName,
-                        PageId = z.PageID,
-                        Created = z.Created.ToString(CMS_i18n.Formats.DateFormat),
-                        LastModified = z.LastModified.ToString(CMS_i18n.Formats.DateFormat),
-                        CreatedBy = z.WrittenBy,
-                        LastModifiedBy = z.LastChangedBy,
-                        Status = z.Status.ToString(),
-                        StartPublish = z.StartPublish,//Properties.Where(p => p.PropertyName == "Start publish").FirstOrDefault().PropertyValue,
-                        EndPublish = z.EndPublish, //Properties.Where(p => p.PropertyName == "End Publish").FirstOrDefault().PropertyValue,
-                        PageType = z.PageType,
-                        EditUrl = "/" + ((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainAdminUrl + "/PageEditor/" + z.PageID,
-                        ViewUrl = "/" + ((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainContentUrl +"/"+ z.SlugValue
-                    });
-            return items2;
+            try
+            {
+                PageStatus status = !String.IsNullOrEmpty(filter.Param2) ? (PageStatus)Enum.Parse(typeof(PageStatus), filter.Param2) : PageStatus.Any;
+                var items = _worker.CmsContentRepository.SearchPages(filter.Param1, status);
+                if (!String.IsNullOrEmpty(filter.Param3))
+                    items = items.Where(i => i.TopicId == Int32.Parse(filter.Param3)).ToList();
+                var items2 = items.Select(z =>
+                        new
+                        {
+                            PageName = z.PageName,
+                            PageId = z.PageID,
+                            Created = z.Created.ToString(CMS_i18n.Formats.DateFormat),
+                            LastModified = z.LastModified.ToString(CMS_i18n.Formats.DateFormat),
+                            CreatedBy = z.WrittenBy,
+                            LastModifiedBy = z.LastChangedBy,
+                            Status = z.Status.ToString(),
+                            StartPublish = z.StartPublish,//Properties.Where(p => p.PropertyName == "Start publish").FirstOrDefault().PropertyValue,
+                            EndPublish = z.EndPublish, //Properties.Where(p => p.PropertyName == "End Publish").FirstOrDefault().PropertyValue,
+                            PageType = z.PageType,
+                            EditUrl = "/" + ((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainAdminUrl + "/PageEditor/" + z.PageID,
+                            ViewUrl = "/" + ((ZCMSApplication)HttpContext.Current.ApplicationInstance).MainContentUrl + "/" + z.SlugValue,
+                            TopicId = z.TopicId
+                        });
+                return items2;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         [System.Web.Http.HttpPost]
-        public bool PostPageTopic(Int32 pageId, Int32 topicId)
+        public bool PostPageTopic(MultiSimpleParameter param)
         {
-            var page = _worker.CmsContentRepository.GetCmsPage(pageId.ToString());
+            var page = _worker.CmsContentRepository.GetCmsPage(param.Param1);
             if (page != null)
             {
-                page.Instance.TopicId = topicId;
-                return true;
+                if (page.Instance.TopicId != Int32.Parse(param.Param2))
+                {
+                    page.Instance.TopicId = Int32.Parse(param.Param2);
+                    return true;
+                }
+                else
+                    return false;
             }
             else
             {
@@ -137,5 +152,6 @@ namespace ZCMS.Core.Backend.Controllers
     {
         public string Param1 { get; set; }
         public string Param2 { get; set; }
+        public string Param3 { get; set; }
     }
 }

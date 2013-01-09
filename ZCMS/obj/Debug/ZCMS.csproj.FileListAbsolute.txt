@@ -1,3 +1,4 @@
+C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.csprojResolveAssemblyReference.cache
 C:\Projects\ZCMS\ZCMS\bin\ZCMS.dll
 C:\Projects\ZCMS\ZCMS\bin\ZCMS.pdb
 C:\Projects\ZCMS\ZCMS\bin\Antlr3.Runtime.dll
@@ -101,6 +102,5 @@ C:\Projects\ZCMS\ZCMS\bin\pt\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMS\bin\ru\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMS\bin\sv\FluentValidation.resources.dll
 C:\Projects\ZCMS\ZCMS\bin\tr\FluentValidation.resources.dll
-C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.csprojResolveAssemblyReference.cache
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.dll
 C:\Projects\ZCMS\ZCMS\obj\Debug\ZCMS.pdb

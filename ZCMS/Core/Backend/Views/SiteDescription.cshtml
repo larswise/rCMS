@@ -3,7 +3,6 @@
     ViewBag.Title = "Website Description";
     Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
 }
-@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsCommon")
 @System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsSiteDescription")
 @{ Html.BeginForm("sitedescription", "Backend", null, FormMethod.Post, new { @id = "site-description-form" }); }
 <div class="site-description-controls-wrap">

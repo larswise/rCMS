@@ -29,9 +29,10 @@
     <div id="dashboard-published-pages" data-bind="foreach: PagesViewModel.pages">
         <div class="dashboard-current-page">
             <div class="current-page-head">
+                <input type="hidden" data-bind="value: TopicId" />
                 <span class="page-label" data-bind="text: PageName"></span> - 
                 <span class="page-label-type" data-bind="text: PageType"></span>
-                (  <span class="page-label-id" data-bind="text: PageId"></span>)
+                (   <span class="page-label-id" data-bind="text: PageId"></span>)
             </div>
             <div class="current-page-row">
             <div class="current-page-createdby">
@@ -85,3 +86,4 @@
         } 
     </div>
 </div>
+<input type="hidden" id="selected-topic" value="" />

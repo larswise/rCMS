@@ -14,7 +14,7 @@ function GetDashboardPages(param) {
             for (i = 0; i < data.length; i++) {
                 PagesViewModel.addPage(new PageItem(data[i]));
             }
-
+            MakeDragDrop();
         },
         error: function () {
             $("#dashboard-published-pages").css("background", "none");
@@ -22,6 +22,7 @@ function GetDashboardPages(param) {
         traditional: true,
         async: true
     });
+    
 }
 // MVVM Published Pages
 
@@ -30,7 +31,7 @@ var PublishedViewModel;
 function PublishedPagesViewModel(arrayParam) {
     var self = this;
     self.pages = ko.observableArray(ko.utils.arrayMap(arrayParam, function (page) {
-        return { PageName: page.PageName, PageId: page.PageId, Created: page.Created, CreatedBy: page.CreatedBy, LastModified: page.LastModified, LastModifiedBy: page.LastModifiedBy, Status: page.Status, StartPublish: page.StartPublish, EndPublish: page.EndPublish, PageType: page.PageType, EditUrl: page.EditUrl, ViewUrl: page.ViewUrl };
+        return { PageName: page.PageName, PageId: page.PageId, Created: page.Created, CreatedBy: page.CreatedBy, LastModified: page.LastModified, LastModifiedBy: page.LastModifiedBy, Status: page.Status, StartPublish: page.StartPublish, EndPublish: page.EndPublish, PageType: page.PageType, EditUrl: page.EditUrl, ViewUrl: page.ViewUrl, TopicId: page.TopicId };
     }));
 
 
@@ -58,6 +59,7 @@ function PageItem(item) {
     self.PageType = item.PageType;
     self.EditUrl = item.EditUrl;
     self.ViewUrl = item.ViewUrl;
+    self.TopicId = item.TopicId;
 }
 
 

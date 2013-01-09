@@ -215,7 +215,8 @@ namespace ZCMS.Core.Backend.Controllers
                         EndPublish = z.EndPublish,
                         PageType = z.PageType,                       
                         EditUrl = "/"+((ZCMSApplication)HttpContext.ApplicationInstance).MainAdminUrl+"/PageEditor/"+z.PageID,
-                        ViewUrl = "/"+((ZCMSApplication)HttpContext.ApplicationInstance).MainContentUrl+"/"+z.SlugValue
+                        ViewUrl = "/"+((ZCMSApplication)HttpContext.ApplicationInstance).MainContentUrl+"/"+z.SlugValue,
+                        TopicId = z.TopicId
                     });
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             return serializer.Serialize(items);

@@ -4,7 +4,6 @@
     Layout = "~/Core/Backend/Views/Shared/_backendLayout.cshtml";
 }
 
-@System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsCommon")
 @System.Web.Optimization.Scripts.Render("~/bundles/BackendScriptsTopics")
 @{ Html.BeginForm("social", "Backend", null, FormMethod.Post, new { @id = "topics-form" }); }
 <script type="text/javascript">

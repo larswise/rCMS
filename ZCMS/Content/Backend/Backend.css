@@ -211,15 +211,15 @@ clear: both;
 
 .SubMenuItem {
     padding: 0 0 0 10px;    
-    line-height: 20px !important; 
+    line-height: 17px !important; 
     display: none;
 }
 
 .SubMenuItem a {
     color: #000 !important;
-    font-size: 14px !important;  
+    font-size: 13px !important;  
     background: url("/content/backend/images/node.png") 0 2px no-repeat;
-    text-indent: 20px;
+    text-indent: 18px;
     display: inline-block;
      
 }
@@ -278,13 +278,13 @@ a.publish {
     display: inline-block;    
 }
 
-a.topics {
+/*a.topics {
     background-image: url('images/topics.png');
     background-size: 24px 24px;    
     background-repeat: no-repeat;    
     text-indent: 28px;
     display: inline-block;    
-}
+}*/
 
 /* Editor */
 .page-base-wrap {

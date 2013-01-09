@@ -2,6 +2,7 @@
 // Global service URLS
 getPagesServiceUrl              = '/api/AjaxBackend/PostGetPages/';
 postTopicServiceUrl             = '/api/AjaxBackend/PostTopic';
+postPageTopicServiceUrl         = '/api/AjaxBackend/PostPageTopic';
 uploadUnitServiceUrl            = '/File/RenderUnit/UploadUnit';
 confirmDeleteServiceUrl         = '/File/RenderUnit/ConfirmDelete';
 deleteAttachmentServiceUrl      = '/File/DeleteAttachments';
@@ -15,17 +16,21 @@ allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'tif', 'tiff', 'bmp', 'eps', '
 webImageUrlPrefix = '/File/GetCurrentImage?key=';
 
 
-$(document).ready(function () {
+$(function () {
     
-    $(".mainmenuitem").click(function (e) {
-        var clicked = $(this).attr('data-val');
-        var menuItem = $(this).parent().find(".SubMenuItem");
-        if(menuItem.is(":visible"))
-            menuItem.slideUp('fast', 'easeInSine');
-        else 
-            menuItem.slideDown('fast', 'easeInSine');
+    try {
+        $(".mainmenuitem").click(function (e) {
+            var clicked = $(this).attr('data-val');
+            var menuItem = $(this).parent().find(".SubMenuItem");
+            if(menuItem.is(":visible"))
+                menuItem.slideUp('fast', 'easeInSine');
+            else 
+                menuItem.slideDown('fast', 'easeInSine');
 
-    });
+        });
+    } catch (e) {
+        
+    }
 });
 
 

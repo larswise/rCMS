@@ -33,38 +33,5 @@ namespace ZCMS.Core.Frontend.Controllers
             return result.id;
         }
 
-        public HttpResponseMessage GetTwitterSigningKey(string consumerKey)
-        {
-            var response = Request.CreateResponse(HttpStatusCode.Moved);
-
-            ZCMSGlobalConfig gc = ZCMSGlobalConfig.Instance;
-            SocialService twitter;
-            if (gc != null && gc.SocialServices != null && (twitter = gc.SocialServices.FirstOrDefault(f => f.ServiceName == "Twitter"))!=null)
-            {
-                // see if it has tokens!
-                if (String.IsNullOrEmpty(twitter.PublicToken))
-                {
-                    string tok = OAuthUtils.RequestNewTwitterToken(twitter);
-                    string tokens = tok.Split(';')[0];
-                    
-                    string oauthtoken;
-                    string oauthsecret;
-                    try
-                    {
-                        oauthtoken = tokens.Split('=')[1].Split('&')[0];
-                        oauthsecret = tokens.Split('=')[2].Split('&')[0];
-                        twitter.PublicToken = oauthtoken;
-                        twitter.PrivateToken = oauthsecret;
-
-                    }
-                    catch
-                    {
-                    }                    
-                }
-
-                response.Headers.Location = new Uri("https://api.twitter.com/oauth/authorize?oauth_token=" + twitter.PublicToken);
-            }
-            return response;
-        }
     }
 }

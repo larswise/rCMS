@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using ZCMS.Core.Auth.Business;
+using ZCMS.Core.Business;
+using ZCMS.Core.Business.Utils;
 using ZCMS.Core.Data;
 
 namespace ZCMS.Core.Auth
@@ -54,5 +57,62 @@ namespace ZCMS.Core.Auth
             return RedirectToAction("SignIn");
         }
 
+        public ActionResult TwitterReturn()
+        {
+            HttpWebRequest hwr =
+            (HttpWebRequest)HttpWebRequest.Create(
+            @"https://api.twitter.com/oauth/authenticate?oauth_token=" + Request.QueryString["oauth_token"].ToString());
+
+            hwr.Method = "GET";
+
+
+            hwr.Timeout = 3 * 60 * 1000;
+
+            WebResponse response = hwr.GetResponse();
+            if (response.Headers["Status"].Equals("200 OK"))
+            {
+                // authorized, link to existing handle, or create and link
+            }
+            else
+            {
+            }
+
+            // redirect back to the originating page.
+            return Redirect(TempData["CurrentPageUrl"].ToString());
+        }
+
+        public ActionResult AuthorizeWithTwitter()
+        {
+            string redirectUrl = "/";
+            TempData["CurrentPageUrl"] = ControllerContext.HttpContext.Request.UrlReferrer.AbsoluteUri;
+            ZCMSGlobalConfig gc = ZCMSGlobalConfig.Instance;
+            SocialService twitter;
+            if (gc != null && gc.SocialServices != null && (twitter = gc.SocialServices.FirstOrDefault(f => f.ServiceName == "Twitter")) != null)
+            {
+                // see if it has tokens!
+                if (String.IsNullOrEmpty(twitter.PublicToken))
+                {
+                    string tok = OAuthUtils.RequestNewTwitterToken(twitter);
+                    string tokens = tok.Split(';')[0];
+
+                    string oauthtoken;
+                    string oauthsecret;
+                    try
+                    {
+                        oauthtoken = tokens.Split('=')[1].Split('&')[0];
+                        oauthsecret = tokens.Split('=')[2].Split('&')[0];
+                        twitter.PublicToken = oauthtoken;
+                        twitter.PrivateToken = oauthsecret;
+
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                redirectUrl = "https://api.twitter.com/oauth/authorize?oauth_token=" + twitter.PublicToken;
+            }
+            return Redirect(redirectUrl);
+        }
     }
 }

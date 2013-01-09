@@ -15,9 +15,7 @@ namespace ZCMS.Core.Business.Utils
     {
         public static string RequestNewTwitterToken(SocialService service)
         {
-            string postBody = string.Empty;
-
-            
+            string postBody = string.Empty;            
 
             ServicePointManager.Expect100Continue = false;
 

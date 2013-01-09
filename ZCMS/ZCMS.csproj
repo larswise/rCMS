@@ -106,7 +106,7 @@
       <HintPath>..\packages\RavenDB.Bundles.Authentication.1.2.2059-Unstable\lib\net40\Raven.Bundles.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Authorization">
-      <HintPath>..\..\..\RavenDB-Unstable-Build-2042\Bundles\Raven.Client.Authorization.dll</HintPath>
+      <HintPath>..\..\..\Users\Administrator\Raven.Client.Authorization.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
