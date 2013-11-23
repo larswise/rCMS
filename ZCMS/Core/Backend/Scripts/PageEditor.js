@@ -1,6 +1,6 @@
 ﻿
 $(function () {
-    $(".datefield").datetimepicker();
+    $(".datefield").datepicker();
 
     $("#zcms-tabs").tabs({ idPrefix: "#zcms-tab-unit" });
 
